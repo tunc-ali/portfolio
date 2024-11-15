@@ -1,0 +1,886 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+nav {
+    background-color: #333;
+    padding: 15px 30px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.box {
+    background-color: #1F78B4;
+    margin: 15px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.contact-section {
+    background-color: #1F78B4;
+    padding: 50px 0;
+}
+
+.contact-section h2 {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    background-color: #0056b3;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: none;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-submit {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #FF6600;
+}
+
+footer {
+    background-color: #1F78B4;
+    color: #fff;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 100%) {
+    nav a {
+        font-size: 26px;
+    }
+
+    .box {
+        max-width: 100%;
+        height: 250px;
+    }
+
+    .box img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    nav a {
+        font-size: 14px;
+    }
+
+    .box {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .box img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.search-input {
+    height: 5px;
+    padding: 2px 14px;
+    font-size: 8px;
+}
+
+.search-button {
+    height: 5px;
+    padding: 2px 4px;
+    font-size: 8px;
+    background-color: #1F78B4;
+    color: #c51b1b;
+    border: 1px solid #000;
+}
+
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+  }
+  
+
+  body {
+    background-color: #1F78B4; /* Ana arka plan rengi (Blauwtint) */
+    color: #fff; /* Yazı rengi */
+}
+
+.navbar, .footer {
+    background-color: #333; /* Navigasyon ve footer arka plan rengi (Grijs) */
+}
+
+.navbar-brand, .nav-link, .footer p {
+    color: #ffffff !important; /* Link ve logo için beyaz vurgu */
+}
+
+.card {
+    background-color: #333333; /* Proje kartlarının arka plan rengi */
+    color: #fff;
+    border: none;
+}
+
+.card-title, .card-text {
+    color: #fff; /* Kart başlık ve metin rengi beyaz */
+}
+
+.card-img-top {
+    height: 600px; /* Resimlerin sabit yüksekliği */
+    object-fit: cover;
+}
+
+/* Orta yerleşim ve sınırlı genişlik */
+.projects-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Konteynerlerin sayfada dikey olarak ortalanması */
+}
+
+.card {
+    margin: 0 15px;
+}
+
+.row {
+    justify-content: center;
+}
+
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0056b3; /* Mavi tonları arka plan */
+    color: #FFFFFF;
+    text-align: center;
+    box-sizing: border-box; /* Genişlik hesaplamasında taşmayı önlemek için */
+}
+
+/* Contact Section Styling */
+.contact-section {
+    padding: 50px 20px; /* Kenarlardan boşluk bırakmak için padding ayarlandı */
+    background-color: #1F78B4;
+}
+
+.contact-section h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    background-color: #004080; /* Mavi ton */
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 1000px; /* Masaüstü için genişlik sınırlaması */
+    width: 100%; /* Her cihazda tam genişlik */
+    margin: 0 auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+    box-sizing: border-box; /* Genişlik taşmasını önlemek için */
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    font-size: 16px;
+    background-color: #eaeaea; /* Input alanı rengi */
+    border-radius: 4px;
+    box-sizing: border-box; /* Genişlik taşmasını önlemek için */
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+}
+
+.btn-submit {
+    background-color: #333333;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    width: 100%; /* Buton da tam genişlik */
+    box-sizing: border-box;
+}
+
+.btn-submit:hover {
+    background-color: #FF6600;
+}
+
+/* Footer styling */
+footer {
+    background-color: #004080;
+    color: white;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1000px) {
+    .contact-form {
+        padding: 40px; /* Mobilde padding küçültüldü */
+    }
+
+    .contact-section h2 {
+        font-size: 2rem; /* Başlık boyutu küçüldü */
+    }
+}
+
+@media (max-width: 1000px) {
+    .contact-form {
+        padding: 15px; /* Daha küçük cihazlar için padding azaltıldı */
+    }
+
+    .contact-section h2 {
+        font-size: 1.75rem; /* Başlık daha da küçüldü */
+    }
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+nav {
+    background-color: #333;
+    padding: 15px 30px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.box {
+    background-color: #1F78B4;
+    margin: 15px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.contact-section {
+    background-color: #1F78B4;
+    padding: 50px 0;
+}
+
+.contact-section h2 {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    background-color: #0056b3;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: none;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-submit {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #FF6600;
+}
+
+footer {
+    background-color: #1F78B4;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 100%) {
+    nav a {
+        font-size: 26px;
+    }
+
+    .box {
+        max-width: 100%;
+        height: 250px;
+    }
+
+    .box img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    nav a {
+        font-size: 14px;
+    }
+
+    .box {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .box img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.search-input {
+    height: 5px;
+    padding: 2px 14px;
+    font-size: 8px;
+}
+
+.search-button {
+    height: 5px;
+    padding: 2px 4px;
+    font-size: 8px;
+    background-color: #1F78B4;
+    color: #c51b1b;
+    border: 1px solid #000;
+}
+
+
+
+---------------------------------------------
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0056b3; /* Arka plan için mavi ton */
+    color: #FFFFFF;
+    text-align: center;
+}
+
+/* Container for Projects */
+.projects-section {
+    padding: 50px 20px;
+    background-color: #1F78B4;
+}
+
+.projects-section h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 sütun */
+    gap: 20px; /* Kutucuklar arasında boşluk */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Project box styling */
+.project-box {
+    background-color: #004080; /* Kutu için mavi ton */
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    height: 400px; /* Kutu yüksekliği artırıldı */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+    transition: transform 0.3s ease;
+}
+
+.project-box:hover {
+    transform: scale(1.05); /* Hover efekti ile büyütme */
+    background-color: #333333;
+}
+
+.project-box img {
+    width: 100%;
+    height: 200px; /* Görsel yüksekliği sabit */
+    object-fit: cover; /* Görselin kutuya düzgün yerleşmesini sağlar */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.project-box p {
+    font-size: 1rem;
+    color: #eaeaea;
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr); /* Orta boyutlu cihazlarda 2 sütun */
+    }
+
+    .projects-section h2 {
+        font-size: 2rem; /* Başlık boyutu küçüldü */
+    }
+}
+
+@media (max-width: 576px) {
+    .projects-container {
+        grid-template-columns: 1fr; /* Mobil cihazlarda 1 sütun */
+    }
+
+    .projects-section h2 {
+        font-size: 1.75rem; /* Başlık daha da küçüldü */
+    }
+
+    .project-box {
+        height: 350px; /* Mobilde kutu yüksekliği biraz küçüldü */
+    }
+
+    .project-box img {
+        height: 180px; /* Mobilde görsel yüksekliği küçüldü */
+    }
+}
+
+/* Footer styling */
+footer {
+    background-color: #004080;
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
+
+nav {
+    background-color: #333;
+    padding: 15px 30px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.box {
+    background-color: #1F78B4;
+    margin: 15px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.contact-section {
+    background-color: #1F78B4;
+    padding: 50px 0;
+}
+
+.contact-section h2 {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    background-color: #0056b3;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-control {
+    background-color: #ffffff;
+    border: none;
+    margin-bottom: 20px;
+    padding: 15px;
+    font-size: 16px;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-submit {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #FF6600;
+}
+
+footer {
+    background-color: #1F78B4;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+@media (max-width: 100%) {
+    nav a {
+        font-size: 26px;
+    }
+
+    .box {
+        max-width: 100%;
+        height: 250px;
+    }
+
+    .box img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    nav a {
+        font-size: 14px;
+    }
+
+    .box {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .box img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+.search-input {
+    height: 5px;
+    padding: 2px 14px;
+    font-size: 8px;
+}
+
+.search-button {
+    height: 5px;
+    padding: 2px 4px;
+    font-size: 8px;
+    background-color: #1F78B4;
+    color: #c51b1b;
+    border: 1px solid #000;
+}
+
+
+
+---------------------------------------------
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0056b3; /* Arka plan için mavi ton */
+    color: #FFFFFF;
+    text-align: center;
+}
+
+/* Container for Projects */
+.projects-section {
+    padding: 50px 20px;
+    background-color: #1F78B4;
+}
+
+.projects-section h2 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 sütun */
+    gap: 20px; /* Kutucuklar arasında boşluk */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Project box styling */
+.project-box {
+    background-color: #004080; /* Kutu için mavi ton */
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    height: 400px; /* Kutu yüksekliği artırıldı */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+    transition: transform 0.3s ease;
+}
+
+.project-box:hover {
+    transform: scale(1.05); /* Hover efekti ile büyütme */
+    background-color: #333333;
+}
+
+.project-box img {
+    width: 100%;
+    height: 200px; /* Görsel yüksekliği sabit */
+    object-fit: cover; /* Görselin kutuya düzgün yerleşmesini sağlar */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.project-box p {
+    font-size: 1rem;
+    color: #eaeaea;
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr); /* Orta boyutlu cihazlarda 2 sütun */
+    }
+
+    .projects-section h2 {
+        font-size: 2rem; /* Başlık boyutu küçüldü */
+    }
+}
+
+@media (max-width: 576px) {
+    .projects-container {
+        grid-template-columns: 1fr; /* Mobil cihazlarda 1 sütun */
+    }
+
+    .projects-section h2 {
+        font-size: 1.75rem; /* Başlık daha da küçüldü */
+    }
+
+    .project-box {
+        height: 350px; /* Mobilde kutu yüksekliği biraz küçüldü */
+    }
+
+    .project-box img {
+        height: 180px; /* Mobilde görsel yüksekliği küçüldü */
+    }
+}
+
+/* Footer styling */
+footer {
+    background-color: #004080;
+    color: white;
+    padding: 20px 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+body {
+    background-color: #1F78B4; /* Ana arka plan rengi (Blauwtint) */
+    color: #fff; /* Yazı rengi */
+}
+
+.navbar, .footer {
+    background-color: #333; /* Navigasyon ve footer arka plan rengi (Grijs) */
+}
+
+.navbar-brand, .nav-link, .footer p {
+    color: #ffffff !important; /* Link ve logo için beyaz vurgu */
+}
+
+.card {
+    background-color: #333333; /* Proje kartlarının arka plan rengi */
+    color: #fff;
+    border: none;
+}
+
+.card-title, .card-text {
+    color: #fff; /* Kart başlık ve metin rengi beyaz */
+}
+
+.card-img-top {
+    height: 600px; /* Resimlerin sabit yüksekliği */
+    object-fit: cover;
+}
+
+/* Orta yerleşim ve sınırlı genişlik */
+.projects-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Konteynerlerin sayfada dikey olarak ortalanması */
+}
+
+.card {
+    margin: 0 15px;
+}
+
+.row {
+    justify-content: center;
+}
+
+body {
+    background-color: #1F78B4; /* Ana arka plan rengi (Blauwtint) */
+    color: #fff; /* Yazı rengi */
+}
+
+.navbar, .footer {
+    background-color: #333; /* Navigasyon ve footer arka plan rengi (Grijs) */
+}
+
+.navbar-brand, .nav-link, .footer p {
+    color: #ffffff !important; /* Link ve logo için beyaz vurgu */
+}
+
+.card {
+    background-color: #333333; /* Proje kartlarının arka plan rengi */
+    color: #fff;
+    border: none;
+}
+
+.card-title, .card-text {
+    color: #fff; /* Kart başlık ve metin rengi beyaz */
+}
+
+.card-img-top {
+    height: 600px; /* Resimlerin sabit yüksekliği */
+    object-fit: cover;
+}
+
+/* Orta yerleşim ve sınırlı genişlik */
+.projects-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh; /* Konteynerlerin sayfada dikey olarak ortalanması */
+}
+
+.card {
+    margin: 0 15px;
+}
+
+.row {
+    justify-content: center;
+}

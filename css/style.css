@@ -1,0 +1,256 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #1F78B4;
+    color: #FFFFFF;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+nav {
+    background-color: #333;
+    padding: 15px 30px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.box {
+    background-color: #1F78B4;
+    margin: 15px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: #fff;
+    flex-direction: column;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.contact-section {
+    padding: 50px 20px;
+    background-color: #1F78B4;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    background-color: #004080;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: none;
+    font-size: 16px;
+    background-color: #eaeaea;
+    border-radius: 4px;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+}
+
+.btn-submit {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #FF6600;
+}
+
+footer {
+    background-color: #004080;
+    color: white;
+    padding: 20px 0;
+    margin-top: auto;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav a {
+        font-size: 14px;
+    }
+
+    .box {
+        height: auto;
+    }
+
+    .contact-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-section h2 {
+        font-size: 1.75rem;
+    }
+}
+------------------------------------
+/* Projeler için Grid Düzeni */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project-box {
+    background-color: #004080;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.project-box img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.project-box p {
+    color: #eaeaea;
+}
+
+/* Responsive düzenleme */
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+}
+<div class="projects-container">
+    <div class="project-box">
+        <img src="path/to/image1.jpg" alt="Project 1">
+        <p>Proje 1 açıklaması</p>
+    </div>
+    <div class="project-box">
+        <img src="path/to/image2.jpg" alt="Project 2">
+        <p>Proje 2 açıklaması</p>
+    </div>
+    <div class="project-box">
+        <img src="path/to/image3.jpg" alt="Project 3">
+        <p>Proje 3 açıklaması</p>
+    </div>
+</div>
+----------------------------------
+/* Projeler için Grid Düzeni */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.project-box {
+    background-color: #004080;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.project-box img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.project-box:hover {
+    transform: scale(1.05);
+}
+
+.project-box p {
+    color: #eaeaea;
+    font-size: 1rem;
+    text-align: left;
+    margin-top: 10px;
+}
+
+/* Responsive Düzenlemeler */
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+}
+.projects-section {
+    padding: 20px;
+    margin-bottom: 40px; /* Başlık ile kutular arasında boşluk */
+}
+
+.projects-section h2 {
+    margin-bottom: 30px; /* Başlık ile kutular arasında mesafe ayarı */
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-align: center;
+}

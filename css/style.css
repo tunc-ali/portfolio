@@ -170,3 +170,7 @@ footer p {
 }
 
 
+.social-media-links a {
+    margin: 0 20px; 
+    display: inline-block; 
+}

@@ -18,6 +18,11 @@
     </script>
     <!-- eigen geschreven css voor jouw html-bestand -->
     <link rel="stylesheet" href="css/style.css">
+      <!-- voeg JavaScript-bestanden (map-ap.js, map-parking.js, script-parking.js en script.js) toe aan de pagina en laad het als de pagina geladen is (gebruik het woord "defer") -->
+    <script src="./js/map-ap.js" defer></script>
+    <script src="./js/map-parking.js" defer></script>
+    <script src="./js/script-parking.js" defer></script>
+    <script src="./js/script.js" defer></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark ">
@@ -65,38 +70,58 @@
             </div>
           </div>
   </nav>
-
-<body>
-  <div class="container">
-    <div class="row">
-      <main class="col-md-9">
-        <section class="contact-section">
-          <div class="container">
-            <h2 class="text-center">Vul het contact formulier in</h2>
-            <div class="row justify-content-center">
-              <div class="col-md-10">
-                <form class="contact-form" action="mailto:a.tunc1@yahoo.com" method="post" enctype="text/plain">
-                  <input type="text" class="form-control mb-3" placeholder="Naam" required>
-                  <input type="email" class="form-control mb-3" placeholder="E-mail" required>
-                  <textarea class="form-control mb-3" rows="5" placeholder="Bericht" required></textarea>
-                  <button type="submit" class="btn-submit btn-block text-center" style="color:#ff6f47">Verzend</button>
-                </form>
+  <body>
+    <div class="container">
+      <div class="row">
+        <main class="col-md-9">
+          <section class="contact-section">
+            <div class="container">
+              <h2 class="text-center">Vul het contact formulier in</h2>
+              <div class="row justify-content-center">
+                <div class="col-md-10">
+                  <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
+                    <div class="form-group" style="text-align:start">
+                      <label for="name">Naam:</label>
+                      <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group" style="text-align:start">
+                      <label for="email">E-mail:</label>
+                      <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group" style="text-align:start">
+                      <label for="subject">Onderwerp:</label>
+                      <input type="text" class="form-control" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group" style="text-align:start">
+                      <label for="message">Uw bericht:</label>
+                      <textarea class="form-control" rows="10" id="message" name="message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <div data-netlify-recaptcha="true"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="color: #ff6f47;">Verzend</button>
+                  </form>
+                  
+                </div>
               </div>
             </div>
+          </section>
+        </main>
+        <aside class="col-md-3 border-start ps-5">
+          <h2 class="text-uppercase fs-5 fw-bolder pt-3 text-center">Sociale Media</h2>
+          <div class="social-media-links">
+              <a href="https://www.instagram.com" target="_blank" style="color: #ffffff;"><i class="bi bi-instagram blauwgrijs fs-6"></i></a>       
+              <a href="https://www.facebook.com" target="_blank" style="color: #ffffff;"><i class="bi bi-facebook blauwgrijs fs-6"></i></a>
+              <a href="https://twitter.com/" target="_blank" style="color: #ffffff;"><i class="bi bi-twitter blauwgrijs fs-6"></i></a>
           </div>
-        </section>
-      </main>
-      <aside class="col-md-3 border-start ps-5">
-        <h2 class="text-uppercase fs-5 fw-bolder pt-3 text-center">Sociale Media</h2>
-        <div class="social-media-links">
-            <a href="https://www.instagram.com" target="_blank" style="color: #ffffff;"><i class="bi bi-instagram blauwgrijs fs-6"></i></a>       
-            <a href="https://www.facebook.com" target="_blank" style="color: #ffffff;"><i class="bi bi-facebook blauwgrijs fs-6"></i></a>
-            <a href="https://twitter.com/" target="_blank" style="color: #ffffff;"><i class="bi bi-twitter blauwgrijs fs-6"></i></a>
-        </div>
-      </aside>
+          <h2 class="text-uppercase fs-5 fw-bolder pt-5">Adres</h2>
+            <section id="adres" class="row" class="col-lg-3">
+              <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=4.4044%2C51.2184%2C4.4244%2C51.2384&amp;layer=mapnik" allowfullscreen></iframe>
+            </section>
+        </aside>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 
  <!-- Footer -->
  <div class="row">
@@ -115,7 +140,7 @@
     <li class="nav-item"><a href="skills.html" class="nav-link px-2 text-body-secondary">Skills</a></li>
     <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
   </ul>
-  <p class="text-center text-body-secondary">&copy;2024 Ali Tunc - All Rights Reserved.</p>
+  <p class="text-center text-body-secondary">&copy;<span id="year"></span>Ali Tunc - All Rights Reserved.</p>
 </footer>
 </div>
 

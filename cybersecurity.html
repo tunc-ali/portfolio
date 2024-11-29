@@ -16,6 +16,10 @@
       </script>
       <!-- eigen geschreven css voor jouw html-bestand -->
       <link rel="stylesheet" href="css/style.css">
+      <script src="./js/map-ap.js" defer></script>
+      <script src="./js/map-parking.js" defer></script>
+      <script src="./js/script-parking.js" defer></script>
+      <script src="./js/script.js" defer></script>
 </head>
 <body>
   
@@ -73,10 +77,10 @@
         <section class="row">
             <div class="col-md-12">
                 <div class="card h-100">
+                  <figure>
                     <img src="assets/images/project1.jpg" class="card-img-top" alt="Project 2">
-                    <div class="card-body">
-                      <h6 class="text-end">&copy;Pexel</h6>
-                    </div>
+                    <div class="card-body"> <figcaption style="text-align: end; font-size: 12px">&copy;Pexel</figcaption>
+                    </figure>
                     <div class="container text-start">
                       <h1>Cyber Security: De Basis van Veiligheid in de Digitale Wereld</h1>
                       <p>
@@ -111,7 +115,7 @@
                           <em>Wil je meer weten over mijn projecten? Neem gerust <a href="contact.html">contact</a> met mij op via de contactpagina!</em>
                       </p>
                   </div>
-
+                </div>
 
 
                 </div>
@@ -134,7 +138,7 @@
     <li class="nav-item"><a href="skills.html" class="nav-link px-2 text-body-secondary">Skills</a></li>
     <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
   </ul>
-  <p class="text-center text-body-secondary">&copy;2024 Ali Tunc - All Rights Reserved.</p>
+  <p class="text-center text-body-secondary">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
 </footer>
 </div>
 

@@ -10,7 +10,7 @@ body {
 
 
 nav {
-    background-color: #949CFF;
+    background-color: #000973;
     padding: 15px 30px;
     color: #fff;
     text-decoration: none;
@@ -24,7 +24,7 @@ nav {
 }
 
 .box {
-    background-color: #949CFF;
+    background-color: #000973;
     margin: 15px;
     height: 400px;
     display: flex;
@@ -90,16 +90,17 @@ nav {
 
 
 footer {
-    background-color: #949CFF;
-    color: white;
+    background-color: #70818f;
     padding: 20px 0;
     margin-top: auto;
     text-align: center;
 }
 
-footer p {
+footer ul li a {
     margin: 0;
+    color: white;
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -137,7 +138,7 @@ footer p {
 }
 
 .project-box {
-    background-color: #949CFF;
+    background-color: #000973;
     padding: 20px;
     border-radius: 8px;
     display: flex;
@@ -163,7 +164,7 @@ footer p {
 }
 
 .project-box p {
-    color: #949CFF;
+    color: #000973;
     font-size: 1rem;
     text-align: left;
     margin-top: 10px;

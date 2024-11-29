@@ -16,6 +16,10 @@
       </script>
       <!-- eigen geschreven css voor jouw html-bestand -->
       <link rel="stylesheet" href="css/style.css">
+      <script src="./js/map-ap.js" defer></script>
+      <script src="./js/map-parking.js" defer></script>
+      <script src="./js/script-parking.js" defer></script>
+      <script src="./js/script.js" defer></script>
 </head>
 <body>
 
@@ -90,7 +94,8 @@
                   <img src="assets/images/slide1.jpg" class="d-block w-100" alt="Second slide">
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Securing Systems, One Click at a Time </h5>
-                    <p>Solving Complex Challenges with Smart Solutions.  - &copy;pexel</p>
+                    <p>Solving Complex Challenges with Smart Solutions.</p>
+                    <p style="text-align: end;">&copy;pexel</p>
                   </div>
                 </div>
                 <div class="carousel-item">
@@ -98,6 +103,7 @@
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Connecting the Future, One Cable at a Time</h5>
                     <p>Building Reliable Networks for a Seamless Tomorrow.</p>
+                    <p style="text-align: end;">&copy;pexel</p>
                   </div>
                 </div>
               </div>
@@ -175,7 +181,7 @@
       <li class="nav-item"><a href="skills.html" class="nav-link px-2 text-body-secondary">Skills</a></li>
       <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
     </ul>
-    <p class="text-center text-body-secondary">&copy;2024 Ali Tunc - All Rights Reserved.</p>
+    <p class="text-center text-body-secondary">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
   </footer>
 </div>
 

@@ -16,6 +16,10 @@
       </script>
       <!-- eigen geschreven css voor jouw html-bestand -->
       <link rel="stylesheet" href="css/style.css">
+      <script src="./js/map-ap.js" defer></script>
+      <script src="./js/map-parking.js" defer></script>
+      <script src="./js/script-parking.js" defer></script>
+      <script src="./js/script.js" defer></script>
 </head>
 <body>
   
@@ -72,14 +76,15 @@
 
     <!-- Main Content -->
     <main class="container my-5 projects-container">
-        <section class="row">
+        <section class="row" style="text-align: left;">
             <!-- 3 proje konteyneri (ortalanmış) -->
                 <div class="col-md-12">
                 <div class="card h-100">
+                  <figure>
                     <img src="assets/images/project5.jpg" class="card-img-top" alt="Project 5">
-                    <div class="card-body">
-                        <h5 class="card-title text-end">&copy;Pexel</h5>
-                         <div class="container text-start">
+                    <div class="card-body"> <figcaption style="text-align: end; font-size: 12px">&copy;Pexel</figcaption>
+                  </figure>
+                         <div class="container">
                             <h1>Passion for Gaming and Technology</h1>
                             <p>
                                 Gaming en technologie vormen voor mij niet alleen een hobby, maar een bron van inspiratie en creativiteit. Als student in Systeem- en Netwerkbeheer heeft mijn passie voor gaming mijn interesse in technologie en IT aanzienlijk versterkt.
@@ -145,7 +150,7 @@
     <li class="nav-item"><a href="skills.html" class="nav-link px-2 text-body-secondary">Skills</a></li>
     <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
   </ul>
-  <p class="text-center text-body-secondary">&copy;2024 Ali Tunc - All Rights Reserved.</p>
+  <p class="text-center text-body-secondary">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
 </footer>
 </div>
 </body>

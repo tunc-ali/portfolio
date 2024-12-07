@@ -23,55 +23,52 @@
 </head>
 <body>
 
-    <!-- Navigation -->
-
-  <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="container-fluid">
-          <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
-            <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="menu menu navbar-nav">
+  <nav class="navbar navbar-expand-sm navbar-dark ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
+          <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
+        </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html"><strong>Home</strong></a>
+                </li>
+                <li class="nav-item">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html"><strong>Home</strong></a>
                   </li>
+                    <a class="nav-link actieve" aria-current="page" href="projects.html"><strong>Projects</strong></a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"> <strong>Portfolio</strong>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong><i class="bi bi-shield-lock"></i> Cybersecurity</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong><i class="bi bi-diagram-3"></i> Netwerkstructuren en Technologie</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong><i class="bi bi-code-slash"></i> Open Source Technologieën</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong><i class="bi bi-joystick"></i> Passie voor Gaming</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong><i class="bi bi-hdd-network"></i> Virtualisatie en Virtuele Machines</strong></a></li>
+                  </ul>
+                  
                   <li class="nav-item">
-                    <li class="nav-item">
+                      <a class="nav-link actieve" aria-current="page" href="skills.html"><strong>Skills</strong></a>
                     </li>
-                      <a class="nav-link actieve" aria-current="page" href="projects.html"><strong>Projects</strong></a>
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="contact.html"><strong>Contact</strong></a>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false"> <strong>Portfolio</strong>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="network_structures_and_technologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong>Open Source Technologieën</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="passion_for_gaming.html"><strong>Passie voor Gaming</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="virtualization_ and_virtual_machines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
-                    </ul>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link actieve" aria-current="page" href="skills.html"><strong>Skills</strong></a>
-                      </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="contact.html"><strong>Contact</strong></a>
-                    </li>
-               
-                </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-0" type="search" placeholder="Search" aria-label="Search" style="height: 35px; padding: 0px; font-size: 14px; border-radius: 5px;">
-                </form>
-              </div>
-            </div>
-    </nav>
 
-      <!-- caroussel -->
+              </ul>
+              <form class="d-flex" role="search">
+                <input class="form-control me-0" type="search" placeholder="Search" aria-label="Search" style="height: 35px; padding: 0px; font-size: 14px; border-radius: 5px;">
+              </form>
+          </div>
+    </div>
+  </nav>
+  <!-- caroussel -->
       <div class="container my-5">
         <div class="bd-example-snippet bd-code-snippet">
           <div class="bd-example m-0 border-0">
@@ -86,7 +83,7 @@
                   <img src="assets/images/slide2.jpg" class="d-block w-100" alt="First slide">
                   <div class="carousel-caption d-none d-md-block">
                     <h2 style="color: rgb(239, 238, 249);"> Maintaning infrastructure</h2>
-                    <p style="color: rgb(239, 238, 249);"> &copy;pexel</p>
+                    <p style="color: rgb(239, 238, 249); text-align:end"> &copy;pexel</p>
                   </div>
                 </div>
 
@@ -119,8 +116,6 @@
           </div>
         </div>
       </div>
-
-
     <!-- Container Section with Bootstrap Grid -->
     <section class="container mt-5">
         <div class="row">
@@ -136,7 +131,7 @@
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="box">
-                  <a href="network_structures_and_technologies.html">
+                  <a href="networkstructuresandtechnologies.html">
                     <figure>
                         <img src="assets/images/project2.jpg" alt="Box 2">
                         <figcaption class="h6 small mt-2" style="color:ghostwhite">
@@ -147,7 +142,7 @@
             </div>
             <div class="col-sm-6 col-md-4">
               <div class="box">
-                <a href="virtualization_ and_virtual_machines.html">                
+                <a href="virtualizationandvirtualmachines.html">                
                     <figure>
                       <img src="assets/images/project6.jpg" alt="Box 2">
                       <figcaption class="h6 small mt-2" style="color:ghostwhite">Project 3: Virtualization and Virtual Machines - &copy;pexel</figcaption> 
@@ -158,12 +153,10 @@
           </div>
         </div>
     </section>
-
 <div class="projects-container">
   <div class="project-box">
     <img src="assets/images/home3.jpg" alt="alitunc">
 </div>
-
  <!-- Footer -->
  <div class="row">
     <footer class=" py-3 my-4">
@@ -173,10 +166,10 @@
       <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"aria-expanded="false"> <strong>Portfolio</strong></a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
-               <li><a class="dropdown-item active" aria-current="page" href="network_structures_and_technologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
+               <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
                 <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong>Open Source Technologieën</strong></a></li>
-                <li><a class="dropdown-item active" aria-current="page" href="passion_for_gaming.html"><strong>Passie voor Gaming</strong></a></li>
-                <li><a class="dropdown-item active" aria-current="page" href="virtualization_ and_virtual_machines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
+                <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong>Passie voor Gaming</strong></a></li>
+                <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
             </ul>
       <li class="nav-item"><a href="skills.html" class="nav-link px-2 text-body-secondary">Skills</a></li>
       <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
@@ -184,6 +177,5 @@
     <p class="text-center text-body-secondary">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
   </footer>
 </div>
-
 </body>
 </html>

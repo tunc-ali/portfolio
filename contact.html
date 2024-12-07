@@ -20,16 +20,23 @@
     <link rel="stylesheet" href="css/style.css">
       <!-- voeg JavaScript-bestanden (map-ap.js, map-parking.js, script-parking.js en script.js) toe aan de pagina en laad het als de pagina geladen is (gebruik het woord "defer") -->
     <script src="./js/map-ap.js" defer></script>
-    <script src="./js/map-parking.js" defer></script>
-    <script src="./js/script-parking.js" defer></script>
     <script src="./js/script.js" defer></script>
+      <!-- voeg de leaflet.js javascript toe aan de pagina en check de integriteit ervan -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- voeg JavaScript-bestanden (map-ap.js, map-parking.js, script-parking.js en script.js) toe aan de pagina en laad het als de pagina geladen is (gebruik het woord "defer") -->
+  <script src="./js/map-ap.js" defer></script>
+  <script src="./js/map-parking.js" defer></script>
+  <script src="./js/script-parking.js" defer></script>
+  <script src="./js/script.js" defer></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark ">
+  <nav class="navbar navbar-expand-sm navbar-dark ">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
           <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
-          </a>
+        </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -41,6 +48,7 @@
                 </li>
                 <li class="nav-item">
                   <li class="nav-item">
+                  </li>
                     <a class="nav-link actieve" aria-current="page" href="projects.html"><strong>Projects</strong></a>
                 </li>
                 <li class="nav-item dropdown">
@@ -48,29 +56,28 @@
                     aria-expanded="false"> <strong>Portfolio</strong>
                   </a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
-                    <li><a class="dropdown-item active" aria-current="page" href="network_structures_and_technologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
-                    <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong>Open Source Technologieën</strong></a></li>
-                    <li><a class="dropdown-item active" aria-current="page" href="passion_for_gaming.html"><strong>Passie voor Gaming</strong></a></li>
-                    <li><a class="dropdown-item active" aria-current="page" href="virtualization_ and_virtual_machines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong><i class="bi bi-shield-lock"></i> Cybersecurity</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong><i class="bi bi-diagram-3"></i> Netwerkstructuren en Technologie</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong><i class="bi bi-code-slash"></i> Open Source Technologieën</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong><i class="bi bi-joystick"></i> Passie voor Gaming</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong><i class="bi bi-hdd-network"></i> Virtualisatie en Virtuele Machines</strong></a></li>
                   </ul>
                   
                   <li class="nav-item">
                       <a class="nav-link actieve" aria-current="page" href="skills.html"><strong>Skills</strong></a>
-                  </li>
+                    </li>
                   <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="contact.html"><strong>Contact</strong></a>
                   </li>
-                </li>
-             
+
               </ul>
               <form class="d-flex" role="search">
-                <input class="form-control me-0" type="search" placeholder="Search" aria-label="Search" style="height: 25px; padding: 0px; font-size: 10px; border-radius: 5px;">
+                <input class="form-control me-0" type="search" placeholder="Search" aria-label="Search" style="height: 35px; padding: 0px; font-size: 14px; border-radius: 5px;">
               </form>
-            </div>
           </div>
+    </div>
   </nav>
-  <body>
+
     <div class="container">
       <div class="row">
         <main class="col-md-9">
@@ -99,47 +106,60 @@
                     <div class="form-group">
                       <div data-netlify-recaptcha="true"></div>
                     </div>
-                    <div class="form-group">
-                      <div data-netlify-recaptcha="true"></div>
+                    <div class="col-12  mb-3 mt-3">
+                      <label for="satisfied" class="form-label">hoe tevreden ben je van ons?</label>
+                      <input type="range" class="form-range" min="0" max="10" step="1" id="satisfied">
+                    </div>
+                    <div class="col-12 form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        algemene voorwaarden gelezen en goedgekeurd
+                      </label>
                     </div>
                     <button type="submit" class="btn btn-primary" style="color: #ff6f47;">Verzend</button>
                   </form>
                 </div>
               </div>
             </div>
-          </section>
-
-          
+          </section> 
         </main>
         <aside class="col-md-3 border-start ps-5">
+          <h6 style="text-align: left;">Mijn Adres:</h6>
+          <hr>
+          <p style="text-align: left;">
+            Ali Tunç<br>
+            Lange Nieuwstraat 101<br>
+            2000 Antwerpen<br>
+          <strong>Telefoon:</strong> +32 472 92 03 49<br>
+          </p>
+          <section id="adres" class="row" class="col-lg-3">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=4.4044%2C51.2184%2C4.4244%2C51.2384&amp;layer=mapnik" allowfullscreen></iframe>
+          </section>
+          <hr>
           <h2 class="text-uppercase fs-5 fw-bolder pt-3 text-center">Sociale Media</h2>
           <div class="social-media-links">
               <a href="https://www.instagram.com" target="_blank" style="color: #ffffff;"><i class="bi bi-instagram blauwgrijs fs-6"></i></a>       
               <a href="https://www.facebook.com" target="_blank" style="color: #ffffff;"><i class="bi bi-facebook blauwgrijs fs-6"></i></a>
               <a href="https://twitter.com/" target="_blank" style="color: #ffffff;"><i class="bi bi-twitter blauwgrijs fs-6"></i></a>
           </div>
-          <h2 class="text-uppercase fs-5 fw-bolder pt-5">Adres</h2>
-            <section id="adres" class="row" class="col-lg-3">
-              <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=4.4044%2C51.2184%2C4.4244%2C51.2384&amp;layer=mapnik" allowfullscreen></iframe>
-            </section>
+          <hr>
         </aside>
       </div>
     </div>
-  </body>
 
  <!-- Footer -->
- <div class="row">
-  <footer class=" py-3 my-4">
+ <div class="row" >
+  <footer class="py-3 my-4">
   <ul class="nav justify-content-center border-bottom pb-3 mb-3">
     <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Home</a></li>
     <li class="nav-item"><a href="projects.html" class="nav-link px-2 text-body-secondary">Projects</a></li>
     <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"aria-expanded="false"> <strong>Portfolio</strong></a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
-             <li><a class="dropdown-item active" aria-current="page" href="network_structures_and_technologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
+             <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
               <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong>Open Source Technologieën</strong></a></li>
-              <li><a class="dropdown-item active" aria-current="page" href="passion_for_gaming.html"><strong>Passie voor Gaming</strong></a></li>
-              <li><a class="dropdown-item active" aria-current="page" href="virtualization_ and_virtual_machines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
+              <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong>Passie voor Gaming</strong></a></li>
+              <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
           </ul>
     <li class="nav-item"><a href="skills.html" class="nav-link px-2 text-body-secondary">Skills</a></li>
     <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
@@ -147,7 +167,6 @@
   <p class="text-center text-body-secondary">&copy;<span id="year"></span>Ali Tunc - All Rights Reserved.</p>
 </footer>
 </div>
-
 
 </body>
 </html>

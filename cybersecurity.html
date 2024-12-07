@@ -22,75 +22,70 @@
       <script src="./js/script.js" defer></script>
 </head>
 <body>
-  
- 
-    <!-- Navigation -->
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="container-fluid">
-          <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
-            <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+  <nav class="navbar navbar-expand-sm navbar-dark ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
+          <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
+        </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html"><strong>Home</strong></a>
+                </li>
+                <li class="nav-item">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html"><strong>Home</strong></a>
                   </li>
+                    <a class="nav-link actieve" aria-current="page" href="projects.html"><strong>Projects</strong></a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"> <strong>Portfolio</strong>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong><i class="bi bi-shield-lock"></i> Cybersecurity</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong><i class="bi bi-diagram-3"></i> Netwerkstructuren en Technologie</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong><i class="bi bi-code-slash"></i> Open Source Technologieën</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong><i class="bi bi-joystick"></i> Passie voor Gaming</strong></a></li>
+                      <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong><i class="bi bi-hdd-network"></i> Virtualisatie en Virtuele Machines</strong></a></li>
+                  </ul>
+                  
                   <li class="nav-item">
-                    <li class="nav-item">
+                      <a class="nav-link actieve" aria-current="page" href="skills.html"><strong>Skills</strong></a>
                     </li>
-                      <a class="nav-link actieve" aria-current="page" href="projects.html"><strong>Projects</strong></a>
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="contact.html"><strong>Contact</strong></a>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false"> <strong>Portfolio</strong>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="network_structures_and_technologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong>Open Source Technologieën</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="passion_for_gaming.html"><strong>Passie voor Gaming</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="virtualization_ and_virtual_machines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
-                    </ul>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link actieve" aria-current="page" href="skills.html"><strong>Skills</strong></a>
-                      </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="contact.html"><strong>Contact</strong></a>
-                    </li>
-               
-                </ul>
-                <form class="d-flex" role="search">
-                  <input class="form-control me-0" type="search" placeholder="Search" aria-label="Search" style="height: 35px; padding: 0px; font-size: 14px; border-radius: 5px;">
-                </form>
-              </div>
-            </div>
-    </nav>
+
+              </ul>
+              <form class="d-flex" role="search">
+                <input class="form-control me-0" type="search" placeholder="Search" aria-label="Search" style="height: 35px; padding: 0px; font-size: 14px; border-radius: 5px;">
+              </form>
+          </div>
+    </div>
+  </nav>
 <!-- Main Content -->
-    <main class="container my-5 projects-container">
-        <section class="row">
-            <div class="col-md-12">
-                <div class="card h-100">
+<div class="row">
+  <main class="col-md-9">
+      <section class="row">
+              <div class="card h-100">
                   <figure>
                     <img src="assets/images/project1.jpg" class="card-img-top" alt="Project 2">
                     <div class="card-body"> <figcaption style="text-align: end; font-size: 12px">&copy;Pexel</figcaption>
                     </figure>
                     <div class="container text-start">
-                      <h1>Cyber Security: De Basis van Veiligheid in de Digitale Wereld</h1>
+                      <h6><strong>Cyber Security: De Basis van Veiligheid in de Digitale Wereld</strong></h6>
                       <p>
                           In een wereld waar technologie voortdurend evolueert, wordt <strong>cyber security</strong> steeds belangrijker. Als eerstejaars student in Systeem- en Netwerkbeheer heb ik de kans gehad om mee te werken aan een cyber security-project, wat mijn begrip van digitale veiligheid heeft verdiept.
                       </p>
-                      <h2>Wat is Cyber Security?</h2>
+                      <h6><strong>Wat is Cyber Security?</strong></h6>
                       <p>
                           Cyber security is de bescherming van computersystemen, netwerken en data tegen aanvallen, ongeautoriseerde toegang en schade. Hackers, malware en phishing zijn slechts enkele voorbeelden van dreigingen die bedrijven en individuen dagelijks treffen.
                       </p>
-                      <h2>Mijn Ervaring in het Project</h2>
+                      <h6><strong>Mijn Ervaring in het Project</strong></h6>
                       <p>
                           Binnen het project heb ik geleerd hoe belangrijk het is om netwerken te beveiligen en hoe kwetsbaarheden kunnen worden misbruikt. Een van de belangrijkste onderdelen was het identificeren van risico’s in een netwerk en het implementeren van maatregelen, zoals:
                       </p>
@@ -99,15 +94,15 @@
                           <li><strong>Penetratietesten</strong>: Het uitvoeren van gecontroleerde aanvallen om zwakke punten te vinden.</li>
                           <li><strong>Encryptie</strong>: Het versleutelen van gevoelige gegevens om deze te beschermen.</li>
                       </ul>
-                      <h2>Waarom is Cyber Security Belangrijk?</h2>
+                      <h6><strong>Waarom is Cyber Security Belangrijk?</strong></h6>
                       <p>
                           Vandaag de dag zijn persoonlijke gegevens en bedrijfsinformatie het doelwit van criminelen. Zonder de juiste beveiliging kunnen organisaties enorme schade lijden, zowel financieel als in hun reputatie. Cyber security is daarom een cruciaal onderdeel van IT-infrastructuur.
                       </p>
-                      <h2>Wat Heb Ik Geleerd?</h2>
+                      <h6><strong>Wat Heb Ik Geleerd?</strong></h6>
                       <p>
                           Door dit project heb ik niet alleen technische kennis opgedaan, maar ook begrepen hoe belangrijk samenwerking en communicatie zijn in een IT-team. Een veilige digitale omgeving begint bij goed opgeleide professionals die constant blijven leren.
                       </p>
-                      <h2>Conclusie</h2>
+                      <h6><strong>Conclusie</strong></h6>
                       <p>
                           Cyber security is meer dan alleen technologie; het is een mindset. Door bewust te zijn van risico’s en proactief te handelen, kunnen we de digitale wereld veiliger maken. Mijn deelname aan dit project was een inspirerende ervaring en heeft mijn ambitie om een expert te worden in IT en cyber security versterkt.
                       </p>
@@ -115,12 +110,26 @@
                           <em>Wil je meer weten over mijn projecten? Neem gerust <a href="contact.html">contact</a> met mij op via de contactpagina!</em>
                       </p>
                   </div>
-                </div>
-
-
-                </div>
             </div>
         </section>
+    </main>
+    <aside class="col-md-3 border-start">
+      <h2 class="text-uppercase fs-5 fw-bolder pt-3 text-start">Links voor projecten</h2>
+      <hr>
+        <ol class="text-start">
+          <p></p>
+          <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong><i class="bi bi-shield-lock"></i> Cybersecurity</strong></a></li>
+          <p></p>
+          <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong><i class="bi bi-diagram-3"></i> Netwerkstructuren en Technologie</strong></a></li>
+          <p></p>
+          <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong><i class="bi bi-code-slash"></i>  Open Source Technologieën</strong></a></li>
+          <p></p>
+          <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong><i class="bi bi-joystick"></i> Passie voor Gaming</strong></a></li>
+          <p></p>
+          <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong><i class="bi bi-hdd-network"></i> Virtualisatie en Virtuele Machines</strong></a></li>
+        </ol>
+    </aside>
+</div>
  <!-- Footer -->
  <div class="row">
   <footer class=" py-3 my-4">
@@ -130,17 +139,15 @@
     <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"aria-expanded="false"> <strong>Portfolio</strong></a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
-             <li><a class="dropdown-item active" aria-current="page" href="network_structures_and_technologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
+             <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
               <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong>Open Source Technologieën</strong></a></li>
-              <li><a class="dropdown-item active" aria-current="page" href="passion_for_gaming.html"><strong>Passie voor Gaming</strong></a></li>
-              <li><a class="dropdown-item active" aria-current="page" href="virtualization_ and_virtual_machines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
+              <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong>Passie voor Gaming</strong></a></li>
+              <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
           </ul>
     <li class="nav-item"><a href="skills.html" class="nav-link px-2 text-body-secondary">Skills</a></li>
     <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
   </ul>
   <p class="text-center text-body-secondary">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
-</footer>
-</div>
-
+  </footer>
 </body>
 </html>

@@ -8,6 +8,7 @@
      <!-- Bootstrap CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
       <!-- Bootstrap CSS icons: https://icons.getbootstrap.com/#usage -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
       <!-- JavaScript: Bootstrap Bundle with Popper -->
@@ -23,7 +24,7 @@
 </head>
 <body>
 
-  <nav class="navbar navbar-expand-sm navbar-dark ">
+  <nav class="navbar navbar-expand-lg navbar-dark ">
     <div class="container-fluid">
         <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
           <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
@@ -38,9 +39,33 @@
                   <a class="nav-link active" aria-current="page" href="index.html"><strong>Home</strong></a>
                 </li>
                 <li class="nav-item">
-                  <li class="nav-item">
-                  </li>
-                    <a class="nav-link actieve" aria-current="page" href="projects.html"><strong>Projects</strong></a>
+                  <li class="nav-item dropdown">
+                   
+                      <a class="nav-link dropdown-toggle actieve" href="projects.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false"> <strong>Projects</strong>
+                      </a>
+
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                          <a class="dropdown-item active" aria-current="page" href="./project1datacomennetwerkproject.html"><strong><i class="bi bi-shield-lock"></i> Project 1</strong></a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 2</strong></a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 3</strong></a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 4</strong></a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 5</strong></a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 6</strong></a>
+                        </li>
+                    </li>
+                  </ul>
+
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -60,16 +85,21 @@
                   <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="contact.html"><strong>Contact</strong></a>
                   </li>
-
+                  <li class="nav-item search-container">
+                    <form class="d-flex" role="search">
+                        <button class="search-icon">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <input class="search-box" type="search" placeholder="Zoeken" aria-label="Zoeken">
+                    </form>
+                  </li>
               </ul>
-              <form class="d-flex" role="search">
-                <input class="form-control me-0" type="search" placeholder="Search" aria-label="Search" style="height: 35px; padding: 0px; font-size: 14px; border-radius: 5px;">
-              </form>
+
           </div>
     </div>
   </nav>
   <!-- caroussel -->
-      <div class="container my-5">
+      <div class="container my-3">
         <div class="bd-example-snippet bd-code-snippet">
           <div class="bd-example m-0 border-0">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
@@ -79,27 +109,24 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
               </div>
               <div class="carousel-inner">
+                <div class="carousel-item">
+                  <a href="contact.html">
+                  <img src="assets/images/alituncslide1.jpg" class="d-block w-100" alt="First slide">
+                  <button class="btn btn-warning">Neem Contact Op</button>
+                  </a>
+                </div>
                 <div class="carousel-item active">
-                  <img src="assets/images/slide2.jpg" class="d-block w-100" alt="First slide">
+                  <img src="assets/images/slide2.jpg" class="d-block w-100" alt="Second slide">
                   <div class="carousel-caption d-none d-md-block">
-                    <h2 style="color: rgb(239, 238, 249);"> Maintaning infrastructure</h2>
-                    <p style="color: rgb(239, 238, 249); text-align:end"> &copy;pexel</p>
-                  </div>
-                </div>
-
-                <div class="carousel-item">
-                  <img src="assets/images/slide1.jpg" class="d-block w-100" alt="Second slide">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>Securing Systems, One Click at a Time </h5>
-                    <p>Solving Complex Challenges with Smart Solutions.</p>
-                    <p style="text-align: end;">&copy;pexel</p>
+                    <h5> Maintaning infrastructure</h5>
+                    <p style="text-align:end"> &copy;pexel</p>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img src="assets/images/alitunc slide1.jpg" class="d-block w-100" alt="Third slide">
+                  <img src="assets/images/slide1.jpg" class="d-block w-100" alt="Third slide">
                   <div class="carousel-caption d-none d-md-block">
-                    <h5>Connecting the Future, One Cable at a Time</h5>
-                    <p>Building Reliable Networks for a Seamless Tomorrow.</p>
+                    <h5>Systemen beveiligen, één klik tegelijk </h5>
+                    <p>Complexe uitdagingen aanpakken met doordachte en innovatieve oplossingen.</p>
                     <p style="text-align: end;">&copy;pexel</p>
                   </div>
                 </div>
@@ -117,52 +144,87 @@
         </div>
       </div>
     <!-- Container Section with Bootstrap Grid -->
-    <section class="container mt-5">
-        <div class="row">
-            <div class="col-sm-6 col-md-4">
-              <a href="open source_technologies.html">
+    <section class="container mt-3">
+      <div class="row">
+        <!-- Proje 1 -->
+        <div class="col-sm-6 col-md-4">
+            <a href="open source_technologies.html">
                 <div class="box">
                     <figure>
                         <img src="assets/images/portfolio project1.jpg" alt="open source_technologies">
-                        <figcaption class="h6 small mt-2" style="color:ghostwhite">  Project 1: Open Source Technologies - &copy;pexel
+                        <figcaption class="h6 small mt-2">
+                            Project 1: Open Source Technologies - &copy;pexel
+                        </figcaption>
                     </figure>
                 </div>
-              </a>
-            </div>
-            <div class="col-sm-6 col-md-4">
+            </a>
+        </div>
+        
+        <!-- Proje 2 -->
+        <div class="col-sm-6 col-md-4">
+            <a href="networkstructuresandtechnologies.html">
                 <div class="box">
-                  <a href="networkstructuresandtechnologies.html">
                     <figure>
-                        <img src="assets/images/project2.jpg" alt="Box 2">
-                        <figcaption class="h6 small mt-2" style="color:ghostwhite">
-                          Project 2: Netwerkstructuren en Technologie- &copy;pexel 
+                        <img src="assets/images/project2.jpg" alt="Netwerkstructuren">
+                        <figcaption class="h6 small mt-2">
+                            Project 2: Netwerkstructuren en Technologie - &copy;pexel
+                        </figcaption>
                     </figure>
-                  </a>
                 </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-              <div class="box">
-                <a href="virtualizationandvirtualmachines.html">                
+            </a>
+        </div>
+
+        <!-- Proje 3 -->
+        <div class="col-sm-6 col-md-4">
+            <a href="virtualizationandvirtualmachines.html">
+                <div class="box">
                     <figure>
-                      <img src="assets/images/project6.jpg" alt="Box 2">
-                      <figcaption class="h6 small mt-2" style="color:ghostwhite">Project 3: Virtualization and Virtual Machines - &copy;pexel</figcaption> 
+                        <img src="assets/images/project6.jpg" alt="Virtualization">
+                        <figcaption class="h6 small mt-2">
+                            Project 3: Virtualization and Virtual Machines - &copy;pexel
+                        </figcaption>
                     </figure>
-                  </a>
-                </a>
-              </div>
-          </div>
+                </div>
+            </a>
+        </div>
+    </div>
+      <div class="col-sm-6 col-md-12">
+        <div class="project-box">
+          <img src="assets/images/home3.jpg" alt="alitunc">
         </div>
     </section>
-<div class="projects-container">
-  <div class="project-box">
-    <img src="assets/images/home3.jpg" alt="alitunc">
-</div>
+
  <!-- Footer -->
  <div class="row">
-    <footer class=" py-3 my-4">
+  <footer class=" py-3 my-4">
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="index.html" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a href="projects.html" class="nav-link px-2 text-body-secondary">Projects</a></li>
+      <li class="nav-item"><a href="index.html" class="nav-link px-2 ">Home</a></li>
+      <li class="nav-item">
+        <li class="nav-item dropdown">       
+            <a class="nav-link dropdown-toggle actieve" href="projects.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false"> <strong>Projects</strong>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item active" aria-current="page" href="./project1datacomennetwerkproject.html"><strong><i class="bi bi-shield-lock"></i> Project 1</strong></a>
+              </li>
+              <li>
+                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 2</strong></a>
+              </li>
+              <li>
+                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 3</strong></a>
+              </li>
+              <li>
+                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 4</strong></a>
+              </li>
+              <li>
+                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 5</strong></a>
+              </li>
+              <li>
+                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 6</strong></a>
+              </li>
+          </li>
+        </ul>
+      </li>
       <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"aria-expanded="false"> <strong>Portfolio</strong></a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
@@ -171,10 +233,10 @@
                 <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong>Passie voor Gaming</strong></a></li>
                 <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
             </ul>
-      <li class="nav-item"><a href="skills.html" class="nav-link px-2 text-body-secondary">Skills</a></li>
-      <li class="nav-item"><a href="contact.html" class="nav-link px-2 text-body-secondary">Contact</a></li>
+      <li class="nav-item"><a href="skills.html" class="nav-link px-2 ">Skills</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link px-2 ">Contact</a></li>
     </ul>
-    <p class="text-center text-body-secondary">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
+    <p class="text-center">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
   </footer>
 </div>
 </body>

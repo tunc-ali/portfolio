@@ -15,9 +15,9 @@ nav {
     color: #fff;
     text-decoration: none;
     margin: 0 20px;
-    font-size: 16px;
+    font-size: 18px;
     text-transform: uppercase;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0; 
 }
 
 nav a {
@@ -34,14 +34,24 @@ nav a {
   
 .navbar-nav .nav-link {
     color: white;
-    font-weight: bold;
+    font-weight: 300;
+    padding: 0 20px !important;
+}
+nav.navbar.navbar-expand-lg.navbar-dark {
+    margin: 0;
+    padding-bottom: 0;
+}
+
+.carousel {
+    margin-top: 0; 
+    padding: 0; 
 }
 
 
 .box {
     background-color: #000973;
     margin: 15px;
-    height: 400px;
+    min-height: 400px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -50,18 +60,33 @@ nav a {
     flex-direction: column;
     padding: 15px;
     box-sizing: border-box;
+    border-radius: 10px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.box:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4); 
 }
 
 .box img {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: cover; 
     margin-bottom: 10px;
+    border-radius: 5px; 
+    transition: transform 0.3s ease; 
 }
+
+.box:hover img {
+    transform: scale(1.1); 
+}
+
 
 .contact-section {
     padding: 50px 20px;
-    background: linear-gradient(135deg, #E67E22, #F5B041);
+    background: linear-gradient(135deg, #FE6502, #F5B041);
     color: white; 
     border-radius: 10px; 
 }
@@ -89,14 +114,24 @@ nav a {
     background-color: #eaeaea;
     border-radius: 4px;
 }
+footer .nav-link {
+    color: #fff !important;
+}
 footer {
-    background-color: #70818f;
+    background-color: #000973;
     padding: 20px 0;
     margin-top: auto;
     text-align: center;
-    color: white !important;
+    margin: 0;
+    
 }
-
+footer ul li a {
+    color: #fff !important;
+}
+footer p {
+    margin: 0;
+    color: #fff !important;
+}
 
 /* Responsive adjustments */
 
@@ -154,28 +189,6 @@ nav .nav-link i {
     }
 }
 
-.dropdown-menu {
-    width: auto; 
-    background-color: #000973;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left; 
-    padding: 10px;
-}
-
-.dropdown-menu .dropdown-item {
-    color: #fff; 
-    padding: 10px 15px;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #ffcc00; 
-    color: #000; 
-}
-
-
 @media (max-width: 768px) {
     .dropdown-menu {
         width: 100%; 
@@ -203,6 +216,26 @@ nav .nav-link i {
         padding: 6px 8px; 
     }
 }
+.dropdown-menu {
+    width: auto; 
+    background-color: #000973;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left; 
+    padding: 10px;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #fff; 
+    padding: 10px 15px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #ffcc00; 
+    color: #000; 
+}
 
 .project-box {
     background-color: #000973;
@@ -229,6 +262,7 @@ nav .nav-link i {
 .project-box:hover {
     transform: scale(1.05);
 }
+
 
 .social-media-links a {
     margin: 0 20px; 
@@ -268,4 +302,81 @@ nav .nav-link i {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+.search-container {
+    position: relative;
+    display: inline-block;
+}
 
+.search-icon {
+    background: none;
+    border: none;
+    font-size: 14px;
+    padding: 0;
+    color: white;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-container:hover .search-box {
+    width: 150px; 
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-box {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 0;
+    height: 20px;
+    padding: 0 5px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: white;
+    color: black;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+.border-start {
+    border-left-width: 2px !important;
+
+}
+.carousel-inner img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover; 
+}
+
+.card img {
+    height: 100%; /* Görselin yüksekliğini kartın yüksekliğiyle eşitler */
+    object-fit: cover; /* Görselin alanı doldurmasını sağlar */
+    width: 100%; /* Genişliği tam yapar */
+    border-radius: 0; /* Eğer köşeleri yuvarlak istemiyorsanız */
+}
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+  }
+  
+  .card img:hover {
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+
+.card {
+    background-color: #ffffff; /* Açık gri kart arka planı */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölge efekti */
+    margin-bottom: 30px; /* Kartlar arasındaki boşluk */
+    transition: all 0.3s ease; 
+}  

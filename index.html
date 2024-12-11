@@ -5,242 +5,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="css/reset.css">
-     <!-- Bootstrap CSS -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-      <!-- Bootstrap CSS icons: https://icons.getbootstrap.com/#usage -->
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-      <!-- JavaScript: Bootstrap Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer>
-      </script>
-      <!-- eigen geschreven css voor jouw html-bestand -->
-      <link rel="stylesheet" href="css/style.css">
-      <script src="./js/map-ap.js" defer></script>
-      <script src="./js/map-parking.js" defer></script>
-      <script src="./js/script-parking.js" defer></script>
-      <script src="./js/script.js" defer></script>
-</head>
-<body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark ">
-    <div class="container-fluid">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Bootstrap CSS icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Custom Scripts -->
+    <script src="./js/map-ap.js" defer></script>
+    <script src="./js/map-parking.js" defer></script>
+    <script src="./js/script-parking.js" defer></script>
+    <script src="./js/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
         <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
           <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
         </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="index.html"><strong>Thuis</strong></a>
-                </li>
-                <li class="nav-item">
-                  <li class="nav-item dropdown">
-                   
-                      <a class="nav-link dropdown-toggle actieve" href="projects.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false"> <strong>Projecten</strong>
-                      </a>
-
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href="./project1datacomennetwerkproject.html"><strong><i class="bi bi-shield-lock"></i> Project 1</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 2</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 3</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 4</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 5</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 6</strong></a>
-                        </li>
-                    </li>
-                  </ul>
-
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"> <strong>Portfolio</strong>
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong><i class="bi bi-shield-lock"></i> Cybersecurity</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong><i class="bi bi-diagram-3"></i> Netwerkstructuren en Technologie</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong><i class="bi bi-code-slash"></i> Open Source Technologieën</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong><i class="bi bi-joystick"></i> Passie voor Gaming</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong><i class="bi bi-hdd-network"></i> Virtualisatie en Virtuele Machines</strong></a></li>
-                  </ul>
-                  
-                  <li class="nav-item">
-                      <a class="nav-link actieve" aria-current="page" href="skills.html"><strong>Vaardigheden</strong></a>
-                    </li>
-                  <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="contact.html"><strong>Contact</strong></a>
-                  </li>
-                  <li class="nav-item search-container">
-                    <form class="d-flex" role="search">
-                        <button class="search-icon">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <input class="search-box" type="search" placeholder="Zoeken" aria-label="Zoeken">
-                    </form>
-                  </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html"><strong>Home</strong></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item active" href="./project1datacomennetwerkproject.html"><i class="bi bi-router"></i> Datacom</a></li>
+                <li><a class="dropdown-item active" href="cybersecurity.html"><i class="bi bi-shield-lock"></i> Cybersecurity</a></li>
+                <li><a class="dropdown-item active" href="networkstructuresandtechnologies.html"><i class="bi bi-diagram-3"></i> Netwerkstructuren</a></li>
+                <li><a class="dropdown-item active" href="open source_technologies.html"><i class="bi bi-code-slash"></i> Open Source</a></li>
+                <li><a class="dropdown-item active" href="passionforgaming.html"><i class="bi bi-joystick"></i> Passie voor Gaming</a></li>
+                <li><a class="dropdown-item active" href="virtualizationandvirtualmachines.html"><i class="bi bi-hdd-network"></i> Virtualisatie</a></li>
               </ul>
-
+            </li>
+            <li class="nav-item">
+              <a class="nav-link actieve" href="skills.html">Vaardigheden</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item search-container">
+              <form class="d-flex" role="search">
+                <button class="search-icon"><i class="fas fa-search"></i></button>
+                <input class="search-box" type="search" placeholder="Zoeken" aria-label="Zoeken">
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Carousel -->
+    <div class="container my-3">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+            aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a href="contact.html">
+              <img src="assets/images/alituncslide1.jpg" class="d-block w-100" alt="First slide">
+            </a>
           </div>
-    </div>
-  </nav>
-  <!-- caroussel -->
-      <div class="container my-3">
-        <div class="bd-example-snippet bd-code-snippet">
-          <div class="bd-example m-0 border-0">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-              <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="active" aria-label="Slide 2" aria-current="true"></button>
-                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" class="active" aria-label="Slide 3" aria-current="true"></button>
-              </div>
-              <div class="carousel-inner">
-                <div class="carousel-item">
-                  <a href="contact.html">
-                  <img src="assets/images/alituncslide1.jpg" class="d-block w-100" alt="First slide">
-                  </a>
-                </div>
-                <div class="carousel-item active">
-                  <img src="assets/images/slide2.jpg" class="d-block w-100" alt="Second slide">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5> Maintaning infrastructure</h5>
-                    <p style="text-align:end"> &copy;pexel</p>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img src="assets/images/slide1.jpg" class="d-block w-100" alt="Third slide">
-                  <div class="carousel-caption d-none d-md-block">
-                    <h5>Systemen beveiligen, één klik tegelijk </h5>
-                    <p>Complexe uitdagingen aanpakken met doordachte en innovatieve oplossingen.</p>
-                    <p style="text-align: end;">&copy;pexel</p>
-                  </div>
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
+          <div class="carousel-item">
+            <img src="assets/images/slide2.jpg" class="d-block w-100" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Maintaning infrastructure</h5>
+              <p style="text-align: end;">&copy;pexel</p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="assets/images/slide1.jpg" class="d-block w-100" alt="Third slide">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Systemen beveiligen, één klik tegelijk</h5>
+              <p>Complexe uitdagingen aanpakken met doordachte en innovatieve oplossingen.</p>
+              <p style="text-align: end;">&copy;pexel</p>
             </div>
           </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-    <!-- Container Section with Bootstrap Grid -->
+    </div>
+    <!-- Project Section -->
     <section class="container mt-3">
       <div class="row">
-        <!-- Proje 1 -->
         <div class="col-sm-6 col-md-4">
-            <a href="open source_technologies.html">
-                <div class="box">
-                    <figure>
-                        <img src="assets/images/portfolio project1.jpg" alt="open source_technologies">
-                        <figcaption class="h6 small mt-2">
-                            Project 1: Open Source Technologies - &copy;pexel
-                        </figcaption>
-                    </figure>
-                </div>
-            </a>
+          <a href="open source_technologies.html">
+            <div class="box">
+              <figure>
+                <img src="assets/images/portfolio project1.jpg" alt="open source_technologies">
+                <figcaption class="h6 small mt-2">Project 1: Open Source Technologies - &copy;pexel</figcaption>
+              </figure>
+            </div>
+          </a>
         </div>
-        
-        <!-- Proje 2 -->
         <div class="col-sm-6 col-md-4">
-            <a href="networkstructuresandtechnologies.html">
-                <div class="box">
-                    <figure>
-                        <img src="assets/images/project2.jpg" alt="Netwerkstructuren">
-                        <figcaption class="h6 small mt-2">
-                            Project 2: Netwerkstructuren en Technologie - &copy;pexel
-                        </figcaption>
-                    </figure>
-                </div>
-            </a>
+          <a href="networkstructuresandtechnologies.html">
+            <div class="box">
+              <figure>
+                <img src="assets/images/project2.jpg" alt="Netwerkstructuren">
+                <figcaption class="h6 small mt-2">Project 2: Netwerkstructuren en Technologie - &copy;pexel</figcaption>
+              </figure>
+            </div>
+          </a>
         </div>
-
-        <!-- Proje 3 -->
         <div class="col-sm-6 col-md-4">
-            <a href="virtualizationandvirtualmachines.html">
-                <div class="box">
-                    <figure>
-                        <img src="assets/images/project6.jpg" alt="Virtualization">
-                        <figcaption class="h6 small mt-2">
-                            Project 3: Virtualization and Virtual Machines - &copy;pexel
-                        </figcaption>
-                    </figure>
-                </div>
-            </a>
+          <a href="virtualizationandvirtualmachines.html">
+            <div class="box">
+              <figure>
+                <img src="assets/images/project6.jpg" alt="Virtualization">
+                <figcaption class="h6 small mt-2">Project 3: Virtualization and Virtual Machines - &copy;pexel</figcaption>
+              </figure>
+            </div>
+          </a>
         </div>
-    </div>
-      <div >
+      </div>
+      <div>
         <video class="d-block w-100" controls>
           <source src="/assets/videos/cybersecurity.mp4" type="video/mp4">
         </video>
-        <div class="carousel-caption d-none d-md-block">
-        <h5>Voel je je veilig wanneer je op internet surft?</h5>
-        </div>
       </div>
     </section>
-
- <!-- Footer -->
- <div class="row">
-  <footer class=" py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="index.html" class="nav-link px-2 ">Thuis</a></li>
-      <li class="nav-item">
-        <li class="nav-item dropdown">       
-            <a class="nav-link dropdown-toggle actieve" href="projects.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false"> <strong>Projecten</strong>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <a class="dropdown-item active" aria-current="page" href="./project1datacomennetwerkproject.html"><strong><i class="bi bi-shield-lock"></i> Project 1</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 2</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 3</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 4</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 5</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 6</strong></a>
-              </li>
-          </li>
-        </ul>
-      </li>
-      <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"aria-expanded="false"> <strong>Portfolio</strong></a>
+    <!-- Footer -->
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="index.html" class="nav-link px-2">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
-               <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
-                <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong>Open Source Technologieën</strong></a></li>
-                <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong>Passie voor Gaming</strong></a></li>
-                <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
-            </ul>
-      <li class="nav-item"><a href="skills.html" class="nav-link px-2 ">Vaardigheden</a></li>
-      <li class="nav-item"><a href="contact.html" class="nav-link px-2 ">Contact</a></li>
-    </ul>
-    <p class="text-center">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
-  </footer>
-</div>
-</body>
+            <li><a class="dropdown-item active" href="./project1datacomennetwerkproject.html"><i class="bi bi-router"></i> Datacom</a></li>
+            <li><a class="dropdown-item" href="cybersecurity.html"><i class="bi bi-shield-lock"></i> Cybersecurity</a></li>
+            <li><a class="dropdown-item" href="networkstructuresandtechnologies.html"><i class="bi bi-diagram-3"></i> Netwerkstructuren</a></li>
+            <li><a class="dropdown-item" href="open source_technologies.html"><i class="bi bi-code-slash"></i> Open Source</a></li>
+            <li><a class="dropdown-item" href="passionforgaming.html"><i class="bi bi-joystick"> </i>Games</a></li>
+            <li><a class="dropdown-item" href="virtualizationandvirtualmachines.html"><i class="bi bi-hdd-network"></i> Virtualisatie</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="skills.html" class="nav-link px-2">Vaardigheden</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link px-2">Contact</a></li>
+      </ul>
+      <p class="text-center">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
+    </footer>
+  </body>
 </html>

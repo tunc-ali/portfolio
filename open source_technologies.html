@@ -3,217 +3,147 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenSourceTechnologies:DeToekomstvanInnovatie</title>
+    <title>Home</title>
     <link rel="stylesheet" href="css/reset.css">
-     <!-- Bootstrap CSS -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-      <!-- Bootstrap CSS icons: https://icons.getbootstrap.com/#usage -->
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-      <!-- JavaScript: Bootstrap Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer>
-      </script>
-      <!-- eigen geschreven css voor jouw html-bestand -->
-      <link rel="stylesheet" href="css/style.css">
-      <script src="./js/map-ap.js" defer></script>
-      <script src="./js/map-parking.js" defer></script>
-      <script src="./js/script-parking.js" defer></script>
-      <script src="./js/script.js" defer></script>
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark ">
-    <div class="container-fluid">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Bootstrap CSS icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Custom Scripts -->
+    <script src="./js/map-ap.js" defer></script>
+    <script src="./js/map-parking.js" defer></script>
+    <script src="./js/script-parking.js" defer></script>
+    <script src="./js/script.js" defer></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
         <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
           <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
         </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="index.html"><strong>Thuis</strong></a>
-                </li>
-                <li class="nav-item">
-                  <li class="nav-item dropdown">
-                   
-                      <a class="nav-link dropdown-toggle actieve" href="projects.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false"> <strong>Projecten</strong>
-                      </a>
-
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href="./project1datacomennetwerkproject.html"><strong><i class="bi bi-shield-lock"></i> Project 1</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 2</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 3</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 4</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 5</strong></a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 6</strong></a>
-                        </li>
-                    </li>
-                  </ul>
-
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"> <strong>Portfolio</strong>
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong><i class="bi bi-shield-lock"></i> Cybersecurity</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong><i class="bi bi-diagram-3"></i> Netwerkstructuren en Technologie</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong><i class="bi bi-code-slash"></i> Open Source Technologieën</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong><i class="bi bi-joystick"></i> Passie voor Gaming</strong></a></li>
-                      <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong><i class="bi bi-hdd-network"></i> Virtualisatie en Virtuele Machines</strong></a></li>
-                  </ul>
-                  
-                  <li class="nav-item">
-                      <a class="nav-link actieve" aria-current="page" href="skills.html"><strong>Vaardigheden</strong></a>
-                    </li>
-                  <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="contact.html"><strong>Contact</strong></a>
-                  </li>
-                  <li class="nav-item search-container">
-                    <form class="d-flex" role="search">
-                        <button class="search-icon">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <input class="search-box" type="search" placeholder="Zoeken" aria-label="Zoeken">
-                    </form>
-                  </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html"><strong>Home</strong></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item active" href="./project1datacomennetwerkproject.html"><i class="bi bi-router"></i> Datacom</a></li>
+                <li><a class="dropdown-item active" href="cybersecurity.html"><i class="bi bi-shield-lock"></i> Cybersecurity</a></li>
+                <li><a class="dropdown-item active" href="networkstructuresandtechnologies.html"><i class="bi bi-diagram-3"></i> Netwerkstructuren</a></li>
+                <li><a class="dropdown-item active" href="open source_technologies.html"><i class="bi bi-code-slash"></i> Open Source</a></li>
+                <li><a class="dropdown-item active" href="passionforgaming.html"><i class="bi bi-joystick"></i> Passie voor Gaming</a></li>
+                <li><a class="dropdown-item active" href="virtualizationandvirtualmachines.html"><i class="bi bi-hdd-network"></i> Virtualisatie</a></li>
               </ul>
-
-          </div>
-    </div>
-  </nav>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link actieve" href="skills.html">Vaardigheden</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item search-container">
+              <form class="d-flex" role="search">
+                <button class="search-icon"><i class="fas fa-search"></i></button>
+                <input class="search-box" type="search" placeholder="Zoeken" aria-label="Zoeken">
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <!-- Main Content -->
-  <div class="row">
-    <main class="col-md-9">
-        <section class="row">
-            <div class="container">
-                  <figure>
-                    <img src="assets/images/project3.jpg" class="card-img-top" alt="Project 3" style="height: 500px;">
-                    <div class="card-body"> <figcaption style="text-align: end; font-size: 12px">&copy;Pexel</figcaption>
-                  </figure>
-                        <div class="container"  style="text-align: left; background-color: #212529">
-                            <h6><strong>Open Source Technologies: De Toekomst van Innovatie</strong></h6>
-                            <p>
-                                Open source-technologieën vormen de kern van veel moderne IT-oplossingen. Ze bieden flexibiliteit, transparantie en de mogelijkheid om samen te werken met een wereldwijde gemeenschap. Als eerstejaars student in Systeem- en Netwerkbeheer heb ik gewerkt met verschillende open source-tools en -platforms, wat mijn begrip van deze technologieën heeft vergroot.
-                            </p>
-                            <h6><strong>Wat zijn Open Source-Technologieën?</strong></h6>
-                            <p>
-                                Open source verwijst naar software waarvan de broncode beschikbaar is voor iedereen. Dit betekent dat ontwikkelaars:
-                            </p>
-                            <ul>
-                                <li>De software kunnen bekijken, aanpassen en verbeteren.</li>
-                                <li>De software kunnen delen met anderen.</li>
-                                <li>Bijdragen aan projecten die door een gemeenschap worden ondersteund.</li>
-                            </ul>
-                            <p>
-                                Enkele bekende voorbeelden van open source-technologieën zijn:
-                            </p>
-                            <ul>
-                                <li><strong>Linux:</strong> Een populair open source-besturingssysteem dat wordt gebruikt in servers, desktops en mobiele apparaten.</li>
-                                <li><strong>Git:</strong> Een versiebeheersysteem dat samenwerking aan softwareprojecten mogelijk maakt.</li>
-                                <li><strong>Apache:</strong> Een open source-webserver die de backbone vormt van veel websites.</li>
-                                <li><strong>MySQL:</strong> Een open source-databasebeheerprogramma.</li>
-                            </ul>
-                            <h6><strong>Mijn Ervaring in het Project</strong></h6>
-                            <p>
-                                Tijdens een project werkte ik met Linux en Git om een veilige en efficiënte serveromgeving te bouwen. Dit waren enkele van mijn taken:
-                            </p>
-                            <ul>
-                                <li><strong>Linux-configuratie:</strong> Installeren en optimaliseren van serversoftware.</li>
-                                <li><strong>Git-workflows:</strong> Samenwerken met teamleden via branches en pull requests.</li>
-                                <li><strong>Documentatie:</strong> Het bijhouden van wijzigingen en configuraties in een gedeeld Git-repository.</li>
-                            </ul>
-                            <h6><strong>Waarom Open Source?</strong></h6>
-                            <p>
-                                Open source-technologieën bieden niet alleen kostenbesparingen, maar ook de vrijheid om technologie aan te passen aan specifieke behoeften. Bovendien stimuleren ze innovatie door samenwerking tussen ontwikkelaars wereldwijd.
-                            </p>
-                            <h6><strong>Conclusie</strong></h6>
-                            <p>
-                                Het werken met open source-technologieën heeft mijn technische vaardigheden verbeterd en mijn begrip van samenwerking in IT-teams vergroot. Deze tools vormen de ruggengraat van veel moderne IT-oplossingen en blijven een belangrijke rol spelen in de toekomst van technologie.
-                            </p>
-                            <p>
-                                <em>Wil je meer weten over mijn ervaring met open source-technologieën? Neem gerust <a href="contact.html">contact</a> met mij op!</em>
-                            </p>
-                        </div>
-            </div>
-        </section>
-    </main>
-    <aside class="col-md-3 border-start">
-      <h2 class="text-uppercase fs-5 fw-bolder pt-3 text-start">Links voor projecten</h2>
-      <hr>
-        <ol class="text-start">
-          <p></p>
-          <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong><i class="bi bi-shield-lock"></i> Cybersecurity</strong></a></li>
-          <p></p>
-          <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong><i class="bi bi-diagram-3"></i> Netwerkstructuren en Technologie</strong></a></li>
-          <p></p>
-          <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong><i class="bi bi-code-slash"></i>  Open Source Technologieën</strong></a></li>
-          <p></p>
-          <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong><i class="bi bi-joystick"></i> Passie voor Gaming</strong></a></li>
-          <p></p>
-          <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong><i class="bi bi-hdd-network"></i> Virtualisatie en Virtuele Machines</strong></a></li>
-        </ol>
-    </aside>
+    <div class="row">
+      <main class="col-md-9" style="text-align: left;">
+          <figure>
+              <img src="assets/images/project 3.jpeg" class="card-img-top" alt="Project 3" style="height: 500px;">
+              <figcaption style="text-align: end; font-size: 12px">&copy;Dall-E</figcaption>
+          </figure>
+          <h1><strong>Open Source Technologies: De Toekomst van Innovatie</strong></h1>
+          <p>
+              Open source-technologieën vormen de kern van veel moderne IT-oplossingen. Ze bieden flexibiliteit, transparantie en de mogelijkheid om samen te werken met een wereldwijde gemeenschap. Als eerstejaars student in Systeem- en Netwerkbeheer heb ik gewerkt met verschillende open source-tools en -platforms, wat mijn begrip van deze technologieën heeft vergroot.
+          </p>
+          <h6><strong>Wat zijn Open Source-Technologieën?</strong></h6>
+          <p>
+              Open source verwijst naar software waarvan de broncode beschikbaar is voor iedereen. Dit betekent dat ontwikkelaars:
+          </p>
+          <ul>
+              <li>De software kunnen bekijken, aanpassen en verbeteren.</li>
+              <li>De software kunnen delen met anderen.</li>
+              <li>Bijdragen aan projecten die door een gemeenschap worden ondersteund.</li>
+          </ul>
+          <p>
+              Enkele bekende voorbeelden van open source-technologieën zijn:
+          </p>
+          <ul>
+              <li><strong>Linux:</strong> Een populair open source-besturingssysteem dat wordt gebruikt in servers, desktops en mobiele apparaten.</li>
+              <li><strong>Git:</strong> Een versiebeheersysteem dat samenwerking aan softwareprojecten mogelijk maakt.</li>
+              <li><strong>Apache:</strong> Een open source-webserver die de backbone vormt van veel websites.</li>
+              <li><strong>MySQL:</strong> Een open source-databasebeheerprogramma.</li>
+          </ul>
+          <h6><strong>Mijn Ervaring in het Project</strong></h6>
+          <p>
+              Tijdens een project werkte ik met Linux en Git om een veilige en efficiënte serveromgeving te bouwen. Dit waren enkele van mijn taken:
+          </p>
+          <ul>
+              <li><strong>Linux-configuratie:</strong> Installeren en optimaliseren van serversoftware.</li>
+              <li><strong>Git-workflows:</strong> Samenwerken met teamleden via branches en pull requests.</li>
+              <li><strong>Documentatie:</strong> Het bijhouden van wijzigingen en configuraties in een gedeeld Git-repository.</li>
+          </ul>
+          <h6><strong>Waarom Open Source?</strong></h6>
+          <p>
+              Open source-technologieën bieden niet alleen kostenbesparingen, maar ook de vrijheid om technologie aan te passen aan specifieke behoeften. Bovendien stimuleren ze innovatie door samenwerking tussen ontwikkelaars wereldwijd.
+          </p>
+          <h6><strong>Conclusie</strong></h6>
+          <p>
+              Het werken met open source-technologieën heeft mijn technische vaardigheden verbeterd en mijn begrip van samenwerking in IT-teams vergroot. Deze tools vormen de ruggengraat van veel moderne IT-oplossingen en blijven een belangrijke rol spelen in de toekomst van technologie.
+          </p>
+          <p>
+              <em>Wil je meer weten over mijn ervaring met open source-technologieën? Neem gerust <a href="contact.html">contact</a> met mij op!</em>
+          </p>
+      </main>
+      <aside class="col-md-3 border-start">
+          <h2 class="text-uppercase fs-5 fw-bolder pt-3 text-start">projecten</h2>
+          <hr>
+          <ol class="text-start">
+              <li><a class="dropdown-item active" href="./project1datacomennetwerkproject.html"><i class="bi bi-router"></i> Datacom</a></li>
+              <li><a class="dropdown-item" href="cybersecurity.html"><i class="bi bi-shield-lock"></i> Cybersecurity</a></li>
+              <li><a class="dropdown-item" href="networkstructuresandtechnologies.html"><i class="bi bi-diagram-3"></i> Netwerkstructuren</a></li>
+              <li><a class="dropdown-item" href="open source_technologies.html"><i class="bi bi-code-slash"></i> Open Source</a></li>
+              <li><a class="dropdown-item" href="passionforgaming.html"><i class="bi bi-joystick"></i> Games</a></li>
+              <li><a class="dropdown-item" href="virtualizationandvirtualmachines.html"><i class="bi bi-hdd-network"></i> Virtualisatie</a></li>
+          </ol>
+      </aside>
   </div>
- <!-- Footer -->
- <div class="row">
-  <footer class=" py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="index.html" class="nav-link px-2 ">Thuis</a></li>
-      <li class="nav-item">
-        <li class="nav-item dropdown">       
-            <a class="nav-link dropdown-toggle actieve" href="projects.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-current="page" aria-expanded="false"> <strong>Projecten</strong>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <a class="dropdown-item active" aria-current="page" href="./project1datacomennetwerkproject.html"><strong><i class="bi bi-shield-lock"></i> Project 1</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 2</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 3</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 4</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 5</strong></a>
-              </li>
-              <li>
-                <a class="dropdown-item active" aria-current="page" href=""><strong><i class="bi bi-shield-lock"></i> Project 6</strong></a>
-              </li>
-          </li>
-        </ul>
-      </li>
-      <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"aria-expanded="false"> <strong>Portfolio</strong></a>
+    <!-- Footer -->
+    <footer class="py-3 my-4">
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="index.html" class="nav-link px-2">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item active" aria-current="page" href="cybersecurity.html"><strong>Cybersecurity</strong></a></li>
-               <li><a class="dropdown-item active" aria-current="page" href="networkstructuresandtechnologies.html"><strong>Netwerkstructuren en Technologie</strong></a></li>
-                <li><a class="dropdown-item active" aria-current="page" href="open source_technologies.html"><strong>Open Source Technologieën</strong></a></li>
-                <li><a class="dropdown-item active" aria-current="page" href="passionforgaming.html"><strong>Passie voor Gaming</strong></a></li>
-                <li><a class="dropdown-item active" aria-current="page" href="virtualizationandvirtualmachines.html"><strong>Virtualisatie en Virtuele Machines</strong></a></li>
-            </ul>
-      <li class="nav-item"><a href="skills.html" class="nav-link px-2 ">Vaardigheden</a></li>
-      <li class="nav-item"><a href="contact.html" class="nav-link px-2 ">Contact</a></li>
-    </ul>
-    <p class="text-center">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
-  </footer>
-</div>
-</body>
+            <li><a class="dropdown-item active" href="./project1datacomennetwerkproject.html"><i class="bi bi-router"></i> Datacom</a></li>
+            <li><a class="dropdown-item" href="cybersecurity.html"><i class="bi bi-shield-lock"></i> Cybersecurity</a></li>
+            <li><a class="dropdown-item" href="networkstructuresandtechnologies.html"><i class="bi bi-diagram-3"></i> Netwerkstructuren</a></li>
+            <li><a class="dropdown-item" href="open source_technologies.html"><i class="bi bi-code-slash"></i> Open Source</a></li>
+            <li><a class="dropdown-item" href="passionforgaming.html"><i class="bi bi-joystick"> </i>Games</a></li>
+            <li><a class="dropdown-item" href="virtualizationandvirtualmachines.html"><i class="bi bi-hdd-network"></i> Virtualisatie</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="skills.html" class="nav-link px-2">Vaardigheden</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link px-2">Contact</a></li>
+      </ul>
+      <p class="text-center">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
+    </footer>
+  </body>
 </html>

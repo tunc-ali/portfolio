@@ -23,3 +23,5 @@ map.fitBounds(bounds);
 let apMarker = L.marker([51.23009, 4.41616]).addTo(map);
 apMarker.bindPopup("<b>AP-Hogeschool</b><br>Ellermanstraat 33").openPopup();
 
+
+

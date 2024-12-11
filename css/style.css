@@ -8,6 +8,26 @@ body {
     box-sizing: border-box;
 }
 
+.row {
+    display: flex; /* Satır içeriğini yan yana hizalamak için */
+    flex-wrap: wrap; /* Küçük ekranlarda taşmaları önler */
+    margin: 0; /* Gereksiz boşlukları kaldırır */
+}
+
+.col-md-9 {
+    background-color: #908e8ec1;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.col-md-3 {
+    background-color: transparent;
+    padding: 20px;
+    border-left: 2px solid #ffffff; /* Yan kenarlık */
+    box-sizing: border-box;
+}
 
 nav {
     background-color: #000973;
@@ -17,41 +37,42 @@ nav {
     margin: 0 20px;
     font-size: 18px;
     text-transform: uppercase;
-    margin-bottom: 0; 
+    margin-bottom: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    padding: 0px 0px;
+    padding: 0;
     transition: all 0.3s ease;
-  }
+}
 
-  nav a:hover {
+nav a:hover {
     color: #ff8c00;
     border-bottom: 2px solid #ff8c00;
-  }
-  
+}
+
 .navbar-nav .nav-link {
     color: white;
     font-weight: 300;
     padding: 0 20px !important;
 }
+
 nav.navbar.navbar-expand-lg.navbar-dark {
     margin: 0;
     padding-bottom: 0;
 }
 
 .carousel {
-    margin-top: 0; 
-    padding: 0; 
+    margin-top: 0;
+    padding: 0;
 }
-
 
 .box {
     background-color: #000973;
     margin: 15px;
-    min-height: 400px; 
+    min-height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,35 +81,33 @@ nav.navbar.navbar-expand-lg.navbar-dark {
     flex-direction: column;
     padding: 15px;
     box-sizing: border-box;
-    border-radius: 10px; 
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .box:hover {
-    transform: scale(1.05); 
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4); 
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .box img {
     width: 100%;
     height: auto;
-    object-fit: cover; 
+    object-fit: cover;
     margin-bottom: 10px;
-    border-radius: 5px; 
-    transition: transform 0.3s ease; 
+    border-radius: 5px;
+    transition: transform 0.3s ease;
 }
 
 .box:hover img {
-    transform: scale(1.1); 
+    transform: scale(1.1);
 }
-
-
 .contact-section {
     padding: 50px 20px;
-    background: linear-gradient(135deg, #FE6502, #F5B041);
-    color: white; 
-    border-radius: 10px; 
+    background: #71707F;
+    color: white;
+    border-radius: 10px;
 }
 
 .contact-section h2 {
@@ -114,127 +133,109 @@ nav.navbar.navbar-expand-lg.navbar-dark {
     background-color: #eaeaea;
     border-radius: 4px;
 }
-footer .nav-link {
-    color: #fff !important;
-}
+
 footer {
     background-color: #000973;
     padding: 20px 0;
     margin-top: auto;
     text-align: center;
-    margin: 0;
-    
 }
+
 footer ul li a {
     color: #fff !important;
 }
+
 footer p {
     margin: 0;
     color: #fff !important;
 }
 
 /* Responsive adjustments */
-
-nav {
-    background-color: #000973;
-    padding: 15px 30px;
-    color: #fff;
-    text-decoration: none;
-    margin: 0 20px;
-    font-size: 16px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-nav .nav-link i {
-    font-size: 18px; 
-    margin-right: 8px; 
-}
-
 @media (max-width: 992px) {
     nav {
-        padding: 10px 20px; 
-        font-size: 14px; 
-        margin: 0 10px; 
+        padding: 10px 20px;
+        font-size: 14px;
+        margin: 0 10px;
     }
 
     nav .nav-link i {
-        font-size: 16px; 
-        margin-right: 6px; 
+        font-size: 16px;
+        margin-right: 6px;
+    }
+
+    .col-md-9, .col-md-3 {
+        flex: 0 0 100%; /* Daha küçük ekranlarda tüm sütunlar tam genişlikte */
+        max-width: 100%;
     }
 }
 
 @media (max-width: 768px) {
     nav {
         padding: 8px 15px;
-        font-size: 12px; 
+        font-size: 12px;
     }
 
     nav .nav-link i {
-        font-size: 14px; 
+        font-size: 14px;
         margin-right: 5px;
+    }
+
+    .dropdown-menu {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .dropdown-menu .dropdown-item {
+        font-size: 13px;
+        padding: 8px 10px;
     }
 }
 
 @media (max-width: 576px) {
     nav {
-        padding: 5px 10px; 
-        font-size: 10px; 
-        box-shadow: none; 
+        padding: 5px 10px;
+        font-size: 10px;
+        box-shadow: none;
     }
 
     nav .nav-link i {
-        font-size: 12px; 
-        margin-right: 4px; 
-    }
-}
-
-@media (max-width: 768px) {
-    .dropdown-menu {
-        width: 100%; 
-        text-align: center; 
-        padding: 15px 0; 
+        font-size: 12px;
+        margin-right: 4px;
     }
 
-    .dropdown-menu .dropdown-item {
-        font-size: 13px; 
-        padding: 8px 10px; 
-    }
-}
-
-@media (max-width: 576px) {
     .dropdown-menu {
         width: 100%;
-        padding: 10px 0; 
-        border: none; 
-        box-shadow: none; 
+        padding: 10px 0;
+        border: none;
+        box-shadow: none;
         text-align: center;
     }
 
     .dropdown-menu .dropdown-item {
-        font-size: 12px; 
-        padding: 6px 8px; 
+        font-size: 12px;
+        padding: 6px 8px;
     }
 }
 .dropdown-menu {
-    width: auto; 
+    width: auto;
     background-color: #000973;
     border: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left; 
+    text-align: left;
     padding: 10px;
 }
 
 .dropdown-menu .dropdown-item {
-    color: #fff; 
+    color: #fff;
     padding: 10px 15px;
     font-size: 14px;
     transition: background-color 0.3s ease;
 }
 
 .dropdown-menu .dropdown-item:hover {
-    background-color: #ffcc00; 
-    color: #000; 
+    background-color: #ff8c00;
+    color: #000;
 }
 
 .project-box {
@@ -263,45 +264,6 @@ nav .nav-link i {
     transform: scale(1.05);
 }
 
-
-.social-media-links a {
-    margin: 0 20px; 
-    display: inline-block; 
-}
-  .social-icons i {
-    font-size: 20px;
-    margin-right: 10px;
-  }
-.dropdown-menu {
-    background: linear-gradient(90deg, #003f7f, #001f3f);
-    border: none;
-    border-radius: 5px;
-  }
-  
-  .dropdown-menu a {
-    color: white;
-    padding: 10px 20px;
-    display: block;
-    transition: all 0.3s ease;
-  }
-  
-  .dropdown-menu a:hover {
-    background-color: #ff8c00;
-    color: black;
-  }
-  .dropdown-menu a {
-    transition: all 0.3s ease;
-  }
-  
-  .dropdown-menu a:hover {
-    transform: scale(1.1);
-    background-color: #00264d;
-    color: #ff8c00;
-  }
-  .dropdown-menu {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
 .search-container {
     position: relative;
     display: inline-block;
@@ -322,7 +284,7 @@ nav .nav-link i {
 }
 
 .search-container:hover .search-box {
-    width: 150px; 
+    width: 150px;
     opacity: 1;
     visibility: visible;
 }
@@ -344,39 +306,40 @@ nav .nav-link i {
     opacity: 0;
     visibility: hidden;
 }
+
 .border-start {
     border-left-width: 2px !important;
-
 }
+
 .carousel-inner img {
     width: 100%;
     height: 500px;
-    object-fit: cover; 
+    object-fit: cover;
+}
+
+.card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
 }
 
 .card img {
-    height: 100%; /* Görselin yüksekliğini kartın yüksekliğiyle eşitler */
-    object-fit: cover; /* Görselin alanı doldurmasını sağlar */
-    width: 100%; /* Genişliği tam yapar */
-    border-radius: 0; /* Eğer köşeleri yuvarlak istemiyorsanız */
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 0;
+    transition: transform 0.3s ease;
 }
+
 .card:hover {
     transform: scale(1.03);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
-    transition: all 0.3s ease;
-  }
-  
-  .card img:hover {
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-  }
+}
 
-.card {
-    background-color: #ffffff; /* Açık gri kart arka planı */
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölge efekti */
-    margin-bottom: 30px; /* Kartlar arasındaki boşluk */
-    transition: all 0.3s ease; 
-}  
+.card img:hover {
+    transform: scale(1.05);
+}

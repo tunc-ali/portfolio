@@ -9,9 +9,9 @@ body {
 }
 
 .row {
-    display: flex; /* Satır içeriğini yan yana hizalamak için */
-    flex-wrap: wrap; /* Küçük ekranlarda taşmaları önler */
-    margin: 0; /* Gereksiz boşlukları kaldırır */
+    display: flex; 
+    flex-wrap: wrap; 
+    margin: 0; 
 }
 
 .col-md-9 {
@@ -25,7 +25,7 @@ body {
 .col-md-3 {
     background-color: transparent;
     padding: 20px;
-    border-left: 2px solid #ffffff; /* Yan kenarlık */
+    border-left: 2px solid #ffffff; 
     box-sizing: border-box;
 }
 
@@ -150,7 +150,6 @@ footer p {
     color: #fff !important;
 }
 
-/* Responsive adjustments */
 @media (max-width: 992px) {
     nav {
         padding: 10px 20px;
@@ -164,7 +163,7 @@ footer p {
     }
 
     .col-md-9, .col-md-3 {
-        flex: 0 0 100%; /* Daha küçük ekranlarda tüm sütunlar tam genişlikte */
+        flex: 0 0 100%; 
         max-width: 100%;
     }
 }

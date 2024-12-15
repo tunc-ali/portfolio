@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MySkills</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap CSS icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Custom Scripts -->
+    <script src="./js/map-ap.js" defer></script>
+    <script src="./js/map-parking.js" defer></script>
+    <script src="./js/script-parking.js" defer></script>
+    <script src="./js/script.js" defer></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
+          <img src="assets/images/logo.svg" alt="logo" width="100" height="auto" style="margin-right: 10px;">Portfolio Ali Tunç
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html"><strong>Home</strong></a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item active" href="portfolio.html"><i class="bi bi-eye"></i> Bekijk Portfolio</a></li>
+                  <li><a class="dropdown-item active" href="datacom.html"><i class="bi bi-router"></i> Datacom</a></li>
+                  <li><a class="dropdown-item active" href="cybersecurity.html"><i class="bi bi-shield-lock"></i> Cybersecurity</a></li>
+                  <li><a class="dropdown-item active" href="netwerkstructuren.html"><i class="bi bi-diagram-3"></i> Netwerkstructuren</a></li>
+                  <li><a class="dropdown-item active" href="opensource.html"><i class="bi bi-code-slash"></i> Open Source</a></li>
+                  <li><a class="dropdown-item active" href="games.html"><i class="bi bi-joystick"></i> Games</a></li>
+                  <li><a class="dropdown-item active" href="virtualisatie.html"><i class="bi bi-hdd-network"></i> Virtualisatie</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link actieve" href="vaardigheden.html">Vaardigheden</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="contact.html">Contact</a>
+              </li>
+              <li class="nav-item search-container">
+                <form class="d-flex" role="search">
+                  <button class="search-icon"><i class="fas fa-search"></i></button>
+                  <input class="search-box" type="search" placeholder="Zoeken" aria-label="Zoeken">
+                </form>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <div class="row">
+        <main class="col-md-9" style="text-align: left;">
+            <figure>
+                <img src="assets/images/project1datanet3.jpg" class="card-img-top" alt="Project" style="height: 500px;">
+                <figcaption style="text-align: end; font-size: 12px">&copy;Webwiz</figcaption>
+            </figure>
+            <h1><strong>Webwiz Gestructureerde Bekabeling en Netwerkbeheer</strong></h1>
+            <p>Dit project richt zich op het ontwerpen en implementeren van een moderne, gestructureerde bekabelings- en netwerkoplossing voor Webwiz, een groeiend bedrijf. De huidige infrastructuur van het bedrijf is chaotisch en ondersteunt de bedrijfsprocessen onvoldoende. Het doel is om een schaalbare en veilige netwerkinfrastructuur te bouwen die operationele efficiëntie bevordert.</p>
+    
+            <h6><strong>Projectomvang:</strong></h6>
+            <ul>
+                <li><strong>Netwerkplanning:</strong> Voor de 6 kantoren zijn er in totaal 24 werkplekken ingericht met 20 desktopcomputers en 10 laptops. Werkplekken zijn uitgerust met VoIP-telefoons en WiFi Access Points zijn geïnstalleerd voor verbeterde dekking.</li>
+                <li><strong>Hardware en Bekabeling:</strong> Gebruik van patchpanelen, switches en UTP-kabels, georganiseerd in een afgesloten rackruimte.</li>
+                <li><strong>Functionaliteit en Schaalbaarheid:</strong> Extra aansluitpunten zijn voorzien, het netwerk is ontworpen met redundantie en dockingstations zijn geïnstalleerd.</li>
+                <li><strong>Labeling en Documentatie:</strong> Apparaten en kabels zijn nauwkeurig gelabeld met een gedetailleerd patchplan.</li>
+            </ul>
+    
+            <h6><strong>Doelen:</strong></h6>
+            <ul>
+                <li>Efficiëntie: Het netwerk eenvoudig kunnen beheren en snel problemen oplossen.</li>
+                <li>Schaalbaarheid: Toekomstige uitbreidingen zonder extra chaos doorvoeren.</li>
+                <li>Beveiliging: Beheerdersrechten beperken om ongeoorloofde wijzigingen aan de infrastructuur te voorkomen.</li>
+            </ul>
+    
+            <h6><strong>Opgeleverde Documenten:</strong></h6>
+            <ul>
+                <li>Aankooplijst: Details van benodigdheden met prijzen.</li>
+                <li>Bekabelingsplan: Visuele weergave van verbindingen en infrastructuur.</li>
+                <li>Rackindeling: Details over plaatsing van apparatuur in het rack.</li>
+                <li>Patchplan: Overzicht van aansluitingen tussen patchpanelen en apparaten.</li>
+            </ul>
+    
+            <h6><strong>Conclusie:</strong></h6>
+            <p>Dit project biedt Webwiz een gestroomlijnde, veilige en schaalbare netwerkinfrastructuur die voldoet aan de eisen van een modern bedrijf. Dankzij de gestructureerde aanpak is het netwerkbeheer eenvoudiger en toekomstbestendig.</p>
+        </main>
+        <aside class="col-md-2 border-start">
+            <h2 class="text-uppercase fs-5 fw-bolder pt-3 text-start">Projecten</h2>
+            <hr>
+            <ol class="text-start">
+                <li><a class="dropdown-item active" href="datacom.html"><i class="bi bi-router"></i> Datacom</a></li>
+                <li><a class="dropdown-item" href="cybersecurity.html"><i class="bi bi-shield-lock"></i> Cybersecurity</a></li>
+                <li><a class="dropdown-item" href="netwerkstructuren.html"><i class="bi bi-diagram-3"></i> Netwerkstructuren</a></li>
+                <li><a class="dropdown-item" href="opensource.html"><i class="bi bi-code-slash"></i> Open Source</a></li>
+                <li><a class="dropdown-item" href="games.html"><i class="bi bi-joystick"></i> Games</a></li>
+                <li><a class="dropdown-item" href="virtualisatie.html"><i class="bi bi-hdd-network"></i> Virtualisatie</a></li>
+            </ol>
+        </aside>
+    </div>
+    <!-- Footer -->
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="index.html" class="nav-link px-2">Home</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle actieve" href="portfolio.html" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item active" href="portfolio.html"><i class="bi bi-eye"></i> Bekijk Portfolio</a></li>
+                    <li><a class="dropdown-item active" href="datacom.html"><i class="bi bi-router"></i> Datacom</a></li>
+                    <li><a class="dropdown-item active" href="cybersecurity.html"><i class="bi bi-shield-lock"></i> Cybersecurity</a></li>
+                    <li><a class="dropdown-item active" href="netwerkstructuren.html"><i class="bi bi-diagram-3"></i> Netwerkstructuren</a></li>
+                    <li><a class="dropdown-item active" href="opensource.html"><i class="bi bi-code-slash"></i> Open Source</a></li>
+                    <li><a class="dropdown-item active" href="games.html"><i class="bi bi-joystick"> </i>Games</a></li>
+                    <li><a class="dropdown-item active" href="virtualisatie.html"><i class="bi bi-hdd-network"></i> Virtualisatie</a></li>
+                </ul>
+            </li>
+            <li class="nav-item"><a href="vaardigheden.html" class="nav-link px-2">Vaardigheden</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link px-2">Contact</a></li>
+          </ul>
+        <p class="text-center">&copy;<span id="year"></span> Ali Tunc - All Rights Reserved.</p>
+      </footer>
+  </body>
+</html>

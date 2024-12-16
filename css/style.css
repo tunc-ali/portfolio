@@ -64,10 +64,7 @@ nav.navbar.navbar-expand-lg.navbar-dark {
     padding-bottom: 0;
 }
 
-.carousel {
-    margin-top: 0;
-    padding: 0;
-}
+
 
 .box {
     background-color: #000973;
@@ -216,6 +213,23 @@ footer p {
         padding: 6px 8px;
     }
 }
+
+@media (max-width: 768px) { 
+    .carousel-inner img {
+        height: 300px; 
+    }
+}
+
+@media (max-width: 576px) { 
+    .carousel-inner img {
+        height: 200px; 
+    }
+}
+@media (max-width: 400px) { 
+    .carousel-inner img {
+        height: 150px; 
+    }
+}
 .dropdown-menu {
     width: auto;
     background-color: #000973;
@@ -312,8 +326,14 @@ footer p {
 
 .carousel-inner img {
     width: 100%;
-    height: 500px;
-    object-fit: cover;
+    height: auto; 
+    object-fit: cover; 
+}
+
+
+.carousel {
+    margin-top: 0;
+    padding: 0;
 }
 
 .card {

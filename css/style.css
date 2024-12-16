@@ -325,9 +325,10 @@ footer p {
 }
 
 .carousel-inner img {
-    width: 100%;
-    height: auto; 
+    width: 100%; 
     object-fit: cover; 
+    aspect-ratio: 16 / 9; /* Görsellerin oranını sabitler (16:9 oranı) */
+    max-height: 600px; /* Maksimum yükseklik sınırı ekler */
 }
 
 

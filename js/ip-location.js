@@ -53,6 +53,14 @@
     if (!text) return false;
 
     locEl.textContent = text;            // textContent: nooit HTML uit de API
+
+    // Coördinaten delen met andere scripts op de pagina (wereldbol op de home)
+    const lat = Number(geo.lat), lon = Number(geo.lon);
+    if (Number.isFinite(lat) && Number.isFinite(lon)) {
+      document.documentElement.dataset.geoLat = lat;
+      document.documentElement.dataset.geoLon = lon;
+      document.dispatchEvent(new CustomEvent('visitor-geo', { detail: { lat, lon } }));
+    }
     if (ipEl && ipWrap && isIp(geo.ip)) {
       ipEl.textContent = geo.ip;
       ipWrap.hidden = false;

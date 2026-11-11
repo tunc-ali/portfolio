@@ -49,6 +49,12 @@ a:focus-visible, button:focus-visible {
   outline-offset: 3px;
 }
 
+/* Alleen voor schermlezers */
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
 /* Skip-link: pas zichtbaar bij Tab */
 .skip-link {
   position: absolute; left: 1.5rem; top: -4rem; z-index: 1000;

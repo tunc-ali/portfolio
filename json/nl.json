@@ -54,22 +54,230 @@
     "btn_services": "Bekijk diensten",
     "btn_contact": "Neem contact op →",
     "stats": [
-      { "n": "7+", "label": "jaar ervaring" },
-      { "n": "100%", "label": "uptime mindset" },
-      { "n": "3", "label": "talen" },
-      { "n": "∞", "label": "monitoring checks" }
+      {
+        "n": "7+",
+        "label": "jaar ervaring"
+      },
+      {
+        "n": "100%",
+        "label": "uptime mindset"
+      },
+      {
+        "n": "3",
+        "label": "talen"
+      },
+      {
+        "n": "∞",
+        "label": "monitoring checks"
+      }
     ],
     "terminal": {
       "whoami": "Ali Tunç — Systeem & Netwerk Beheerder",
       "skills": [
-        { "key": "monitoring", "value": "Zabbix 7.0, SNMP, auto-discovery, alerting" },
-        { "key": "firewall", "value": "FortiGate, Zyxel USG FLEX 500, pfSense" },
-        { "key": "switching", "value": "UniFi, Cisco 2960S, VLAN-design, STP" },
-        { "key": "virtualisatie", "value": "VMware ESXi, Veeam Backup & Replication" },
-        { "key": "cloud", "value": "Microsoft 365, Entra ID, Exchange Online" },
-        { "key": "security", "value": "PacketFence NAC, EAP-TLS, Intune/SCEP" },
-        { "key": "talen", "value": "Nederlands, Engels, Turks" }
+        {
+          "key": "monitoring",
+          "value": "Zabbix 7.0, SNMP, auto-discovery, alerting"
+        },
+        {
+          "key": "firewall",
+          "value": "FortiGate, Zyxel USG FLEX 500, pfSense"
+        },
+        {
+          "key": "switching",
+          "value": "UniFi, Cisco 2960S, VLAN-design, STP"
+        },
+        {
+          "key": "virtualisatie",
+          "value": "VMware ESXi, Veeam Backup & Replication"
+        },
+        {
+          "key": "cloud",
+          "value": "Microsoft 365, Entra ID, Exchange Online"
+        },
+        {
+          "key": "security",
+          "value": "PacketFence NAC, EAP-TLS, Intune/SCEP"
+        },
+        {
+          "key": "talen",
+          "value": "Nederlands, Engels, Turks"
+        }
+      ],
+      "label": "terminal",
+      "input_label": "Terminal-invoer: typ een commando en druk op Enter",
+      "hint": "typ 'help' of kies:",
+      "chips": [
+        "help",
+        "whoami",
+        "skills",
+        "projects",
+        "contact"
+      ],
+      "cmd": {
+        "help_title": "Beschikbare commando's:",
+        "help": [
+          {
+            "c": "help",
+            "d": "toon deze lijst"
+          },
+          {
+            "c": "whoami",
+            "d": "wie ben ik"
+          },
+          {
+            "c": "skills",
+            "d": "technische skills"
+          },
+          {
+            "c": "projects",
+            "d": "overzicht van projecten"
+          },
+          {
+            "c": "contact",
+            "d": "hoe je me bereikt"
+          },
+          {
+            "c": "lang [nl|en]",
+            "d": "taal tonen of wisselen"
+          },
+          {
+            "c": "clear",
+            "d": "scherm leegmaken"
+          }
+        ],
+        "not_found": "commando niet gevonden: {cmd} — typ 'help'",
+        "projects_link": "→ alle projecten bekijken",
+        "contact_text": "Het snelst bereik je me via de contactpagina.",
+        "contact_link": "→ contactpagina openen",
+        "lang_current": "huidige taal: {lang}",
+        "lang_usage": "gebruik: lang nl | lang en",
+        "lang_switch": "taal wisselen naar {lang}…",
+        "lang_same": "dat is al de huidige taal.",
+        "sudo": "permission denied: bezoeker staat niet in het sudoers-bestand. Dit incident wordt gerapporteerd. ;)",
+        "nmap": [
+          "Starting Nmap ( simulatie ) — target: alitunc.net",
+          "Host is up.",
+          "PORT     STATE  SERVICE",
+          "80/tcp   open   http",
+          "443/tcp  open   https",
+          "Nmap done: 1 host gescand (nagespeeld, er is niets verstuurd)."
+        ],
+        "nmap_scope": "buiten scope: {target}. Alleen alitunc.net mag hier (nagespeeld) gescand worden. Scan nooit zonder toestemming."
+      }
+    },
+    "topology": {
+      "label": "netwerk",
+      "title": "een netwerk zoals ik het bouw",
+      "hint": "Sleep om te draaien · klik op een node voor details · klik eerst in het beeld om met het scrollwiel te zoomen",
+      "canvas_label": "Interactieve 3D-netwerktopologie. Pijltjestoetsen draaien het beeld; alle nodes staan ook als lijst onder het beeld.",
+      "loading": "3D-weergave laden…",
+      "zoom_in": "Inzoomen",
+      "zoom_out": "Uitzoomen",
+      "reset": "Beeld herstellen",
+      "close": "Sluiten",
+      "list_label": "Nodes in de topologie",
+      "role_label": "rol",
+      "tech_label": "technologie",
+      "disclaimer": "Voorbeeldtopologie met technologie waarmee ik werk — geen weergave van een echte klant- of werkgeversomgeving.",
+      "nodes": [
+        {
+          "id": "internet",
+          "label": "Internet",
+          "zone": "internet / cloud",
+          "role": "WAN-uplink en veilige toegang van buitenaf.",
+          "tech": "ZTNA (OpenZiti), VPN, DNS",
+          "note": ""
+        },
+        {
+          "id": "m365",
+          "label": "Cloud / identity",
+          "zone": "internet / cloud",
+          "role": "Identiteit, mail en apparaatbeheer in de cloud.",
+          "tech": "Microsoft 365, Entra ID, Exchange Online, Intune (MDM / identity)",
+          "note": ""
+        },
+        {
+          "id": "fw",
+          "label": "Firewall",
+          "zone": "bedrijfsnetwerk",
+          "role": "Perimeter, segmentatie tussen VLANs en VPN.",
+          "tech": "FortiGate, Zyxel USG FLEX, pfSense — NGFW-policies",
+          "note": ""
+        },
+        {
+          "id": "core",
+          "label": "Core switch",
+          "zone": "bedrijfsnetwerk",
+          "role": "Hart van het netwerk: inter-VLAN-verkeer en uplinks.",
+          "tech": "Cisco, UniFi — VLAN-design, STP",
+          "note": ""
+        },
+        {
+          "id": "sw-a",
+          "label": "Access switch A",
+          "zone": "bedrijfsnetwerk",
+          "role": "Werkplekken en randapparatuur per VLAN.",
+          "tech": "UniFi, Cisco 2960S — access-VLANs",
+          "note": ""
+        },
+        {
+          "id": "sw-b",
+          "label": "Access switch B",
+          "zone": "bedrijfsnetwerk",
+          "role": "Serverruimte: trunks naar hypervisor en backup.",
+          "tech": "Cisco 2960S, UniFi — trunks, STP",
+          "note": ""
+        },
+        {
+          "id": "ap",
+          "label": "Wi-Fi AP",
+          "zone": "bedrijfsnetwerk",
+          "role": "Draadloze toegang met certificaat-authenticatie.",
+          "tech": "UniFi — PacketFence NAC, EAP-TLS, Intune/SCEP",
+          "note": ""
+        },
+        {
+          "id": "mon",
+          "label": "Monitoring",
+          "zone": "bedrijfsnetwerk",
+          "role": "Bewaakt alle nodes en waarschuwt bij storingen.",
+          "tech": "Zabbix 7.0 — SNMP, auto-discovery, alerting",
+          "note": ""
+        },
+        {
+          "id": "esxi",
+          "label": "Hypervisor",
+          "zone": "bedrijfsnetwerk",
+          "role": "Draait de virtuele servers.",
+          "tech": "VMware ESXi — VM-migraties",
+          "note": ""
+        },
+        {
+          "id": "backup",
+          "label": "Backup",
+          "zone": "bedrijfsnetwerk",
+          "role": "Back-ups en herstel voor bedrijfscontinuïteit.",
+          "tech": "Veeam Backup & Replication",
+          "note": ""
+        },
+        {
+          "id": "lab",
+          "label": "Pentest lab",
+          "zone": "lab / leeromgeving — geïsoleerd",
+          "role": "Oefenomgeving voor ethical hacking, los van elk bedrijfsnetwerk.",
+          "tech": "Kali Linux, Hack The Box, PortSwigger Web Security Academy",
+          "note": "Lab / leeromgeving — geen productie-infrastructuur. Alleen verbonden met het internet."
+        }
       ]
+    },
+    "globe": {
+      "label": "verkeer",
+      "badge": "simulatie",
+      "loading": "3D-weergave laden…",
+      "you": "JIJ",
+      "canvas_label": "Draaiende wereldbol met gesimuleerde verkeersbogen tussen steden.",
+      "caption": "Voorbeelddata — geen echte aanvallen of live verkeer. De heldere boog vertrekt vanaf jouw locatie (LOC).",
+      "fallback": "De 3D-wereldbol is niet beschikbaar in deze browser. Het gaat om een decoratieve simulatie van netwerkverkeer tussen steden."
     }
   },
   "services": {
@@ -81,42 +289,72 @@
         "icon": "[NW]",
         "title": "Netwerkbeheer",
         "desc": "VLAN-design, switching, routing en firewall-configuratie voor kleine en middelgrote organisaties. Van AS-IS documentatie tot volledige herinrichting.",
-        "tags": ["UniFi", "FortiGate", "Zyxel", "MikroTik", "VLAN"]
+        "tags": [
+          "UniFi",
+          "FortiGate",
+          "Zyxel",
+          "MikroTik",
+          "VLAN"
+        ]
       },
       {
         "id": "#02 — MONITORING",
         "icon": "[MON]",
         "title": "Monitoring & Alerting",
         "desc": "Proactief toezicht op je infrastructuur met Zabbix — SNMP-configuratie, dashboards, auto-discovery en e-mailalerts via Office 365.",
-        "tags": ["Zabbix 7.0", "SNMP", "Dashboards", "M365 Alerts"]
+        "tags": [
+          "Zabbix 7.0",
+          "SNMP",
+          "Dashboards",
+          "M365 Alerts"
+        ]
       },
       {
         "id": "#03 — VIRTUALISATIE",
         "icon": "[VM]",
         "title": "Virtualisatie & Backup",
         "desc": "VMware ESXi-beheer, VM-migraties van Workstation naar productie en Veeam backup-configuratie voor bedrijfscontinuïteit.",
-        "tags": ["ESXi", "Veeam", "VM-migratie"]
+        "tags": [
+          "ESXi",
+          "Veeam",
+          "VM-migratie"
+        ]
       },
       {
         "id": "#04 — SECURITY",
         "icon": "[SEC]",
         "title": "Security & NAC",
         "desc": "Netwerktoegangscontrole via PacketFence, EAP-TLS authenticatie, PKI-infrastructuur en Microsoft Intune/SCEP integratie voor Wi-Fi security.",
-        "tags": ["PacketFence", "EAP-TLS", "Intune", "PKI"]
+        "tags": [
+          "PacketFence",
+          "EAP-TLS",
+          "Intune",
+          "PKI"
+        ]
       },
       {
         "id": "#05 — CLOUD",
         "icon": "[M365]",
         "title": "Microsoft 365",
         "desc": "Entra ID, gebruikersbeheer, Exchange Online routing en app-registraties voor moderne werkplekken en Zabbix-integraties.",
-        "tags": ["Entra ID", "Exchange", "Teams", "Intune"]
+        "tags": [
+          "Entra ID",
+          "Exchange",
+          "Teams",
+          "Intune"
+        ]
       },
       {
         "id": "#06 — ADVIES",
         "icon": "[DOC]",
         "title": "Documentatie & Advies",
         "desc": "AS-IS inventarisatie, VLAN-matrices, rack-documentatie en vendor-vergelijkingen voor IT-vernieuwingsprojecten en aanbestedingen.",
-        "tags": ["AS-IS", "Tender", "Vendor eval", "Advies"]
+        "tags": [
+          "AS-IS",
+          "Tender",
+          "Vendor eval",
+          "Advies"
+        ]
       }
     ]
   },
@@ -132,14 +370,38 @@
     ],
     "skills_label": "technische skills",
     "skills": [
-      { "name": "Zabbix / SNMP", "pct": 92 },
-      { "name": "Firewall config", "pct": 88 },
-      { "name": "Netwerk design", "pct": 85 },
-      { "name": "Linux / Shell", "pct": 83 },
-      { "name": "VMware ESXi", "pct": 80 },
-      { "name": "Microsoft 365", "pct": 78 },
-      { "name": "Security / NAC", "pct": 75 },
-      { "name": "Python / PowerShell", "pct": 70 }
+      {
+        "name": "Zabbix / SNMP",
+        "pct": 92
+      },
+      {
+        "name": "Firewall config",
+        "pct": 88
+      },
+      {
+        "name": "Netwerk design",
+        "pct": 85
+      },
+      {
+        "name": "Linux / Shell",
+        "pct": 83
+      },
+      {
+        "name": "VMware ESXi",
+        "pct": 80
+      },
+      {
+        "name": "Microsoft 365",
+        "pct": 78
+      },
+      {
+        "name": "Security / NAC",
+        "pct": 75
+      },
+      {
+        "name": "Python / PowerShell",
+        "pct": 70
+      }
     ]
   },
   "projects": {
@@ -151,28 +413,50 @@
         "status": "Voltooid",
         "title": "Zabbix Monitoring Infrastructuur",
         "desc": "Volledige Zabbix 7.0 monitoring opgezet vanuit nul — SNMP voor UniFi switches, Konica Minolta printers en Zyxel firewall, inclusief auto-discovery, dashboards en Office365 alerting.",
-        "tags": ["Zabbix 7.0", "SNMPv2c", "UniFi", "ESXi", "M365"]
+        "tags": [
+          "Zabbix 7.0",
+          "SNMPv2c",
+          "UniFi",
+          "ESXi",
+          "M365"
+        ]
       },
       {
         "num": "#002 — 2025",
         "status": "Voltooid",
         "title": "PacketFence NAC — EAP-TLS",
         "desc": "PacketFence NAC lab met EAP-TLS authenticatie, eigen PKI (Root CA + SubCA), Microsoft Intune SCEP-integratie en PowerShell Wi-Fi certificaatautomatisering voor 106 scholen.",
-        "tags": ["PacketFence", "EAP-TLS", "PKI", "Intune", "SCEP"]
+        "tags": [
+          "PacketFence",
+          "EAP-TLS",
+          "PKI",
+          "Intune",
+          "SCEP"
+        ]
       },
       {
         "num": "#003 — 2025",
         "status": "In uitvoering",
         "title": "VLAN Hervorming & Netwerk Renewal",
         "desc": "AS-IS documentatie, vendor-evaluatie (Fortinet, Zyxel, Peplink, MikroTik), firewall-matrix en complete VLAN-reorganisatie voor een Belgische gemeente.",
-        "tags": ["Fortinet", "VLAN", "Documentatie", "Tender"]
+        "tags": [
+          "Fortinet",
+          "VLAN",
+          "Documentatie",
+          "Tender"
+        ]
       },
       {
         "num": "#004 — 2024",
         "status": "Voltooid",
         "title": "OpenZiti ZTNA + Entra ID",
         "desc": "Zero Trust Network Access via OpenZiti geïntegreerd met Microsoft Entra ID voor OIDC-authenticatie. JWT-signer configuratie en policy-setup voor veilige remote access.",
-        "tags": ["OpenZiti", "ZTNA", "Entra ID", "OIDC"]
+        "tags": [
+          "OpenZiti",
+          "ZTNA",
+          "Entra ID",
+          "OIDC"
+        ]
       }
     ]
   },

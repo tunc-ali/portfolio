@@ -40,8 +40,17 @@ DEFAULT_LANG = 'nl'                 # staat in de root; andere talen in /<taal>/
 LANGS = ('nl', 'en')
 
 # pagina-id → bestandsnaam per taal
+# Optioneel per pagina: 'styles' (extra css), 'modules' (extra ES-modules) en
+# 'preloads' (afbeeldingen om vroeg te laden), paden vanaf de root.
 PAGES = {
-    'home':     {'nl': 'index.html',     'en': 'index.html'},
+    'home':     {'nl': 'index.html',     'en': 'index.html',
+                 'styles': ['css/scenes.css'],
+                 # hero-foto vroeg laten ophalen (staat in de CSS, dus anders laat ontdekt)
+                 'preloads': [
+                     {'href': 'images/network_with_military_green.webp', 'media': '(min-width: 901px)'},
+                     {'href': 'images/network_with_military_green-960.webp', 'media': '(max-width: 900px)'},
+                 ],
+                 'modules': ['js/terminal.js', 'js/lazy-3d.js']},
     'services': {'nl': 'diensten.html',  'en': 'services.html'},
     'about':    {'nl': 'over-mij.html',  'en': 'about.html'},
     'projects': {'nl': 'projecten.html', 'en': 'projects.html'},
@@ -145,6 +154,22 @@ def check_parity(texts):
 
 
 # ── URL-helpers ───────────────────────────────────────────────
+def json_block(data):
+    """JSON voor in een <script type="application/json"> (geen uitvoerbare code)."""
+    return json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
+
+
+def terminal_data(t, urls):
+    """Alles wat js/terminal.js nodig heeft, in de taal van de pagina."""
+    return json_block({
+        **t['home']['terminal']['cmd'],
+        'whoami': t['home']['terminal']['whoami'],
+        'skills': t['home']['terminal']['skills'],
+        'projects': [c['title'] for c in t['projects']['cards']],
+        'urls': {'projects': urls['projects'], 'contact': urls['contact']},
+    })
+
+
 def lang_dir(lang):
     return '' if lang == DEFAULT_LANG else f'{lang}/'
 
@@ -173,6 +198,9 @@ def build():
                 'page': texts[lang]['pages'][page_id],
                 # links naar de andere pagina's in dezelfde taal
                 'url': {pid: n[lang] for pid, n in PAGES.items()},
+                'extra_styles': names.get('styles', []),
+                'extra_modules': names.get('modules', []),
+                'preloads': names.get('preloads', []),
                 'active': {pid: ' class="active" aria-current="page"' if pid == page_id else ''
                            for pid in PAGES},
                 'cta_current': ' aria-current="page"' if page_id == 'contact' else '',
@@ -184,6 +212,7 @@ def build():
                 'lang_current': {l: ' aria-current="true"' if l == lang else '' for l in LANGS},
                 'generated_note': GENERATED_NOTE,
             }
+            ctx['terminal_json'] = terminal_data(texts[lang], ctx['url'])
             ctx['content'] = render(f'{page_id}.html', ctx).rstrip('\n')
             page_html = render('_layout.html', ctx)
             (out_dir / names[lang]).write_text(page_html, encoding='utf-8', newline='\n')

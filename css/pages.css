@@ -125,7 +125,7 @@
     /* op smal scherm staat de tekst over de hele breedte → egale overlay */
     background-image:
       linear-gradient(rgba(8,12,4,0.8), rgba(8,12,4,0.8)),
-      url('../images/network_with_military_green.webp');
+      url('../images/network_with_military_green-960.webp');   /* kleinere versie voor mobiel */
   }
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
   #contact { padding: 4rem 1.5rem; }

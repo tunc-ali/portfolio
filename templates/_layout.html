@@ -18,7 +18,9 @@
   <link rel="stylesheet" href="{{ root }}css/layout.css" />
   <link rel="stylesheet" href="{{ root }}css/components.css" />
   <link rel="stylesheet" href="{{ root }}css/pages.css" />
-</head>
+{% for p in preloads %}  <link rel="preload" as="image" href="{{ root }}{{ p.href }}" media="{{ p.media }}" fetchpriority="high" />
+{% endfor %}{% for s in extra_styles %}  <link rel="stylesheet" href="{{ root }}{{ s }}" />
+{% endfor %}</head>
 
 <body>
 
@@ -106,6 +108,7 @@
 
 <script src="{{ root }}js/main.js" defer></script>
 <script src="{{ root }}js/ip-location.js" defer></script>
-
+{% for m in extra_modules %}<script type="module" src="{{ root }}{{ m }}"></script>
+{% endfor %}
 </body>
 </html>

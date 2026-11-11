@@ -1,29 +1,5 @@
 /* base.css — variabelen, basis-typografie, globale effecten en animaties */
 
-/* ── LETTERTYPES (lokaal, zie vendor/fonts/) ──────────────────
-   Alleen de gebruikte gewichten; font-display: swap toont eerst een
-   systeemlettertype zodat tekst meteen leesbaar is.              */
-@font-face {
-  font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap;
-  src: url('../vendor/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap;
-  src: url('../vendor/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap;
-  src: url('../vendor/fonts/barlow-condensed-latin-600-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
-  src: url('../vendor/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');
-}
-@font-face {
-  font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
-  src: url('../vendor/fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');
-}
-
 /* ── RESET & BASE ─────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -41,8 +17,8 @@ html { scroll-behavior: smooth; }
   --text:      #d8e0c0;
   --text-dim:  #9aab78;
   --text-muted:#7f8f5f;
-  --mono:      'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
-  --display:   'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --mono:      'JetBrains Mono', monospace;
+  --display:   'Barlow Condensed', sans-serif;
 }
 
 body {
@@ -56,40 +32,16 @@ body {
   /* Footer onderaan houden op korte pagina's */
   display: flex; flex-direction: column;
   min-height: 100vh;
-  min-height: 100dvh;
 }
 main { flex: 1; }
 
 ::selection { background: var(--accent); color: var(--bg); }
 
-html { scrollbar-width: thin; scrollbar-color: var(--accent-dim) var(--bg); }   /* Firefox */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--accent-dim); }
 
 a { color: inherit; text-decoration: none; }
-
-/* Zichtbare focus voor toetsenbordgebruikers */
-a:focus-visible, button:focus-visible {
-  outline: 1px solid var(--accent);
-  outline-offset: 3px;
-}
-
-/* Alleen voor schermlezers */
-.visually-hidden {
-  position: absolute; width: 1px; height: 1px;
-  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
-}
-
-/* Skip-link: pas zichtbaar bij Tab */
-.skip-link {
-  position: absolute; left: 1.5rem; top: -4rem; z-index: 1000;
-  padding: 0.5rem 1rem;
-  background: var(--accent); color: var(--bg);
-  font-family: var(--display); font-weight: 800;
-  letter-spacing: 0.14em; text-transform: uppercase;
-}
-.skip-link:focus { top: 0.75rem; }
 
 /* ── VERTICALE ZIJLIJNEN ──────────────────────────────────────
    Vaste decoratieve lijnen aan linker- en rechterkant van de pagina
@@ -141,22 +93,4 @@ body::after  { right: 1.5rem; }  /* Rechterlijn */
 @media (max-width: 900px) {
   /* Zijlijnen verbergen op mobiel */
   body::before, body::after { display: none; }
-}
-
-/* ── MINDER BEWEGING ──────────────────────────────────────────
-   Voor bezoekers die in hun systeem 'minder beweging' kozen:
-   geen flikkeren, knipperen, infaden of zacht scrollen.           */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation: none !important;
-    transition-duration: 0.01ms !important;
-  }
-  .fade-in { opacity: 1; transform: none; }
-}
-
-/* ── TOUCH ────────────────────────────────────────────────────
-   Tekstvelden minstens 16px: anders zoomt iOS Safari in bij focus. */
-@media (pointer: coarse) {
-  input, textarea, select { font-size: 16px !important; }
 }

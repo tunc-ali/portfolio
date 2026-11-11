@@ -57,28 +57,6 @@
   margin-right: 1.5rem; flex-shrink: 0;
 }
 
-/* Menu-container: op desktop gewoon een rij, op mobiel een uitklap-paneel */
-.nav-menu {
-  display: flex; align-items: center; flex: 1;
-}
-
-/* Hamburger-knop (alleen mobiel, zie RESPONSIVE) */
-.nav-toggle {
-  display: none;
-  flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-  width: 44px; height: 44px;      /* minimaal tikdoel */
-  border: 1px solid var(--border2);
-  background: transparent; cursor: pointer;
-}
-.nav-toggle span {
-  display: block; width: 18px; height: 1.5px;
-  background: var(--accent);
-  transition: transform 0.2s, opacity 0.2s;
-}
-.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
-
 .nav-links {
   display: flex; list-style: none; flex: 1;
 }
@@ -116,13 +94,11 @@
   color: var(--text-muted); flex-shrink: 0;
 }
 .status-wrapper.beschikbaar,
-.status-wrapper.in-dienst,
 .status-wrapper.niet-beschikbaar {
   display: flex; align-items: center; gap: 0.45rem;
   animation: flicker 1.5s infinite;
 }
-.status-wrapper.beschikbaar,
-.status-wrapper.in-dienst        { color: var(--accent); }
+.status-wrapper.beschikbaar      { color: var(--accent); }
 .status-wrapper.niet-beschikbaar { color: #e06c75; }
 
 .status-dot {
@@ -131,22 +107,6 @@
   box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
   animation: blink 2.4s ease-in-out infinite;
 }
-
-/* ── TAALWISSELAAR (NL / EN) ──────────────────────────────── */
-.nav-lang {
-  display: flex; align-items: center; gap: 0.3rem;
-  padding: 0 1rem; height: 50px;
-  border-right: 1px solid var(--border);
-  font-size: 0.78rem; letter-spacing: 0.1em;
-  color: var(--text-muted); flex-shrink: 0;
-}
-.nav-lang a {
-  padding: 0.25rem 0.2rem;
-  color: var(--text-dim);
-  transition: color 0.15s;
-}
-.nav-lang a:hover,
-.nav-lang a[aria-current] { color: var(--accent); }
 
 /* ── CONTACT CTA ─────────────────────────────────────────────
    Bij hover: border rondom + knipperend neon effect           */
@@ -192,12 +152,6 @@
   color: var(--text-muted);
 }
 .nav-meta span { color: var(--text-dim); }
-.nav-loc {
-  display: flex; flex-wrap: wrap; align-items: center;
-  column-gap: 1.25rem; min-width: 0;
-}
-.nav-ip[hidden] { display: none; }
-.nav-status-alt { display: none; color: var(--accent); letter-spacing: 0.1em; margin-right: 0.5rem; }
 
 .sig-bars {
   display: flex; align-items: flex-end; gap: 2px;
@@ -234,13 +188,6 @@ section { padding: 5rem 4rem; }
   margin-bottom: 3rem;
 }
 .sec-h2--center { text-align: center; margin-bottom: 2rem; }
-.sec-h2--tight  { margin-bottom: 1.25rem; }
-.sec-intro {
-  max-width: 64ch;
-  font-size: 0.95rem; line-height: 1.8;
-  color: var(--text-dim);
-  margin-bottom: 2.5rem;
-}
 
 .placeholder { font-size: 0.95rem; color: var(--text-dim); }
 
@@ -256,68 +203,16 @@ footer {
 .foot-r { font-size: 0.75rem; color: var(--text-muted); }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
-/* Smalle desktop: status-blok past niet naast links + taalwisselaar + CTA.
-   De status verhuist dan naar de LOC-balk, op de plaats van de SYS-tekst. */
-@media (min-width: 901px) and (max-width: 1240px) {
-  .nav-status { display: none; }
-  .nav-sys { display: none; }
-  .nav-status-alt { display: inline; }
-}
-
 @media (max-width: 900px) {
   section { padding-left: 1.5rem; padding-right: 1.5rem; }
 
   /* Nav */
   .nav-wrapper { padding: 0.75rem 1rem; }
+  .nav-links { display: none; }
+  .nav-status { display: none; }
+  .nav-cta { display: none; } /* of hamburger menu later */
   .nav-logo { margin-right: auto; }
-  .nav-sep { display: none; }
-  .nav-toggle { display: flex; }
-
-  /* Uitklap-paneel onder de nav. Bewust dekkend: een tweede blur-laag binnen
-     de glazen nav laat de paginatekst erdoorheen schemeren (onleesbaar). */
-  .nav-menu {
-    display: none;
-    position: absolute; top: 100%; left: -1px; right: -1px;
-    flex-direction: column; align-items: stretch;
-    padding-bottom: 1.25rem;
-    background: var(--bg);
-    border: 1px solid var(--border2); border-top: none;
-    max-height: calc(100vh - 110px);
-    max-height: calc(100dvh - 110px);   /* iOS: hoogte zonder de adresbalk */
-    overflow-y: auto;
-  }
-  .nav-menu.open { display: flex; }
-
-  .nav-links { flex-direction: column; flex: none; }
-  .nav-links a {
-    justify-content: flex-start;
-    height: 52px; padding: 0 1.25rem;
-    font-size: 1rem;
-    border-right: none; border-bottom: 1px solid var(--border);
-  }
-  .nav-links a.active::after {
-    top: 0; bottom: 0; right: auto;
-    width: 2px; height: auto;
-  }
-  .nav-status {
-    border: none; height: auto;
-    padding: 1.1rem 1.25rem 0.9rem;
-  }
-  .nav-lang {
-    border: none; height: auto;
-    padding: 0 1.25rem 1.1rem;
-    font-size: 0.9rem;
-  }
-  .nav-lang a { padding: 0.4rem 0.5rem; }
-  .nav-cta {
-    margin: 0 1.25rem; padding: 0.75rem 1.3rem;
-    text-align: center; font-size: 0.95rem;
-  }
-
-  /* LOC-balk blijft zichtbaar; SYS-tekst weg om plaats te maken */
-  .nav-sys { display: none; }
-  .nav-loc { flex: 1; }
-  .nav-loc .nav-meta { min-width: 0; overflow-wrap: anywhere; }
+  .nav-bottom { display: none; }
 
   /* Footer */
   footer {
@@ -327,26 +222,7 @@ footer {
   }
 }
 
-/* ── ZONDER JAVASCRIPT ────────────────────────────────────────
-   De hamburger werkt niet zonder JS: toon het menu dan gewoon open.
-   LOC/IP worden door JS ingevuld, dus die regel verbergen.        */
-@media (scripting: none) {
-  .nav-loc { visibility: hidden; }
-}
-@media (scripting: none) and (max-width: 900px) {
-  .nav-toggle { display: none; }
-  .nav-inner { flex-wrap: wrap; height: auto; }
-  .nav-logo { height: 50px; }
-  .nav-menu {
-    display: flex; position: static; flex-basis: 100%;
-    max-height: none; border: none; background: transparent;
-    padding-bottom: 1rem;
-  }
-}
-
-/* ── TIKDOELEN OP TOUCH (minstens 44px) ───────────────────── */
-@media (pointer: coarse) {
-  .nav-lang a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
-  .nav-logo { min-height: 44px; }
-  .nav-cta { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+@media (max-width: 600px) {
+  /* Nav logo naam verbergen op heel klein scherm */
+  .logo-name { display: none; }
 }

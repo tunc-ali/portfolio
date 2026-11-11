@@ -5,41 +5,34 @@
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// ── MOBIEL MENU (hamburger) ───────────────────────────────────
-const navToggle = document.querySelector('.nav-toggle');
-const navMenu = document.getElementById('nav-menu');
+// ── DYNAMISCHE LOCATIE (LOC-balk onder de nav) ────────────────
+const locEl = document.getElementById('location');
+const LOC_FALLBACK = '51.2194° N, 4.4025° E — ANTWERPEN, BE';
 
-if (navToggle && navMenu) {
-  const setOpen = open => {
-    navMenu.classList.toggle('open', open);
-    navToggle.setAttribute('aria-expanded', String(open));
-  };
+if (locEl) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (pos) {
+        const lat = pos.coords.latitude.toFixed(4);
+        const lng = pos.coords.longitude.toFixed(4);
 
-  navToggle.addEventListener('click', () => setOpen(!navMenu.classList.contains('open')));
-
-  // Sluiten met Escape of bij klik buiten het menu
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && navMenu.classList.contains('open')) {
-      setOpen(false);
-      navToggle.focus();
-    }
-  });
-  document.addEventListener('click', e => {
-    if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) setOpen(false);
-  });
+        // Plaatsnaam ophalen via Nominatim
+        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
+          .then(res => res.json())
+          .then(data => {
+            const a = data.address || {};
+            const stad = a.city || a.town || a.village || '';
+            const land = (a.country_code || '').toUpperCase();
+            locEl.textContent = `${lat}° N, ${lng}° E — ${stad.toUpperCase()}, ${land}`;
+          })
+          .catch(() => { locEl.textContent = `${lat}° N, ${lng}° E`; });
+      },
+      function () { locEl.textContent = LOC_FALLBACK; }
+    );
+  } else {
+    locEl.textContent = LOC_FALLBACK;
+  }
 }
-
-// ── E-MAIL LINK (anti-spam) ───────────────────────────────────
-// Het adres staat nergens als geheel in de HTML; het wordt pas
-// samengesteld wanneer een bezoeker op de knop klikt.
-document.querySelectorAll('.js-mail').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const user = ['a', 'tunc1'].join('.');
-    const host = ['yahoo', 'com'].join('.');
-    window.location.href = 'mai' + 'lto:' + user + '@' + host;
-  });
-});
 
 // ── TEKST SCRAMBLE EFFECT OP NAV ITEMS ────────────────────────
 // Letters wisselen willekeurig bij hover op nav links

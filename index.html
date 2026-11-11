@@ -1,42 +1,32 @@
 <!DOCTYPE html>
-<!-- GEGENEREERD door build.py (templates/ + json/) — niet rechtstreeks bewerken -->
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ali Tunç — systeem- en netwerkbeheerder</title>
-  <meta name="description" content="Systeem- en netwerkbeheerder. Servers, netwerken, firewalls, Microsoft 365, backups en security.">
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
-  <link rel="canonical" href="https://alitunc.net/">
-  <link rel="alternate" hreflang="nl" href="https://alitunc.net/">
-  <link rel="alternate" hreflang="en" href="https://alitunc.net/en/">
-  <link rel="alternate" hreflang="x-default" href="https://alitunc.net/">
-  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin>
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/pages.css">
-  <link rel="preload" as="image" href="images/network_with_military_green.webp" media="(min-width: 901px)" fetchpriority="high">
-  <link rel="preload" as="image" href="images/network_with_military_green-960.webp" media="(max-width: 900px)" fetchpriority="high">
-  <link rel="stylesheet" href="css/scenes.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ali Tunç — Systeem & Netwerk Beheer</title>
+  <meta name="description" content="Systeem- en netwerkbeheer vanuit Antwerpen. Zabbix monitoring, firewall, VMware, Microsoft 365 en meer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/pages.css" />
 </head>
 
 <body>
 
 <!-- ══════════ NAV ══════════ -->
-<a class="skip-link" href="#main">Naar inhoud</a>
-
 <header class="nav-wrapper">
   <div class="nav-frame">
 
     <div class="nav-topbar"></div>
 
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Ali Tunç — home">
+      <a href="index.html" class="nav-logo">
         <div class="logo-mark">
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="8" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="1" y="8" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
@@ -48,46 +38,28 @@
 
       <div class="nav-sep"></div>
 
-      <!-- Hamburger: alleen zichtbaar op smal scherm -->
-      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
-        <span></span><span></span><span></span>
-      </button>
-
-      <nav class="nav-menu" id="nav-menu" aria-label="Hoofdnavigatie">
-        <ul class="nav-links">
-          <li><a href="expertise.html">Expertise</a></li>
-          <li><a href="over-mij.html">Over mij</a></li>
-          <li><a href="projecten.html">Projecten</a></li>
-          <li><a href="cv.html">CV</a></li>
-        </ul>
-        <div class="nav-status">
-          <div class="status-wrapper in-dienst">
-            <div class="status-dot"></div>
-            <span>IN DIENST · ADVIES NA DE UREN</span>
-          </div>
+      <ul class="nav-links">
+        <li><a href="diensten.html">Diensten</a></li>
+        <li><a href="over-mij.html">Over mij</a></li>
+        <li><a href="projecten.html">Projecten</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
+      <div class="nav-status">
+        <div class="status-wrapper beschikbaar">
+          <div class="status-dot"></div>
+          <span>BESCHIKBAAR</span>
         </div>
+      </div>
 
-        <!-- Taalwisselaar: zelfde pagina in de andere taal -->
-        <div class="nav-lang" role="group" aria-label="Taal">
-          <a href="index.html" lang="nl" hreflang="nl" aria-current="true">NL</a>
-          <span aria-hidden="true">/</span>
-          <a href="en/index.html" lang="en" hreflang="en">EN</a>
-        </div>
-
-        <a href="contact.html" class="nav-cta">Contact</a>
-      </nav>
+      <a href="contact.html" class="nav-cta">Contact</a>
     </div>
 
     <div class="nav-bottom">
-      <div class="nav-loc">
-        <span class="nav-meta">LOC: <span id="location" data-fallback="ONBEKEND">LOCATIE OPHALEN...</span></span>
-        <span class="nav-meta nav-ip" hidden>IP: <span id="visitor-ip"></span></span>
-      </div>
+      <span class="nav-meta">LOC: <span id="location">LOCATIE OPHALEN...</span></span>
 
       <div class="sig-bars">
-        <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
-        <!-- Smalle desktop (901–1240px): status staat hier i.p.v. in de nav-rij -->
-        <span class="nav-meta nav-status-alt">IN DIENST · ADVIES NA DE UREN</span>
+        <span class="nav-meta">SYS: <span>ONLINE</span> — v1.0.0</span>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
@@ -99,30 +71,31 @@
   </div>
 </header>
 
-<main id="main">
+<main>
   <!-- ══════════ HERO ══════════ -->
   <section class="hero" id="home">
 
     <div class="hero-tag fade-in d1">
       <span class="sep">$</span>
-      systeem- &amp; netwerkbeheer
+      systeem &amp; netwerk beheer
       <span class="sep">—</span>
-      security
+      antwerpen, be
     </div>
 
     <h1 class="hero-h1 fade-in d2">
-      <span class="dim">ik beheer netwerken.</span><br>
-      <span class="bright">en ik weet</span><br>
-      <span class="green">hoe ze breken.</span>
+      <span class="dim">jouw netwerk,</span><br>
+      <span class="bright">mijn</span><br>
+      <span class="green">verantwoordelijkheid.</span>
     </h1>
 
     <p class="hero-sub fade-in d3">
-      Ik ben Ali, systeem- en netwerkbeheerder. Ik hou servers, switches en firewalls draaiend, segmenteer netwerken en test of een backup ook echt terug te zetten is. Security hoort daarbij: hardening, firewallbeleid, EDR.
+      ICT-infrastructuur die werkt — van firewall tot monitoring,
+      van VLAN-design tot servermigratie. Klaar wanneer jij het nodig hebt.
     </p>
 
     <div class="hero-btns fade-in d4">
-      <a href="expertise.html" class="btn-p">Bekijk expertise</a>
-      <a href="contact.html" class="btn-g">Stuur een bericht →</a>
+      <a href="diensten.html" class="btn-p">Bekijk diensten</a>
+      <a href="contact.html" class="btn-g">Neem contact op →</a>
     </div>
 
     <div class="hero-stats fade-in d5">
@@ -131,284 +104,73 @@
         <span class="stat-l">jaar ervaring</span>
       </div>
       <div class="stat">
-        <span class="stat-n">9</span>
-        <span class="stat-l">netwerkvendors</span>
+        <span class="stat-n">100%</span>
+        <span class="stat-l">uptime mindset</span>
       </div>
       <div class="stat">
-        <span class="stat-n">4</span>
+        <span class="stat-n">3</span>
         <span class="stat-l">talen</span>
       </div>
+      <div class="stat">
+        <span class="stat-n">∞</span>
+        <span class="stat-l">monitoring checks</span>
+      </div>
     </div>
   </section>
 
-  <!-- ══════════ TOPOLOGIE (3D) ══════════
-       Zonder WebGL/JS blijft de lijst hieronder als volwaardige fallback staan. -->
-  <section class="topo" id="netwerk" data-scene="topology">
-    <div class="sec-label">netwerk</div>
-    <h2 class="sec-h2 topo-h2">een netwerk zoals ik het bouw</h2>
-    <p class="scene-hint">Sleep om te draaien · klik op een node voor details · klik eerst in het beeld om met het scrollwiel te zoomen</p>
+  <!-- ══════════ TERMINAL ══════════ -->
+  <div class="terminal-wrap">
+    <div class="terminal-frame">
+      <div class="corner c-tl"></div>
+      <div class="corner c-tr"></div>
+      <div class="corner c-bl"></div>
+      <div class="corner c-br"></div>
 
-    <div class="topo-wrap">
-      <div class="topo-stage" data-canvas-label="Interactieve 3D-netwerktopologie. Pijltjestoetsen draaien het beeld; alle nodes staan ook als lijst onder het beeld.">
-        <p class="scene-loading">3D-weergave laden…</p>
+      <div class="t-bar">
+        <div class="t-dot t-dot-r"></div>
+        <div class="t-dot t-dot-y"></div>
+        <div class="t-dot t-dot-g"></div>
+        <span class="t-title">ali@infra-antwerpen ~ zsh</span>
       </div>
 
-      <div class="topo-tools">
-        <button type="button" class="topo-tool" data-zoom="in" aria-label="Inzoomen">+</button>
-        <button type="button" class="topo-tool" data-zoom="out" aria-label="Uitzoomen">−</button>
-        <button type="button" class="topo-tool" data-zoom="reset" aria-label="Beeld herstellen">⟲</button>
+      <div class="t-body">
+        <div>
+          <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+          <span class="t-d">:</span><span class="t-p">~</span>
+          <span class="t-d">$ </span><span class="t-c">whoami</span>
+        </div>
+        <div><span class="t-o">→</span> <span class="t-w">Ali Tunç — Systeem &amp; Netwerk Beheerder</span></div>
+        <br>
+        <div>
+          <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+          <span class="t-d">:</span><span class="t-p">~</span>
+          <span class="t-d">$ </span><span class="t-c">cat</span> <span class="t-s">skills.conf</span>
+        </div>
+        <div><span class="t-o">→</span> <span class="t-k">monitoring</span>  <span class="t-w">Zabbix 7.0, SNMP, auto-discovery, alerting</span></div>
+        <div><span class="t-o">→</span> <span class="t-k">firewall</span>    <span class="t-w">FortiGate, Zyxel USG FLEX 500, pfSense</span></div>
+        <div><span class="t-o">→</span> <span class="t-k">switching</span>   <span class="t-w">UniFi, Cisco 2960S, VLAN-design, STP</span></div>
+        <div><span class="t-o">→</span> <span class="t-k">virtualisatie</span><span class="t-w">VMware ESXi, Veeam Backup &amp; Replication</span></div>
+        <div><span class="t-o">→</span> <span class="t-k">cloud</span>       <span class="t-w">Microsoft 365, Entra ID, Exchange Online</span></div>
+        <div><span class="t-o">→</span> <span class="t-k">security</span>    <span class="t-w">PacketFence NAC, EAP-TLS, Intune/SCEP</span></div>
+        <div><span class="t-o">→</span> <span class="t-k">talen</span>       <span class="t-w">Nederlands, Engels, Turks</span></div>
+        <br>
+        <div>
+          <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+          <span class="t-d">:</span><span class="t-p">~</span>
+          <span class="t-d">$ </span><span class="t-cursor"></span>
+        </div>
       </div>
-
-      <aside class="topo-panel" aria-live="polite" hidden>
-        <button type="button" class="topo-close" aria-label="Sluiten">×</button>
-        <div class="topo-panel-body"></div>
-      </aside>
-
-      <ul class="topo-list" aria-label="Nodes in de topologie">
-        <li data-node="internet">
-          <button type="button" class="topo-item" aria-pressed="false">Internet</button>
-          <div class="topo-detail">
-            <p class="topo-zone">internet / cloud</p>
-            <h3 class="topo-name">Internet</h3>
-            <p><span class="topo-key">rol</span> WAN-uplink en veilige toegang van buitenaf.</p>
-            <p><span class="topo-key">technologie</span> ZTNA (OpenZiti), VPN, DNS</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="m365">
-          <button type="button" class="topo-item" aria-pressed="false">Cloud / identity</button>
-          <div class="topo-detail">
-            <p class="topo-zone">internet / cloud</p>
-            <h3 class="topo-name">Cloud / identity</h3>
-            <p><span class="topo-key">rol</span> Identiteit, mail en apparaatbeheer in de cloud.</p>
-            <p><span class="topo-key">technologie</span> Microsoft 365, Entra ID, Exchange Online, Intune (MDM / identity)</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="fw">
-          <button type="button" class="topo-item" aria-pressed="false">Firewall</button>
-          <div class="topo-detail">
-            <p class="topo-zone">bedrijfsnetwerk</p>
-            <h3 class="topo-name">Firewall</h3>
-            <p><span class="topo-key">rol</span> Perimeter, segmentatie tussen VLANs en VPN.</p>
-            <p><span class="topo-key">technologie</span> FortiGate, WatchGuard, Zyxel USG FLEX, UniFi EFG, pfSense — NGFW-policies</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="core">
-          <button type="button" class="topo-item" aria-pressed="false">Core switch</button>
-          <div class="topo-detail">
-            <p class="topo-zone">bedrijfsnetwerk</p>
-            <h3 class="topo-name">Core switch</h3>
-            <p><span class="topo-key">rol</span> Hart van het netwerk: inter-VLAN-verkeer en uplinks.</p>
-            <p><span class="topo-key">technologie</span> Cisco, UniFi, Dell — VLAN-design, STP</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="sw-a">
-          <button type="button" class="topo-item" aria-pressed="false">Access switch A</button>
-          <div class="topo-detail">
-            <p class="topo-zone">bedrijfsnetwerk</p>
-            <h3 class="topo-name">Access switch A</h3>
-            <p><span class="topo-key">rol</span> Werkplekken en randapparatuur per VLAN.</p>
-            <p><span class="topo-key">technologie</span> UniFi, Cisco 2960S — access-VLANs</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="sw-b">
-          <button type="button" class="topo-item" aria-pressed="false">Access switch B</button>
-          <div class="topo-detail">
-            <p class="topo-zone">bedrijfsnetwerk</p>
-            <h3 class="topo-name">Access switch B</h3>
-            <p><span class="topo-key">rol</span> Serverruimte: trunks naar hypervisor en backup.</p>
-            <p><span class="topo-key">technologie</span> Cisco 2960S, UniFi — trunks, STP</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="ap">
-          <button type="button" class="topo-item" aria-pressed="false">Wi-Fi AP</button>
-          <div class="topo-detail">
-            <p class="topo-zone">bedrijfsnetwerk</p>
-            <h3 class="topo-name">Wi-Fi AP</h3>
-            <p><span class="topo-key">rol</span> Draadloze toegang met certificaat-authenticatie.</p>
-            <p><span class="topo-key">technologie</span> UniFi — PacketFence NAC, EAP-TLS, Intune/SCEP</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="mon">
-          <button type="button" class="topo-item" aria-pressed="false">Monitoring</button>
-          <div class="topo-detail">
-            <p class="topo-zone">bedrijfsnetwerk</p>
-            <h3 class="topo-name">Monitoring</h3>
-            <p><span class="topo-key">rol</span> Bewaakt alle nodes en waarschuwt bij storingen.</p>
-            <p><span class="topo-key">technologie</span> Zabbix 7.0 — SNMP, auto-discovery, alerting</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="esxi">
-          <button type="button" class="topo-item" aria-pressed="false">Hypervisor</button>
-          <div class="topo-detail">
-            <p class="topo-zone">bedrijfsnetwerk</p>
-            <h3 class="topo-name">Hypervisor</h3>
-            <p><span class="topo-key">rol</span> Draait de virtuele servers.</p>
-            <p><span class="topo-key">technologie</span> Nutanix AHV, VMware vSphere, Hyper-V</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="backup">
-          <button type="button" class="topo-item" aria-pressed="false">Backup</button>
-          <div class="topo-detail">
-            <p class="topo-zone">bedrijfsnetwerk</p>
-            <h3 class="topo-name">Backup</h3>
-            <p><span class="topo-key">rol</span> Back-ups en herstel voor bedrijfscontinuïteit.</p>
-            <p><span class="topo-key">technologie</span> Veeam Backup &amp; Replication</p>
-            <p class="topo-note"></p>
-          </div>
-        </li>
-        <li data-node="lab">
-          <button type="button" class="topo-item" aria-pressed="false">Pentest lab</button>
-          <div class="topo-detail">
-            <p class="topo-zone">lab / leeromgeving — geïsoleerd</p>
-            <h3 class="topo-name">Pentest lab</h3>
-            <p><span class="topo-key">rol</span> Oefenomgeving voor ethical hacking, los van elk bedrijfsnetwerk.</p>
-            <p><span class="topo-key">technologie</span> Kali Linux, Hack The Box, PortSwigger Web Security Academy</p>
-            <p class="topo-note">Lab / leeromgeving — geen productie-infrastructuur. Alleen verbonden met het internet.</p>
-          </div>
-        </li>
-      </ul>
     </div>
-    <p class="scene-caption">Voorbeeldtopologie met technologie waarmee ik werk — geen weergave van een echte klant- of werkgeversomgeving.</p>
-  </section>
-
-  <!-- ══════════ TERMINAL + VERKEERSBOL ══════════ -->
-  <section class="live" id="live">
-    <div class="live-grid">
-
-      <div class="live-col">
-        <h2 class="sec-label">terminal</h2>
-        <div class="terminal-wrap">
-          <div class="terminal-frame">
-            <div class="corner c-tl"></div>
-            <div class="corner c-tr"></div>
-            <div class="corner c-bl"></div>
-            <div class="corner c-br"></div>
-
-            <div class="t-bar">
-              <div class="t-dot t-dot-r"></div>
-              <div class="t-dot t-dot-y"></div>
-              <div class="t-dot t-dot-g"></div>
-              <span class="t-title">ali@infra ~ zsh</span>
-            </div>
-
-            <div class="t-body" id="terminal">
-              <div class="t-log" role="log" aria-live="polite">
-                <div>
-                  <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
-                  <span class="t-d">:</span><span class="t-p">~</span>
-                  <span class="t-d">$ </span><span class="t-c">whoami</span>
-                </div>
-                <div><span class="t-o">→</span> <span class="t-w">Ali Tunç — systeem- en netwerkbeheerder</span></div>
-                <br>
-                <div>
-                  <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
-                  <span class="t-d">:</span><span class="t-p">~</span>
-                  <span class="t-d">$ </span><span class="t-c">cat</span> <span class="t-s">skills.conf</span>
-                </div>
-                <div><span class="t-o">→</span> <span class="t-k">netwerk</span> <span class="t-w">VLAN, OSPF, segmentatie, VPN (IPsec, WireGuard)</span></div>
-                <div><span class="t-o">→</span> <span class="t-k">firewall</span> <span class="t-w">FortiGate, WatchGuard, Zyxel, UniFi EFG, Barracuda, pfSense</span></div>
-                <div><span class="t-o">→</span> <span class="t-k">switching</span> <span class="t-w">UniFi, Cisco, Dell, Netgear</span></div>
-                <div><span class="t-o">→</span> <span class="t-k">systemen</span> <span class="t-w">Windows Server, AD, Linux, Nutanix, vSphere, Hyper-V</span></div>
-                <div><span class="t-o">→</span> <span class="t-k">cloud</span> <span class="t-w">Microsoft 365, Entra ID, Intune, SharePoint</span></div>
-                <div><span class="t-o">→</span> <span class="t-k">backup</span> <span class="t-w">Veeam, restore-tests</span></div>
-                <div><span class="t-o">→</span> <span class="t-k">monitoring</span> <span class="t-w">Zabbix, Wazuh (XDR/SIEM)</span></div>
-                <div><span class="t-o">→</span> <span class="t-k">security</span> <span class="t-w">hardening, EDR, NAC (PacketFence, EAP-TLS)</span></div>
-                <div><span class="t-o">→</span> <span class="t-k">talen</span> <span class="t-w">Nederlands, Engels, Turks, Azerbeidzjaans</span></div>
-                <br>
-              </div>
-
-              <!-- Zonder JS: statische prompt. Met JS: js/terminal.js toont het invoerveld. -->
-              <div class="t-static">
-                <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
-                <span class="t-d">:</span><span class="t-p">~</span>
-                <span class="t-d">$ </span><span class="t-cursor"></span>
-              </div>
-              <form class="t-form" hidden autocomplete="off">
-                <label class="t-prompt" for="t-input">
-                  <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
-                  <span class="t-d">:</span><span class="t-p">~</span>
-                  <span class="t-d">$</span>
-                  <span class="visually-hidden">Terminal-invoer: typ een commando en druk op Enter</span>
-                </label>
-                <input class="t-input" id="t-input" type="text" maxlength="80"
-                       autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send">
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <div class="t-chips" hidden>
-          <span class="t-chips-hint">typ &#x27;help&#x27; of kies:</span>
-          <button type="button" class="t-chip" data-cmd="help">help</button>
-          <button type="button" class="t-chip" data-cmd="whoami">whoami</button>
-          <button type="button" class="t-chip" data-cmd="skills">skills</button>
-          <button type="button" class="t-chip" data-cmd="projects">projects</button>
-          <button type="button" class="t-chip" data-cmd="contact">contact</button>
-        </div>
-        <script type="application/json" id="terminal-data">{"help_title": "Beschikbare commando's:", "help": [{"c": "help", "d": "toon deze lijst"}, {"c": "whoami", "d": "wie ben ik"}, {"c": "skills", "d": "technische skills"}, {"c": "projects", "d": "overzicht van projecten"}, {"c": "contact", "d": "hoe je me bereikt"}, {"c": "lang [nl|en]", "d": "taal tonen of wisselen"}, {"c": "clear", "d": "scherm leegmaken"}], "not_found": "commando niet gevonden: {cmd} — typ 'help'", "projects_link": "→ alle projecten bekijken", "contact_text": "Het snelst bereik je me via de contactpagina.", "contact_link": "→ contactpagina openen", "lang_current": "huidige taal: {lang}", "lang_usage": "gebruik: lang nl | lang en", "lang_switch": "taal wisselen naar {lang}…", "lang_same": "dat is al de huidige taal.", "sudo": "permission denied: bezoeker staat niet in het sudoers-bestand. Dit incident wordt gerapporteerd. ;)", "nmap": ["Starting Nmap ( simulatie ) — target: alitunc.net", "Host is up.", "PORT     STATE  SERVICE", "80/tcp   open   http", "443/tcp  open   https", "Nmap done: 1 host gescand (nagespeeld, er is niets verstuurd)."], "nmap_scope": "buiten scope: {target}. Alleen alitunc.net mag hier (nagespeeld) gescand worden. Scan nooit zonder toestemming.", "whoami": "Ali Tunç — systeem- en netwerkbeheerder", "skills": [{"key": "netwerk", "value": "VLAN, OSPF, segmentatie, VPN (IPsec, WireGuard)"}, {"key": "firewall", "value": "FortiGate, WatchGuard, Zyxel, UniFi EFG, Barracuda, pfSense"}, {"key": "switching", "value": "UniFi, Cisco, Dell, Netgear"}, {"key": "systemen", "value": "Windows Server, AD, Linux, Nutanix, vSphere, Hyper-V"}, {"key": "cloud", "value": "Microsoft 365, Entra ID, Intune, SharePoint"}, {"key": "backup", "value": "Veeam, restore-tests"}, {"key": "monitoring", "value": "Zabbix, Wazuh (XDR/SIEM)"}, {"key": "security", "value": "hardening, EDR, NAC (PacketFence, EAP-TLS)"}, {"key": "talen", "value": "Nederlands, Engels, Turks, Azerbeidzjaans"}], "projects": ["Laptops naar een nieuw domein", "EDR op de servers", "Backup- en restore-tests", "ISP-routers en core switch achter de firewall", "Verbindingsproblemen bij cloudtelefonie", "Noodtelefoons voor brandpreventie", "Handscanners naar een nieuwe server", "Netwerkvernieuwing voor een lokale overheid", "Zabbix-monitoring en Wazuh SIEM", "Remote toegang met NetBird (ZTNA)", "PacketFence NAC met EAP-TLS", "Zero trust met OpenZiti en Entra ID"], "urls": {"projects": "projecten.html", "contact": "contact.html"}}</script>
-      </div>
-
-      <div class="live-col" data-scene="globe">
-        <h2 class="sec-label">verkeer</h2>
-        <div class="globe-stage" data-canvas-label="Draaiende wereldbol met gesimuleerde verkeersbogen tussen steden." data-you="JIJ">
-          <span class="sim-badge">simulatie</span>
-          <p class="scene-loading">3D-weergave laden…</p>
-          <p class="scene-fallback">De 3D-wereldbol is niet beschikbaar in deze browser. Het gaat om een decoratieve simulatie van netwerkverkeer tussen steden.</p>
-        </div>
-        <p class="scene-caption">Voorbeelddata — geen echte aanvallen of live verkeer. De heldere boog vertrekt vanaf jouw locatie (LOC).</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════ SECURITY-NIEUWS ══════════
-       js/news.js vult de lijst uit json/news.json (nu voorbeelddata). -->
-  <section class="news" id="nieuws">
-    <div class="sec-label">nieuws</div>
-    <h2 class="sec-h2">security-nieuws</h2>
-
-    <ul class="news-list" aria-live="polite">
-      <li class="news-loading">Nieuws laden…</li>
-    </ul>
-    <p class="news-sample" hidden>Voorbeeldweergave. De live feed van onderstaande bronnen wordt later aangesloten.</p>
-    <p class="news-sources">
-      <span class="topo-key">bronnen</span>
-      <a href="https://thehackernews.com/" rel="noopener noreferrer">The Hacker News</a>
-      <a href="https://www.bleepingcomputer.com/" rel="noopener noreferrer">BleepingComputer</a>
-      <a href="https://krebsonsecurity.com/" rel="noopener noreferrer">Krebs on Security</a>
-      <a href="https://www.cisa.gov/news-events/cybersecurity-advisories" rel="noopener noreferrer">CISA</a>
-    </p>
-  </section>
-
-  <!-- ══════════ CTA ══════════ -->
-  <section class="cta" id="cta">
-    <div class="sec-label sec-label--center">contact</div>
-    <h2 class="sec-h2 sec-h2--center">een vraag over je netwerk?</h2>
-    <p class="cta-text">Ik werk voltijds in vaste dienst. Buiten de kantooruren help ik met advies en ondersteuning op afstand. Schrijf kort wat er speelt, dan laat ik weten of en wanneer ik kan helpen.</p>
-    <a href="contact.html" class="btn-p">Stuur een bericht</a>
-  </section>
+  </div>
 </main>
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
   <p class="foot-r">&copy;<span id="year"></span> Ali Tunç - All Rights Reserved.</p>
-  <span class="foot-r">systeem- &amp; netwerkbeheer · security</span>
+  <span class="foot-r">systeem &amp; netwerk beheer — beschikbaar voor opdrachten</span>
 </footer>
 
-<script src="js/main.js" defer></script>
-<script src="js/ip-location.js" defer></script>
-<script type="module" src="js/terminal.js"></script>
-<script type="module" src="js/lazy-3d.js"></script>
-<script type="module" src="js/news.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

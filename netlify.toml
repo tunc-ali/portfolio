@@ -1,0 +1,7 @@
+# Netlify-configuratie (minimaal)
+# De HTML staat kant-en-klaar in de repo (gegenereerd met `python build.py`),
+# dus Netlify hoeft niets te bouwen: de root van de repo wordt gepubliceerd.
+# Security-headers, redirects, Functions en Forms volgen later.
+
+[build]
+  publish = "."

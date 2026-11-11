@@ -1,0 +1,26 @@
+{
+  "_comment": "VOORBEELDDATA. Wordt later vervangen door de live feed (Netlify Function). 'sample': true toont de melding 'voorbeeldweergave' op de site.",
+  "sample": true,
+  "items": [
+    {
+      "source": "The Hacker News",
+      "url": "https://thehackernews.com/",
+      "title": "Sample item — the latest headline from The Hacker News will appear here"
+    },
+    {
+      "source": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/",
+      "title": "Sample item — the latest headline from BleepingComputer will appear here"
+    },
+    {
+      "source": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/",
+      "title": "Sample item — the latest post from Krebs on Security will appear here"
+    },
+    {
+      "source": "CISA",
+      "url": "https://www.cisa.gov/news-events/cybersecurity-advisories",
+      "title": "Sample item — the latest CISA cybersecurity advisory will appear here"
+    }
+  ]
+}

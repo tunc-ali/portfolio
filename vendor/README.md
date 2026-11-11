@@ -33,3 +33,11 @@ export { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 ```
 
 Gebruikt door `js/scene-core.js` (en daarmee `js/topology.js` en `js/globe.js`).
+
+## fonts/
+
+- **JetBrains Mono** (400, 500) en **Barlow Condensed** (600, 700, 800), woff2, subset *latin*
+- **Licentie:** SIL Open Font License 1.1 — zie `fonts/LICENSE-jetbrains-mono.txt` en `fonts/LICENSE-barlow-condensed.txt`
+- **Bron:** npm `@fontsource/jetbrains-mono@5.3.0` en `@fontsource/barlow-condensed@5.3.0` (map `files/`), ongewijzigd
+- Ingeladen via `@font-face` bovenaan `css/base.css` met `font-display: swap`.
+  Een extra gewicht nodig? Bestand hier toevoegen en een `@font-face`-regel bijschrijven.

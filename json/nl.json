@@ -5,102 +5,107 @@
     "menu": "Menu",
     "main": "Hoofdnavigatie",
     "lang_label": "Taal",
-    "services": "Diensten",
+    "services": "Expertise",
     "about": "Over mij",
     "projects": "Projecten",
+    "notes": "Lab notes",
     "cv": "CV",
     "contact": "Contact",
-    "status": "BESCHIKBAAR",
+    "status": "IN DIENST · ADVIES NA DE UREN",
     "loc_loading": "LOCATIE OPHALEN...",
     "loc_fallback": "ONBEKEND"
   },
   "footer": {
     "rights": "Ali Tunç - All Rights Reserved.",
-    "tagline": "systeem & netwerk beheer — beschikbaar voor opdrachten"
+    "tagline": "systeem- & netwerkbeheer · security"
   },
   "pages": {
     "home": {
-      "title": "Ali Tunç — Systeem & Netwerk Beheer",
-      "description": "Systeem- en netwerkbeheer vanuit Antwerpen. Zabbix monitoring, firewall, VMware, Microsoft 365 en meer."
+      "title": "Ali Tunç — systeem- en netwerkbeheerder",
+      "description": "Systeem- en netwerkbeheerder. Servers, netwerken, firewalls, Microsoft 365, backups en security."
     },
     "services": {
-      "title": "Diensten — Ali Tunç",
-      "description": "Netwerkbeheer, monitoring, virtualisatie, security, Microsoft 365 en advies."
+      "title": "Expertise — Ali Tunç",
+      "description": "Wat ik doe: netwerk en firewall, systemen en virtualisatie, Microsoft 365, backup, monitoring en security."
     },
     "about": {
       "title": "Over mij — Ali Tunç",
-      "description": "Over Ali Tunç, systeem- en netwerkbeheerder."
+      "description": "Wie ik ben, wat ik dagelijks doe en hoe ik werk."
     },
     "projects": {
       "title": "Projecten — Ali Tunç",
-      "description": "Projecten: Zabbix monitoring, PacketFence NAC, VLAN-hervorming, OpenZiti ZTNA."
+      "description": "Recente en eerdere projecten: domeinmigratie, EDR, restore-tests, netwerkvernieuwing, monitoring, NAC en ZTNA."
     },
     "contact": {
       "title": "Contact — Ali Tunç",
-      "description": "Neem contact op met Ali Tunç."
+      "description": "Stuur een bericht. Buiten de kantooruren help ik met advies en ondersteuning op afstand."
     },
     "cv": {
       "title": "CV — Ali Tunç",
-      "description": "Curriculum vitae van Ali Tunç."
+      "description": "CV van Ali Tunç, systeem- en netwerkbeheerder."
     }
   },
   "home": {
-    "tag_role": "systeem & netwerk beheer",
-    "tag_place": "antwerpen, be",
-    "h1_dim": "jouw netwerk,",
-    "h1_bright": "mijn",
-    "h1_green": "verantwoordelijkheid.",
-    "sub": "ICT-infrastructuur die werkt — van firewall tot monitoring, van VLAN-design tot servermigratie. Klaar wanneer jij het nodig hebt.",
-    "btn_services": "Bekijk diensten",
-    "btn_contact": "Neem contact op →",
+    "tag_role": "systeem- & netwerkbeheer",
+    "tag_place": "security",
+    "h1_dim": "ik beheer netwerken.",
+    "h1_bright": "en ik weet",
+    "h1_green": "hoe ze breken.",
+    "sub": "Ik ben Ali, systeem- en netwerkbeheerder. Ik hou servers, switches en firewalls draaiend, segmenteer netwerken en test of een backup ook echt terug te zetten is. Security hoort daarbij: hardening, firewallbeleid, EDR.",
+    "btn_services": "Bekijk expertise",
+    "btn_contact": "Stuur een bericht →",
     "stats": [
       {
         "n": "7+",
         "label": "jaar ervaring"
       },
       {
-        "n": "100%",
-        "label": "uptime mindset"
+        "n": "8",
+        "label": "netwerkvendors"
       },
       {
-        "n": "3",
+        "n": "4",
         "label": "talen"
-      },
-      {
-        "n": "∞",
-        "label": "monitoring checks"
       }
     ],
     "terminal": {
-      "whoami": "Ali Tunç — Systeem & Netwerk Beheerder",
+      "whoami": "Ali Tunç — systeem- en netwerkbeheerder",
       "skills": [
         {
-          "key": "monitoring",
-          "value": "Zabbix 7.0, SNMP, auto-discovery, alerting"
+          "key": "netwerk",
+          "value": "VLAN, OSPF, segmentatie, VPN (IPsec, WireGuard)"
         },
         {
           "key": "firewall",
-          "value": "FortiGate, Zyxel USG FLEX 500, pfSense"
+          "value": "Fortinet, WatchGuard, Zyxel, Barracuda"
         },
         {
           "key": "switching",
-          "value": "UniFi, Cisco 2960S, VLAN-design, STP"
+          "value": "UniFi, Cisco, Dell, Netgear"
         },
         {
-          "key": "virtualisatie",
-          "value": "VMware ESXi, Veeam Backup & Replication"
+          "key": "systemen",
+          "value": "Windows Server, Active Directory, Linux, ESXi, Hyper-V"
         },
         {
           "key": "cloud",
-          "value": "Microsoft 365, Entra ID, Exchange Online"
+          "value": "Microsoft 365, Entra ID, Intune, SharePoint"
+        },
+        {
+          "key": "backup",
+          "value": "Veeam, restore-tests"
+        },
+        {
+          "key": "monitoring",
+          "value": "Zabbix, Wazuh (XDR/SIEM)"
         },
         {
           "key": "security",
-          "value": "PacketFence NAC, EAP-TLS, Intune/SCEP"
+          "value": "hardening, EDR, NAC (PacketFence, EAP-TLS)"
         },
         {
           "key": "talen",
-          "value": "Nederlands, Engels, Turks"
+          "value": "Nederlands, Engels, Turks, Azerbeidzjaans"
         }
       ],
       "label": "terminal",
@@ -201,7 +206,7 @@
           "label": "Firewall",
           "zone": "bedrijfsnetwerk",
           "role": "Perimeter, segmentatie tussen VLANs en VPN.",
-          "tech": "FortiGate, Zyxel USG FLEX, pfSense — NGFW-policies",
+          "tech": "FortiGate, WatchGuard, Zyxel USG FLEX — NGFW-policies",
           "note": ""
         },
         {
@@ -209,7 +214,7 @@
           "label": "Core switch",
           "zone": "bedrijfsnetwerk",
           "role": "Hart van het netwerk: inter-VLAN-verkeer en uplinks.",
-          "tech": "Cisco, UniFi — VLAN-design, STP",
+          "tech": "Cisco, UniFi, Dell — VLAN-design, STP",
           "note": ""
         },
         {
@@ -278,197 +283,376 @@
       "canvas_label": "Draaiende wereldbol met gesimuleerde verkeersbogen tussen steden.",
       "caption": "Voorbeelddata — geen echte aanvallen of live verkeer. De heldere boog vertrekt vanaf jouw locatie (LOC).",
       "fallback": "De 3D-wereldbol is niet beschikbaar in deze browser. Het gaat om een decoratieve simulatie van netwerkverkeer tussen steden."
+    },
+    "news": {
+      "label": "nieuws",
+      "title": "security-nieuws",
+      "loading": "Nieuws laden…",
+      "sample": "Voorbeeldweergave. De live feed van onderstaande bronnen wordt later aangesloten.",
+      "sources_label": "bronnen"
     }
   },
   "services": {
-    "label": "diensten",
+    "label": "expertise",
     "title": "wat ik doe",
+    "intro": "Zes domeinen waar ik dagelijks in werk. Bij elk domein staat waar ik ervaring mee heb.",
     "cards": [
       {
         "id": "#01 — NETWERK",
         "icon": "[NW]",
-        "title": "Netwerkbeheer",
-        "desc": "VLAN-design, switching, routing en firewall-configuratie voor kleine en middelgrote organisaties. Van AS-IS documentatie tot volledige herinrichting.",
+        "title": "Netwerk & firewall",
+        "desc": "Ik ontwerp VLAN-schema's, segmenteer netwerken en beheer routing, firewallbeleid en VPN. Ik heb gewerkt met toestellen van Fortinet, WatchGuard, Zyxel, Barracuda, UniFi, Cisco, Dell en Netgear.",
         "tags": [
-          "UniFi",
-          "FortiGate",
-          "Zyxel",
-          "MikroTik",
-          "VLAN"
+          "VLAN",
+          "OSPF",
+          "ACL / NAT",
+          "RSTP",
+          "EtherChannel",
+          "IPsec",
+          "WireGuard"
         ]
       },
       {
-        "id": "#02 — MONITORING",
-        "icon": "[MON]",
-        "title": "Monitoring & Alerting",
-        "desc": "Proactief toezicht op je infrastructuur met Zabbix — SNMP-configuratie, dashboards, auto-discovery en e-mailalerts via Office 365.",
+        "id": "#02 — SYSTEMEN",
+        "icon": "[SYS]",
+        "title": "Systemen & virtualisatie",
+        "desc": "Windows Server met Active Directory en GPO, Linux-servers en virtualisatie op VMware en Hyper-V. Werk dat terugkomt, script ik in PowerShell, Python of Bash.",
         "tags": [
-          "Zabbix 7.0",
+          "Windows Server",
+          "Active Directory",
+          "GPO",
+          "Linux",
+          "VMware ESXi",
+          "Hyper-V",
+          "PowerShell"
+        ]
+      },
+      {
+        "id": "#03 — IDENTITY",
+        "icon": "[M365]",
+        "title": "Microsoft 365 & identity",
+        "desc": "Beheer van Microsoft 365 en SharePoint, Entra ID met Hybrid join, en toestellen via Intune. Daarnaast ervaring met certificaten via een eigen PKI en SCEP.",
+        "tags": [
+          "Microsoft 365",
+          "Entra ID",
+          "Hybrid join",
+          "Intune",
+          "SharePoint",
+          "AD CS / SCEP"
+        ]
+      },
+      {
+        "id": "#04 — BACKUP",
+        "icon": "[BKP]",
+        "title": "Backup & recovery",
+        "desc": "Backups met Veeam en een cloud-backupplatform. Ik voer restore-tests uit en documenteer wat er terugkwam en wat niet.",
+        "tags": [
+          "Veeam",
+          "Cloud backup",
+          "Restore-tests",
+          "Documentatie"
+        ]
+      },
+      {
+        "id": "#05 — MONITORING",
+        "icon": "[MON]",
+        "title": "Monitoring",
+        "desc": "Zabbix met agents en SNMP, dashboards en alerting, en Windows Event Log erbij. Zo zie ik een probleem voor een gebruiker belt.",
+        "tags": [
+          "Zabbix",
           "SNMP",
           "Dashboards",
-          "M365 Alerts"
+          "Alerting",
+          "Event Log"
         ]
       },
       {
-        "id": "#03 — VIRTUALISATIE",
-        "icon": "[VM]",
-        "title": "Virtualisatie & Backup",
-        "desc": "VMware ESXi-beheer, VM-migraties van Workstation naar productie en Veeam backup-configuratie voor bedrijfscontinuïteit.",
-        "tags": [
-          "ESXi",
-          "Veeam",
-          "VM-migratie"
-        ]
-      },
-      {
-        "id": "#04 — SECURITY",
+        "id": "#06 — SECURITY",
         "icon": "[SEC]",
-        "title": "Security & NAC",
-        "desc": "Netwerktoegangscontrole via PacketFence, EAP-TLS authenticatie, PKI-infrastructuur en Microsoft Intune/SCEP integratie voor Wi-Fi security.",
+        "title": "Security",
+        "desc": "Hardening, segmentatie en firewallbeleid, EDR op servers, en netwerktoegang met 802.1X en certificaten. Voor detectie en veilige toegang van buitenaf werkte ik met Wazuh, NetBird en OpenZiti.",
         "tags": [
-          "PacketFence",
-          "EAP-TLS",
-          "Intune",
-          "PKI"
-        ]
-      },
-      {
-        "id": "#05 — CLOUD",
-        "icon": "[M365]",
-        "title": "Microsoft 365",
-        "desc": "Entra ID, gebruikersbeheer, Exchange Online routing en app-registraties voor moderne werkplekken en Zabbix-integraties.",
-        "tags": [
-          "Entra ID",
-          "Exchange",
-          "Teams",
-          "Intune"
-        ]
-      },
-      {
-        "id": "#06 — ADVIES",
-        "icon": "[DOC]",
-        "title": "Documentatie & Advies",
-        "desc": "AS-IS inventarisatie, VLAN-matrices, rack-documentatie en vendor-vergelijkingen voor IT-vernieuwingsprojecten en aanbestedingen.",
-        "tags": [
-          "AS-IS",
-          "Tender",
-          "Vendor eval",
-          "Advies"
+          "Hardening",
+          "EDR",
+          "NGFW",
+          "PacketFence NAC",
+          "802.1X / EAP-TLS",
+          "Wazuh",
+          "ZTNA"
         ]
       }
-    ]
+    ],
+    "lab": {
+      "label": "lab",
+      "title": "waar ik aanvallen en verdediging test",
+      "intro": "Naast het beheer heb ik een geïsoleerd lab. Daar voer ik aanvallen uit op testmachines en kijk ik wat de verdediging ervan ziet.",
+      "cards": [
+        {
+          "title": "Omgeving",
+          "desc": "Kali Linux en testmachines, gescheiden van elk productienetwerk."
+        },
+        {
+          "title": "Webapplicaties",
+          "desc": "Burp Suite en de labs van de PortSwigger Web Security Academy."
+        },
+        {
+          "title": "Oefenmachines",
+          "desc": "Machines op Hack The Box, van verkenning tot toegang."
+        },
+        {
+          "title": "Terug naar het beheer",
+          "desc": "Wat ik in het lab zie, pas ik toe: hardening, segmentatie, firewallregels en detectie."
+        }
+      ],
+      "note": "Ik test alleen in mijn eigen lab en op platformen die daarvoor bedoeld zijn."
+    }
   },
   "about": {
     "label": "over mij",
-    "title_1": "meer dan",
-    "title_2": "alleen ICT",
+    "title_1": "wie ik ben,",
+    "title_2": "hoe ik werk",
     "paragraphs": [
-      "Ik ben <strong>Ali Tunç</strong>, systeem- en netwerkbeheerder gebaseerd in <span class=\"hl\">Antwerpen</span>. Mijn achtergrond is breed — van taalonderwijs tot hospitality — maar mijn passie voor technologie bracht me naar waar ik nu ben.",
-      "Ik werk met <strong>echte productie-infrastructuur</strong>: gemeentelijke netwerken, ESXi-clusters, firewall-migraties en monitoring van A tot Z. Geen theorie, gewoon resultaten.",
-      "Momenteel volg ik het <strong>Graduaat Systeem- en Netwerkbeheer</strong> aan AP Hogeschool Antwerpen — naast mijn hands-on praktijkervaring bij een Belgische gemeente.",
-      "Multilinguaal in <strong>Nederlands, Engels en Turks</strong> — communicatie is nooit een probleem."
+      "Ik ben <strong>Ali Tunç</strong>, systeem- en netwerkbeheerder. Ik werk voltijds bij een internationaal productiebedrijf. Ik beheer, onderhoud en verbeter er de infrastructuur en werk mee aan IT-projecten. De IT van één site is mijn verantwoordelijkheid. Af en toe doen we configuratie en onderhoud ter plaatse op sites in het buitenland.",
+      "Recente projecten: laptops overgezet naar een nieuw domein met Hybrid Entra ID join, een EDR-agent uitgerold op de servers, restore-tests gedraaid en gedocumenteerd, ISP-routers en een core switch achter de firewall ingepast, en verbindingsproblemen bij cloudtelefonie voor meer dan honderd gebruikers geanalyseerd aan de firewallkant.",
+      "Ik werk met een paar vaste gewoontes. Ik schrijf op wat ik doe, in runbooks die een collega kan volgen. Ik test voor ik iets uitrol. En een backup telt pas als de restore gelukt is.",
+      "Security zit in het gewone werk: hardening, segmentatie, firewallbeleid, EDR. In een geïsoleerd lab test ik aanvallen en verdediging. Wat ik daar zie, pas ik toe in het beheer."
     ],
-    "skills_label": "technische skills",
-    "skills": [
-      {
-        "name": "Zabbix / SNMP",
-        "pct": 92
-      },
-      {
-        "name": "Firewall config",
-        "pct": 88
-      },
-      {
-        "name": "Netwerk design",
-        "pct": 85
-      },
-      {
-        "name": "Linux / Shell",
-        "pct": 83
-      },
-      {
-        "name": "VMware ESXi",
-        "pct": 80
-      },
-      {
-        "name": "Microsoft 365",
-        "pct": 78
-      },
-      {
-        "name": "Security / NAC",
-        "pct": 75
-      },
-      {
-        "name": "Python / PowerShell",
-        "pct": 70
-      }
-    ]
+    "skills_label": "technologie per domein"
   },
   "projects": {
     "label": "projecten",
-    "title": "wat ik gebouwd heb",
-    "cards": [
+    "title": "wat ik gedaan heb",
+    "problem": "probleem",
+    "approach": "aanpak",
+    "result": "resultaat",
+    "groups": [
       {
-        "num": "#001 — 2024/2025",
-        "status": "Voltooid",
-        "title": "Zabbix Monitoring Infrastructuur",
-        "desc": "Volledige Zabbix 7.0 monitoring opgezet vanuit nul — SNMP voor UniFi switches, Konica Minolta printers en Zyxel firewall, inclusief auto-discovery, dashboards en Office365 alerting.",
-        "tags": [
-          "Zabbix 7.0",
-          "SNMPv2c",
-          "UniFi",
-          "ESXi",
-          "M365"
+        "label": "recent werk",
+        "cards": [
+          {
+            "tag": "IDENTITY",
+            "title": "Laptops naar een nieuw domein",
+            "problem": "Laptops stonden nog in het oude domein en moesten over naar het nieuwe.",
+            "approach": "Toestel per toestel overgezet met Hybrid Entra ID join. De stappen staan in een runbook dat ik zelf schreef.",
+            "result": "",
+            "tags": [
+              "Active Directory",
+              "Entra ID",
+              "Hybrid join",
+              "Runbook"
+            ]
+          },
+          {
+            "tag": "SECURITY",
+            "title": "EDR op de servers",
+            "problem": "De servers draaiden nog op een oudere antivirus.",
+            "approach": "Een EDR-agent uitgerold op de servers, ter vervanging van die antivirus.",
+            "result": "",
+            "tags": [
+              "EDR",
+              "Servers"
+            ]
+          },
+          {
+            "tag": "BACKUP",
+            "title": "Backup- en restore-tests",
+            "problem": "Nagaan of backups ook echt terug te zetten zijn.",
+            "approach": "Restore-tests uitgevoerd op Veeam en op een cloud-backupplatform.",
+            "result": "Elke test en het resultaat zijn gedocumenteerd.",
+            "tags": [
+              "Veeam",
+              "Cloud backup",
+              "Restore-test"
+            ]
+          },
+          {
+            "tag": "NETWERK",
+            "title": "ISP-routers en core switch achter de firewall",
+            "problem": "Nieuwe ISP-routers en een core switch moesten een plaats krijgen in het bestaande netwerk.",
+            "approach": "Het IP-plan opgesteld en de toestellen achter de firewall geïntegreerd.",
+            "result": "",
+            "tags": [
+              "NGFW",
+              "Routing",
+              "IP-planning",
+              "Core switch"
+            ]
+          },
+          {
+            "tag": "NETWERK",
+            "title": "Verbindingsproblemen bij cloudtelefonie",
+            "problem": "Cloudtelefonie voor meer dan 100 gebruikers had verbindingsproblemen.",
+            "approach": "Het verkeer aan de firewallkant geanalyseerd om de oorzaak te vinden.",
+            "result": "",
+            "tags": [
+              "NGFW",
+              "VoIP",
+              "Troubleshooting"
+            ]
+          },
+          {
+            "tag": "MDM",
+            "title": "Noodtelefoons voor brandpreventie",
+            "problem": "Een brandpreventieproject had beheerde noodtelefoons nodig.",
+            "approach": "De toestellen ingeschreven en beheerd via MDM.",
+            "result": "",
+            "tags": [
+              "MDM",
+              "Mobiele toestellen"
+            ]
+          },
+          {
+            "tag": "SYSTEMEN",
+            "title": "Handscanners naar een nieuwe server",
+            "problem": "Draagbare barcodescanners moesten over naar een nieuwe server.",
+            "approach": "De overstap voorbereid en de scanners getest tegen de nieuwe server.",
+            "result": "",
+            "tags": [
+              "Migratie",
+              "Testen"
+            ]
+          }
         ]
       },
       {
-        "num": "#002 — 2025",
-        "status": "Voltooid",
-        "title": "PacketFence NAC — EAP-TLS",
-        "desc": "PacketFence NAC lab met EAP-TLS authenticatie, eigen PKI (Root CA + SubCA), Microsoft Intune SCEP-integratie en PowerShell Wi-Fi certificaatautomatisering voor 106 scholen.",
-        "tags": [
-          "PacketFence",
-          "EAP-TLS",
-          "PKI",
-          "Intune",
-          "SCEP"
-        ]
-      },
-      {
-        "num": "#003 — 2025",
-        "status": "In uitvoering",
-        "title": "VLAN Hervorming & Netwerk Renewal",
-        "desc": "AS-IS documentatie, vendor-evaluatie (Fortinet, Zyxel, Peplink, MikroTik), firewall-matrix en complete VLAN-reorganisatie voor een Belgische gemeente.",
-        "tags": [
-          "Fortinet",
-          "VLAN",
-          "Documentatie",
-          "Tender"
-        ]
-      },
-      {
-        "num": "#004 — 2024",
-        "status": "Voltooid",
-        "title": "OpenZiti ZTNA + Entra ID",
-        "desc": "Zero Trust Network Access via OpenZiti geïntegreerd met Microsoft Entra ID voor OIDC-authenticatie. JWT-signer configuratie en policy-setup voor veilige remote access.",
-        "tags": [
-          "OpenZiti",
-          "ZTNA",
-          "Entra ID",
-          "OIDC"
+        "label": "eerdere projecten",
+        "cards": [
+          {
+            "tag": "NETWERK",
+            "title": "Netwerkvernieuwing voor een lokale overheid",
+            "problem": "Het netwerk van een lokale overheid was toe aan een herontwerp.",
+            "approach": "As-is en to-be gedocumenteerd, een VLAN-schema ontworpen volgens het Core-Distribution-Access-model, en switches, firewalls en access points vergeleken op performance, beschikbaarheid en budget.",
+            "result": "De documentatie dient als basis voor de implementatie en voor NIS2-compliance.",
+            "tags": [
+              "VLAN",
+              "Zyxel",
+              "UniFi",
+              "NIS2",
+              "Documentatie"
+            ]
+          },
+          {
+            "tag": "MONITORING",
+            "title": "Zabbix-monitoring en Wazuh SIEM",
+            "problem": "Centraal zicht krijgen op servers, netwerktoestellen en security-events.",
+            "approach": "Zabbix opgezet met SNMP en agents, dashboards, alerting en Windows Event Log. Daarnaast Wazuh als XDR/SIEM, met Windows-agents, active response en alerting op basis van regels.",
+            "result": "",
+            "tags": [
+              "Zabbix",
+              "SNMP",
+              "Wazuh",
+              "XDR / SIEM"
+            ]
+          },
+          {
+            "tag": "SECURITY",
+            "title": "Remote toegang met NetBird (ZTNA)",
+            "problem": "Veilige toegang van buitenaf tot de interne infrastructuur.",
+            "approach": "Een self-hosted NetBird geïnstalleerd en geconfigureerd als Zero Trust Network Access.",
+            "result": "",
+            "tags": [
+              "NetBird",
+              "ZTNA",
+              "Self-hosted"
+            ]
+          },
+          {
+            "tag": "SECURITY",
+            "title": "PacketFence NAC met EAP-TLS",
+            "problem": "Wi-Fi-toegang met certificaten voor een omgeving van 106 scholen.",
+            "approach": "Uitgewerkt en opgebouwd in een labomgeving: PacketFence NAC met 802.1X en EAP-TLS, een eigen PKI en Intune voor de certificaten. De uitrol van certificaten geautomatiseerd met PowerShell.",
+            "result": "",
+            "tags": [
+              "PacketFence",
+              "802.1X",
+              "EAP-TLS",
+              "PKI",
+              "Intune"
+            ]
+          },
+          {
+            "tag": "SECURITY",
+            "title": "Zero trust met OpenZiti en Entra ID",
+            "problem": "Toegang tot diensten op basis van identiteit en certificaten.",
+            "approach": "In een labomgeving een zero-trust-architectuur opgezet met OpenZiti, gekoppeld aan Microsoft Entra ID.",
+            "result": "",
+            "tags": [
+              "OpenZiti",
+              "Zero trust",
+              "Entra ID"
+            ]
+          }
         ]
       }
     ]
   },
   "contact": {
     "label": "contact",
-    "title": "klaar om te praten?",
-    "intro": "Heb je een netwerk dat aandacht nodig heeft, een monitoring-project of advies nodig over je infrastructuur? Stuur een bericht — ik reageer snel en denk meteen mee.",
-    "email": "E-mail"
+    "title": "een vraag over je netwerk?",
+    "intro": "Ik werk voltijds in vaste dienst. Buiten de kantooruren help ik met advies en ondersteuning op afstand. Schrijf kort wat er speelt, dan laat ik weten of en wanneer ik kan helpen.",
+    "form": {
+      "name": "Naam",
+      "email": "E-mail",
+      "message": "Bericht",
+      "submit": "Verstuur",
+      "honeypot": "Niet invullen",
+      "privacy": "Ik gebruik je gegevens alleen om je bericht te beantwoorden."
+    },
+    "alt": "Liever gewoon mailen?",
+    "email": "Open je mailprogramma"
   },
   "cv": {
     "label": "cv",
     "title": "curriculum vitae",
-    "placeholder": "Inhoud volgt."
+    "profile_label": "profiel",
+    "profile": [
+      "Systeem- en netwerkbeheerder met 7+ jaar ervaring. Ik werk voltijds bij een internationaal productiebedrijf: infrastructuur beheren, onderhouden en verbeteren, meewerken aan IT-projecten en af en toe configuratie en onderhoud ter plaatse op sites in het buitenland.",
+      "Security is een vast deel van dat werk: hardening, segmentatie, firewallbeleid, EDR en backups die getest zijn."
+    ],
+    "expertise_label": "expertise per domein",
+    "projects_label": "recente projecten",
+    "projects_link": "Alle projecten met probleem en aanpak →",
+    "education_label": "opleiding",
+    "education": [
+      {
+        "title": "Graduaat Systeem- en Netwerkbeheer",
+        "where": "AP Hogeschool Antwerpen, met onderscheiding"
+      },
+      {
+        "title": "Bachelor Bedrijfskunde",
+        "where": "Anadolu University"
+      }
+    ],
+    "languages_label": "talen",
+    "languages": [
+      {
+        "name": "Turks",
+        "level": "moedertaal"
+      },
+      {
+        "name": "Nederlands",
+        "level": "C1"
+      },
+      {
+        "name": "Engels",
+        "level": "C1"
+      },
+      {
+        "name": "Azerbeidzjaans",
+        "level": ""
+      }
+    ]
+  },
+  "cta": {
+    "label": "contact",
+    "title": "een vraag over je netwerk?",
+    "text": "Ik werk voltijds in vaste dienst. Buiten de kantooruren help ik met advies en ondersteuning op afstand. Schrijf kort wat er speelt, dan laat ik weten of en wanneer ik kan helpen.",
+    "button": "Stuur een bericht"
+  },
+  "notes": {
+    "label": "lab notes",
+    "title": "Lab notes",
+    "intro": "Wat ik in het lab uittest, opgeschreven als theorie en praktijk.",
+    "back": "← alle lab notes"
   }
 }

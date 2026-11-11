@@ -116,11 +116,13 @@
   color: var(--text-muted); flex-shrink: 0;
 }
 .status-wrapper.beschikbaar,
+.status-wrapper.in-dienst,
 .status-wrapper.niet-beschikbaar {
   display: flex; align-items: center; gap: 0.45rem;
   animation: flicker 1.5s infinite;
 }
-.status-wrapper.beschikbaar      { color: var(--accent); }
+.status-wrapper.beschikbaar,
+.status-wrapper.in-dienst        { color: var(--accent); }
 .status-wrapper.niet-beschikbaar { color: #e06c75; }
 
 .status-dot {
@@ -231,6 +233,13 @@ section { padding: 5rem 4rem; }
   margin-bottom: 3rem;
 }
 .sec-h2--center { text-align: center; margin-bottom: 2rem; }
+.sec-h2--tight  { margin-bottom: 1.25rem; }
+.sec-intro {
+  max-width: 64ch;
+  font-size: 0.95rem; line-height: 1.8;
+  color: var(--text-dim);
+  margin-bottom: 2.5rem;
+}
 
 .placeholder { font-size: 0.95rem; color: var(--text-dim); }
 
@@ -247,7 +256,7 @@ footer {
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
 /* Smalle desktop: status-blok weg zodat links + taalwisselaar + CTA passen */
-@media (min-width: 901px) and (max-width: 1060px) {
+@media (min-width: 901px) and (max-width: 1240px) {
   .nav-status { display: none; }
 }
 

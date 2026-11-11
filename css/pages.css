@@ -102,6 +102,68 @@
   text-align: center; padding: 6rem 4rem;
 }
 
+#lab       { background: var(--bg); }
+.news      { background: var(--bg2); }
+
+/* ── CTA (home) ───────────────────────────────────────────── */
+.cta {
+  background: var(--bg);
+  text-align: center; padding: 6rem 4rem;
+}
+.cta-text {
+  max-width: 58ch; margin: 0 auto 2.25rem;
+  font-size: 0.95rem; line-height: 1.8;
+  color: var(--text-dim);
+}
+.cta .btn-p { display: inline-block; }
+
+/* ── LAB NOTES ────────────────────────────────────────────── */
+.note { padding: 5rem 4rem; max-width: 900px; }
+.note-date { margin-top: 2rem; }
+.note-body { font-size: 0.98rem; line-height: 1.85; color: var(--text-dim); }
+.note-body p, .note-body ul, .note-body ol, .note-body pre, .note-body blockquote { margin-bottom: 1.25rem; }
+.note-body h2, .note-body h3 {
+  font-family: var(--display); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--text); margin: 2.5rem 0 0.75rem;
+}
+.note-body h2 { font-size: 1.6rem; }
+.note-body h3 { font-size: 1.25rem; }
+.note-body ul, .note-body ol { padding-left: 1.5rem; }
+.note-body ul { list-style: square; }
+.note-body ol { list-style: decimal; }
+.note-body li { display: list-item; margin-bottom: 0.35rem; }
+.note-body strong { color: var(--text); font-weight: 500; }
+.note-body em { font-style: italic; }
+.note-body a { color: var(--accent); border-bottom: 1px dashed var(--accent2); }
+.note-body code {
+  font-size: 0.9em; padding: 0.1rem 0.35rem;
+  background: rgba(173,205,101,0.07); color: var(--accent);
+}
+.note-body pre {
+  display: block; overflow-x: auto;
+  padding: 1.1rem 1.25rem;
+  background: #060a03; border: 1px solid var(--border2);
+  font-size: 0.85rem; line-height: 1.7; white-space: pre;
+}
+.note-body pre code { padding: 0; background: none; color: var(--text); }
+.note-body blockquote { padding-left: 1rem; border-left: 2px solid var(--accent2); }
+
+.note-list { display: flex; flex-direction: column; gap: 1rem; max-width: 900px; }
+.note-link {
+  display: flex; flex-direction: column; gap: 0.35rem;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--border2); background: var(--card);
+  transition: border-color 0.2s;
+}
+.note-link:hover { border-color: var(--accent2); }
+.note-link time { font-size: 0.72rem; letter-spacing: 0.14em; color: var(--text-muted); }
+.note-link-title {
+  font-family: var(--display); font-size: 1.3rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; color: var(--text);
+}
+.note-link-desc { font-size: 0.92rem; color: var(--text-dim); }
+
 /* ── OVER MIJ ─────────────────────────────────────────────── */
 .about-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
@@ -129,6 +191,8 @@
   }
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
   #contact { padding: 4rem 1.5rem; }
+  .cta { padding: 4rem 1.5rem; }
+  .note { padding: 3.5rem 1.5rem; }
 }
 
 @media (max-width: 600px) {

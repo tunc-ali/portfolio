@@ -1,5 +1,29 @@
 /* base.css — variabelen, basis-typografie, globale effecten en animaties */
 
+/* ── LETTERTYPES (lokaal, zie vendor/fonts/) ──────────────────
+   Alleen de gebruikte gewichten; font-display: swap toont eerst een
+   systeemlettertype zodat tekst meteen leesbaar is.              */
+@font-face {
+  font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('../vendor/fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url('../vendor/fonts/jetbrains-mono-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('../vendor/fonts/barlow-condensed-latin-600-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url('../vendor/fonts/barlow-condensed-latin-700-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
+  src: url('../vendor/fonts/barlow-condensed-latin-800-normal.woff2') format('woff2');
+}
+
 /* ── RESET & BASE ─────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -17,8 +41,8 @@ html { scroll-behavior: smooth; }
   --text:      #d8e0c0;
   --text-dim:  #9aab78;
   --text-muted:#7f8f5f;
-  --mono:      'JetBrains Mono', monospace;
-  --display:   'Barlow Condensed', sans-serif;
+  --mono:      'JetBrains Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+  --display:   'Barlow Condensed', 'Arial Narrow', sans-serif;
 }
 
 body {

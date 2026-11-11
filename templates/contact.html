@@ -1,6 +1,6 @@
   <section id="contact">
     <div class="sec-label sec-label--center">{{ contact.label }}</div>
-    <h2 class="sec-h2 sec-h2--center">{{ contact.title }}</h2>
+    <h1 class="sec-h2 sec-h2--center">{{ contact.title }}</h1>
 
     <div class="contact-center">
       <div class="contact-card">
@@ -11,10 +11,33 @@
 
         <p>{{ contact.intro }}</p>
 
+        <!-- Netlify Forms: het formulier werkt zodra de site op Netlify staat.
+             "bot-field" is de honeypot tegen spam (verborgen voor bezoekers). -->
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="form-hp">
+            <label>{{ contact.form.honeypot }} <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+          <div class="form-row">
+            <label for="f-name">{{ contact.form.name }}</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required />
+          </div>
+          <div class="form-row">
+            <label for="f-email">{{ contact.form.email }}</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="200" required />
+          </div>
+          <div class="form-row">
+            <label for="f-message">{{ contact.form.message }}</label>
+            <textarea id="f-message" name="message" rows="6" maxlength="4000" required></textarea>
+          </div>
+          <button type="submit" class="btn-p">{{ contact.form.submit }}</button>
+          <p class="form-privacy">{{ contact.form.privacy }}</p>
+        </form>
+
         <div class="contact-links">
+          <span class="contact-alt">{{ contact.alt }}</span>
           <!-- Adres wordt door js/main.js samengesteld (anti-spam) -->
           <a href="#" class="clink js-mail">✉ {{ contact.email }}</a>
-          <a href="https://alitunc.net" class="clink">⬡ alitunc.net</a>
         </div>
       </div>
     </div>

@@ -87,7 +87,7 @@
               <div class="t-dot t-dot-r"></div>
               <div class="t-dot t-dot-y"></div>
               <div class="t-dot t-dot-g"></div>
-              <span class="t-title">ali@infra-antwerpen ~ zsh</span>
+              <span class="t-title">ali@infra ~ zsh</span>
             </div>
 
             <div class="t-body" id="terminal">
@@ -146,4 +146,31 @@
       </div>
 
     </div>
+  </section>
+
+  <!-- ══════════ SECURITY-NIEUWS ══════════
+       js/news.js vult de lijst uit json/news.json (nu voorbeelddata). -->
+  <section class="news" id="nieuws">
+    <div class="sec-label">{{ home.news.label }}</div>
+    <h2 class="sec-h2">{{ home.news.title }}</h2>
+
+    <ul class="news-list" aria-live="polite">
+      <li class="news-loading">{{ home.news.loading }}</li>
+    </ul>
+    <p class="news-sample" hidden>{{ home.news.sample }}</p>
+    <p class="news-sources">
+      <span class="topo-key">{{ home.news.sources_label }}</span>
+      <a href="https://thehackernews.com/" rel="noopener noreferrer">The Hacker News</a>
+      <a href="https://www.bleepingcomputer.com/" rel="noopener noreferrer">BleepingComputer</a>
+      <a href="https://krebsonsecurity.com/" rel="noopener noreferrer">Krebs on Security</a>
+      <a href="https://www.cisa.gov/news-events/cybersecurity-advisories" rel="noopener noreferrer">CISA</a>
+    </p>
+  </section>
+
+  <!-- ══════════ CTA ══════════ -->
+  <section class="cta" id="cta">
+    <div class="sec-label sec-label--center">{{ cta.label }}</div>
+    <h2 class="sec-h2 sec-h2--center">{{ cta.title }}</h2>
+    <p class="cta-text">{{ cta.text }}</p>
+    <a href="{{ url.contact }}" class="btn-p">{{ cta.button }}</a>
   </section>

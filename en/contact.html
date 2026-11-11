@@ -5,14 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Ali Tunç</title>
-  <meta name="description" content="Get in touch with Ali Tunç." />
+  <meta name="description" content="Send a message. Outside office hours I help with advice and remote support." />
   <link rel="canonical" href="https://alitunc.net/en/contact.html" />
   <link rel="alternate" hreflang="nl" href="https://alitunc.net/contact.html" />
   <link rel="alternate" hreflang="en" href="https://alitunc.net/en/contact.html" />
   <link rel="alternate" hreflang="x-default" href="https://alitunc.net/contact.html" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" href="../vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="../vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin />
   <link rel="stylesheet" href="../css/reset.css" />
   <link rel="stylesheet" href="../css/base.css" />
   <link rel="stylesheet" href="../css/layout.css" />
@@ -52,15 +51,15 @@
 
       <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
         <ul class="nav-links">
-          <li><a href="services.html">Services</a></li>
+          <li><a href="expertise.html">Expertise</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="cv.html">CV</a></li>
         </ul>
         <div class="nav-status">
-          <div class="status-wrapper beschikbaar">
+          <div class="status-wrapper in-dienst">
             <div class="status-dot"></div>
-            <span>AVAILABLE</span>
+            <span>EMPLOYED · AFTER-HOURS ADVICE</span>
           </div>
         </div>
 
@@ -97,7 +96,7 @@
 <main id="main">
   <section id="contact">
     <div class="sec-label sec-label--center">contact</div>
-    <h2 class="sec-h2 sec-h2--center">ready to talk?</h2>
+    <h1 class="sec-h2 sec-h2--center">a question about your network?</h1>
 
     <div class="contact-center">
       <div class="contact-card">
@@ -106,12 +105,35 @@
         <div class="corner c-bl"></div>
         <div class="corner c-br"></div>
 
-        <p>Do you have a network that needs attention, a monitoring project, or do you need advice on your infrastructure? Send a message — I respond quickly and think along right away.</p>
+        <p>I have a full-time job. Outside office hours I help with advice and remote support. Tell me briefly what&#x27;s going on and I&#x27;ll let you know if and when I can help.</p>
+
+        <!-- Netlify Forms: het formulier werkt zodra de site op Netlify staat.
+             "bot-field" is de honeypot tegen spam (verborgen voor bezoekers). -->
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="form-hp">
+            <label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
+          <div class="form-row">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required />
+          </div>
+          <div class="form-row">
+            <label for="f-email">E-mail</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="200" required />
+          </div>
+          <div class="form-row">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" rows="6" maxlength="4000" required></textarea>
+          </div>
+          <button type="submit" class="btn-p">Send</button>
+          <p class="form-privacy">I only use your details to reply to your message.</p>
+        </form>
 
         <div class="contact-links">
+          <span class="contact-alt">Rather just e-mail?</span>
           <!-- Adres wordt door js/main.js samengesteld (anti-spam) -->
-          <a href="#" class="clink js-mail">✉ E-mail</a>
-          <a href="https://alitunc.net" class="clink">⬡ alitunc.net</a>
+          <a href="#" class="clink js-mail">✉ Open your mail app</a>
         </div>
       </div>
     </div>
@@ -121,7 +143,7 @@
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
   <p class="foot-r">&copy;<span id="year"></span> Ali Tunç - All Rights Reserved.</p>
-  <span class="foot-r">system &amp; network administration — available for assignments</span>
+  <span class="foot-r">system &amp; network administration · security</span>
 </footer>
 
 <script src="../js/main.js" defer></script>

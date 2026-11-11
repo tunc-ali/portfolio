@@ -1,32 +1,39 @@
 <!DOCTYPE html>
+<!-- GEGENEREERD door build.py (templates/ + json/) — niet rechtstreeks bewerken -->
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CV — Ali Tunç</title>
-  <meta name="description" content="Curriculum vitae van Ali Tunç." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/pages.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Ali Tunç, systeem- en netwerkbeheerder</title>
+  <meta name="description" content="CV van Ali Tunç, systeem- en netwerkbeheerder: expertise per domein, recente projecten, opleiding en talen.">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="canonical" href="https://alitunc.net/cv.html">
+  <link rel="alternate" hreflang="nl" href="https://alitunc.net/cv.html">
+  <link rel="alternate" hreflang="en" href="https://alitunc.net/en/cv.html">
+  <link rel="alternate" hreflang="x-default" href="https://alitunc.net/cv.html">
+  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
 </head>
 
 <body>
 
 <!-- ══════════ NAV ══════════ -->
+<a class="skip-link" href="#main">Naar inhoud</a>
+
 <header class="nav-wrapper">
   <div class="nav-frame">
 
     <div class="nav-topbar"></div>
 
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
+      <a href="index.html" class="nav-logo" aria-label="Ali Tunç — home">
         <div class="logo-mark">
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x="1" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="8" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="1" y="8" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
@@ -38,28 +45,46 @@
 
       <div class="nav-sep"></div>
 
-      <ul class="nav-links">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="over-mij.html">Over mij</a></li>
-        <li><a href="projecten.html">Projecten</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="cv.html" class="active" aria-current="page">CV</a></li>
-      </ul>
-      <div class="nav-status">
-        <div class="status-wrapper beschikbaar">
-          <div class="status-dot"></div>
-          <span>BESCHIKBAAR</span>
-        </div>
-      </div>
+      <!-- Hamburger: alleen zichtbaar op smal scherm -->
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
 
-      <a href="contact.html" class="nav-cta">Contact</a>
+      <nav class="nav-menu" id="nav-menu" aria-label="Hoofdnavigatie">
+        <ul class="nav-links">
+          <li><a href="expertise.html">Expertise</a></li>
+          <li><a href="over-mij.html">Over mij</a></li>
+          <li><a href="projecten.html">Projecten</a></li>
+          <li><a href="cv.html" class="active" aria-current="page">CV</a></li>
+        </ul>
+        <div class="nav-status">
+          <div class="status-wrapper in-dienst">
+            <div class="status-dot"></div>
+            <span>IN DIENST · ADVIES NA DE UREN</span>
+          </div>
+        </div>
+
+        <!-- Taalwisselaar: zelfde pagina in de andere taal -->
+        <div class="nav-lang" role="group" aria-label="Taal">
+          <a href="cv.html" lang="nl" hreflang="nl" aria-current="true">NL</a>
+          <span aria-hidden="true">/</span>
+          <a href="en/cv.html" lang="en" hreflang="en">EN</a>
+        </div>
+
+        <a href="contact.html" class="nav-cta">Contact</a>
+      </nav>
     </div>
 
     <div class="nav-bottom">
-      <span class="nav-meta">LOC: <span id="location">LOCATIE OPHALEN...</span></span>
+      <div class="nav-loc">
+        <span class="nav-meta">LOC: <span id="location" data-fallback="ONBEKEND">LOCATIE OPHALEN...</span></span>
+        <span class="nav-meta nav-ip" hidden>IP: <span id="visitor-ip"></span></span>
+      </div>
 
       <div class="sig-bars">
-        <span class="nav-meta">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <!-- Smalle desktop (901–1240px): status staat hier i.p.v. in de nav-rij -->
+        <span class="nav-meta nav-status-alt">IN DIENST · ADVIES NA DE UREN</span>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
@@ -71,21 +96,159 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   <section id="cv">
     <div class="sec-label">cv</div>
-    <h2 class="sec-h2">curriculum vitae</h2>
-    <p class="placeholder">Inhoud volgt.</p>
+    <h1 class="sec-h2">curriculum vitae</h1>
+
+    <div class="cv">
+      <section class="cv-block">
+        <h2 class="sec-label">profiel</h2>
+        <div class="cv-body about-text">
+          <p>Systeem- en netwerkbeheerder met 7+ jaar ervaring. Ik werk voltijds bij een internationaal productiebedrijf: infrastructuur beheren, onderhouden en verbeteren, meewerken aan IT-projecten en af en toe configuratie en onderhoud ter plaatse op sites in het buitenland.</p>
+          <p>Security is een vast deel van dat werk: hardening, segmentatie, firewallbeleid, EDR en backups die getest zijn.</p>
+        </div>
+      </section>
+
+      <section class="cv-block">
+        <h2 class="sec-label">expertise per domein</h2>
+        <div class="cv-body">
+          <div class="cv-item">
+            <h3 class="cv-item-title">Netwerk &amp; firewall</h3>
+            <p class="svc-desc">Ik ontwerp VLAN-schema&#x27;s, segmenteer netwerken en beheer routing, firewallbeleid en VPN. Ik heb gewerkt met Fortinet (FortiGate), Ubiquiti (UniFi, EFG), Cisco, WatchGuard, Dell, Barracuda, Netgear, Zyxel en pfSense.</p>
+            <div class="svc-tags">
+              <span class="tag">VLAN</span>
+              <span class="tag">OSPF</span>
+              <span class="tag">ACL / NAT</span>
+              <span class="tag">RSTP</span>
+              <span class="tag">EtherChannel</span>
+              <span class="tag">IPsec</span>
+              <span class="tag">WireGuard</span>
+            </div>
+          </div>
+          <div class="cv-item">
+            <h3 class="cv-item-title">Systemen &amp; virtualisatie</h3>
+            <p class="svc-desc">Windows Server met Active Directory en GPO, Linux-servers, en virtualisatie op Nutanix (AHV, Prism), VMware vSphere (vCenter, ESXi) en Hyper-V. Werk dat terugkomt, script ik in PowerShell, Python of Bash.</p>
+            <div class="svc-tags">
+              <span class="tag">Windows Server</span>
+              <span class="tag">Active Directory</span>
+              <span class="tag">GPO</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Nutanix AHV</span>
+              <span class="tag">VMware vSphere</span>
+              <span class="tag">Hyper-V</span>
+              <span class="tag">PowerShell</span>
+            </div>
+          </div>
+          <div class="cv-item">
+            <h3 class="cv-item-title">Microsoft 365 &amp; identity</h3>
+            <p class="svc-desc">Beheer van Microsoft 365 en SharePoint, Entra ID met Hybrid join, en toestellen via Intune. Daarnaast ervaring met certificaten via een eigen PKI en SCEP.</p>
+            <div class="svc-tags">
+              <span class="tag">Microsoft 365</span>
+              <span class="tag">Entra ID</span>
+              <span class="tag">Hybrid join</span>
+              <span class="tag">Intune</span>
+              <span class="tag">SharePoint</span>
+              <span class="tag">AD CS / SCEP</span>
+            </div>
+          </div>
+          <div class="cv-item">
+            <h3 class="cv-item-title">Backup &amp; recovery</h3>
+            <p class="svc-desc">Met Veeam heb ik veel backups en restores gedaan op Nutanix, VMware vSphere en Hyper-V. Daarnaast werk ik met een cloud-backupplatform. Restores test ik, en ik documenteer wat er terugkwam en wat niet.</p>
+            <div class="svc-tags">
+              <span class="tag">Veeam</span>
+              <span class="tag">Nutanix</span>
+              <span class="tag">vSphere</span>
+              <span class="tag">Hyper-V</span>
+              <span class="tag">Cloud backup</span>
+              <span class="tag">Restore-tests</span>
+            </div>
+          </div>
+          <div class="cv-item">
+            <h3 class="cv-item-title">Monitoring</h3>
+            <p class="svc-desc">Zabbix met agents en SNMP, dashboards en alerting, en Windows Event Log erbij.</p>
+            <div class="svc-tags">
+              <span class="tag">Zabbix</span>
+              <span class="tag">SNMP</span>
+              <span class="tag">Dashboards</span>
+              <span class="tag">Alerting</span>
+              <span class="tag">Event Log</span>
+            </div>
+          </div>
+          <div class="cv-item">
+            <h3 class="cv-item-title">Security</h3>
+            <p class="svc-desc">Hardening, segmentatie en firewallbeleid, EDR op servers, en netwerktoegang met 802.1X en certificaten. Voor detectie en veilige toegang van buitenaf werkte ik met Wazuh, NetBird en OpenZiti.</p>
+            <div class="svc-tags">
+              <span class="tag">Hardening</span>
+              <span class="tag">EDR</span>
+              <span class="tag">NGFW</span>
+              <span class="tag">PacketFence NAC</span>
+              <span class="tag">802.1X / EAP-TLS</span>
+              <span class="tag">Wazuh</span>
+              <span class="tag">ZTNA</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cv-block">
+        <h2 class="sec-label">recente projecten</h2>
+        <div class="cv-body">
+          <ul class="cv-list">
+            <li>Laptops naar een nieuw domein</li>
+            <li>EDR op de servers</li>
+            <li>Backup- en restore-tests</li>
+            <li>ISP-routers en core switch achter de firewall</li>
+            <li>Verbindingsproblemen bij cloudtelefonie</li>
+            <li>Noodtelefoons voor brandpreventie</li>
+            <li>Handscanners naar een nieuwe server</li>
+            <li>Netwerkvernieuwing voor een lokale overheid</li>
+            <li>Zabbix-monitoring en Wazuh SIEM</li>
+            <li>Remote toegang met NetBird (ZTNA)</li>
+            <li>PacketFence NAC met EAP-TLS</li>
+            <li>Zero trust met OpenZiti en Entra ID</li>
+          </ul>
+          <a href="projecten.html" class="cv-link">Alle projecten met probleem en aanpak →</a>
+        </div>
+      </section>
+
+      <section class="cv-block">
+        <h2 class="sec-label">opleiding</h2>
+        <div class="cv-body">
+          <div class="cv-item">
+            <h3 class="cv-item-title">Graduaat Systeem- en Netwerkbeheer</h3>
+            <p class="svc-desc">AP Hogeschool Antwerpen, met onderscheiding</p>
+          </div>
+          <div class="cv-item">
+            <h3 class="cv-item-title">Bachelor Bedrijfskunde</h3>
+            <p class="svc-desc">Anadolu University</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cv-block">
+        <h2 class="sec-label">talen</h2>
+        <div class="cv-body">
+          <ul class="cv-list cv-langs">
+            <li>Turks <span class="cv-level">moedertaal</span></li>
+            <li>Nederlands <span class="cv-level">C1</span></li>
+            <li>Engels <span class="cv-level">C1</span></li>
+            <li>Azerbeidzjaans <span class="cv-level">C1</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>
   </section>
 </main>
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
   <p class="foot-r">&copy;<span id="year"></span> Ali Tunç - All Rights Reserved.</p>
-  <span class="foot-r">systeem &amp; netwerk beheer — beschikbaar voor opdrachten</span>
+  <span class="foot-r">systeem- &amp; netwerkbeheer · security</span>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/ip-location.js" defer></script>
 
 </body>
 </html>

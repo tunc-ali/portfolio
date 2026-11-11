@@ -1,0 +1,22 @@
+  <section id="over">
+    <div class="sec-label">{{ about.label }}</div>
+    <h1 class="sec-h2">{{ about.title_1 }}<br>{{ about.title_2 }}</h1>
+
+    <div class="about-grid">
+      <div class="about-text">
+{% for p in about.paragraphs %}        <p>{{{ p }}}</p>
+{% endfor %}      </div>
+
+      <div>
+        <h2 class="sec-label sec-label--sub">{{ about.skills_label }}</h2>
+        <div class="badge-groups">
+{% for d in services.cards %}          <div class="badge-group">
+            <h3 class="badge-title">{{ d.title }}</h3>
+            <div class="svc-tags">
+{% for tag in d.tags %}              <span class="tag">{{ tag }}</span>
+{% endfor %}            </div>
+          </div>
+{% endfor %}        </div>
+      </div>
+    </div>
+  </section>

@@ -1,32 +1,39 @@
 <!DOCTYPE html>
+<!-- GEGENEREERD door build.py (templates/ + json/) — niet rechtstreeks bewerken -->
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projecten — Ali Tunç</title>
-  <meta name="description" content="Projecten: Zabbix monitoring, PacketFence NAC, VLAN-hervorming, OpenZiti ZTNA." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/pages.css" />
+  <meta name="description" content="Recente en eerdere projecten: domeinmigratie, EDR, restore-tests, netwerkvernieuwing, monitoring, NAC en ZTNA.">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="canonical" href="https://alitunc.net/projecten.html">
+  <link rel="alternate" hreflang="nl" href="https://alitunc.net/projecten.html">
+  <link rel="alternate" hreflang="en" href="https://alitunc.net/en/projects.html">
+  <link rel="alternate" hreflang="x-default" href="https://alitunc.net/projecten.html">
+  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
 </head>
 
 <body>
 
 <!-- ══════════ NAV ══════════ -->
+<a class="skip-link" href="#main">Naar inhoud</a>
+
 <header class="nav-wrapper">
   <div class="nav-frame">
 
     <div class="nav-topbar"></div>
 
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
+      <a href="index.html" class="nav-logo" aria-label="Ali Tunç — home">
         <div class="logo-mark">
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x="1" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="8" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="1" y="8" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
@@ -38,28 +45,46 @@
 
       <div class="nav-sep"></div>
 
-      <ul class="nav-links">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="over-mij.html">Over mij</a></li>
-        <li><a href="projecten.html" class="active" aria-current="page">Projecten</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="cv.html">CV</a></li>
-      </ul>
-      <div class="nav-status">
-        <div class="status-wrapper beschikbaar">
-          <div class="status-dot"></div>
-          <span>BESCHIKBAAR</span>
-        </div>
-      </div>
+      <!-- Hamburger: alleen zichtbaar op smal scherm -->
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
 
-      <a href="contact.html" class="nav-cta">Contact</a>
+      <nav class="nav-menu" id="nav-menu" aria-label="Hoofdnavigatie">
+        <ul class="nav-links">
+          <li><a href="expertise.html">Expertise</a></li>
+          <li><a href="over-mij.html">Over mij</a></li>
+          <li><a href="projecten.html" class="active" aria-current="page">Projecten</a></li>
+          <li><a href="cv.html">CV</a></li>
+        </ul>
+        <div class="nav-status">
+          <div class="status-wrapper in-dienst">
+            <div class="status-dot"></div>
+            <span>IN DIENST · ADVIES NA DE UREN</span>
+          </div>
+        </div>
+
+        <!-- Taalwisselaar: zelfde pagina in de andere taal -->
+        <div class="nav-lang" role="group" aria-label="Taal">
+          <a href="projecten.html" lang="nl" hreflang="nl" aria-current="true">NL</a>
+          <span aria-hidden="true">/</span>
+          <a href="en/projects.html" lang="en" hreflang="en">EN</a>
+        </div>
+
+        <a href="contact.html" class="nav-cta">Contact</a>
+      </nav>
     </div>
 
     <div class="nav-bottom">
-      <span class="nav-meta">LOC: <span id="location">LOCATIE OPHALEN...</span></span>
+      <div class="nav-loc">
+        <span class="nav-meta">LOC: <span id="location" data-fallback="ONBEKEND">LOCATIE OPHALEN...</span></span>
+        <span class="nav-meta nav-ip" hidden>IP: <span id="visitor-ip"></span></span>
+      </div>
 
       <div class="sig-bars">
-        <span class="nav-meta">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <!-- Smalle desktop (901–1240px): status staat hier i.p.v. in de nav-rij -->
+        <span class="nav-meta nav-status-alt">IN DIENST · ADVIES NA DE UREN</span>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
@@ -71,74 +96,241 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   <section id="projecten">
     <div class="sec-label">projecten</div>
-    <h2 class="sec-h2">wat ik gebouwd heb</h2>
+    <h1 class="sec-h2">wat ik gedaan heb</h1>
 
+    <h2 class="sec-label proj-group">recent werk</h2>
     <div class="proj-grid">
 
-      <div class="proj-card">
+      <article class="proj-card">
         <div class="proj-top">
-          <span class="proj-num">#001 — 2024/2025</span>
-          <span class="proj-status">Voltooid</span>
+          <span class="proj-status">IDENTITY</span>
         </div>
-        <div class="proj-title">Zabbix Monitoring Infrastructuur</div>
-        <div class="proj-desc">Volledige Zabbix 7.0 monitoring opgezet vanuit nul — SNMP voor UniFi switches, Konica Minolta printers en Zyxel firewall, inclusief auto-discovery, dashboards en Office365 alerting.</div>
+        <h3 class="proj-title">Laptops naar een nieuw domein</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Laptops stonden nog in het oude domein en moesten over naar het nieuwe.</dd>
+          <dt>aanpak</dt>
+          <dd>Toestel per toestel overgezet met Hybrid Entra ID join. De stappen staan in een runbook dat ik zelf schreef.</dd>
+        </dl>
         <div class="proj-stack">
-          <span class="proj-tag">Zabbix 7.0</span>
-          <span class="proj-tag">SNMPv2c</span>
-          <span class="proj-tag">UniFi</span>
-          <span class="proj-tag">ESXi</span>
-          <span class="proj-tag">M365</span>
+          <span class="proj-tag">Active Directory</span>
+          <span class="proj-tag">Entra ID</span>
+          <span class="proj-tag">Hybrid join</span>
+          <span class="proj-tag">Runbook</span>
         </div>
-      </div>
+      </article>
 
-      <div class="proj-card">
+      <article class="proj-card">
         <div class="proj-top">
-          <span class="proj-num">#002 — 2025</span>
-          <span class="proj-status">Voltooid</span>
+          <span class="proj-status">SECURITY</span>
         </div>
-        <div class="proj-title">PacketFence NAC — EAP-TLS</div>
-        <div class="proj-desc">PacketFence NAC lab met EAP-TLS authenticatie, eigen PKI (Root CA + SubCA), Microsoft Intune SCEP-integratie en PowerShell Wi-Fi certificaatautomatisering voor 106 scholen.</div>
+        <h3 class="proj-title">EDR op de servers</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>De servers draaiden nog op een oudere antivirus.</dd>
+          <dt>aanpak</dt>
+          <dd>Een EDR-agent uitgerold op de servers, ter vervanging van die antivirus.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">EDR</span>
+          <span class="proj-tag">Servers</span>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">BACKUP</span>
+        </div>
+        <h3 class="proj-title">Backup- en restore-tests</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Nagaan of backups ook echt terug te zetten zijn.</dd>
+          <dt>aanpak</dt>
+          <dd>Restore-tests uitgevoerd op Veeam en op een cloud-backupplatform.</dd>
+          <dt>resultaat</dt>
+          <dd>Elke test en het resultaat zijn gedocumenteerd.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">Veeam</span>
+          <span class="proj-tag">Cloud backup</span>
+          <span class="proj-tag">Restore-test</span>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">NETWERK</span>
+        </div>
+        <h3 class="proj-title">ISP-routers en core switch achter de firewall</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Nieuwe ISP-routers en een core switch moesten een plaats krijgen in het bestaande netwerk.</dd>
+          <dt>aanpak</dt>
+          <dd>Het IP-plan opgesteld en de toestellen achter de firewall geïntegreerd.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">NGFW</span>
+          <span class="proj-tag">Routing</span>
+          <span class="proj-tag">IP-planning</span>
+          <span class="proj-tag">Core switch</span>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">NETWERK</span>
+        </div>
+        <h3 class="proj-title">Verbindingsproblemen bij cloudtelefonie</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Cloudtelefonie voor meer dan 100 gebruikers had verbindingsproblemen.</dd>
+          <dt>aanpak</dt>
+          <dd>Het verkeer aan de firewallkant geanalyseerd om de oorzaak te vinden.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">NGFW</span>
+          <span class="proj-tag">VoIP</span>
+          <span class="proj-tag">Troubleshooting</span>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">MDM</span>
+        </div>
+        <h3 class="proj-title">Noodtelefoons voor brandpreventie</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Een brandpreventieproject had beheerde noodtelefoons nodig.</dd>
+          <dt>aanpak</dt>
+          <dd>De toestellen ingeschreven en beheerd via MDM.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">MDM</span>
+          <span class="proj-tag">Mobiele toestellen</span>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">SYSTEMEN</span>
+        </div>
+        <h3 class="proj-title">Handscanners naar een nieuwe server</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Draagbare barcodescanners moesten over naar een nieuwe server.</dd>
+          <dt>aanpak</dt>
+          <dd>De overstap voorbereid en de scanners getest tegen de nieuwe server.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">Migratie</span>
+          <span class="proj-tag">Testen</span>
+        </div>
+      </article>
+
+    </div>
+    <h2 class="sec-label proj-group">eerdere projecten</h2>
+    <div class="proj-grid">
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">NETWERK</span>
+        </div>
+        <h3 class="proj-title">Netwerkvernieuwing voor een lokale overheid</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Het netwerk van een lokale overheid was toe aan een herontwerp.</dd>
+          <dt>aanpak</dt>
+          <dd>As-is en to-be gedocumenteerd, een VLAN-schema ontworpen volgens het Core-Distribution-Access-model, en switches, firewalls en access points vergeleken op performance, beschikbaarheid en budget.</dd>
+          <dt>resultaat</dt>
+          <dd>De documentatie dient als basis voor de implementatie en voor NIS2-compliance.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">VLAN</span>
+          <span class="proj-tag">Zyxel</span>
+          <span class="proj-tag">UniFi</span>
+          <span class="proj-tag">NIS2</span>
+          <span class="proj-tag">Documentatie</span>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">MONITORING</span>
+        </div>
+        <h3 class="proj-title">Zabbix-monitoring en Wazuh SIEM</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Centraal zicht krijgen op servers, netwerktoestellen en security-events.</dd>
+          <dt>aanpak</dt>
+          <dd>Zabbix opgezet met SNMP en agents, dashboards, alerting en Windows Event Log. Daarnaast Wazuh als XDR/SIEM, met Windows-agents, active response en alerting op basis van regels.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">Zabbix</span>
+          <span class="proj-tag">SNMP</span>
+          <span class="proj-tag">Wazuh</span>
+          <span class="proj-tag">XDR / SIEM</span>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">SECURITY</span>
+        </div>
+        <h3 class="proj-title">Remote toegang met NetBird (ZTNA)</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Veilige toegang van buitenaf tot de interne infrastructuur.</dd>
+          <dt>aanpak</dt>
+          <dd>Een self-hosted NetBird geïnstalleerd en geconfigureerd als Zero Trust Network Access.</dd>
+        </dl>
+        <div class="proj-stack">
+          <span class="proj-tag">NetBird</span>
+          <span class="proj-tag">ZTNA</span>
+          <span class="proj-tag">Self-hosted</span>
+        </div>
+      </article>
+
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">SECURITY</span>
+        </div>
+        <h3 class="proj-title">PacketFence NAC met EAP-TLS</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Wi-Fi-toegang met certificaten voor een omgeving van 106 scholen.</dd>
+          <dt>aanpak</dt>
+          <dd>Uitgewerkt en opgebouwd in een labomgeving: PacketFence NAC met 802.1X en EAP-TLS, een eigen PKI en Intune voor de certificaten. De uitrol van certificaten geautomatiseerd met PowerShell.</dd>
+        </dl>
         <div class="proj-stack">
           <span class="proj-tag">PacketFence</span>
+          <span class="proj-tag">802.1X</span>
           <span class="proj-tag">EAP-TLS</span>
           <span class="proj-tag">PKI</span>
           <span class="proj-tag">Intune</span>
-          <span class="proj-tag">SCEP</span>
         </div>
-      </div>
+      </article>
 
-      <div class="proj-card">
+      <article class="proj-card">
         <div class="proj-top">
-          <span class="proj-num">#003 — 2025</span>
-          <span class="proj-status">In uitvoering</span>
+          <span class="proj-status">SECURITY</span>
         </div>
-        <div class="proj-title">VLAN Hervorming & Netwerk Renewal</div>
-        <div class="proj-desc">AS-IS documentatie, vendor-evaluatie (Fortinet, Zyxel, Peplink, MikroTik), firewall-matrix en complete VLAN-reorganisatie voor een Belgische gemeente.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">Fortinet</span>
-          <span class="proj-tag">VLAN</span>
-          <span class="proj-tag">Documentatie</span>
-          <span class="proj-tag">Tender</span>
-        </div>
-      </div>
-
-      <div class="proj-card">
-        <div class="proj-top">
-          <span class="proj-num">#004 — 2024</span>
-          <span class="proj-status">Voltooid</span>
-        </div>
-        <div class="proj-title">OpenZiti ZTNA + Entra ID</div>
-        <div class="proj-desc">Zero Trust Network Access via OpenZiti geïntegreerd met Microsoft Entra ID voor OIDC-authenticatie. JWT-signer configuratie en policy-setup voor veilige remote access.</div>
+        <h3 class="proj-title">Zero trust met OpenZiti en Entra ID</h3>
+        <dl class="proj-rows">
+          <dt>probleem</dt>
+          <dd>Toegang tot diensten op basis van identiteit en certificaten.</dd>
+          <dt>aanpak</dt>
+          <dd>In een labomgeving een zero-trust-architectuur opgezet met OpenZiti, gekoppeld aan Microsoft Entra ID.</dd>
+        </dl>
         <div class="proj-stack">
           <span class="proj-tag">OpenZiti</span>
-          <span class="proj-tag">ZTNA</span>
+          <span class="proj-tag">Zero trust</span>
           <span class="proj-tag">Entra ID</span>
-          <span class="proj-tag">OIDC</span>
         </div>
-      </div>
+      </article>
 
     </div>
   </section>
@@ -147,10 +339,11 @@
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
   <p class="foot-r">&copy;<span id="year"></span> Ali Tunç - All Rights Reserved.</p>
-  <span class="foot-r">systeem &amp; netwerk beheer — beschikbaar voor opdrachten</span>
+  <span class="foot-r">systeem- &amp; netwerkbeheer · security</span>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/ip-location.js" defer></script>
 
 </body>
 </html>

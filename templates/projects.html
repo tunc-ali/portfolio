@@ -1,0 +1,27 @@
+  <section id="projecten">
+    <div class="sec-label">{{ projects.label }}</div>
+    <h1 class="sec-h2">{{ projects.title }}</h1>
+
+{% for group in projects.groups %}    <h2 class="sec-label proj-group">{{ group.label }}</h2>
+    <div class="proj-grid">
+{% for card in group.cards %}
+      <article class="proj-card">
+        <div class="proj-top">
+          <span class="proj-status">{{ card.tag }}</span>
+        </div>
+        <h3 class="proj-title">{{ card.title }}</h3>
+        <dl class="proj-rows">
+          <dt>{{ projects.problem }}</dt>
+          <dd>{{ card.problem }}</dd>
+          <dt>{{ projects.approach }}</dt>
+          <dd>{{ card.approach }}</dd>
+{% if card.result %}          <dt>{{ projects.result }}</dt>
+          <dd>{{ card.result }}</dd>
+{% endif %}        </dl>
+        <div class="proj-stack">
+{% for tag in card.tags %}          <span class="proj-tag">{{ tag }}</span>
+{% endfor %}        </div>
+      </article>
+{% endfor %}
+    </div>
+{% endfor %}  </section>

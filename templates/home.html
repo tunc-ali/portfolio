@@ -1,0 +1,176 @@
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero" id="home">
+
+    <div class="hero-tag fade-in d1">
+      <span class="sep">$</span>
+      {{ home.tag_role }}
+      <span class="sep">—</span>
+      {{ home.tag_place }}
+    </div>
+
+    <h1 class="hero-h1 fade-in d2">
+      <span class="dim">{{ home.h1_dim }}</span><br>
+      <span class="bright">{{ home.h1_bright }}</span><br>
+      <span class="green">{{ home.h1_green }}</span>
+    </h1>
+
+    <p class="hero-sub fade-in d3">
+      {{ home.sub }}
+    </p>
+
+    <div class="hero-btns fade-in d4">
+      <a href="{{ url.services }}" class="btn-p">{{ home.btn_services }}</a>
+      <a href="{{ url.contact }}" class="btn-g">{{ home.btn_contact }}</a>
+    </div>
+
+    <div class="hero-stats fade-in d5">
+{% for s in home.stats %}      <div class="stat">
+        <span class="stat-n">{{ s.n }}</span>
+        <span class="stat-l">{{ s.label }}</span>
+      </div>
+{% endfor %}    </div>
+  </section>
+
+  <!-- ══════════ TOPOLOGIE (3D) ══════════
+       Zonder WebGL/JS blijft de lijst hieronder als volwaardige fallback staan. -->
+  <section class="topo" id="netwerk" data-scene="topology">
+    <div class="sec-label">{{ home.topology.label }}</div>
+    <h2 class="sec-h2 topo-h2">{{ home.topology.title }}</h2>
+    <p class="scene-hint">{{ home.topology.hint }}</p>
+
+    <div class="topo-wrap">
+      <div class="topo-stage" data-canvas-label="{{ home.topology.canvas_label }}">
+        <p class="scene-loading">{{ home.topology.loading }}</p>
+      </div>
+
+      <div class="topo-tools">
+        <button type="button" class="topo-tool" data-zoom="in" aria-label="{{ home.topology.zoom_in }}">+</button>
+        <button type="button" class="topo-tool" data-zoom="out" aria-label="{{ home.topology.zoom_out }}">−</button>
+        <button type="button" class="topo-tool" data-zoom="reset" aria-label="{{ home.topology.reset }}">⟲</button>
+      </div>
+
+      <aside class="topo-panel" aria-live="polite" hidden>
+        <button type="button" class="topo-close" aria-label="{{ home.topology.close }}">×</button>
+        <div class="topo-panel-body"></div>
+      </aside>
+
+      <ul class="topo-list" aria-label="{{ home.topology.list_label }}">
+{% for n in home.topology.nodes %}        <li data-node="{{ n.id }}">
+          <button type="button" class="topo-item" aria-pressed="false">{{ n.label }}</button>
+          <div class="topo-detail">
+            <p class="topo-zone">{{ n.zone }}</p>
+            <h3 class="topo-name">{{ n.label }}</h3>
+            <p><span class="topo-key">{{ home.topology.role_label }}</span> {{ n.role }}</p>
+            <p><span class="topo-key">{{ home.topology.tech_label }}</span> {{ n.tech }}</p>
+            <p class="topo-note">{{ n.note }}</p>
+          </div>
+        </li>
+{% endfor %}      </ul>
+    </div>
+    <p class="scene-caption">{{ home.topology.disclaimer }}</p>
+  </section>
+
+  <!-- ══════════ TERMINAL + VERKEERSBOL ══════════ -->
+  <section class="live" id="live">
+    <div class="live-grid">
+
+      <div class="live-col">
+        <h2 class="sec-label">{{ home.terminal.label }}</h2>
+        <div class="terminal-wrap">
+          <div class="terminal-frame">
+            <div class="corner c-tl"></div>
+            <div class="corner c-tr"></div>
+            <div class="corner c-bl"></div>
+            <div class="corner c-br"></div>
+
+            <div class="t-bar">
+              <div class="t-dot t-dot-r"></div>
+              <div class="t-dot t-dot-y"></div>
+              <div class="t-dot t-dot-g"></div>
+              <span class="t-title">ali@infra ~ zsh</span>
+            </div>
+
+            <div class="t-body" id="terminal">
+              <div class="t-log" role="log" aria-live="polite">
+                <div>
+                  <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+                  <span class="t-d">:</span><span class="t-p">~</span>
+                  <span class="t-d">$ </span><span class="t-c">whoami</span>
+                </div>
+                <div><span class="t-o">→</span> <span class="t-w">{{ home.terminal.whoami }}</span></div>
+                <br>
+                <div>
+                  <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+                  <span class="t-d">:</span><span class="t-p">~</span>
+                  <span class="t-d">$ </span><span class="t-c">cat</span> <span class="t-s">skills.conf</span>
+                </div>
+{% for row in home.terminal.skills %}                <div><span class="t-o">→</span> <span class="t-k">{{ row.key }}</span> <span class="t-w">{{ row.value }}</span></div>
+{% endfor %}                <br>
+              </div>
+
+              <!-- Zonder JS: statische prompt. Met JS: js/terminal.js toont het invoerveld. -->
+              <div class="t-static">
+                <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+                <span class="t-d">:</span><span class="t-p">~</span>
+                <span class="t-d">$ </span><span class="t-cursor"></span>
+              </div>
+              <form class="t-form" hidden autocomplete="off">
+                <label class="t-prompt" for="t-input">
+                  <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+                  <span class="t-d">:</span><span class="t-p">~</span>
+                  <span class="t-d">$</span>
+                  <span class="visually-hidden">{{ home.terminal.input_label }}</span>
+                </label>
+                <input class="t-input" id="t-input" type="text" maxlength="80"
+                       autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send">
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-chips" hidden>
+          <span class="t-chips-hint">{{ home.terminal.hint }}</span>
+{% for c in home.terminal.chips %}          <button type="button" class="t-chip" data-cmd="{{ c }}">{{ c }}</button>
+{% endfor %}        </div>
+        <script type="application/json" id="terminal-data">{{{ terminal_json }}}</script>
+      </div>
+
+      <div class="live-col" data-scene="globe">
+        <h2 class="sec-label">{{ home.globe.label }}</h2>
+        <div class="globe-stage" data-canvas-label="{{ home.globe.canvas_label }}" data-you="{{ home.globe.you }}">
+          <span class="sim-badge">{{ home.globe.badge }}</span>
+          <p class="scene-loading">{{ home.globe.loading }}</p>
+          <p class="scene-fallback">{{ home.globe.fallback }}</p>
+        </div>
+        <p class="scene-caption">{{ home.globe.caption }}</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════ SECURITY-NIEUWS ══════════
+       js/news.js vult de lijst uit json/news.json (nu voorbeelddata). -->
+  <section class="news" id="nieuws">
+    <div class="sec-label">{{ home.news.label }}</div>
+    <h2 class="sec-h2">{{ home.news.title }}</h2>
+
+    <ul class="news-list" aria-live="polite">
+      <li class="news-loading">{{ home.news.loading }}</li>
+    </ul>
+    <p class="news-sample" hidden>{{ home.news.sample }}</p>
+    <p class="news-sources">
+      <span class="topo-key">{{ home.news.sources_label }}</span>
+      <a href="https://thehackernews.com/" rel="noopener noreferrer">The Hacker News</a>
+      <a href="https://www.bleepingcomputer.com/" rel="noopener noreferrer">BleepingComputer</a>
+      <a href="https://krebsonsecurity.com/" rel="noopener noreferrer">Krebs on Security</a>
+      <a href="https://www.cisa.gov/news-events/cybersecurity-advisories" rel="noopener noreferrer">CISA</a>
+    </p>
+  </section>
+
+  <!-- ══════════ CTA ══════════ -->
+  <section class="cta" id="cta">
+    <div class="sec-label sec-label--center">{{ cta.label }}</div>
+    <h2 class="sec-h2 sec-h2--center">{{ cta.title }}</h2>
+    <p class="cta-text">{{ cta.text }}</p>
+    <a href="{{ url.contact }}" class="btn-p">{{ cta.button }}</a>
+  </section>

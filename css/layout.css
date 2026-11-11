@@ -1,0 +1,228 @@
+/* layout.css — nav, sectie-basis en footer (op elke pagina gelijk) */
+
+/* ── NAV GLASSMORPHISM EFFECT ────────────────────────────────
+   Transparante nav met blur zodat de achtergrond doorschijnt  */
+.nav-wrapper {
+  position: sticky; top: 0; z-index: 200;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ── NAV FRAME RECHTHOEK BORDER ─────────────────────────────
+   Volledige rechthoek border rondom de nav                   */
+.nav-frame {
+  border: 1px solid var(--border2);
+  background: rgba(8,10,4,0.1);
+  position: relative;
+  max-width: 100%;
+  margin: 0;
+}
+
+.nav-topbar {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%, var(--accent) 15%, var(--accent) 85%, transparent 100%);
+  opacity: 0.6;
+}
+
+.nav-inner {
+  display: flex; align-items: center;
+  padding: 0 1.25rem;
+  height: 50px;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 0.55rem;
+  margin-right: 2rem; flex-shrink: 0;
+}
+.logo-mark {
+  width: 26px; height: 26px;
+  border: 1.5px solid var(--accent);
+  border-radius: 3px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 14px; height: 14px; }
+.logo-name {
+  font-family: var(--display);
+  font-size: 1.05rem; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text);
+}
+
+.nav-sep {
+  width: 1px; height: 26px;
+  background: var(--border2);
+  margin-right: 1.5rem; flex-shrink: 0;
+}
+
+.nav-links {
+  display: flex; list-style: none; flex: 1;
+}
+.nav-links a {
+  display: flex; align-items: center; justify-content: center;
+  height: 50px; padding: 0 1rem;
+  min-width: 80px; /* alle nav items hebben een minimale breedte */
+  font-family: var(--display);
+  font-size: 0.875rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-dim);
+  border-right: 1px solid var(--border);
+  transition: color 0.15s, background 0.15s;
+  position: relative;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--accent);
+  background: rgba(173,205,101,0.03);
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1.5px; background: var(--accent);
+}
+
+/* ── STATUS (BESCHIKBAAR) ────────────────────────────────────
+   Groen = beschikbaar, Rood = niet beschikbaar
+   Dot en tekst flikkeren samen (neon effect)                  */
+.nav-status {
+  display: flex; align-items: center; gap: 0.45rem;
+  padding: 0 1.1rem; height: 50px;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--text-muted); flex-shrink: 0;
+}
+.status-wrapper.beschikbaar,
+.status-wrapper.niet-beschikbaar {
+  display: flex; align-items: center; gap: 0.45rem;
+  animation: flicker 1.5s infinite;
+}
+.status-wrapper.beschikbaar      { color: var(--accent); }
+.status-wrapper.niet-beschikbaar { color: #e06c75; }
+
+.status-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+/* ── CONTACT CTA ─────────────────────────────────────────────
+   Bij hover: border rondom + knipperend neon effect           */
+.nav-cta {
+  position: relative;
+  margin-left: 1rem; flex-shrink: 0;
+  padding: 0.42rem 1.3rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: var(--display);
+  font-size: 0.875rem; font-weight: 800;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  transition: opacity 0.15s, background 0.15s;
+  border: none; cursor: pointer;
+}
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover::before { opacity: 1; }
+.nav-cta:hover {
+  opacity: 0.82;
+  animation: flicker 1.5s infinite;
+  box-shadow: 0 0 5px var(--accent), 0 0 20px var(--accent);
+  clip-path: none;
+}
+
+/* ── NAV BOTTOM (LOC / SYS balk) ──────────────────────────── */
+.nav-bottom {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 0.3rem 1.25rem;
+  background: rgba(173,205,101,0.015);
+  border-top: 1px solid var(--border);
+}
+.nav-meta {
+  font-size: 0.72rem; letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.nav-meta span { color: var(--text-dim); }
+
+.sig-bars {
+  display: flex; align-items: flex-end; gap: 2px;
+}
+.sig-bar {
+  width: 3px; border-radius: 1px; background: var(--accent-dim);
+}
+.sig-bar.on { background: var(--accent); }
+/* nth-of-type: de SYS-tekst (span) staat in dezelfde container */
+.sig-bar:nth-of-type(1) { height: 3px; }
+.sig-bar:nth-of-type(2) { height: 5px; }
+.sig-bar:nth-of-type(3) { height: 7px; }
+.sig-bar:nth-of-type(4) { height: 9px; }
+.sig-bar:nth-of-type(5) { height: 11px; }
+
+/* ── SECTION BASE ─────────────────────────────────────────── */
+section { padding: 5rem 4rem; }
+
+.sec-label {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.78rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+.sec-label::before { content: '//'; color: var(--text-muted); }
+.sec-label--sub    { margin-bottom: 1.5rem; }
+.sec-label--center { justify-content: center; }
+
+.sec-h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  font-weight: 800; line-height: 0.95;
+  letter-spacing: -0.5px;
+  margin-bottom: 3rem;
+}
+.sec-h2--center { text-align: center; margin-bottom: 2rem; }
+
+.placeholder { font-size: 0.95rem; color: var(--text-dim); }
+
+/* ── FOOTER ───────────────────────────────────────────────── */
+footer {
+  padding: 1.25rem 4rem;
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 0.5rem;
+}
+.foot-l { font-size: 0.75rem; color: var(--text-muted); }
+.foot-l span { color: var(--accent); }
+.foot-r { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  section { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+  /* Nav */
+  .nav-wrapper { padding: 0.75rem 1rem; }
+  .nav-links { display: none; }
+  .nav-status { display: none; }
+  .nav-cta { display: none; } /* of hamburger menu later */
+  .nav-logo { margin-right: auto; }
+  .nav-bottom { display: none; }
+
+  /* Footer */
+  footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Nav logo naam verbergen op heel klein scherm */
+  .logo-name { display: none; }
+}

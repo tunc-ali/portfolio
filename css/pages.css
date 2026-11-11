@@ -1,0 +1,140 @@
+/* pages.css — pagina-specifieke stijlen (hero, over mij, contact) */
+
+/* ── HERO (home) ──────────────────────────────────────────── */
+.hero {
+  min-height: 92vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 5rem 4rem 3rem;
+  position: relative; overflow: hidden;
+  margin: 0 1.5rem; /* foto binnen de zijlijnen */
+
+  /* Achtergrondafbeelding
+     background-attachment: fixed = foto blijft staan bij scrollen
+     background-size: cover = foto vult altijd het hele scherm    */
+  /* Donkere overlay (links sterker) houdt de tekst leesbaar op de foto */
+  background-image:
+    linear-gradient(90deg, rgba(8,12,4,0.88) 0%, rgba(8,12,4,0.72) 45%, rgba(8,12,4,0.35) 100%),
+    url('../images/network_with_military_green.webp');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* background grid */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(173,205,101,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(173,205,101,0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* radial glow top-right */
+.hero::after {
+  content: '';
+  position: absolute; top: -160px; right: -120px;
+  width: 700px; height: 700px;
+  background: radial-gradient(ellipse,
+    rgba(173,205,101,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-tag {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.8rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 1.75rem; position: relative; z-index: 1;
+}
+.hero-tag::before {
+  content: ''; display: block;
+  width: 28px; height: 1px; background: var(--accent);
+}
+.hero-tag .sep { color: var(--text-muted); }
+
+.hero-h1 {
+  font-family: var(--display);
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -1px;
+  margin-bottom: 2rem;
+  position: relative; z-index: 1;
+  max-width: 1000px;
+}
+.hero-h1 .dim    { color: var(--text-muted); }
+.hero-h1 .bright { color: var(--text); }
+.hero-h1 .green  { color: var(--accent); }
+
+.hero-sub {
+  font-size: 1rem; line-height: 1.8;
+  color: var(--text-dim); max-width: 540px;
+  margin-bottom: 2.5rem; position: relative; z-index: 1;
+}
+
+.hero-btns {
+  display: flex; gap: 0.875rem; flex-wrap: wrap;
+  position: relative; z-index: 1; margin-bottom: 4rem;
+}
+
+.hero-stats {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  padding-top: 2rem; position: relative; z-index: 1;
+}
+.stat { display: flex; flex-direction: column; gap: 0.2rem; }
+.stat-n {
+  font-family: var(--display);
+  font-size: 2.2rem; font-weight: 800;
+  color: var(--accent); letter-spacing: -1px; line-height: 1;
+}
+.stat-l {
+  font-size: 0.75rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+
+/* ── SECTIE-ACHTERGRONDEN ─────────────────────────────────── */
+#diensten  { background: var(--bg2); }
+#over      { background: var(--bg); }
+#projecten { background: var(--bg2); }
+#contact {
+  background: var(--bg);
+  text-align: center; padding: 6rem 4rem;
+}
+
+/* ── OVER MIJ ─────────────────────────────────────────────── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 0.95rem; line-height: 1.85;
+  color: var(--text-dim); margin-bottom: 1rem;
+}
+.about-text strong { color: var(--text); font-weight: 500; }
+.about-text .hl { color: var(--accent); }
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero {
+    margin: 0;
+    padding: 3rem 1.5rem 2rem;
+    background-attachment: scroll; /* fixed werkt slecht op iOS Safari */
+    min-height: 80vh;
+    /* op smal scherm staat de tekst over de hele breedte → egale overlay */
+    background-image:
+      linear-gradient(rgba(8,12,4,0.8), rgba(8,12,4,0.8)),
+      url('../images/network_with_military_green.webp');
+  }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  #contact { padding: 4rem 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  /* lang woord 'verantwoordelijkheid.' moet op 360px passen */
+  .hero-h1 { letter-spacing: -0.5px; font-size: clamp(2rem, 10.5vw, 3.5rem); overflow-wrap: break-word; }
+  .hero-tag { flex-wrap: wrap; letter-spacing: 0.12em; gap: 0.5rem; }
+  .hero-btns { flex-direction: column; }
+  .hero-stats { gap: 1.25rem; }
+}

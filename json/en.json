@@ -1,0 +1,661 @@
+{
+  "nav": {
+    "skip": "Skip to content",
+    "home_label": "Ali Tunç — home",
+    "menu": "Menu",
+    "main": "Main navigation",
+    "lang_label": "Language",
+    "services": "Expertise",
+    "about": "About",
+    "projects": "Projects",
+    "notes": "Lab notes",
+    "cv": "CV",
+    "contact": "Contact",
+    "status": "EMPLOYED · AFTER-HOURS ADVICE",
+    "loc_loading": "FETCHING LOCATION...",
+    "loc_fallback": "UNKNOWN"
+  },
+  "footer": {
+    "rights": "Ali Tunç - All Rights Reserved.",
+    "tagline": "system & network administration · security"
+  },
+  "pages": {
+    "home": {
+      "title": "Ali Tunç — system and network administrator",
+      "description": "System and network administrator. Servers, networks, firewalls, Microsoft 365, backups and security."
+    },
+    "services": {
+      "title": "Expertise — Ali Tunç, system and network administrator",
+      "description": "What I do: network and firewall, systems and virtualisation, Microsoft 365, backup, monitoring and security."
+    },
+    "about": {
+      "title": "About — Ali Tunç",
+      "description": "Who I am, what I do day to day as a system and network administrator, and how I work."
+    },
+    "projects": {
+      "title": "Projects — Ali Tunç",
+      "description": "Recent and earlier projects: domain migration, EDR, restore tests, network renewal, monitoring, NAC and ZTNA."
+    },
+    "contact": {
+      "title": "Contact — Ali Tunç, system and network administrator",
+      "description": "Send a message. Outside office hours I help with advice and remote support."
+    },
+    "cv": {
+      "title": "CV — Ali Tunç, system and network administrator",
+      "description": "CV of Ali Tunç, system and network administrator: expertise by area, recent projects, education and languages."
+    }
+  },
+  "home": {
+    "tag_role": "system & network administration",
+    "tag_place": "security",
+    "h1_dim": "I run networks.",
+    "h1_bright": "and I know",
+    "h1_green": "how they break.",
+    "sub": "I'm Ali, a system and network administrator. I keep servers, switches and firewalls running, segment networks and check that a backup actually restores. Security is part of that: hardening, firewall policy, EDR.",
+    "btn_services": "See expertise",
+    "btn_contact": "Send a message →",
+    "stats": [
+      {
+        "n": "7+",
+        "label": "years of experience"
+      },
+      {
+        "n": "9",
+        "label": "network vendors"
+      },
+      {
+        "n": "4",
+        "label": "languages"
+      }
+    ],
+    "terminal": {
+      "whoami": "Ali Tunç — system and network administrator",
+      "skills": [
+        {
+          "key": "network",
+          "value": "VLAN, OSPF, segmentation, VPN (IPsec, WireGuard)"
+        },
+        {
+          "key": "firewall",
+          "value": "FortiGate, WatchGuard, Zyxel, UniFi EFG, Barracuda, pfSense"
+        },
+        {
+          "key": "switching",
+          "value": "UniFi, Cisco, Dell, Netgear"
+        },
+        {
+          "key": "systems",
+          "value": "Windows Server, AD, Linux, Nutanix, vSphere, Hyper-V"
+        },
+        {
+          "key": "cloud",
+          "value": "Microsoft 365, Entra ID, Intune, SharePoint"
+        },
+        {
+          "key": "backup",
+          "value": "Veeam, restore tests"
+        },
+        {
+          "key": "monitoring",
+          "value": "Zabbix, Wazuh (XDR/SIEM)"
+        },
+        {
+          "key": "security",
+          "value": "hardening, EDR, NAC (PacketFence, EAP-TLS)"
+        },
+        {
+          "key": "languages",
+          "value": "Dutch, English, Turkish, Azerbaijani"
+        }
+      ],
+      "label": "terminal",
+      "input_label": "Terminal input: type a command and press Enter",
+      "hint": "type 'help' or pick:",
+      "chips": [
+        "help",
+        "whoami",
+        "skills",
+        "projects",
+        "contact"
+      ],
+      "cmd": {
+        "help_title": "Available commands:",
+        "help": [
+          {
+            "c": "help",
+            "d": "show this list"
+          },
+          {
+            "c": "whoami",
+            "d": "who am I"
+          },
+          {
+            "c": "skills",
+            "d": "technical skills"
+          },
+          {
+            "c": "projects",
+            "d": "overview of projects"
+          },
+          {
+            "c": "contact",
+            "d": "how to reach me"
+          },
+          {
+            "c": "lang [nl|en]",
+            "d": "show or switch language"
+          },
+          {
+            "c": "clear",
+            "d": "clear the screen"
+          }
+        ],
+        "not_found": "command not found: {cmd} — type 'help'",
+        "projects_link": "→ view all projects",
+        "contact_text": "The fastest way to reach me is the contact page.",
+        "contact_link": "→ open contact page",
+        "lang_current": "current language: {lang}",
+        "lang_usage": "usage: lang nl | lang en",
+        "lang_switch": "switching language to {lang}…",
+        "lang_same": "that is already the current language.",
+        "sudo": "permission denied: visitor is not in the sudoers file. This incident will be reported. ;)",
+        "nmap": [
+          "Starting Nmap ( simulation ) — target: alitunc.net",
+          "Host is up.",
+          "PORT     STATE  SERVICE",
+          "80/tcp   open   http",
+          "443/tcp  open   https",
+          "Nmap done: 1 host scanned (replayed, nothing was sent)."
+        ],
+        "nmap_scope": "out of scope: {target}. Only alitunc.net may be (mock) scanned here. Never scan without permission."
+      }
+    },
+    "topology": {
+      "label": "network",
+      "title": "a network the way I build it",
+      "hint": "Drag to rotate · click a node for details · click inside the view first to zoom with the scroll wheel",
+      "canvas_label": "Interactive 3D network topology. Arrow keys rotate the view; all nodes are also listed below the view.",
+      "loading": "Loading 3D view…",
+      "zoom_in": "Zoom in",
+      "zoom_out": "Zoom out",
+      "reset": "Reset view",
+      "close": "Close",
+      "list_label": "Nodes in the topology",
+      "role_label": "role",
+      "tech_label": "technology",
+      "disclaimer": "Example topology with technology I work with — not a representation of a real client or employer environment.",
+      "nodes": [
+        {
+          "id": "internet",
+          "label": "Internet",
+          "zone": "internet / cloud",
+          "role": "WAN uplink and secure access from outside.",
+          "tech": "ZTNA (OpenZiti), VPN, DNS",
+          "note": ""
+        },
+        {
+          "id": "m365",
+          "label": "Cloud / identity",
+          "zone": "internet / cloud",
+          "role": "Identity, mail and device management in the cloud.",
+          "tech": "Microsoft 365, Entra ID, Exchange Online, Intune (MDM / identity)",
+          "note": ""
+        },
+        {
+          "id": "fw",
+          "label": "Firewall",
+          "zone": "corporate network",
+          "role": "Perimeter, segmentation between VLANs and VPN.",
+          "tech": "FortiGate, WatchGuard, Zyxel USG FLEX, UniFi EFG, pfSense — NGFW policies",
+          "note": ""
+        },
+        {
+          "id": "core",
+          "label": "Core switch",
+          "zone": "corporate network",
+          "role": "Heart of the network: inter-VLAN traffic and uplinks.",
+          "tech": "Cisco, UniFi, Dell — VLAN design, STP",
+          "note": ""
+        },
+        {
+          "id": "sw-a",
+          "label": "Access switch A",
+          "zone": "corporate network",
+          "role": "Workstations and peripherals per VLAN.",
+          "tech": "UniFi, Cisco 2960S — access VLANs",
+          "note": ""
+        },
+        {
+          "id": "sw-b",
+          "label": "Access switch B",
+          "zone": "corporate network",
+          "role": "Server room: trunks to hypervisor and backup.",
+          "tech": "Cisco 2960S, UniFi — trunks, STP",
+          "note": ""
+        },
+        {
+          "id": "ap",
+          "label": "Wi-Fi AP",
+          "zone": "corporate network",
+          "role": "Wireless access with certificate-based authentication.",
+          "tech": "UniFi — PacketFence NAC, EAP-TLS, Intune/SCEP",
+          "note": ""
+        },
+        {
+          "id": "mon",
+          "label": "Monitoring",
+          "zone": "corporate network",
+          "role": "Watches every node and alerts on failures.",
+          "tech": "Zabbix 7.0 — SNMP, auto-discovery, alerting",
+          "note": ""
+        },
+        {
+          "id": "esxi",
+          "label": "Hypervisor",
+          "zone": "corporate network",
+          "role": "Runs the virtual servers.",
+          "tech": "Nutanix AHV, VMware vSphere, Hyper-V",
+          "note": ""
+        },
+        {
+          "id": "backup",
+          "label": "Backup",
+          "zone": "corporate network",
+          "role": "Backups and recovery for business continuity.",
+          "tech": "Veeam Backup & Replication",
+          "note": ""
+        },
+        {
+          "id": "lab",
+          "label": "Pentest lab",
+          "zone": "lab / training environment — isolated",
+          "role": "Practice environment for ethical hacking, separate from any corporate network.",
+          "tech": "Kali Linux, Hack The Box, PortSwigger Web Security Academy",
+          "note": "Lab / training environment — not production infrastructure. Connected to the internet only."
+        }
+      ]
+    },
+    "globe": {
+      "label": "traffic",
+      "badge": "simulation",
+      "loading": "Loading 3D view…",
+      "you": "YOU",
+      "canvas_label": "Rotating globe with simulated traffic arcs between cities.",
+      "caption": "Sample data — no real attacks or live traffic. The bright arc starts from your location (LOC).",
+      "fallback": "The 3D globe is not available in this browser. It is a decorative simulation of network traffic between cities."
+    },
+    "news": {
+      "label": "news",
+      "title": "security news",
+      "loading": "Loading news…",
+      "sample": "Sample view. The live feed from the sources below will be connected later.",
+      "sources_label": "sources"
+    }
+  },
+  "services": {
+    "label": "expertise",
+    "title": "what I do",
+    "intro": "Six areas I work in every day. Each one lists what I have hands-on experience with.",
+    "cards": [
+      {
+        "id": "#01 — NETWORK",
+        "icon": "[NW]",
+        "title": "Network & firewall",
+        "desc": "I design VLAN schemes, segment networks and manage routing, firewall policy and VPN. I have worked with Fortinet (FortiGate), Ubiquiti (UniFi, EFG), Cisco, WatchGuard, Dell, Barracuda, Netgear, Zyxel and pfSense.",
+        "tags": [
+          "VLAN",
+          "OSPF",
+          "ACL / NAT",
+          "RSTP",
+          "EtherChannel",
+          "IPsec",
+          "WireGuard"
+        ]
+      },
+      {
+        "id": "#02 — SYSTEMS",
+        "icon": "[SYS]",
+        "title": "Systems & virtualisation",
+        "desc": "Windows Server with Active Directory and GPO, Linux servers, and virtualisation on Nutanix (AHV, Prism), VMware vSphere (vCenter, ESXi) and Hyper-V. Work that keeps coming back gets scripted in PowerShell, Python or Bash.",
+        "tags": [
+          "Windows Server",
+          "Active Directory",
+          "GPO",
+          "Linux",
+          "Nutanix AHV",
+          "VMware vSphere",
+          "Hyper-V",
+          "PowerShell"
+        ]
+      },
+      {
+        "id": "#03 — IDENTITY",
+        "icon": "[M365]",
+        "title": "Microsoft 365 & identity",
+        "desc": "Administration of Microsoft 365 and SharePoint, Entra ID with Hybrid join, and devices through Intune. Also experience with certificates from a private PKI with SCEP.",
+        "tags": [
+          "Microsoft 365",
+          "Entra ID",
+          "Hybrid join",
+          "Intune",
+          "SharePoint",
+          "AD CS / SCEP"
+        ]
+      },
+      {
+        "id": "#04 — BACKUP",
+        "icon": "[BKP]",
+        "title": "Backup & recovery",
+        "desc": "With Veeam I have done a lot of backups and restores on Nutanix, VMware vSphere and Hyper-V. I also work with a cloud backup platform. I test restores and document what came back and what did not.",
+        "tags": [
+          "Veeam",
+          "Nutanix",
+          "vSphere",
+          "Hyper-V",
+          "Cloud backup",
+          "Restore tests"
+        ]
+      },
+      {
+        "id": "#05 — MONITORING",
+        "icon": "[MON]",
+        "title": "Monitoring",
+        "desc": "Zabbix with agents and SNMP, dashboards and alerting, plus Windows Event Log.",
+        "tags": [
+          "Zabbix",
+          "SNMP",
+          "Dashboards",
+          "Alerting",
+          "Event Log"
+        ]
+      },
+      {
+        "id": "#06 — SECURITY",
+        "icon": "[SEC]",
+        "title": "Security",
+        "desc": "Hardening, segmentation and firewall policy, EDR on servers, and network access with 802.1X and certificates. For detection and secure remote access I have worked with Wazuh, NetBird and OpenZiti.",
+        "tags": [
+          "Hardening",
+          "EDR",
+          "NGFW",
+          "PacketFence NAC",
+          "802.1X / EAP-TLS",
+          "Wazuh",
+          "ZTNA"
+        ]
+      }
+    ],
+    "lab": {
+      "label": "lab",
+      "title": "where I test attacks and defences",
+      "intro": "Alongside the admin work I keep an isolated lab. There I run attacks against test machines and watch what the defences pick up.",
+      "cards": [
+        {
+          "title": "Environment",
+          "desc": "Kali Linux and test machines, separated from any production network."
+        },
+        {
+          "title": "Web applications",
+          "desc": "Burp Suite and the labs of the PortSwigger Web Security Academy."
+        },
+        {
+          "title": "Practice machines",
+          "desc": "Machines on Hack The Box, from reconnaissance to access."
+        },
+        {
+          "title": "Back into operations",
+          "desc": "What I see in the lab gets applied: hardening, segmentation, firewall rules and detection."
+        }
+      ],
+      "note": "I only test in my own lab and on platforms built for that purpose."
+    }
+  },
+  "about": {
+    "label": "about",
+    "title_1": "who I am,",
+    "title_2": "how I work",
+    "paragraphs": [
+      "I'm <strong>Ali Tunç</strong>, a system and network administrator. I work full-time for an international manufacturer. I manage, maintain and improve the infrastructure there and take part in IT projects. IT at one of the sites is my responsibility. Now and then we do configuration and maintenance on location at sites abroad.",
+      "Recent work: moved laptops to a new domain with Hybrid Entra ID join, rolled out an EDR agent to the servers, ran and documented restore tests, fitted ISP routers and a core switch in behind the firewall, and analysed connection problems with cloud telephony for more than a hundred users on the firewall side.",
+      "I have a few fixed habits. I write down what I do, in runbooks a colleague can follow. I test before I roll anything out. And a backup only counts once the restore has worked.",
+      "Security is part of the daily work: hardening, segmentation, firewall policy, EDR. In an isolated lab I test attacks and defences. What I see there goes back into how I run things."
+    ],
+    "skills_label": "technology by area"
+  },
+  "projects": {
+    "label": "projects",
+    "title": "what I've done",
+    "problem": "problem",
+    "approach": "approach",
+    "result": "result",
+    "groups": [
+      {
+        "label": "recent work",
+        "cards": [
+          {
+            "tag": "IDENTITY",
+            "title": "Laptops to a new domain",
+            "problem": "Laptops were still joined to the old domain and had to move to the new one.",
+            "approach": "Moved them one by one with Hybrid Entra ID join. The steps are in a runbook I wrote myself.",
+            "result": "",
+            "tags": [
+              "Active Directory",
+              "Entra ID",
+              "Hybrid join",
+              "Runbook"
+            ]
+          },
+          {
+            "tag": "SECURITY",
+            "title": "EDR on the servers",
+            "problem": "The servers were still running an older antivirus product.",
+            "approach": "Rolled out an EDR agent to the servers to replace it.",
+            "result": "",
+            "tags": [
+              "EDR",
+              "Servers"
+            ]
+          },
+          {
+            "tag": "BACKUP",
+            "title": "Backup and restore tests",
+            "problem": "Checking that backups can actually be restored.",
+            "approach": "Ran restore tests on Veeam and on a cloud backup platform.",
+            "result": "Every test and its outcome is documented.",
+            "tags": [
+              "Veeam",
+              "Cloud backup",
+              "Restore test"
+            ]
+          },
+          {
+            "tag": "NETWORK",
+            "title": "ISP routers and core switch behind the firewall",
+            "problem": "New ISP routers and a core switch had to be fitted into the existing network.",
+            "approach": "Drew up the IP plan and integrated the devices behind the firewall.",
+            "result": "",
+            "tags": [
+              "NGFW",
+              "Routing",
+              "IP planning",
+              "Core switch"
+            ]
+          },
+          {
+            "tag": "NETWORK",
+            "title": "Connection problems with cloud telephony",
+            "problem": "Cloud telephony for more than 100 users had connection problems.",
+            "approach": "Analysed the traffic on the firewall side to find the cause.",
+            "result": "",
+            "tags": [
+              "NGFW",
+              "VoIP",
+              "Troubleshooting"
+            ]
+          },
+          {
+            "tag": "MDM",
+            "title": "Emergency phones for fire prevention",
+            "problem": "A fire prevention project needed managed emergency phones.",
+            "approach": "Enrolled and managed the devices through MDM.",
+            "result": "",
+            "tags": [
+              "MDM",
+              "Mobile devices"
+            ]
+          },
+          {
+            "tag": "SYSTEMS",
+            "title": "Handheld scanners to a new server",
+            "problem": "Handheld barcode scanners had to move to a new server.",
+            "approach": "Prepared the switch and tested the scanners against the new server.",
+            "result": "",
+            "tags": [
+              "Migration",
+              "Testing"
+            ]
+          }
+        ]
+      },
+      {
+        "label": "earlier projects",
+        "cards": [
+          {
+            "tag": "NETWORK",
+            "title": "Network renewal for a local government",
+            "problem": "A local government's network was due for a redesign.",
+            "approach": "Documented as-is and to-be, designed a VLAN scheme on the Core-Distribution-Access model, and compared switches, firewalls and access points on performance, availability and budget.",
+            "result": "The documentation is the basis for the implementation and for NIS2 compliance.",
+            "tags": [
+              "VLAN",
+              "Zyxel",
+              "UniFi",
+              "NIS2",
+              "Documentation"
+            ]
+          },
+          {
+            "tag": "MONITORING",
+            "title": "Zabbix monitoring and Wazuh SIEM",
+            "problem": "Getting a central view of servers, network devices and security events.",
+            "approach": "Set up Zabbix with SNMP and agents, dashboards, alerting and Windows Event Log. Alongside it Wazuh as XDR/SIEM, with Windows agents, active response and rule-based alerting.",
+            "result": "",
+            "tags": [
+              "Zabbix",
+              "SNMP",
+              "Wazuh",
+              "XDR / SIEM"
+            ]
+          },
+          {
+            "tag": "SECURITY",
+            "title": "Remote access with NetBird (ZTNA)",
+            "problem": "Secure access from outside to the internal infrastructure.",
+            "approach": "Installed and configured a self-hosted NetBird as Zero Trust Network Access.",
+            "result": "",
+            "tags": [
+              "NetBird",
+              "ZTNA",
+              "Self-hosted"
+            ]
+          },
+          {
+            "tag": "SECURITY",
+            "title": "PacketFence NAC with EAP-TLS",
+            "problem": "Certificate-based Wi-Fi access for an environment of 106 schools.",
+            "approach": "Designed and built in a lab environment: PacketFence NAC with 802.1X and EAP-TLS, a private PKI and Intune for the certificates. Certificate rollout automated with PowerShell.",
+            "result": "",
+            "tags": [
+              "PacketFence",
+              "802.1X",
+              "EAP-TLS",
+              "PKI",
+              "Intune"
+            ]
+          },
+          {
+            "tag": "SECURITY",
+            "title": "Zero trust with OpenZiti and Entra ID",
+            "problem": "Access to services based on identity and certificates.",
+            "approach": "Set up a zero-trust architecture with OpenZiti in a lab environment, tied to Microsoft Entra ID.",
+            "result": "",
+            "tags": [
+              "OpenZiti",
+              "Zero trust",
+              "Entra ID"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "label": "contact",
+    "title": "a question about your network?",
+    "intro": "I have a full-time job. Outside office hours I help with advice and remote support. Tell me briefly what's going on and I'll let you know if and when I can help.",
+    "form": {
+      "name": "Name",
+      "email": "E-mail",
+      "message": "Message",
+      "submit": "Send",
+      "honeypot": "Leave this empty",
+      "privacy": "I only use your details to reply to your message."
+    },
+    "alt": "Rather just e-mail?",
+    "email": "Open your mail app"
+  },
+  "cv": {
+    "label": "cv",
+    "title": "curriculum vitae",
+    "profile_label": "profile",
+    "profile": [
+      "System and network administrator with 7+ years of experience. I work full-time for an international manufacturer: managing, maintaining and improving the infrastructure, taking part in IT projects, and now and then configuration and maintenance on location at sites abroad.",
+      "Security is a fixed part of that work: hardening, segmentation, firewall policy, EDR and backups that have been tested."
+    ],
+    "expertise_label": "expertise by area",
+    "projects_label": "recent projects",
+    "projects_link": "All projects with problem and approach →",
+    "education_label": "education",
+    "education": [
+      {
+        "title": "Associate degree in System and Network Administration",
+        "where": "AP University of Applied Sciences and Arts Antwerp, with distinction"
+      },
+      {
+        "title": "Bachelor in Business Administration",
+        "where": "Anadolu University"
+      }
+    ],
+    "languages_label": "languages",
+    "languages": [
+      {
+        "name": "Turkish",
+        "level": "native"
+      },
+      {
+        "name": "Dutch",
+        "level": "C1"
+      },
+      {
+        "name": "English",
+        "level": "C1"
+      },
+      {
+        "name": "Azerbaijani",
+        "level": "C1"
+      }
+    ]
+  },
+  "cta": {
+    "label": "contact",
+    "title": "a question about your network?",
+    "text": "I have a full-time job. Outside office hours I help with advice and remote support. Tell me briefly what's going on and I'll let you know if and when I can help.",
+    "button": "Send a message"
+  },
+  "notes": {
+    "label": "lab notes",
+    "title": "Lab notes",
+    "intro": "What I try out in the lab, written up as theory and practice.",
+    "back": "← all lab notes"
+  }
+}

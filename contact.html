@@ -1,32 +1,39 @@
 <!DOCTYPE html>
+<!-- GEGENEREERD door build.py (templates/ + json/) — niet rechtstreeks bewerken -->
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Ali Tunç</title>
-  <meta name="description" content="Neem contact op met Ali Tunç." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/pages.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Ali Tunç, systeem- en netwerkbeheerder</title>
+  <meta name="description" content="Stuur een bericht. Buiten de kantooruren help ik met advies en ondersteuning op afstand.">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="canonical" href="https://alitunc.net/contact.html">
+  <link rel="alternate" hreflang="nl" href="https://alitunc.net/contact.html">
+  <link rel="alternate" hreflang="en" href="https://alitunc.net/en/contact.html">
+  <link rel="alternate" hreflang="x-default" href="https://alitunc.net/contact.html">
+  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
 </head>
 
 <body>
 
 <!-- ══════════ NAV ══════════ -->
+<a class="skip-link" href="#main">Naar inhoud</a>
+
 <header class="nav-wrapper">
   <div class="nav-frame">
 
     <div class="nav-topbar"></div>
 
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
+      <a href="index.html" class="nav-logo" aria-label="Ali Tunç — home">
         <div class="logo-mark">
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x="1" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="8" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="1" y="8" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
@@ -38,28 +45,46 @@
 
       <div class="nav-sep"></div>
 
-      <ul class="nav-links">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="over-mij.html">Over mij</a></li>
-        <li><a href="projecten.html">Projecten</a></li>
-        <li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
-        <li><a href="cv.html">CV</a></li>
-      </ul>
-      <div class="nav-status">
-        <div class="status-wrapper beschikbaar">
-          <div class="status-dot"></div>
-          <span>BESCHIKBAAR</span>
-        </div>
-      </div>
+      <!-- Hamburger: alleen zichtbaar op smal scherm -->
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
 
-      <a href="contact.html" class="nav-cta">Contact</a>
+      <nav class="nav-menu" id="nav-menu" aria-label="Hoofdnavigatie">
+        <ul class="nav-links">
+          <li><a href="expertise.html">Expertise</a></li>
+          <li><a href="over-mij.html">Over mij</a></li>
+          <li><a href="projecten.html">Projecten</a></li>
+          <li><a href="cv.html">CV</a></li>
+        </ul>
+        <div class="nav-status">
+          <div class="status-wrapper in-dienst">
+            <div class="status-dot"></div>
+            <span>IN DIENST · ADVIES NA DE UREN</span>
+          </div>
+        </div>
+
+        <!-- Taalwisselaar: zelfde pagina in de andere taal -->
+        <div class="nav-lang" role="group" aria-label="Taal">
+          <a href="contact.html" lang="nl" hreflang="nl" aria-current="true">NL</a>
+          <span aria-hidden="true">/</span>
+          <a href="en/contact.html" lang="en" hreflang="en">EN</a>
+        </div>
+
+        <a href="contact.html" class="nav-cta" aria-current="page">Contact</a>
+      </nav>
     </div>
 
     <div class="nav-bottom">
-      <span class="nav-meta">LOC: <span id="location">LOCATIE OPHALEN...</span></span>
+      <div class="nav-loc">
+        <span class="nav-meta">LOC: <span id="location" data-fallback="ONBEKEND">LOCATIE OPHALEN...</span></span>
+        <span class="nav-meta nav-ip" hidden>IP: <span id="visitor-ip"></span></span>
+      </div>
 
       <div class="sig-bars">
-        <span class="nav-meta">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <!-- Smalle desktop (901–1240px): status staat hier i.p.v. in de nav-rij -->
+        <span class="nav-meta nav-status-alt">IN DIENST · ADVIES NA DE UREN</span>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
@@ -71,10 +96,10 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   <section id="contact">
     <div class="sec-label sec-label--center">contact</div>
-    <h2 class="sec-h2 sec-h2--center">klaar om te praten?</h2>
+    <h1 class="sec-h2 sec-h2--center">een vraag over je netwerk?</h1>
 
     <div class="contact-center">
       <div class="contact-card">
@@ -83,16 +108,35 @@
         <div class="corner c-bl"></div>
         <div class="corner c-br"></div>
 
-        <p>
-          Heb je een netwerk dat aandacht nodig heeft, een monitoring-project
-          of advies nodig over je infrastructuur? Stuur een bericht —
-          ik reageer snel en denk meteen mee.
-        </p>
+        <p>Ik werk voltijds in vaste dienst. Buiten de kantooruren help ik met advies en ondersteuning op afstand. Schrijf kort wat er speelt, dan laat ik weten of en wanneer ik kan helpen.</p>
+
+        <!-- Netlify Forms: het formulier werkt zodra de site op Netlify staat.
+             "bot-field" is de honeypot tegen spam (verborgen voor bezoekers). -->
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <p class="form-hp">
+            <label>Niet invullen <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+          <div class="form-row">
+            <label for="f-name">Naam</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required>
+          </div>
+          <div class="form-row">
+            <label for="f-email">E-mail</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="200" required>
+          </div>
+          <div class="form-row">
+            <label for="f-message">Bericht</label>
+            <textarea id="f-message" name="message" rows="6" maxlength="4000" required></textarea>
+          </div>
+          <button type="submit" class="btn-p">Verstuur</button>
+          <p class="form-privacy">Ik gebruik je gegevens alleen om je bericht te beantwoorden.</p>
+        </form>
 
         <div class="contact-links">
-          <a href="mailto:ali@alitunc.be" class="clink">✉ E-mail</a>
-          <a href="https://alitunc.net" class="clink">⬡ alitunc.net</a>
-          <a href="https://linkedin.com/in/alitunc" class="clink" target="_blank" rel="noopener noreferrer">in LinkedIn</a>
+          <span class="contact-alt">Liever gewoon mailen?</span>
+          <!-- Adres wordt door js/main.js samengesteld (anti-spam) -->
+          <a href="#" class="clink js-mail">✉ Open je mailprogramma</a>
         </div>
       </div>
     </div>
@@ -102,10 +146,11 @@
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
   <p class="foot-r">&copy;<span id="year"></span> Ali Tunç - All Rights Reserved.</p>
-  <span class="foot-r">systeem &amp; netwerk beheer — beschikbaar voor opdrachten</span>
+  <span class="foot-r">systeem- &amp; netwerkbeheer · security</span>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/ip-location.js" defer></script>
 
 </body>
 </html>

@@ -1,0 +1,15 @@
+  <section id="lab-notes">
+    <div class="sec-label">{{ notes.label }}</div>
+    <h1 class="sec-h2 sec-h2--tight">{{ notes.title }}</h1>
+    <p class="sec-intro">{{ notes.intro }}</p>
+
+    <ul class="note-list">
+{% for n in notes_list %}      <li>
+        <a href="{{ n.file }}" class="note-link">
+          <time datetime="{{ n.date }}">{{ n.date }}</time>
+          <span class="note-link-title">{{ n.title }}</span>
+          <span class="note-link-desc">{{ n.description }}</span>
+        </a>
+      </li>
+{% endfor %}    </ul>
+  </section>

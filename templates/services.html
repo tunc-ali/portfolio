@@ -1,0 +1,34 @@
+  <section id="diensten">
+    <div class="sec-label">{{ services.label }}</div>
+    <h1 class="sec-h2 sec-h2--tight">{{ services.title }}</h1>
+    <p class="sec-intro">{{ services.intro }}</p>
+
+    <div class="services-grid">
+{% for card in services.cards %}
+      <div class="svc-card">
+        <div class="svc-id">{{ card.id }}</div>
+        <div class="svc-icon">{{ card.icon }}</div>
+        <h2 class="svc-title">{{ card.title }}</h2>
+        <p class="svc-desc">{{ card.desc }}</p>
+        <div class="svc-tags">
+{% for tag in card.tags %}          <span class="tag">{{ tag }}</span>
+{% endfor %}        </div>
+      </div>
+{% endfor %}
+    </div>
+  </section>
+
+  <!-- ══════════ LAB ══════════ -->
+  <section id="lab">
+    <div class="sec-label">{{ services.lab.label }}</div>
+    <h2 class="sec-h2 sec-h2--tight">{{ services.lab.title }}</h2>
+    <p class="sec-intro">{{ services.lab.intro }}</p>
+
+    <div class="lab-grid">
+{% for card in services.lab.cards %}      <div class="lab-card">
+        <h3 class="svc-title">{{ card.title }}</h3>
+        <p class="svc-desc">{{ card.desc }}</p>
+      </div>
+{% endfor %}    </div>
+    <p class="lab-note">{{ services.lab.note }}</p>
+  </section>

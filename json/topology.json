@@ -1,0 +1,156 @@
+{
+ "nodes": [
+  {
+   "id": "internet",
+   "type": "cloud",
+   "zone": "wan",
+   "pos": [
+    0,
+    3.3,
+    0
+   ]
+  },
+  {
+   "id": "m365",
+   "type": "cloud",
+   "zone": "wan",
+   "pos": [
+    -3.6,
+    3.5,
+    -0.8
+   ]
+  },
+  {
+   "id": "fw",
+   "type": "firewall",
+   "zone": "corp",
+   "pos": [
+    0,
+    1.6,
+    0
+   ]
+  },
+  {
+   "id": "core",
+   "type": "core",
+   "zone": "corp",
+   "pos": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "sw-a",
+   "type": "switch",
+   "zone": "corp",
+   "pos": [
+    -2.6,
+    -1.3,
+    1.2
+   ]
+  },
+  {
+   "id": "sw-b",
+   "type": "switch",
+   "zone": "corp",
+   "pos": [
+    2.6,
+    -1.3,
+    1.2
+   ]
+  },
+  {
+   "id": "ap",
+   "type": "ap",
+   "zone": "corp",
+   "pos": [
+    -3.8,
+    -2.9,
+    2.0
+   ]
+  },
+  {
+   "id": "mon",
+   "type": "server",
+   "zone": "corp",
+   "pos": [
+    0,
+    -1.7,
+    -2.6
+   ]
+  },
+  {
+   "id": "esxi",
+   "type": "server",
+   "zone": "corp",
+   "pos": [
+    1.7,
+    -3.0,
+    2.2
+   ]
+  },
+  {
+   "id": "backup",
+   "type": "server",
+   "zone": "corp",
+   "pos": [
+    3.9,
+    -3.0,
+    0.6
+   ]
+  },
+  {
+   "id": "lab",
+   "type": "lab",
+   "zone": "lab",
+   "pos": [
+    4.6,
+    2.7,
+    -1.2
+   ]
+  }
+ ],
+ "links": [
+  [
+   "internet",
+   "fw"
+  ],
+  [
+   "internet",
+   "m365"
+  ],
+  [
+   "fw",
+   "core"
+  ],
+  [
+   "core",
+   "sw-a"
+  ],
+  [
+   "core",
+   "sw-b"
+  ],
+  [
+   "core",
+   "mon"
+  ],
+  [
+   "sw-a",
+   "ap"
+  ],
+  [
+   "sw-b",
+   "esxi"
+  ],
+  [
+   "sw-b",
+   "backup"
+  ],
+  [
+   "internet",
+   "lab"
+  ]
+ ]
+}

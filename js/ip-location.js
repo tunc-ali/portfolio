@@ -13,20 +13,22 @@
   const ipWrap = ipEl ? ipEl.closest('.nav-ip') : null;
   if (!locEl) return;
 
-  const CACHE_KEY = 'visitorGeo';
+  const CACHE_KEY = 'visitorGeo.v2';   // versie verhogen = oude cache negeren
   const TIMEOUT_MS = 4000;
 
   // Publieke lookup-diensten (HTTPS + CORS, geen API-key). Tweede = reserve.
+  // ipapi.co staat eerst: die geeft de stad (gemeente) terug. ipwho.is zet in
+  // "city" soms een wijknaam (bv. "Historisch Centrum"), dus enkel als reserve.
   const providers = [
-    {
-      url: 'https://ipwho.is/?fields=ip,success,city,country_code,latitude,longitude',
-      map: d => d.success === false ? null
-        : { ip: d.ip, city: d.city, cc: d.country_code, lat: d.latitude, lon: d.longitude },
-    },
     {
       url: 'https://ipapi.co/json/',
       map: d => d.error ? null
-        : { ip: d.ip, city: d.city, cc: d.country_code, lat: d.latitude, lon: d.longitude },
+        : { ip: d.ip, city: d.city, region: d.region, cc: d.country_code, lat: d.latitude, lon: d.longitude },
+    },
+    {
+      url: 'https://ipwho.is/?fields=ip,success,city,region,country_code,latitude,longitude',
+      map: d => d.success === false ? null
+        : { ip: d.ip, city: d.city, region: d.region, cc: d.country_code, lat: d.latitude, lon: d.longitude },
     },
   ];
 
@@ -42,9 +44,10 @@
 
   function render(geo) {
     const coords = formatCoords(Number(geo.lat), Number(geo.lon));
-    const place = [geo.city, geo.cc]
-      .filter(v => typeof v === 'string' && v.trim())
-      .map(v => v.trim().slice(0, 40).toUpperCase())
+    // Plaats: stad → anders regio → anders alleen het land
+    const clean = v => (typeof v === 'string' ? v.trim().slice(0, 40).toUpperCase() : '');
+    const place = [clean(geo.city) || clean(geo.region), clean(geo.cc)]
+      .filter(Boolean)
       .join(', ');
     const text = [coords, place].filter(Boolean).join(' — ');
     if (!text) return false;

@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "skip": "Skip to content",
+    "home_label": "Ali Tunç — home",
+    "menu": "Menu",
+    "main": "Main navigation",
+    "lang_label": "Language",
+    "services": "Services",
+    "about": "About",
+    "projects": "Projects",
+    "cv": "CV",
+    "contact": "Contact",
+    "status": "AVAILABLE",
+    "loc_loading": "FETCHING LOCATION...",
+    "loc_fallback": "UNKNOWN"
+  },
+  "footer": {
+    "rights": "Ali Tunç - All Rights Reserved.",
+    "tagline": "system & network administration — available for assignments"
+  },
+  "pages": {
+    "home": {
+      "title": "Ali Tunç — System & Network Administration",
+      "description": "System and network administration from Antwerp. Zabbix monitoring, firewalls, VMware, Microsoft 365 and more."
+    },
+    "services": {
+      "title": "Services — Ali Tunç",
+      "description": "Network management, monitoring, virtualization, security, Microsoft 365 and consulting."
+    },
+    "about": {
+      "title": "About — Ali Tunç",
+      "description": "About Ali Tunç, system and network administrator."
+    },
+    "projects": {
+      "title": "Projects — Ali Tunç",
+      "description": "Projects: Zabbix monitoring, PacketFence NAC, VLAN redesign, OpenZiti ZTNA."
+    },
+    "contact": {
+      "title": "Contact — Ali Tunç",
+      "description": "Get in touch with Ali Tunç."
+    },
+    "cv": {
+      "title": "CV — Ali Tunç",
+      "description": "Curriculum vitae of Ali Tunç."
+    }
+  },
+  "home": {
+    "tag_role": "system & network administration",
+    "tag_place": "antwerp, be",
+    "h1_dim": "your network,",
+    "h1_bright": "my",
+    "h1_green": "responsibility.",
+    "sub": "IT infrastructure that works — from firewall to monitoring, from VLAN design to server migration. Ready when you need it.",
+    "btn_services": "View services",
+    "btn_contact": "Get in touch →",
+    "stats": [
+      { "n": "7+", "label": "years of experience" },
+      { "n": "100%", "label": "uptime mindset" },
+      { "n": "3", "label": "languages" },
+      { "n": "∞", "label": "monitoring checks" }
+    ],
+    "terminal": {
+      "whoami": "Ali Tunç — System & Network Administrator",
+      "skills": [
+        { "key": "monitoring", "value": "Zabbix 7.0, SNMP, auto-discovery, alerting" },
+        { "key": "firewall", "value": "FortiGate, Zyxel USG FLEX 500, pfSense" },
+        { "key": "switching", "value": "UniFi, Cisco 2960S, VLAN design, STP" },
+        { "key": "virtualization", "value": "VMware ESXi, Veeam Backup & Replication" },
+        { "key": "cloud", "value": "Microsoft 365, Entra ID, Exchange Online" },
+        { "key": "security", "value": "PacketFence NAC, EAP-TLS, Intune/SCEP" },
+        { "key": "languages", "value": "Dutch, English, Turkish" }
+      ]
+    }
+  },
+  "services": {
+    "label": "services",
+    "title": "what I do",
+    "cards": [
+      {
+        "id": "#01 — NETWORK",
+        "icon": "[NW]",
+        "title": "Network Management",
+        "desc": "VLAN design, switching, routing and firewall configuration for small and medium-sized organisations. From AS-IS documentation to a complete redesign.",
+        "tags": ["UniFi", "FortiGate", "Zyxel", "MikroTik", "VLAN"]
+      },
+      {
+        "id": "#02 — MONITORING",
+        "icon": "[MON]",
+        "title": "Monitoring & Alerting",
+        "desc": "Proactive oversight of your infrastructure with Zabbix — SNMP configuration, dashboards, auto-discovery and e-mail alerts via Office 365.",
+        "tags": ["Zabbix 7.0", "SNMP", "Dashboards", "M365 Alerts"]
+      },
+      {
+        "id": "#03 — VIRTUALIZATION",
+        "icon": "[VM]",
+        "title": "Virtualization & Backup",
+        "desc": "VMware ESXi management, VM migrations from Workstation to production and Veeam backup configuration for business continuity.",
+        "tags": ["ESXi", "Veeam", "VM migration"]
+      },
+      {
+        "id": "#04 — SECURITY",
+        "icon": "[SEC]",
+        "title": "Security & NAC",
+        "desc": "Network access control with PacketFence, EAP-TLS authentication, PKI infrastructure and Microsoft Intune/SCEP integration for Wi-Fi security.",
+        "tags": ["PacketFence", "EAP-TLS", "Intune", "PKI"]
+      },
+      {
+        "id": "#05 — CLOUD",
+        "icon": "[M365]",
+        "title": "Microsoft 365",
+        "desc": "Entra ID, user management, Exchange Online routing and app registrations for modern workplaces and Zabbix integrations.",
+        "tags": ["Entra ID", "Exchange", "Teams", "Intune"]
+      },
+      {
+        "id": "#06 — CONSULTING",
+        "icon": "[DOC]",
+        "title": "Documentation & Consulting",
+        "desc": "AS-IS inventory, VLAN matrices, rack documentation and vendor comparisons for IT renewal projects and tenders.",
+        "tags": ["AS-IS", "Tender", "Vendor eval", "Consulting"]
+      }
+    ]
+  },
+  "about": {
+    "label": "about",
+    "title_1": "more than",
+    "title_2": "just IT",
+    "paragraphs": [
+      "I'm <strong>Ali Tunç</strong>, a system and network administrator based in <span class=\"hl\">Antwerp</span>. My background is broad — from language teaching to hospitality — but my passion for technology brought me to where I am today.",
+      "I work with <strong>real production infrastructure</strong>: municipal networks, ESXi clusters, firewall migrations and monitoring from A to Z. No theory, just results.",
+      "I am currently studying for the <strong>Associate Degree in System and Network Administration</strong> at AP University of Applied Sciences Antwerp — alongside my hands-on experience at a Belgian municipality.",
+      "Multilingual in <strong>Dutch, English and Turkish</strong> — communication is never a problem."
+    ],
+    "skills_label": "technical skills",
+    "skills": [
+      { "name": "Zabbix / SNMP", "pct": 92 },
+      { "name": "Firewall config", "pct": 88 },
+      { "name": "Network design", "pct": 85 },
+      { "name": "Linux / Shell", "pct": 83 },
+      { "name": "VMware ESXi", "pct": 80 },
+      { "name": "Microsoft 365", "pct": 78 },
+      { "name": "Security / NAC", "pct": 75 },
+      { "name": "Python / PowerShell", "pct": 70 }
+    ]
+  },
+  "projects": {
+    "label": "projects",
+    "title": "what I've built",
+    "cards": [
+      {
+        "num": "#001 — 2024/2025",
+        "status": "Completed",
+        "title": "Zabbix Monitoring Infrastructure",
+        "desc": "Complete Zabbix 7.0 monitoring built from scratch — SNMP for UniFi switches, Konica Minolta printers and a Zyxel firewall, including auto-discovery, dashboards and Office 365 alerting.",
+        "tags": ["Zabbix 7.0", "SNMPv2c", "UniFi", "ESXi", "M365"]
+      },
+      {
+        "num": "#002 — 2025",
+        "status": "Completed",
+        "title": "PacketFence NAC — EAP-TLS",
+        "desc": "PacketFence NAC lab with EAP-TLS authentication, a private PKI (Root CA + SubCA), Microsoft Intune SCEP integration and PowerShell Wi-Fi certificate automation for 106 schools.",
+        "tags": ["PacketFence", "EAP-TLS", "PKI", "Intune", "SCEP"]
+      },
+      {
+        "num": "#003 — 2025",
+        "status": "In progress",
+        "title": "VLAN Redesign & Network Renewal",
+        "desc": "AS-IS documentation, vendor evaluation (Fortinet, Zyxel, Peplink, MikroTik), firewall matrix and a complete VLAN reorganisation for a Belgian municipality.",
+        "tags": ["Fortinet", "VLAN", "Documentation", "Tender"]
+      },
+      {
+        "num": "#004 — 2024",
+        "status": "Completed",
+        "title": "OpenZiti ZTNA + Entra ID",
+        "desc": "Zero Trust Network Access via OpenZiti integrated with Microsoft Entra ID for OIDC authentication. JWT signer configuration and policy setup for secure remote access.",
+        "tags": ["OpenZiti", "ZTNA", "Entra ID", "OIDC"]
+      }
+    ]
+  },
+  "contact": {
+    "label": "contact",
+    "title": "ready to talk?",
+    "intro": "Do you have a network that needs attention, a monitoring project, or do you need advice on your infrastructure? Send a message — I respond quickly and think along right away.",
+    "email": "E-mail"
+  },
+  "cv": {
+    "label": "cv",
+    "title": "curriculum vitae",
+    "placeholder": "Content coming soon."
+  }
+}

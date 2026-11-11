@@ -1,0 +1,18 @@
+  <section id="diensten">
+    <div class="sec-label">{{ services.label }}</div>
+    <h2 class="sec-h2">{{ services.title }}</h2>
+
+    <div class="services-grid">
+{% for card in services.cards %}
+      <div class="svc-card">
+        <div class="svc-id">{{ card.id }}</div>
+        <div class="svc-icon">{{ card.icon }}</div>
+        <div class="svc-title">{{ card.title }}</div>
+        <div class="svc-desc">{{ card.desc }}</div>
+        <div class="svc-tags">
+{% for tag in card.tags %}          <span class="tag">{{ tag }}</span>
+{% endfor %}        </div>
+      </div>
+{% endfor %}
+    </div>
+  </section>

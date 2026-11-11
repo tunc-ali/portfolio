@@ -130,6 +130,22 @@
   animation: blink 2.4s ease-in-out infinite;
 }
 
+/* ── TAALWISSELAAR (NL / EN) ──────────────────────────────── */
+.nav-lang {
+  display: flex; align-items: center; gap: 0.3rem;
+  padding: 0 1rem; height: 50px;
+  border-right: 1px solid var(--border);
+  font-size: 0.78rem; letter-spacing: 0.1em;
+  color: var(--text-muted); flex-shrink: 0;
+}
+.nav-lang a {
+  padding: 0.25rem 0.2rem;
+  color: var(--text-dim);
+  transition: color 0.15s;
+}
+.nav-lang a:hover,
+.nav-lang a[aria-current] { color: var(--accent); }
+
 /* ── CONTACT CTA ─────────────────────────────────────────────
    Bij hover: border rondom + knipperend neon effect           */
 .nav-cta {
@@ -230,6 +246,11 @@ footer {
 .foot-r { font-size: 0.75rem; color: var(--text-muted); }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
+/* Smalle desktop: status-blok weg zodat links + taalwisselaar + CTA passen */
+@media (min-width: 901px) and (max-width: 1060px) {
+  .nav-status { display: none; }
+}
+
 @media (max-width: 900px) {
   section { padding-left: 1.5rem; padding-right: 1.5rem; }
 
@@ -267,6 +288,12 @@ footer {
     border: none; height: auto;
     padding: 1.1rem 1.25rem 0.9rem;
   }
+  .nav-lang {
+    border: none; height: auto;
+    padding: 0 1.25rem 1.1rem;
+    font-size: 0.9rem;
+  }
+  .nav-lang a { padding: 0.4rem 0.5rem; }
   .nav-cta {
     margin: 0 1.25rem; padding: 0.75rem 1.3rem;
     text-align: center; font-size: 0.95rem;

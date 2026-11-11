@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{{{ generated_note }}}
+<html lang="{{ lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page.title }}</title>
+  <meta name="description" content="{{ page.description }}" />
+  <link rel="canonical" href="{{ canonical }}" />
+  <link rel="alternate" hreflang="nl" href="{{ alt.nl }}" />
+  <link rel="alternate" hreflang="en" href="{{ alt.en }}" />
+  <link rel="alternate" hreflang="x-default" href="{{ alt.nl }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ root }}css/reset.css" />
+  <link rel="stylesheet" href="{{ root }}css/base.css" />
+  <link rel="stylesheet" href="{{ root }}css/layout.css" />
+  <link rel="stylesheet" href="{{ root }}css/components.css" />
+  <link rel="stylesheet" href="{{ root }}css/pages.css" />
+</head>
+
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<a class="skip-link" href="#main">{{ nav.skip }}</a>
+
+<header class="nav-wrapper">
+  <div class="nav-frame">
+
+    <div class="nav-topbar"></div>
+
+    <div class="nav-inner">
+      <a href="{{ url.home }}" class="nav-logo" aria-label="{{ nav.home_label }}">
+        <div class="logo-mark">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
+            <rect x="8" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
+            <rect x="1" y="8" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
+            <circle cx="10.5" cy="10.5" r="2" stroke="#adcd65" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <span class="logo-name">Ali Tunç</span>
+      </a>
+
+      <div class="nav-sep"></div>
+
+      <!-- Hamburger: alleen zichtbaar op smal scherm -->
+      <button class="nav-toggle" type="button" aria-label="{{ nav.menu }}" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="{{ nav.main }}">
+        <ul class="nav-links">
+          <li><a href="{{ url.services }}"{{{ active.services }}}>{{ nav.services }}</a></li>
+          <li><a href="{{ url.about }}"{{{ active.about }}}>{{ nav.about }}</a></li>
+          <li><a href="{{ url.projects }}"{{{ active.projects }}}>{{ nav.projects }}</a></li>
+          <li><a href="{{ url.cv }}"{{{ active.cv }}}>{{ nav.cv }}</a></li>
+        </ul>
+        <div class="nav-status">
+          <div class="status-wrapper beschikbaar">
+            <div class="status-dot"></div>
+            <span>{{ nav.status }}</span>
+          </div>
+        </div>
+
+        <!-- Taalwisselaar: zelfde pagina in de andere taal -->
+        <div class="nav-lang" role="group" aria-label="{{ nav.lang_label }}">
+          <a href="{{ switch.nl }}" lang="nl" hreflang="nl"{{{ lang_current.nl }}}>NL</a>
+          <span aria-hidden="true">/</span>
+          <a href="{{ switch.en }}" lang="en" hreflang="en"{{{ lang_current.en }}}>EN</a>
+        </div>
+
+        <a href="{{ url.contact }}" class="nav-cta"{{{ cta_current }}}>{{ nav.contact }}</a>
+      </nav>
+    </div>
+
+    <div class="nav-bottom">
+      <div class="nav-loc">
+        <span class="nav-meta">LOC: <span id="location" data-fallback="{{ nav.loc_fallback }}">{{ nav.loc_loading }}</span></span>
+        <span class="nav-meta nav-ip" hidden>IP: <span id="visitor-ip"></span></span>
+      </div>
+
+      <div class="sig-bars">
+        <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <div class="sig-bar on"></div>
+        <div class="sig-bar on"></div>
+        <div class="sig-bar on"></div>
+        <div class="sig-bar on"></div>
+        <div class="sig-bar"></div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<main id="main">
+{{{ content }}}
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p class="foot-r">&copy;<span id="year"></span> {{ footer.rights }}</p>
+  <span class="foot-r">{{ footer.tagline }}</span>
+</footer>
+
+<script src="{{ root }}js/main.js" defer></script>
+<script src="{{ root }}js/ip-location.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!-- GEGENEREERD door build.py (templates/ + json/) — niet rechtstreeks bewerken -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Ali Tunç</title>
+  <meta name="description" content="Projects: Zabbix monitoring, PacketFence NAC, VLAN redesign, OpenZiti ZTNA." />
+  <link rel="canonical" href="https://alitunc.net/en/projects.html" />
+  <link rel="alternate" hreflang="nl" href="https://alitunc.net/projecten.html" />
+  <link rel="alternate" hreflang="en" href="https://alitunc.net/en/projects.html" />
+  <link rel="alternate" hreflang="x-default" href="https://alitunc.net/projecten.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/reset.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
+</head>
+
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav-wrapper">
+  <div class="nav-frame">
+
+    <div class="nav-topbar"></div>
+
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Ali Tunç — home">
+        <div class="logo-mark">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
+            <rect x="8" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
+            <rect x="1" y="8" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
+            <circle cx="10.5" cy="10.5" r="2" stroke="#adcd65" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <span class="logo-name">Ali Tunç</span>
+      </a>
+
+      <div class="nav-sep"></div>
+
+      <!-- Hamburger: alleen zichtbaar op smal scherm -->
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
+          <li><a href="cv.html">CV</a></li>
+        </ul>
+        <div class="nav-status">
+          <div class="status-wrapper beschikbaar">
+            <div class="status-dot"></div>
+            <span>AVAILABLE</span>
+          </div>
+        </div>
+
+        <!-- Taalwisselaar: zelfde pagina in de andere taal -->
+        <div class="nav-lang" role="group" aria-label="Language">
+          <a href="../projecten.html" lang="nl" hreflang="nl">NL</a>
+          <span aria-hidden="true">/</span>
+          <a href="../en/projects.html" lang="en" hreflang="en" aria-current="true">EN</a>
+        </div>
+
+        <a href="contact.html" class="nav-cta">Contact</a>
+      </nav>
+    </div>
+
+    <div class="nav-bottom">
+      <div class="nav-loc">
+        <span class="nav-meta">LOC: <span id="location" data-fallback="UNKNOWN">FETCHING LOCATION...</span></span>
+        <span class="nav-meta nav-ip" hidden>IP: <span id="visitor-ip"></span></span>
+      </div>
+
+      <div class="sig-bars">
+        <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <div class="sig-bar on"></div>
+        <div class="sig-bar on"></div>
+        <div class="sig-bar on"></div>
+        <div class="sig-bar on"></div>
+        <div class="sig-bar"></div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section id="projecten">
+    <div class="sec-label">projects</div>
+    <h2 class="sec-h2">what I&#x27;ve built</h2>
+
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">#001 — 2024/2025</span>
+          <span class="proj-status">Completed</span>
+        </div>
+        <div class="proj-title">Zabbix Monitoring Infrastructure</div>
+        <div class="proj-desc">Complete Zabbix 7.0 monitoring built from scratch — SNMP for UniFi switches, Konica Minolta printers and a Zyxel firewall, including auto-discovery, dashboards and Office 365 alerting.</div>
+        <div class="proj-stack">
+          <span class="proj-tag">Zabbix 7.0</span>
+          <span class="proj-tag">SNMPv2c</span>
+          <span class="proj-tag">UniFi</span>
+          <span class="proj-tag">ESXi</span>
+          <span class="proj-tag">M365</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">#002 — 2025</span>
+          <span class="proj-status">Completed</span>
+        </div>
+        <div class="proj-title">PacketFence NAC — EAP-TLS</div>
+        <div class="proj-desc">PacketFence NAC lab with EAP-TLS authentication, a private PKI (Root CA + SubCA), Microsoft Intune SCEP integration and PowerShell Wi-Fi certificate automation for 106 schools.</div>
+        <div class="proj-stack">
+          <span class="proj-tag">PacketFence</span>
+          <span class="proj-tag">EAP-TLS</span>
+          <span class="proj-tag">PKI</span>
+          <span class="proj-tag">Intune</span>
+          <span class="proj-tag">SCEP</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">#003 — 2025</span>
+          <span class="proj-status">In progress</span>
+        </div>
+        <div class="proj-title">VLAN Redesign &amp; Network Renewal</div>
+        <div class="proj-desc">AS-IS documentation, vendor evaluation (Fortinet, Zyxel, Peplink, MikroTik), firewall matrix and a complete VLAN reorganisation for a Belgian municipality.</div>
+        <div class="proj-stack">
+          <span class="proj-tag">Fortinet</span>
+          <span class="proj-tag">VLAN</span>
+          <span class="proj-tag">Documentation</span>
+          <span class="proj-tag">Tender</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">#004 — 2024</span>
+          <span class="proj-status">Completed</span>
+        </div>
+        <div class="proj-title">OpenZiti ZTNA + Entra ID</div>
+        <div class="proj-desc">Zero Trust Network Access via OpenZiti integrated with Microsoft Entra ID for OIDC authentication. JWT signer configuration and policy setup for secure remote access.</div>
+        <div class="proj-stack">
+          <span class="proj-tag">OpenZiti</span>
+          <span class="proj-tag">ZTNA</span>
+          <span class="proj-tag">Entra ID</span>
+          <span class="proj-tag">OIDC</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p class="foot-r">&copy;<span id="year"></span> Ali Tunç - All Rights Reserved.</p>
+  <span class="foot-r">system &amp; network administration — available for assignments</span>
+</footer>
+
+<script src="../js/main.js" defer></script>
+<script src="../js/ip-location.js" defer></script>
+
+</body>
+</html>

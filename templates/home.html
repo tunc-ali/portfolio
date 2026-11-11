@@ -1,0 +1,71 @@
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero" id="home">
+
+    <div class="hero-tag fade-in d1">
+      <span class="sep">$</span>
+      {{ home.tag_role }}
+      <span class="sep">—</span>
+      {{ home.tag_place }}
+    </div>
+
+    <h1 class="hero-h1 fade-in d2">
+      <span class="dim">{{ home.h1_dim }}</span><br>
+      <span class="bright">{{ home.h1_bright }}</span><br>
+      <span class="green">{{ home.h1_green }}</span>
+    </h1>
+
+    <p class="hero-sub fade-in d3">
+      {{ home.sub }}
+    </p>
+
+    <div class="hero-btns fade-in d4">
+      <a href="{{ url.services }}" class="btn-p">{{ home.btn_services }}</a>
+      <a href="{{ url.contact }}" class="btn-g">{{ home.btn_contact }}</a>
+    </div>
+
+    <div class="hero-stats fade-in d5">
+{% for s in home.stats %}      <div class="stat">
+        <span class="stat-n">{{ s.n }}</span>
+        <span class="stat-l">{{ s.label }}</span>
+      </div>
+{% endfor %}    </div>
+  </section>
+
+  <!-- ══════════ TERMINAL ══════════ -->
+  <div class="terminal-wrap">
+    <div class="terminal-frame">
+      <div class="corner c-tl"></div>
+      <div class="corner c-tr"></div>
+      <div class="corner c-bl"></div>
+      <div class="corner c-br"></div>
+
+      <div class="t-bar">
+        <div class="t-dot t-dot-r"></div>
+        <div class="t-dot t-dot-y"></div>
+        <div class="t-dot t-dot-g"></div>
+        <span class="t-title">ali@infra-antwerpen ~ zsh</span>
+      </div>
+
+      <div class="t-body">
+        <div>
+          <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+          <span class="t-d">:</span><span class="t-p">~</span>
+          <span class="t-d">$ </span><span class="t-c">whoami</span>
+        </div>
+        <div><span class="t-o">→</span> <span class="t-w">{{ home.terminal.whoami }}</span></div>
+        <br>
+        <div>
+          <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+          <span class="t-d">:</span><span class="t-p">~</span>
+          <span class="t-d">$ </span><span class="t-c">cat</span> <span class="t-s">skills.conf</span>
+        </div>
+{% for row in home.terminal.skills %}        <div><span class="t-o">→</span> <span class="t-k">{{ row.key }}</span> <span class="t-w">{{ row.value }}</span></div>
+{% endfor %}        <br>
+        <div>
+          <span class="t-u">ali</span><span class="t-d">@</span><span class="t-u">infra</span>
+          <span class="t-d">:</span><span class="t-p">~</span>
+          <span class="t-d">$ </span><span class="t-cursor"></span>
+        </div>
+      </div>
+    </div>
+  </div>

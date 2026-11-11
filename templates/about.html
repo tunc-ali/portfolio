@@ -1,0 +1,21 @@
+  <section id="over">
+    <div class="sec-label">{{ about.label }}</div>
+    <h2 class="sec-h2">{{ about.title_1 }}<br>{{ about.title_2 }}</h2>
+
+    <div class="about-grid">
+      <div class="about-text">
+{% for p in about.paragraphs %}        <p>{{{ p }}}</p>
+{% endfor %}      </div>
+
+      <div>
+        <div class="sec-label sec-label--sub">{{ about.skills_label }}</div>
+        <div class="skills-block">
+{% for s in about.skills %}          <div class="skill-row">
+            <span class="skill-name">{{ s.name }}</span>
+            <div class="skill-track"><div class="skill-fill" style="width:{{ s.pct }}%"></div></div>
+            <span class="skill-pct">{{ s.pct }}%</span>
+          </div>
+{% endfor %}        </div>
+      </div>
+    </div>
+  </section>

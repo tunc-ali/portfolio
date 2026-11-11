@@ -1,0 +1,21 @@
+  <section id="contact">
+    <div class="sec-label sec-label--center">{{ contact.label }}</div>
+    <h2 class="sec-h2 sec-h2--center">{{ contact.title }}</h2>
+
+    <div class="contact-center">
+      <div class="contact-card">
+        <div class="corner c-tl"></div>
+        <div class="corner c-tr"></div>
+        <div class="corner c-bl"></div>
+        <div class="corner c-br"></div>
+
+        <p>{{ contact.intro }}</p>
+
+        <div class="contact-links">
+          <!-- Adres wordt door js/main.js samengesteld (anti-spam) -->
+          <a href="#" class="clink js-mail">✉ {{ contact.email }}</a>
+          <a href="https://alitunc.net" class="clink">⬡ alitunc.net</a>
+        </div>
+      </div>
+    </div>
+  </section>

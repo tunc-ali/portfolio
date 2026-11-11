@@ -1,0 +1,20 @@
+  <section id="projecten">
+    <div class="sec-label">{{ projects.label }}</div>
+    <h2 class="sec-h2">{{ projects.title }}</h2>
+
+    <div class="proj-grid">
+{% for card in projects.cards %}
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-num">{{ card.num }}</span>
+          <span class="proj-status">{{ card.status }}</span>
+        </div>
+        <div class="proj-title">{{ card.title }}</div>
+        <div class="proj-desc">{{ card.desc }}</div>
+        <div class="proj-stack">
+{% for tag in card.tags %}          <span class="proj-tag">{{ tag }}</span>
+{% endfor %}        </div>
+      </div>
+{% endfor %}
+    </div>
+  </section>

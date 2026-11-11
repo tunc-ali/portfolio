@@ -1,0 +1,190 @@
+{
+  "nav": {
+    "skip": "Naar inhoud",
+    "home_label": "Ali Tunç — home",
+    "menu": "Menu",
+    "main": "Hoofdnavigatie",
+    "lang_label": "Taal",
+    "services": "Diensten",
+    "about": "Over mij",
+    "projects": "Projecten",
+    "cv": "CV",
+    "contact": "Contact",
+    "status": "BESCHIKBAAR",
+    "loc_loading": "LOCATIE OPHALEN...",
+    "loc_fallback": "ONBEKEND"
+  },
+  "footer": {
+    "rights": "Ali Tunç - All Rights Reserved.",
+    "tagline": "systeem & netwerk beheer — beschikbaar voor opdrachten"
+  },
+  "pages": {
+    "home": {
+      "title": "Ali Tunç — Systeem & Netwerk Beheer",
+      "description": "Systeem- en netwerkbeheer vanuit Antwerpen. Zabbix monitoring, firewall, VMware, Microsoft 365 en meer."
+    },
+    "services": {
+      "title": "Diensten — Ali Tunç",
+      "description": "Netwerkbeheer, monitoring, virtualisatie, security, Microsoft 365 en advies."
+    },
+    "about": {
+      "title": "Over mij — Ali Tunç",
+      "description": "Over Ali Tunç, systeem- en netwerkbeheerder."
+    },
+    "projects": {
+      "title": "Projecten — Ali Tunç",
+      "description": "Projecten: Zabbix monitoring, PacketFence NAC, VLAN-hervorming, OpenZiti ZTNA."
+    },
+    "contact": {
+      "title": "Contact — Ali Tunç",
+      "description": "Neem contact op met Ali Tunç."
+    },
+    "cv": {
+      "title": "CV — Ali Tunç",
+      "description": "Curriculum vitae van Ali Tunç."
+    }
+  },
+  "home": {
+    "tag_role": "systeem & netwerk beheer",
+    "tag_place": "antwerpen, be",
+    "h1_dim": "jouw netwerk,",
+    "h1_bright": "mijn",
+    "h1_green": "verantwoordelijkheid.",
+    "sub": "ICT-infrastructuur die werkt — van firewall tot monitoring, van VLAN-design tot servermigratie. Klaar wanneer jij het nodig hebt.",
+    "btn_services": "Bekijk diensten",
+    "btn_contact": "Neem contact op →",
+    "stats": [
+      { "n": "7+", "label": "jaar ervaring" },
+      { "n": "100%", "label": "uptime mindset" },
+      { "n": "3", "label": "talen" },
+      { "n": "∞", "label": "monitoring checks" }
+    ],
+    "terminal": {
+      "whoami": "Ali Tunç — Systeem & Netwerk Beheerder",
+      "skills": [
+        { "key": "monitoring", "value": "Zabbix 7.0, SNMP, auto-discovery, alerting" },
+        { "key": "firewall", "value": "FortiGate, Zyxel USG FLEX 500, pfSense" },
+        { "key": "switching", "value": "UniFi, Cisco 2960S, VLAN-design, STP" },
+        { "key": "virtualisatie", "value": "VMware ESXi, Veeam Backup & Replication" },
+        { "key": "cloud", "value": "Microsoft 365, Entra ID, Exchange Online" },
+        { "key": "security", "value": "PacketFence NAC, EAP-TLS, Intune/SCEP" },
+        { "key": "talen", "value": "Nederlands, Engels, Turks" }
+      ]
+    }
+  },
+  "services": {
+    "label": "diensten",
+    "title": "wat ik doe",
+    "cards": [
+      {
+        "id": "#01 — NETWERK",
+        "icon": "[NW]",
+        "title": "Netwerkbeheer",
+        "desc": "VLAN-design, switching, routing en firewall-configuratie voor kleine en middelgrote organisaties. Van AS-IS documentatie tot volledige herinrichting.",
+        "tags": ["UniFi", "FortiGate", "Zyxel", "MikroTik", "VLAN"]
+      },
+      {
+        "id": "#02 — MONITORING",
+        "icon": "[MON]",
+        "title": "Monitoring & Alerting",
+        "desc": "Proactief toezicht op je infrastructuur met Zabbix — SNMP-configuratie, dashboards, auto-discovery en e-mailalerts via Office 365.",
+        "tags": ["Zabbix 7.0", "SNMP", "Dashboards", "M365 Alerts"]
+      },
+      {
+        "id": "#03 — VIRTUALISATIE",
+        "icon": "[VM]",
+        "title": "Virtualisatie & Backup",
+        "desc": "VMware ESXi-beheer, VM-migraties van Workstation naar productie en Veeam backup-configuratie voor bedrijfscontinuïteit.",
+        "tags": ["ESXi", "Veeam", "VM-migratie"]
+      },
+      {
+        "id": "#04 — SECURITY",
+        "icon": "[SEC]",
+        "title": "Security & NAC",
+        "desc": "Netwerktoegangscontrole via PacketFence, EAP-TLS authenticatie, PKI-infrastructuur en Microsoft Intune/SCEP integratie voor Wi-Fi security.",
+        "tags": ["PacketFence", "EAP-TLS", "Intune", "PKI"]
+      },
+      {
+        "id": "#05 — CLOUD",
+        "icon": "[M365]",
+        "title": "Microsoft 365",
+        "desc": "Entra ID, gebruikersbeheer, Exchange Online routing en app-registraties voor moderne werkplekken en Zabbix-integraties.",
+        "tags": ["Entra ID", "Exchange", "Teams", "Intune"]
+      },
+      {
+        "id": "#06 — ADVIES",
+        "icon": "[DOC]",
+        "title": "Documentatie & Advies",
+        "desc": "AS-IS inventarisatie, VLAN-matrices, rack-documentatie en vendor-vergelijkingen voor IT-vernieuwingsprojecten en aanbestedingen.",
+        "tags": ["AS-IS", "Tender", "Vendor eval", "Advies"]
+      }
+    ]
+  },
+  "about": {
+    "label": "over mij",
+    "title_1": "meer dan",
+    "title_2": "alleen ICT",
+    "paragraphs": [
+      "Ik ben <strong>Ali Tunç</strong>, systeem- en netwerkbeheerder gebaseerd in <span class=\"hl\">Antwerpen</span>. Mijn achtergrond is breed — van taalonderwijs tot hospitality — maar mijn passie voor technologie bracht me naar waar ik nu ben.",
+      "Ik werk met <strong>echte productie-infrastructuur</strong>: gemeentelijke netwerken, ESXi-clusters, firewall-migraties en monitoring van A tot Z. Geen theorie, gewoon resultaten.",
+      "Momenteel volg ik het <strong>Graduaat Systeem- en Netwerkbeheer</strong> aan AP Hogeschool Antwerpen — naast mijn hands-on praktijkervaring bij een Belgische gemeente.",
+      "Multilinguaal in <strong>Nederlands, Engels en Turks</strong> — communicatie is nooit een probleem."
+    ],
+    "skills_label": "technische skills",
+    "skills": [
+      { "name": "Zabbix / SNMP", "pct": 92 },
+      { "name": "Firewall config", "pct": 88 },
+      { "name": "Netwerk design", "pct": 85 },
+      { "name": "Linux / Shell", "pct": 83 },
+      { "name": "VMware ESXi", "pct": 80 },
+      { "name": "Microsoft 365", "pct": 78 },
+      { "name": "Security / NAC", "pct": 75 },
+      { "name": "Python / PowerShell", "pct": 70 }
+    ]
+  },
+  "projects": {
+    "label": "projecten",
+    "title": "wat ik gebouwd heb",
+    "cards": [
+      {
+        "num": "#001 — 2024/2025",
+        "status": "Voltooid",
+        "title": "Zabbix Monitoring Infrastructuur",
+        "desc": "Volledige Zabbix 7.0 monitoring opgezet vanuit nul — SNMP voor UniFi switches, Konica Minolta printers en Zyxel firewall, inclusief auto-discovery, dashboards en Office365 alerting.",
+        "tags": ["Zabbix 7.0", "SNMPv2c", "UniFi", "ESXi", "M365"]
+      },
+      {
+        "num": "#002 — 2025",
+        "status": "Voltooid",
+        "title": "PacketFence NAC — EAP-TLS",
+        "desc": "PacketFence NAC lab met EAP-TLS authenticatie, eigen PKI (Root CA + SubCA), Microsoft Intune SCEP-integratie en PowerShell Wi-Fi certificaatautomatisering voor 106 scholen.",
+        "tags": ["PacketFence", "EAP-TLS", "PKI", "Intune", "SCEP"]
+      },
+      {
+        "num": "#003 — 2025",
+        "status": "In uitvoering",
+        "title": "VLAN Hervorming & Netwerk Renewal",
+        "desc": "AS-IS documentatie, vendor-evaluatie (Fortinet, Zyxel, Peplink, MikroTik), firewall-matrix en complete VLAN-reorganisatie voor een Belgische gemeente.",
+        "tags": ["Fortinet", "VLAN", "Documentatie", "Tender"]
+      },
+      {
+        "num": "#004 — 2024",
+        "status": "Voltooid",
+        "title": "OpenZiti ZTNA + Entra ID",
+        "desc": "Zero Trust Network Access via OpenZiti geïntegreerd met Microsoft Entra ID voor OIDC-authenticatie. JWT-signer configuratie en policy-setup voor veilige remote access.",
+        "tags": ["OpenZiti", "ZTNA", "Entra ID", "OIDC"]
+      }
+    ]
+  },
+  "contact": {
+    "label": "contact",
+    "title": "klaar om te praten?",
+    "intro": "Heb je een netwerk dat aandacht nodig heeft, een monitoring-project of advies nodig over je infrastructuur? Stuur een bericht — ik reageer snel en denk meteen mee.",
+    "email": "E-mail"
+  },
+  "cv": {
+    "label": "cv",
+    "title": "curriculum vitae",
+    "placeholder": "Inhoud volgt."
+  }
+}

@@ -18,15 +18,17 @@
 <body>
 
 <!-- ══════════ NAV ══════════ -->
+<a class="skip-link" href="#main">Naar inhoud</a>
+
 <header class="nav-wrapper">
   <div class="nav-frame">
 
     <div class="nav-topbar"></div>
 
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
+      <a href="index.html" class="nav-logo" aria-label="Ali Tunç — home">
         <div class="logo-mark">
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <rect x="1" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="8" y="1" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
             <rect x="1" y="8" width="5" height="5" stroke="#adcd65" stroke-width="1.2"/>
@@ -38,28 +40,37 @@
 
       <div class="nav-sep"></div>
 
-      <ul class="nav-links">
-        <li><a href="diensten.html">Diensten</a></li>
-        <li><a href="over-mij.html" class="active" aria-current="page">Over mij</a></li>
-        <li><a href="projecten.html">Projecten</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="cv.html">CV</a></li>
-      </ul>
-      <div class="nav-status">
-        <div class="status-wrapper beschikbaar">
-          <div class="status-dot"></div>
-          <span>BESCHIKBAAR</span>
-        </div>
-      </div>
+      <!-- Hamburger: alleen zichtbaar op smal scherm -->
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
 
-      <a href="contact.html" class="nav-cta">Contact</a>
+      <nav class="nav-menu" id="nav-menu" aria-label="Hoofdnavigatie">
+        <ul class="nav-links">
+          <li><a href="diensten.html">Diensten</a></li>
+          <li><a href="over-mij.html" class="active" aria-current="page">Over mij</a></li>
+          <li><a href="projecten.html">Projecten</a></li>
+          <li><a href="cv.html">CV</a></li>
+        </ul>
+        <div class="nav-status">
+          <div class="status-wrapper beschikbaar">
+            <div class="status-dot"></div>
+            <span>BESCHIKBAAR</span>
+          </div>
+        </div>
+
+        <a href="contact.html" class="nav-cta">Contact</a>
+      </nav>
     </div>
 
     <div class="nav-bottom">
-      <span class="nav-meta">LOC: <span id="location">LOCATIE OPHALEN...</span></span>
+      <div class="nav-loc">
+        <span class="nav-meta">LOC: <span id="location" data-fallback="ONBEKEND">LOCATIE OPHALEN...</span></span>
+        <span class="nav-meta nav-ip" hidden>IP: <span id="visitor-ip"></span></span>
+      </div>
 
       <div class="sig-bars">
-        <span class="nav-meta">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
@@ -71,7 +82,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   <section id="over">
     <div class="sec-label">over mij</div>
     <h2 class="sec-h2">meer dan<br>alleen ICT</h2>
@@ -155,7 +166,8 @@
   <span class="foot-r">systeem &amp; netwerk beheer — beschikbaar voor opdrachten</span>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js" defer></script>
+<script src="js/ip-location.js" defer></script>
 
 </body>
 </html>

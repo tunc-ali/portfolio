@@ -60,7 +60,7 @@
         "label": "years of experience"
       },
       {
-        "n": "8",
+        "n": "9",
         "label": "network vendors"
       },
       {
@@ -77,7 +77,7 @@
         },
         {
           "key": "firewall",
-          "value": "Fortinet, WatchGuard, Zyxel, Barracuda"
+          "value": "FortiGate, WatchGuard, Zyxel, UniFi EFG, Barracuda, pfSense"
         },
         {
           "key": "switching",
@@ -85,7 +85,7 @@
         },
         {
           "key": "systems",
-          "value": "Windows Server, Active Directory, Linux, ESXi, Hyper-V"
+          "value": "Windows Server, AD, Linux, Nutanix, vSphere, Hyper-V"
         },
         {
           "key": "cloud",
@@ -206,7 +206,7 @@
           "label": "Firewall",
           "zone": "corporate network",
           "role": "Perimeter, segmentation between VLANs and VPN.",
-          "tech": "FortiGate, WatchGuard, Zyxel USG FLEX — NGFW policies",
+          "tech": "FortiGate, WatchGuard, Zyxel USG FLEX, UniFi EFG, pfSense — NGFW policies",
           "note": ""
         },
         {
@@ -254,7 +254,7 @@
           "label": "Hypervisor",
           "zone": "corporate network",
           "role": "Runs the virtual servers.",
-          "tech": "VMware ESXi — VM migrations",
+          "tech": "Nutanix AHV, VMware vSphere, Hyper-V",
           "note": ""
         },
         {
@@ -301,7 +301,7 @@
         "id": "#01 — NETWORK",
         "icon": "[NW]",
         "title": "Network & firewall",
-        "desc": "I design VLAN schemes, segment networks and manage routing, firewall policy and VPN. I have worked with devices from Fortinet, WatchGuard, Zyxel, Barracuda, UniFi, Cisco, Dell and Netgear.",
+        "desc": "I design VLAN schemes, segment networks and manage routing, firewall policy and VPN. I have worked with Fortinet (FortiGate), Ubiquiti (UniFi, EFG), Cisco, WatchGuard, Dell, Barracuda, Netgear, Zyxel and pfSense.",
         "tags": [
           "VLAN",
           "OSPF",
@@ -316,13 +316,14 @@
         "id": "#02 — SYSTEMS",
         "icon": "[SYS]",
         "title": "Systems & virtualisation",
-        "desc": "Windows Server with Active Directory and GPO, Linux servers, and virtualisation on VMware and Hyper-V. Work that keeps coming back gets scripted in PowerShell, Python or Bash.",
+        "desc": "Windows Server with Active Directory and GPO, Linux servers, and virtualisation on Nutanix (AHV, Prism), VMware vSphere (vCenter, ESXi) and Hyper-V. Work that keeps coming back gets scripted in PowerShell, Python or Bash.",
         "tags": [
           "Windows Server",
           "Active Directory",
           "GPO",
           "Linux",
-          "VMware ESXi",
+          "Nutanix AHV",
+          "VMware vSphere",
           "Hyper-V",
           "PowerShell"
         ]
@@ -345,19 +346,21 @@
         "id": "#04 — BACKUP",
         "icon": "[BKP]",
         "title": "Backup & recovery",
-        "desc": "Backups with Veeam and a cloud backup platform. I run restore tests and document what came back and what did not.",
+        "desc": "With Veeam I have done a lot of backups and restores on Nutanix, VMware vSphere and Hyper-V. I also work with a cloud backup platform. I test restores and document what came back and what did not.",
         "tags": [
           "Veeam",
+          "Nutanix",
+          "vSphere",
+          "Hyper-V",
           "Cloud backup",
-          "Restore tests",
-          "Documentation"
+          "Restore tests"
         ]
       },
       {
         "id": "#05 — MONITORING",
         "icon": "[MON]",
         "title": "Monitoring",
-        "desc": "Zabbix with agents and SNMP, dashboards and alerting, plus Windows Event Log. That way I see a problem before a user calls.",
+        "desc": "Zabbix with agents and SNMP, dashboards and alerting, plus Windows Event Log.",
         "tags": [
           "Zabbix",
           "SNMP",
@@ -639,7 +642,7 @@
       },
       {
         "name": "Azerbaijani",
-        "level": ""
+        "level": "C1"
       }
     ]
   },

@@ -60,7 +60,7 @@
         "label": "jaar ervaring"
       },
       {
-        "n": "8",
+        "n": "9",
         "label": "netwerkvendors"
       },
       {
@@ -77,7 +77,7 @@
         },
         {
           "key": "firewall",
-          "value": "Fortinet, WatchGuard, Zyxel, Barracuda"
+          "value": "FortiGate, WatchGuard, Zyxel, UniFi EFG, Barracuda, pfSense"
         },
         {
           "key": "switching",
@@ -85,7 +85,7 @@
         },
         {
           "key": "systemen",
-          "value": "Windows Server, Active Directory, Linux, ESXi, Hyper-V"
+          "value": "Windows Server, AD, Linux, Nutanix, vSphere, Hyper-V"
         },
         {
           "key": "cloud",
@@ -206,7 +206,7 @@
           "label": "Firewall",
           "zone": "bedrijfsnetwerk",
           "role": "Perimeter, segmentatie tussen VLANs en VPN.",
-          "tech": "FortiGate, WatchGuard, Zyxel USG FLEX — NGFW-policies",
+          "tech": "FortiGate, WatchGuard, Zyxel USG FLEX, UniFi EFG, pfSense — NGFW-policies",
           "note": ""
         },
         {
@@ -254,7 +254,7 @@
           "label": "Hypervisor",
           "zone": "bedrijfsnetwerk",
           "role": "Draait de virtuele servers.",
-          "tech": "VMware ESXi — VM-migraties",
+          "tech": "Nutanix AHV, VMware vSphere, Hyper-V",
           "note": ""
         },
         {
@@ -301,7 +301,7 @@
         "id": "#01 — NETWERK",
         "icon": "[NW]",
         "title": "Netwerk & firewall",
-        "desc": "Ik ontwerp VLAN-schema's, segmenteer netwerken en beheer routing, firewallbeleid en VPN. Ik heb gewerkt met toestellen van Fortinet, WatchGuard, Zyxel, Barracuda, UniFi, Cisco, Dell en Netgear.",
+        "desc": "Ik ontwerp VLAN-schema's, segmenteer netwerken en beheer routing, firewallbeleid en VPN. Ik heb gewerkt met Fortinet (FortiGate), Ubiquiti (UniFi, EFG), Cisco, WatchGuard, Dell, Barracuda, Netgear, Zyxel en pfSense.",
         "tags": [
           "VLAN",
           "OSPF",
@@ -316,13 +316,14 @@
         "id": "#02 — SYSTEMEN",
         "icon": "[SYS]",
         "title": "Systemen & virtualisatie",
-        "desc": "Windows Server met Active Directory en GPO, Linux-servers en virtualisatie op VMware en Hyper-V. Werk dat terugkomt, script ik in PowerShell, Python of Bash.",
+        "desc": "Windows Server met Active Directory en GPO, Linux-servers, en virtualisatie op Nutanix (AHV, Prism), VMware vSphere (vCenter, ESXi) en Hyper-V. Werk dat terugkomt, script ik in PowerShell, Python of Bash.",
         "tags": [
           "Windows Server",
           "Active Directory",
           "GPO",
           "Linux",
-          "VMware ESXi",
+          "Nutanix AHV",
+          "VMware vSphere",
           "Hyper-V",
           "PowerShell"
         ]
@@ -345,19 +346,21 @@
         "id": "#04 — BACKUP",
         "icon": "[BKP]",
         "title": "Backup & recovery",
-        "desc": "Backups met Veeam en een cloud-backupplatform. Ik voer restore-tests uit en documenteer wat er terugkwam en wat niet.",
+        "desc": "Met Veeam heb ik veel backups en restores gedaan op Nutanix, VMware vSphere en Hyper-V. Daarnaast werk ik met een cloud-backupplatform. Restores test ik, en ik documenteer wat er terugkwam en wat niet.",
         "tags": [
           "Veeam",
+          "Nutanix",
+          "vSphere",
+          "Hyper-V",
           "Cloud backup",
-          "Restore-tests",
-          "Documentatie"
+          "Restore-tests"
         ]
       },
       {
         "id": "#05 — MONITORING",
         "icon": "[MON]",
         "title": "Monitoring",
-        "desc": "Zabbix met agents en SNMP, dashboards en alerting, en Windows Event Log erbij. Zo zie ik een probleem voor een gebruiker belt.",
+        "desc": "Zabbix met agents en SNMP, dashboards en alerting, en Windows Event Log erbij.",
         "tags": [
           "Zabbix",
           "SNMP",
@@ -639,7 +642,7 @@
       },
       {
         "name": "Azerbeidzjaans",
-        "level": ""
+        "level": "C1"
       }
     ]
   },

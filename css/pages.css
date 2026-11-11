@@ -182,7 +182,7 @@
   .hero {
     margin: 0;
     padding: 3rem 1.5rem 2rem;
-    background-attachment: scroll; /* fixed werkt slecht op iOS Safari */
+    background-attachment: scroll;
     min-height: 80vh;
     /* op smal scherm staat de tekst over de hele breedte → egale overlay */
     background-image:
@@ -201,4 +201,16 @@
   .hero-tag { flex-wrap: wrap; letter-spacing: 0.12em; gap: 0.5rem; }
   .hero-btns { flex-direction: column; }
   .hero-stats { gap: 1.25rem; }
+}
+
+/* background-attachment: fixed werkt slecht op touch-toestellen
+   (iOS Safari, ook iPad in liggende stand) → daar gewoon meescrollen */
+@media (hover: none), (pointer: coarse) {
+  .hero { background-attachment: scroll; }
+}
+
+/* Zonder JS: wat JS moet invullen niet als lege/dode elementen tonen */
+@media (scripting: none) {
+  .fade-in { opacity: 1; transform: none; animation: none; }
+  .news-list, .contact-links { display: none; }
 }

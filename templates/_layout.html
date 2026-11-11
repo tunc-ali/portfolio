@@ -2,22 +2,23 @@
 {{{ generated_note }}}
 <html lang="{{ lang }}">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
-  <meta name="description" content="{{ page.description }}" />
-  <link rel="canonical" href="{{ canonical }}" />
-{% for a in alts %}  <link rel="alternate" hreflang="{{ a.lang }}" href="{{ a.href }}" />
-{% endfor %}{% if x_default %}  <link rel="alternate" hreflang="x-default" href="{{ x_default }}" />
-{% endif %}  <link rel="preload" as="font" type="font/woff2" href="{{ root }}vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="{{ root }}vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin />
-  <link rel="stylesheet" href="{{ root }}css/reset.css" />
-  <link rel="stylesheet" href="{{ root }}css/base.css" />
-  <link rel="stylesheet" href="{{ root }}css/layout.css" />
-  <link rel="stylesheet" href="{{ root }}css/components.css" />
-  <link rel="stylesheet" href="{{ root }}css/pages.css" />
-{% for p in preloads %}  <link rel="preload" as="image" href="{{ root }}{{ p.href }}" media="{{ p.media }}" fetchpriority="high" />
-{% endfor %}{% for s in extra_styles %}  <link rel="stylesheet" href="{{ root }}{{ s }}" />
+  <meta name="description" content="{{ page.description }}">
+  <link rel="icon" type="image/svg+xml" href="{{ root }}images/favicon.svg">
+  <link rel="canonical" href="{{ canonical }}">
+{% for a in alts %}  <link rel="alternate" hreflang="{{ a.lang }}" href="{{ a.href }}">
+{% endfor %}{% if x_default %}  <link rel="alternate" hreflang="x-default" href="{{ x_default }}">
+{% endif %}  <link rel="preload" as="font" type="font/woff2" href="{{ root }}vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="{{ root }}vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="{{ root }}css/reset.css">
+  <link rel="stylesheet" href="{{ root }}css/base.css">
+  <link rel="stylesheet" href="{{ root }}css/layout.css">
+  <link rel="stylesheet" href="{{ root }}css/components.css">
+  <link rel="stylesheet" href="{{ root }}css/pages.css">
+{% for p in preloads %}  <link rel="preload" as="image" href="{{ root }}{{ p.href }}" media="{{ p.media }}" fetchpriority="high">
+{% endfor %}{% for s in extra_styles %}  <link rel="stylesheet" href="{{ root }}{{ s }}">
 {% endfor %}</head>
 
 <body>
@@ -84,6 +85,8 @@
 
       <div class="sig-bars">
         <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <!-- Smalle desktop (901–1240px): status staat hier i.p.v. in de nav-rij -->
+        <span class="nav-meta nav-status-alt">{{ nav.status }}</span>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>

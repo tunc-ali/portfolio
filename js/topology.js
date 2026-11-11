@@ -362,12 +362,15 @@ export async function init(section) {
   for (const [id, li] of items) {
     li.querySelector('.topo-item').addEventListener('click', () => select(id === selected ? null : id));
   }
-  panel.querySelector('.topo-close').addEventListener('click', () => {
+  // Paneel sluiten: toetsenbordfocus terug naar de knop van die node in de lijst
+  function closePanel() {
     const back = selected && items.get(selected)?.querySelector('.topo-item');
+    const hadFocus = panel.contains(document.activeElement);
     select(null);
-    if (back && document.activeElement === document.body) back.focus({ preventScroll: true });
-  });
-  panel.addEventListener('keydown', (e) => { if (e.key === 'Escape') select(null); });
+    if (back && hadFocus) back.focus({ preventScroll: true });
+  }
+  panel.querySelector('.topo-close').addEventListener('click', closePanel);
+  panel.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
 
   // ── Lus ─────────────────────────────────────────────────────
   function animate(dt, time) {

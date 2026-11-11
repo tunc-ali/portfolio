@@ -237,3 +237,12 @@
 @media (max-width: 600px) {
   .t-body { height: 22rem; }
 }
+
+/* ── TIKDOELEN OP TOUCH (minstens 44px) ───────────────────── */
+@media (pointer: coarse) {
+  .topo-tool, .topo-close { width: 44px; height: 44px; }
+  .topo-item, .t-chip { min-height: 44px; padding-left: 0.9rem; padding-right: 0.9rem; }
+  .t-link { display: inline-block; padding: 0.5rem 0; }
+  .t-form { min-height: 44px; align-items: center; }
+  .t-input { min-height: 44px; }
+}

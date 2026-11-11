@@ -13,18 +13,18 @@
 
         <!-- Netlify Forms: het formulier werkt zodra de site op Netlify staat.
              "bot-field" is de honeypot tegen spam (verborgen voor bezoekers). -->
-        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact" />
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
           <p class="form-hp">
-            <label>{{ contact.form.honeypot }} <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            <label>{{ contact.form.honeypot }} <input name="bot-field" tabindex="-1" autocomplete="off"></label>
           </p>
           <div class="form-row">
             <label for="f-name">{{ contact.form.name }}</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required />
+            <input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required>
           </div>
           <div class="form-row">
             <label for="f-email">{{ contact.form.email }}</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="200" required />
+            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="200" required>
           </div>
           <div class="form-row">
             <label for="f-message">{{ contact.form.message }}</label>

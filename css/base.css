@@ -56,11 +56,13 @@ body {
   /* Footer onderaan houden op korte pagina's */
   display: flex; flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 main { flex: 1; }
 
 ::selection { background: var(--accent); color: var(--bg); }
 
+html { scrollbar-width: thin; scrollbar-color: var(--accent-dim) var(--bg); }   /* Firefox */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--accent-dim); }
@@ -139,4 +141,22 @@ body::after  { right: 1.5rem; }  /* Rechterlijn */
 @media (max-width: 900px) {
   /* Zijlijnen verbergen op mobiel */
   body::before, body::after { display: none; }
+}
+
+/* ── MINDER BEWEGING ──────────────────────────────────────────
+   Voor bezoekers die in hun systeem 'minder beweging' kozen:
+   geen flikkeren, knipperen, infaden of zacht scrollen.           */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-in { opacity: 1; transform: none; }
+}
+
+/* ── TOUCH ────────────────────────────────────────────────────
+   Tekstvelden minstens 16px: anders zoomt iOS Safari in bij focus. */
+@media (pointer: coarse) {
+  input, textarea, select { font-size: 16px !important; }
 }

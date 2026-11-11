@@ -2,21 +2,22 @@
 <!-- GEGENEREERD door build.py (templates/ + json/) — niet rechtstreeks bewerken -->
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Ali Tunç</title>
-  <meta name="description" content="Stuur een bericht. Buiten de kantooruren help ik met advies en ondersteuning op afstand." />
-  <link rel="canonical" href="https://alitunc.net/contact.html" />
-  <link rel="alternate" hreflang="nl" href="https://alitunc.net/contact.html" />
-  <link rel="alternate" hreflang="en" href="https://alitunc.net/en/contact.html" />
-  <link rel="alternate" hreflang="x-default" href="https://alitunc.net/contact.html" />
-  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin />
-  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin />
-  <link rel="stylesheet" href="css/reset.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/layout.css" />
-  <link rel="stylesheet" href="css/components.css" />
-  <link rel="stylesheet" href="css/pages.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Ali Tunç, systeem- en netwerkbeheerder</title>
+  <meta name="description" content="Stuur een bericht. Buiten de kantooruren help ik met advies en ondersteuning op afstand.">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="canonical" href="https://alitunc.net/contact.html">
+  <link rel="alternate" hreflang="nl" href="https://alitunc.net/contact.html">
+  <link rel="alternate" hreflang="en" href="https://alitunc.net/en/contact.html">
+  <link rel="alternate" hreflang="x-default" href="https://alitunc.net/contact.html">
+  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/barlow-condensed-latin-800-normal.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
 </head>
 
 <body>
@@ -82,6 +83,8 @@
 
       <div class="sig-bars">
         <span class="nav-meta nav-sys">SYS: <span>ONLINE</span> — v1.0.0</span>
+        <!-- Smalle desktop (901–1240px): status staat hier i.p.v. in de nav-rij -->
+        <span class="nav-meta nav-status-alt">IN DIENST · ADVIES NA DE UREN</span>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
         <div class="sig-bar on"></div>
@@ -109,18 +112,18 @@
 
         <!-- Netlify Forms: het formulier werkt zodra de site op Netlify staat.
              "bot-field" is de honeypot tegen spam (verborgen voor bezoekers). -->
-        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="contact" />
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
           <p class="form-hp">
-            <label>Niet invullen <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+            <label>Niet invullen <input name="bot-field" tabindex="-1" autocomplete="off"></label>
           </p>
           <div class="form-row">
             <label for="f-name">Naam</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required />
+            <input id="f-name" name="name" type="text" autocomplete="name" maxlength="100" required>
           </div>
           <div class="form-row">
             <label for="f-email">E-mail</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="200" required />
+            <input id="f-email" name="email" type="email" autocomplete="email" maxlength="200" required>
           </div>
           <div class="form-row">
             <label for="f-message">Bericht</label>

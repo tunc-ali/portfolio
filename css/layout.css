@@ -66,7 +66,7 @@
 .nav-toggle {
   display: none;
   flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-  width: 40px; height: 36px;
+  width: 44px; height: 44px;      /* minimaal tikdoel */
   border: 1px solid var(--border2);
   background: transparent; cursor: pointer;
 }
@@ -197,6 +197,7 @@
   column-gap: 1.25rem; min-width: 0;
 }
 .nav-ip[hidden] { display: none; }
+.nav-status-alt { display: none; color: var(--accent); letter-spacing: 0.1em; margin-right: 0.5rem; }
 
 .sig-bars {
   display: flex; align-items: flex-end; gap: 2px;
@@ -255,9 +256,12 @@ footer {
 .foot-r { font-size: 0.75rem; color: var(--text-muted); }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
-/* Smalle desktop: status-blok weg zodat links + taalwisselaar + CTA passen */
+/* Smalle desktop: status-blok past niet naast links + taalwisselaar + CTA.
+   De status verhuist dan naar de LOC-balk, op de plaats van de SYS-tekst. */
 @media (min-width: 901px) and (max-width: 1240px) {
   .nav-status { display: none; }
+  .nav-sys { display: none; }
+  .nav-status-alt { display: inline; }
 }
 
 @media (max-width: 900px) {
@@ -278,7 +282,9 @@ footer {
     padding-bottom: 1.25rem;
     background: var(--bg);
     border: 1px solid var(--border2); border-top: none;
-    max-height: calc(100vh - 110px); overflow-y: auto;
+    max-height: calc(100vh - 110px);
+    max-height: calc(100dvh - 110px);   /* iOS: hoogte zonder de adresbalk */
+    overflow-y: auto;
   }
   .nav-menu.open { display: flex; }
 
@@ -319,4 +325,28 @@ footer {
     text-align: center;
     padding: 1rem 1.5rem;
   }
+}
+
+/* ── ZONDER JAVASCRIPT ────────────────────────────────────────
+   De hamburger werkt niet zonder JS: toon het menu dan gewoon open.
+   LOC/IP worden door JS ingevuld, dus die regel verbergen.        */
+@media (scripting: none) {
+  .nav-loc { visibility: hidden; }
+}
+@media (scripting: none) and (max-width: 900px) {
+  .nav-toggle { display: none; }
+  .nav-inner { flex-wrap: wrap; height: auto; }
+  .nav-logo { height: 50px; }
+  .nav-menu {
+    display: flex; position: static; flex-basis: 100%;
+    max-height: none; border: none; background: transparent;
+    padding-bottom: 1rem;
+  }
+}
+
+/* ── TIKDOELEN OP TOUCH (minstens 44px) ───────────────────── */
+@media (pointer: coarse) {
+  .nav-lang a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .nav-logo { min-height: 44px; }
+  .nav-cta { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
 }

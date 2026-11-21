@@ -46,7 +46,8 @@ CONTROLES (elke fout stopt de build)
       - geldige JSON en de velden die de scripts op de site verwachten
     notes/<taal>/*.md (lab notes)
       - bestandsnaam = slug: alleen a-z, 0-9 en koppeltekens (bv. vlan-hopping.md)
-      - kopblok (--- … ---) met precies title, date, description, niet leeg;
+      - draft: true of false verplicht; concepten (true) worden overgeslagen
+      - kopblok (--- … ---) met precies title, date, description, draft, niet leeg;
         geen onbekende of dubbele sleutels; date is een echte datum JJJJ-MM-DD
       - tekst onder het kopblok mag niet leeg zijn
       - links: alleen https://, mailto: of /pad (zie LAB NOTES)
@@ -67,7 +68,11 @@ LAB NOTES (artikels)
         title: VLAN hopping in het lab
         date: 2026-12-01
         description: Eén zin voor de lijst en voor zoekmachines.
+        draft: false
         ---
+    draft: true = concept: wordt niet gebouwd en niet gecontroleerd (blokkeert de deploy niet).
+    draft: false = publiceren: alle controles. draft ontbreekt of ongeldig → fout (nooit per
+    ongeluk publiceren). NL en EN moeten allebei draft: false zijn om te publiceren.
     Waarden op één regel; tekst met ": " of een ' wordt tussen aanhalingstekens gezet
     (zoals het CMS dat doet): title: 'VLAN: Ali''s lab'. Meerregelige waarden (| of >) niet.
     Daaronder gewone Markdown: ## en ### koppen, alinea's, lijsten (- of 1.),
@@ -76,8 +81,9 @@ LAB NOTES (artikels)
     Veiligheid: HTML in een artikel wordt nooit uitgevoerd maar als tekst getoond (ook in
     code). Links: alleen https://, mailto: of een pad vanaf de root (/…); al het andere
     (javascript:, data:, http://, //host, …) stopt de build met bestandsnaam en regel.
-    Zolang er geen artikels zijn, maakt build.py geen lab-notes-pagina's en staat
-    er geen link in de nav. Met het eerste artikel verschijnen beide vanzelf.
+    Zolang er geen gepubliceerde artikels zijn (alleen concepten of niets), maakt build.py
+    geen lab-notes-pagina's en staat er geen link in de nav. Met het eerste gepubliceerde
+    artikel verschijnen beide vanzelf.
 
 TEMPLATE-SYNTAX (bewust minimaal, alleen de standaardbibliotheek van Python)
     {{ pad.naar.sleutel }}                tekst, HTML wordt ge-escaped
@@ -151,7 +157,7 @@ UPLOADS = 'images/uploads'
 UPLOAD_MAX_BYTES = 5 * 1024 * 1024
 UPLOAD_TYPES = {'.jpg': 'jpeg', '.jpeg': 'jpeg', '.png': 'png', '.webp': 'webp', '.avif': 'avif'}
 
-NOTE_KEYS = ('title', 'date', 'description')
+NOTE_KEYS = ('title', 'date', 'description', 'draft')
 SLUG = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
 
 GENERATED_NOTE = '<!-- GEGENEREERD door build.py (templates/ + json/) — niet rechtstreeks bewerken -->'
@@ -571,8 +577,11 @@ def yaml_scalar(value):
 
 
 
-def load_notes(lang, errors):
-    """Leest notes/<taal>/*.md → lijst van dicts, nieuwste eerst."""
+def load_notes(lang, errors, drafts):
+    """Leest notes/<taal>/*.md → lijst van gepubliceerde notities (dicts), nieuwste eerst.
+    Concepten (draft: true) worden overgeslagen en in drafts[lang] genoteerd (slug → bestand);
+    hun overige fouten blokkeren de build niet. Ontbreekt draft of is de waarde ongeldig,
+    dan is dat wél een fout: liever geen deploy dan per ongeluk publiceren."""
     notes = []
     folder = ROOT / 'notes' / lang
     if not folder.is_dir():
@@ -596,70 +605,87 @@ def load_notes(lang, errors):
         if not m:
             errors.add(f'{name}: kopblok ontbreekt of is niet afgesloten (--- … --- bovenaan)')
             continue
-        meta, bad = {}, False
+
+        ferr = []                                   # fouten van dit bestand (genegeerd bij een concept)
+        meta = {}
         for n, line in enumerate(m.group(1).split('\n'), start=2):
             if not line.strip() or line.lstrip().startswith('#'):
                 continue
             if line[0] in ' \t':
-                errors.add(f'{name}, regel {n}: waarde over meerdere regels wordt niet ondersteund; '
-                           f'schrijf ze op één regel')
-                bad = True
+                ferr.append(f'{name}, regel {n}: waarde over meerdere regels wordt niet ondersteund; '
+                            f'schrijf ze op één regel')
                 continue
             if ':' not in line:
-                errors.add(f'{name}, regel {n}: verwacht "sleutel: waarde", gevonden: {line.strip()!r}')
-                bad = True
+                ferr.append(f'{name}, regel {n}: verwacht "sleutel: waarde", gevonden: {line.strip()!r}')
                 continue
             key, value = line.split(':', 1)
             key = key.strip()
             if key not in NOTE_KEYS:
-                errors.add(f'{name}, regel {n}: onbekende sleutel "{key}" (toegestaan: {", ".join(NOTE_KEYS)})')
-                bad = True
+                ferr.append(f'{name}, regel {n}: onbekende sleutel "{key}" (toegestaan: {", ".join(NOTE_KEYS)})')
             elif key in meta:
-                errors.add(f'{name}, regel {n}: sleutel "{key}" staat er twee keer')
-                bad = True
+                ferr.append(f'{name}, regel {n}: sleutel "{key}" staat er twee keer')
             else:
                 parsed, problem = yaml_scalar(value)
                 if problem:
-                    errors.add(f'{name}, regel {n} ({key}): {problem}')
-                    bad = True
+                    ferr.append(f'{name}, regel {n} ({key}): {problem}')
                     meta[key] = None                    # al gemeld: niet nog eens als "ontbreekt"
                 else:
                     meta[key] = parsed
+
+        # 1. Concept of niet? (fail closed: ontbreekt/ongeldig → fout, niet publiceren)
+        draft = meta.get('draft')
+        if draft not in ('true', 'false'):
+            errors.add(f'{name}: "draft:" ontbreekt of is ongeldig (moet true of false zijn)')
+            for e in ferr:
+                errors.add(e)
+            continue
+        if draft == 'true':
+            drafts[lang][path.stem] = name
+            continue
+
+        # 2. Gepubliceerd: alle controles
         for key in NOTE_KEYS:
             if key in meta and meta[key] is None:
                 continue
             if not meta.get(key):
-                errors.add(f'{name}: "{key}:" ontbreekt of is leeg in het kopblok')
-                bad = True
+                ferr.append(f'{name}: "{key}:" ontbreekt of is leeg in het kopblok')
         if meta.get('date'):
             try:
                 datetime.date.fromisoformat(meta['date'])
                 if not re.match(r'^\d{4}-\d{2}-\d{2}$', meta['date']):
                     raise ValueError
             except ValueError:
-                errors.add(f'{name}: date "{meta["date"]}" is geen geldige datum (JJJJ-MM-DD)')
-                bad = True
+                ferr.append(f'{name}: date "{meta["date"]}" is geen geldige datum (JJJJ-MM-DD)')
         raw_body = m.group(2) or ''
-        check_links(raw_body, len(m.group(1).split('\n')) + 3, name, errors)
+        link_errors = Errors()
+        check_links(raw_body, len(m.group(1).split('\n')) + 3, name, link_errors)
+        ferr.extend(link_errors)
         body = raw_body.strip()
         if not body:
-            errors.add(f'{name}: de tekst onder het kopblok is leeg')
-            bad = True
-        if bad:
+            ferr.append(f'{name}: de tekst onder het kopblok is leeg')
+        if ferr:
+            for e in ferr:
+                errors.add(e)
             continue
         slug = path.stem
+        meta = {k: v for k, v in meta.items() if k != 'draft'}
         notes.append({**meta, 'slug': slug, 'file': f'{slug}.html', 'body': md_to_html(body)})
     return sorted(notes, key=lambda n: (n['date'], n['slug']), reverse=True)
 
 
-def check_notes_parity(notes, errors):
+def check_notes_parity(notes, drafts, errors):
+    """Elke gepubliceerde notitie moet in alle talen gepubliceerd zijn."""
     slugs = {lang: {n['slug'] for n in notes[lang]} for lang in LANGS}
     for lang in LANGS:
         for other in LANGS:
             if other == lang:
                 continue
             for slug in sorted(slugs[lang] - slugs[other]):
-                errors.add(f'notes/{lang}/{slug}.md heeft geen vertaling: notes/{other}/{slug}.md ontbreekt')
+                if slug in drafts[other]:
+                    errors.add(f'notes/{lang}/{slug}.md is gepubliceerd (draft: false), maar '
+                               f'notes/{other}/{slug}.md is nog een concept (draft: true)')
+                else:
+                    errors.add(f'notes/{lang}/{slug}.md heeft geen vertaling: notes/{other}/{slug}.md ontbreekt')
 
 
 # ── Uploads en statische bestanden ────────────────────────────
@@ -926,19 +952,24 @@ def build(list_output=False):
     if texts_ok:
         check_texts(texts, errors)
         check_runtime_json(texts, errors)
-    notes = {lang: load_notes(lang, errors) for lang in LANGS}
-    check_notes_parity(notes, errors)
+    drafts = {lang: {} for lang in LANGS}
+    notes = {lang: load_notes(lang, errors, drafts) for lang in LANGS}
+    check_notes_parity(notes, drafts, errors)
     check_uploads(errors)
     files = static_files(errors)
 
     # 2. Renderen (alleen als de teksten bruikbaar zijn; template-fouten worden ook verzameld)
     pages = render_site(texts, notes, errors) if texts_ok and not errors else {}
 
+    concept_lines = [f'  concept (niet gepubliceerd): {f}' for lang in LANGS for f in drafts[lang].values()]
+
     if errors:
         print(f'BUILD MISLUKT — {len(errors)} fout(en):', file=sys.stderr)
         for e in errors:
             print(f'  FOUT: {e}', file=sys.stderr)
         print('dist/ is niet aangepast.', file=sys.stderr)
+        for line in concept_lines:
+            print(line, file=sys.stderr)
         sys.exit(1)
 
     # 3. Schrijven
@@ -955,6 +986,8 @@ def build(list_output=False):
     size = sum(p.stat().st_size for p in out_files)
     print(f'OK: {len(pages)} pagina\'s ({", ".join(LANGS)}) + {len(files)} statische bestanden '
           f'→ dist/ ({len(out_files)} bestanden, {size / 1024:.0f} KB)')
+    for line in concept_lines:
+        print(line)
     if list_output:
         for p in out_files:
             print(f'  {p.relative_to(DIST).as_posix():60} {p.stat().st_size:>9}')

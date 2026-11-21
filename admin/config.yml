@@ -71,6 +71,12 @@ collections:
         i18n: duplicate
       - { name: description, label: Korte beschrijving, widget: string, i18n: true,
           hint: "Eén zin voor de lijst en voor zoekmachines." }
+      - name: draft
+        label: Concept (niet publiceren)
+        widget: boolean
+        default: true
+        i18n: duplicate
+        hint: "Aan = concept: niet online, geen controles. Uitzetten om te publiceren (NL en EN samen)."
       - name: body
         label: Tekst
         widget: markdown

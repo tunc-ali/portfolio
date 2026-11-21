@@ -9,3 +9,48 @@
 
 [build.environment]
   PYTHON_VERSION = "3.12"
+
+# ── Headers ──────────────────────────────────────────────────
+# Alleen /admin en de uploads. De rest van de site krijgt zijn CSP pas in de
+# hardening-fase (bewust: hier niets dat het gedrag van de site verandert).
+
+# CMS (Sveltia): strikte CSP, alleen wat het CMS nodig heeft.
+# - script-src 'self'        : sveltia-cms.js + chunks/ staan lokaal (geen CDN)
+# - style-src 'unsafe-inline': vereist door Sveltia (alleen hier, niet op de site)
+# - connect-src              : config.yml, GitHub API (lezen/committen), blob:/data: voor voorbeelden
+# - img-src                  : eigen beelden, voorbeelden (blob:/data:), GitHub-avatar
+# - geen cdn.jsdelivr.net (fonts/iconen) en geen unpkg.com (updatecheck, vertalingen,
+#   transliteratie): ı in een titel → slug bij het aanmaken zelf aanpassen
+# Dezelfde regels ook voor "/admin" zonder slash: Netlify stuurt die normaal met 301
+# door naar /admin/, maar zo gelden de headers in elk geval. Geen eigen redirect
+# /admin → /admin/: Netlify negeert de slash bij het matchen, dat geeft een lus.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://avatars.githubusercontent.com; font-src 'self'; connect-src 'self' blob: data: https://api.github.com; media-src blob:; frame-src blob:; manifest-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+[[headers]]
+  for = "/admin"
+  [headers.values]
+    Content-Security-Policy = "default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data: https://avatars.githubusercontent.com; font-src 'self'; connect-src 'self' blob: data: https://api.github.com; media-src blob:; frame-src blob:; manifest-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+
+# Uploads via het CMS: nooit als iets anders dan een afbeelding interpreteren.
+# De CSP geldt alleen als iemand het bestand rechtstreeks opent; <img> op de site
+# wordt er niet door beïnvloed.
+[[headers]]
+  for = "/images/uploads/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'none'; img-src 'self'; sandbox"

@@ -49,6 +49,7 @@ CONTROLES (elke fout stopt de build)
       - kopblok (--- … ---) met precies title, date, description, niet leeg;
         geen onbekende of dubbele sleutels; date is een echte datum JJJJ-MM-DD
       - tekst onder het kopblok mag niet leeg zijn
+      - links: alleen https://, mailto: of /pad (zie LAB NOTES)
       - elk artikel bestaat in BEIDE talen met dezelfde bestandsnaam
     images/uploads/
       - alleen .jpg .jpeg .png .webp .avif, max. 5 MB, en de inhoud moet
@@ -67,8 +68,14 @@ LAB NOTES (artikels)
         date: 2026-12-01
         description: Eén zin voor de lijst en voor zoekmachines.
         ---
+    Waarden op één regel; tekst met ": " of een ' wordt tussen aanhalingstekens gezet
+    (zoals het CMS dat doet): title: 'VLAN: Ali''s lab'. Meerregelige waarden (| of >) niet.
     Daaronder gewone Markdown: ## en ### koppen, alinea's, lijsten (- of 1.),
-    > citaten, ```codeblokken```, `code`, **vet**, *cursief* en [links](https://…).
+    > citaten, ```codeblokken```, `code`, **vet**, *cursief* of _cursief_, backslash-escapes
+    en [links](https://…).
+    Veiligheid: HTML in een artikel wordt nooit uitgevoerd maar als tekst getoond (ook in
+    code). Links: alleen https://, mailto: of een pad vanaf de root (/…); al het andere
+    (javascript:, data:, http://, //host, …) stopt de build met bestandsnaam en regel.
     Zolang er geen artikels zijn, maakt build.py geen lab-notes-pagina's en staat
     er geen link in de nav. Met het eerste artikel verschijnen beide vanzelf.
 
@@ -126,7 +133,7 @@ STATIC = {
     'json/topology.json':        True,
     'json/globe.json':           True,
     'json/news.json':            True,
-    'admin':                     False,   # CMS (volgt in stap 4)
+    'admin':                     True,    # CMS (Sveltia), zie admin/config.yml
     'robots.txt':                False,
     '404.html':                  False,
     'favicon.ico':               False,
@@ -392,31 +399,87 @@ def check_runtime_json(texts, errors):
 
 
 # ── Mini-Markdown voor lab notes ──────────────────────────────
-SAFE_URL = re.compile(r'^(https?://|mailto:|/|\./|\.\./|#)')
+# Veiligheid: alle tekst wordt ge-escaped (ruwe HTML in een artikel blijft zichtbare tekst),
+# ook in code. Links worden vóór het bouwen gecontroleerd (check_links): alleen
+# https://, een pad vanaf de root (/…) en mailto: zijn toegestaan.
+LINK = re.compile(r'\[((?:[^\]\\]|\\.)*)\]\(((?:[^()]|\([^()]*\))*)\)')
+CODE_SPAN = re.compile(r'`([^`]+)`')
+ESCAPABLE = re.compile(r'\\([!"#$%&\'()*+,\-./:;<=>?@\[\\\]^_`{|}~])')
+
+
+def normalize_url(raw):
+    """URL zoals een browser hem leest: entiteiten weg, alle witruimte/stuurtekens weg."""
+    url = html.unescape(raw)
+    return re.sub(r'[\x00-\x20\x7f-\x9f]', '', url)
+
+
+def link_problem(raw):
+    """Geeft een reden terug als de link niet mag, anders None."""
+    url = normalize_url(raw)
+    low = url.lower()
+    if not url:
+        return 'lege link'
+    scheme = re.match(r'^([a-z][a-z0-9+.\-]*):', low)
+    allowed = (low.startswith('https://') and len(low) > 8) \
+        or (low.startswith('mailto:') and '@' in low) \
+        or (url.startswith('/') and not url.startswith(('//', '/\\')))
+    if not allowed:
+        if scheme:
+            return f'schema "{scheme.group(1)}:" is niet toegestaan (alleen https://, mailto: of /pad)'
+        return 'alleen https://, mailto: of een pad vanaf de root (/…) is toegestaan'
+    if url != html.unescape(raw).strip():
+        return 'spaties of onzichtbare tekens in de link'
+    return None
+
+
+def check_links(body, first_line, name, errors):
+    """Controleert alle [tekst](url)-links buiten code. first_line = regelnummer van de body."""
+    in_code = False
+    for n, line in enumerate(body.split('\n'), start=first_line):
+        if line.startswith('```'):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        line = CODE_SPAN.sub('', ESCAPABLE.sub('', line))
+        for m in LINK.finditer(line):
+            problem = link_problem(m.group(2))
+            if problem:
+                errors.add(f'{name}, regel {n}: link "{m.group(2)}" geweigerd: {problem}')
+
+
+def md_emphasis(text):
+    text = re.sub(r'\*\*(?!\s)(.+?)(?<!\s)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'(?<![\w_])__(?!\s)(.+?)(?<!\s)__(?![\w_])', r'<strong>\1</strong>', text)
+    text = re.sub(r'(?<![*\w])\*(?!\s)(.+?)(?<!\s)\*(?![*\w])', r'<em>\1</em>', text)
+    text = re.sub(r'(?<![\w_])_(?!\s)(.+?)(?<!\s)_(?![\w_])', r'<em>\1</em>', text)
+    return text
 
 
 def md_inline(text):
-    """Inline-opmaak. Alles wordt eerst ge-escaped: ruwe HTML in een artikel blijft tekst."""
-    codes = []
+    """Inline-opmaak: `code`, \\-escapes, [links](…), **vet**/__vet__, *cursief*/_cursief_."""
+    stash = []
 
-    def stash(m):
-        codes.append(f'<code>{html.escape(m.group(1))}</code>')
-        return f'\x00{len(codes) - 1}\x00'
+    def keep(html_snippet):
+        stash.append(html_snippet)
+        return f'\x00{len(stash) - 1}\x00'
 
-    text = re.sub(r'`([^`]+)`', stash, text)
-    text = html.escape(text, quote=False)
+    text = CODE_SPAN.sub(lambda m: keep(f'<code>{html.escape(m.group(1), quote=True)}</code>'), text)
+    text = ESCAPABLE.sub(lambda m: keep(html.escape(m.group(1), quote=True)), text)
+    text = html.escape(text, quote=True)
 
     def link(m):
         url = html.unescape(m.group(2)).strip()
-        if not SAFE_URL.match(url):
+        if link_problem(m.group(2)):            # wordt al als fout gemeld; nooit als link uitvoeren
             return m.group(0)
-        ext = ' rel="noopener noreferrer"' if url.startswith('http') else ''
-        return f'<a href="{html.escape(url, quote=True)}"{ext}>{m.group(1)}</a>'
+        ext = ' rel="noopener noreferrer"' if url.lower().startswith('https://') else ''
+        return keep(f'<a href="{html.escape(url, quote=True)}"{ext}>{md_emphasis(m.group(1))}</a>')
 
-    text = re.sub(r'\[([^\]]+)\]\(([^)\s]+)\)', link, text)
-    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-    text = re.sub(r'(?<![*\w])\*(?!\s)(.+?)(?<!\s)\*(?![*\w])', r'<em>\1</em>', text)
-    return re.sub(r'\x00(\d+)\x00', lambda m: codes[int(m.group(1))], text)
+    text = LINK.sub(link, text)
+    text = md_emphasis(text)
+    while '\x00' in text:                       # geneste plaatshouders (link met code erin)
+        text = re.sub(r'\x00(\d+)\x00', lambda m: stash[int(m.group(1))], text)
+    return text
 
 
 def md_to_html(src):
@@ -479,6 +542,35 @@ def md_to_html(src):
 
 
 # ── Lab notes laden en controleren ────────────────────────────
+def yaml_scalar(value):
+    """Eén YAML-waarde op één regel, zoals het CMS ze schrijft: gewoon, 'enkel' of "dubbel".
+    Geeft (tekst, None) of (None, foutmelding)."""
+    v = value.strip()
+    if not v:
+        return '', None
+    if v[0] in '|>':
+        return None, 'waarde over meerdere regels (| of >) wordt niet ondersteund; schrijf ze op één regel'
+    if v[0] == "'":
+        if len(v) < 2 or v[-1] != "'" or "'" in v[1:-1].replace("''", ''):
+            return None, "ongeldige tekst tussen enkele aanhalingstekens"
+        return v[1:-1].replace("''", "'"), None
+    if v[0] == '"':
+        try:
+            parsed = json.loads(v)
+        except json.JSONDecodeError:
+            return None, 'ongeldige tekst tussen dubbele aanhalingstekens'
+        if not isinstance(parsed, str):
+            return None, 'ongeldige tekst tussen dubbele aanhalingstekens'
+        return parsed, None
+    if v[0] in '[]{}&*!%@`,?' or v.startswith(('- ', ': ')):
+        return None, f'waarde begint met "{v[0]}": zet ze tussen aanhalingstekens'
+    v = re.sub(r'\s+#.*$', '', v)               # YAML-commentaar
+    if ': ' in v:
+        return None, 'een ": " in de waarde moet tussen aanhalingstekens staan'
+    return v, None
+
+
+
 def load_notes(lang, errors):
     """Leest notes/<taal>/*.md → lijst van dicts, nieuwste eerst."""
     notes = []
@@ -506,13 +598,19 @@ def load_notes(lang, errors):
             continue
         meta, bad = {}, False
         for n, line in enumerate(m.group(1).split('\n'), start=2):
-            if not line.strip():
+            if not line.strip() or line.lstrip().startswith('#'):
+                continue
+            if line[0] in ' \t':
+                errors.add(f'{name}, regel {n}: waarde over meerdere regels wordt niet ondersteund; '
+                           f'schrijf ze op één regel')
+                bad = True
                 continue
             if ':' not in line:
                 errors.add(f'{name}, regel {n}: verwacht "sleutel: waarde", gevonden: {line.strip()!r}')
                 bad = True
                 continue
-            key, value = (s.strip() for s in line.split(':', 1))
+            key, value = line.split(':', 1)
+            key = key.strip()
             if key not in NOTE_KEYS:
                 errors.add(f'{name}, regel {n}: onbekende sleutel "{key}" (toegestaan: {", ".join(NOTE_KEYS)})')
                 bad = True
@@ -520,8 +618,16 @@ def load_notes(lang, errors):
                 errors.add(f'{name}, regel {n}: sleutel "{key}" staat er twee keer')
                 bad = True
             else:
-                meta[key] = value.strip('"\'') if len(value) > 1 and value[0] == value[-1] in '"\'' else value
+                parsed, problem = yaml_scalar(value)
+                if problem:
+                    errors.add(f'{name}, regel {n} ({key}): {problem}')
+                    bad = True
+                    meta[key] = None                    # al gemeld: niet nog eens als "ontbreekt"
+                else:
+                    meta[key] = parsed
         for key in NOTE_KEYS:
+            if key in meta and meta[key] is None:
+                continue
             if not meta.get(key):
                 errors.add(f'{name}: "{key}:" ontbreekt of is leeg in het kopblok')
                 bad = True
@@ -533,7 +639,9 @@ def load_notes(lang, errors):
             except ValueError:
                 errors.add(f'{name}: date "{meta["date"]}" is geen geldige datum (JJJJ-MM-DD)')
                 bad = True
-        body = (m.group(2) or '').strip()
+        raw_body = m.group(2) or ''
+        check_links(raw_body, len(m.group(1).split('\n')) + 3, name, errors)
+        body = raw_body.strip()
         if not body:
             errors.add(f'{name}: de tekst onder het kopblok is leeg')
             bad = True

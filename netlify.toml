@@ -1,7 +1,6 @@
-# Netlify-configuratie (minimaal)
-# De HTML staat kant-en-klaar in de repo (gegenereerd met `python build.py`),
-# dus Netlify hoeft niets te bouwen: de root van de repo wordt gepubliceerd.
-# Security-headers, redirects, Functions en Forms volgen later.
+# Netlify-configuratie voor alitunc.net
+# De HTML wordt lokaal gegenereerd met `python build.py` en staat in de repo,
+# dus Netlify publiceert de root zonder build-stap.
 
 [build]
   publish = "."

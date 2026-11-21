@@ -1,0 +1,22 @@
+# Regels voor regeleinden en binaire bestanden (geldt voor iedereen die deze repo uitcheckt,
+# ongeacht core.autocrlf).
+
+# Tekst: in de repo en op schijf altijd LF
+* text=auto eol=lf
+
+# Externe bibliotheken: byte voor byte zoals geleverd, geen conversie
+# (SHA-256 staat in vendor/README.md en vendor/sveltia-cms/SHA256SUMS)
+vendor/** -text
+
+# Binair: geen conversie en geen tekst-diff
+*.woff2 binary
+*.woff  binary
+*.ttf   binary
+*.webp  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.avif  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary

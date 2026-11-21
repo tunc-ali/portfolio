@@ -1,0 +1,3 @@
+# alitunc.net
+User-agent: *
+Disallow: /admin/

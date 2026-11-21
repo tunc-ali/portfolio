@@ -46,13 +46,16 @@ CONTROLES (elke fout stopt de build)
       - geldige JSON en de velden die de scripts op de site verwachten
     notes/<taal>/*.md (lab notes)
       - bestandsnaam = slug: alleen a-z, 0-9 en koppeltekens (bv. vlan-hopping.md)
-      - kopblok (--- … ---) met precies title, date, description, niet leeg;
+      - draft: true of false verplicht; concepten (true) worden overgeslagen
+      - kopblok (--- … ---) met precies title, date, description, draft, niet leeg;
         geen onbekende of dubbele sleutels; date is een echte datum JJJJ-MM-DD
       - tekst onder het kopblok mag niet leeg zijn
+      - links: alleen https://, mailto: of /pad (zie LAB NOTES)
       - elk artikel bestaat in BEIDE talen met dezelfde bestandsnaam
     images/uploads/
       - alleen .jpg .jpeg .png .webp .avif, max. 5 MB, en de inhoud moet
         echt dat formaat zijn (geen hernoemde SVG/HTML)
+      - geen EXIF/XMP/IPTC-metadata (GPS-locatie, camera, …)
     algemeen
       - geen symbolische links in wat naar dist/ gaat
       - elke template-sleutel moet bestaan
@@ -65,11 +68,22 @@ LAB NOTES (artikels)
         title: VLAN hopping in het lab
         date: 2026-12-01
         description: Eén zin voor de lijst en voor zoekmachines.
+        draft: false
         ---
+    draft: true = concept: wordt niet gebouwd en niet gecontroleerd (blokkeert de deploy niet).
+    draft: false = publiceren: alle controles. draft ontbreekt of ongeldig → fout (nooit per
+    ongeluk publiceren). NL en EN moeten allebei draft: false zijn om te publiceren.
+    Waarden op één regel; tekst met ": " of een ' wordt tussen aanhalingstekens gezet
+    (zoals het CMS dat doet): title: 'VLAN: Ali''s lab'. Meerregelige waarden (| of >) niet.
     Daaronder gewone Markdown: ## en ### koppen, alinea's, lijsten (- of 1.),
-    > citaten, ```codeblokken```, `code`, **vet**, *cursief* en [links](https://…).
-    Zolang er geen artikels zijn, maakt build.py geen lab-notes-pagina's en staat
-    er geen link in de nav. Met het eerste artikel verschijnen beide vanzelf.
+    > citaten, ```codeblokken```, `code`, **vet**, *cursief* of _cursief_, backslash-escapes
+    en [links](https://…).
+    Veiligheid: HTML in een artikel wordt nooit uitgevoerd maar als tekst getoond (ook in
+    code). Links: alleen https://, mailto: of een pad vanaf de root (/…); al het andere
+    (javascript:, data:, http://, //host, …) stopt de build met bestandsnaam en regel.
+    Zolang er geen gepubliceerde artikels zijn (alleen concepten of niets), maakt build.py
+    geen lab-notes-pagina's en staat er geen link in de nav. Met het eerste gepubliceerde
+    artikel verschijnen beide vanzelf.
 
 TEMPLATE-SYNTAX (bewust minimaal, alleen de standaardbibliotheek van Python)
     {{ pad.naar.sleutel }}                tekst, HTML wordt ge-escaped
@@ -121,10 +135,11 @@ STATIC = {
     'vendor/three.bundle.min.js': True,
     'vendor/LICENSE-three.txt':  True,
     'vendor/fonts':              True,
+    'vendor/sveltia-cms':        True,    # CMS-script voor /admin (zie vendor/README.md)
     'json/topology.json':        True,
     'json/globe.json':           True,
     'json/news.json':            True,
-    'admin':                     False,   # CMS (volgt in stap 4)
+    'admin':                     True,    # CMS (Sveltia), zie admin/config.yml
     'robots.txt':                False,
     '404.html':                  False,
     'favicon.ico':               False,
@@ -142,7 +157,7 @@ UPLOADS = 'images/uploads'
 UPLOAD_MAX_BYTES = 5 * 1024 * 1024
 UPLOAD_TYPES = {'.jpg': 'jpeg', '.jpeg': 'jpeg', '.png': 'png', '.webp': 'webp', '.avif': 'avif'}
 
-NOTE_KEYS = ('title', 'date', 'description')
+NOTE_KEYS = ('title', 'date', 'description', 'draft')
 SLUG = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
 
 GENERATED_NOTE = '<!-- GEGENEREERD door build.py (templates/ + json/) — niet rechtstreeks bewerken -->'
@@ -390,31 +405,87 @@ def check_runtime_json(texts, errors):
 
 
 # ── Mini-Markdown voor lab notes ──────────────────────────────
-SAFE_URL = re.compile(r'^(https?://|mailto:|/|\./|\.\./|#)')
+# Veiligheid: alle tekst wordt ge-escaped (ruwe HTML in een artikel blijft zichtbare tekst),
+# ook in code. Links worden vóór het bouwen gecontroleerd (check_links): alleen
+# https://, een pad vanaf de root (/…) en mailto: zijn toegestaan.
+LINK = re.compile(r'\[((?:[^\]\\]|\\.)*)\]\(((?:[^()]|\([^()]*\))*)\)')
+CODE_SPAN = re.compile(r'`([^`]+)`')
+ESCAPABLE = re.compile(r'\\([!"#$%&\'()*+,\-./:;<=>?@\[\\\]^_`{|}~])')
+
+
+def normalize_url(raw):
+    """URL zoals een browser hem leest: entiteiten weg, alle witruimte/stuurtekens weg."""
+    url = html.unescape(raw)
+    return re.sub(r'[\x00-\x20\x7f-\x9f]', '', url)
+
+
+def link_problem(raw):
+    """Geeft een reden terug als de link niet mag, anders None."""
+    url = normalize_url(raw)
+    low = url.lower()
+    if not url:
+        return 'lege link'
+    scheme = re.match(r'^([a-z][a-z0-9+.\-]*):', low)
+    allowed = (low.startswith('https://') and len(low) > 8) \
+        or (low.startswith('mailto:') and '@' in low) \
+        or (url.startswith('/') and not url.startswith(('//', '/\\')))
+    if not allowed:
+        if scheme:
+            return f'schema "{scheme.group(1)}:" is niet toegestaan (alleen https://, mailto: of /pad)'
+        return 'alleen https://, mailto: of een pad vanaf de root (/…) is toegestaan'
+    if url != html.unescape(raw).strip():
+        return 'spaties of onzichtbare tekens in de link'
+    return None
+
+
+def check_links(body, first_line, name, errors):
+    """Controleert alle [tekst](url)-links buiten code. first_line = regelnummer van de body."""
+    in_code = False
+    for n, line in enumerate(body.split('\n'), start=first_line):
+        if line.startswith('```'):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        line = CODE_SPAN.sub('', ESCAPABLE.sub('', line))
+        for m in LINK.finditer(line):
+            problem = link_problem(m.group(2))
+            if problem:
+                errors.add(f'{name}, regel {n}: link "{m.group(2)}" geweigerd: {problem}')
+
+
+def md_emphasis(text):
+    text = re.sub(r'\*\*(?!\s)(.+?)(?<!\s)\*\*', r'<strong>\1</strong>', text)
+    text = re.sub(r'(?<![\w_])__(?!\s)(.+?)(?<!\s)__(?![\w_])', r'<strong>\1</strong>', text)
+    text = re.sub(r'(?<![*\w])\*(?!\s)(.+?)(?<!\s)\*(?![*\w])', r'<em>\1</em>', text)
+    text = re.sub(r'(?<![\w_])_(?!\s)(.+?)(?<!\s)_(?![\w_])', r'<em>\1</em>', text)
+    return text
 
 
 def md_inline(text):
-    """Inline-opmaak. Alles wordt eerst ge-escaped: ruwe HTML in een artikel blijft tekst."""
-    codes = []
+    """Inline-opmaak: `code`, \\-escapes, [links](…), **vet**/__vet__, *cursief*/_cursief_."""
+    stash = []
 
-    def stash(m):
-        codes.append(f'<code>{html.escape(m.group(1))}</code>')
-        return f'\x00{len(codes) - 1}\x00'
+    def keep(html_snippet):
+        stash.append(html_snippet)
+        return f'\x00{len(stash) - 1}\x00'
 
-    text = re.sub(r'`([^`]+)`', stash, text)
-    text = html.escape(text, quote=False)
+    text = CODE_SPAN.sub(lambda m: keep(f'<code>{html.escape(m.group(1), quote=True)}</code>'), text)
+    text = ESCAPABLE.sub(lambda m: keep(html.escape(m.group(1), quote=True)), text)
+    text = html.escape(text, quote=True)
 
     def link(m):
         url = html.unescape(m.group(2)).strip()
-        if not SAFE_URL.match(url):
+        if link_problem(m.group(2)):            # wordt al als fout gemeld; nooit als link uitvoeren
             return m.group(0)
-        ext = ' rel="noopener noreferrer"' if url.startswith('http') else ''
-        return f'<a href="{html.escape(url, quote=True)}"{ext}>{m.group(1)}</a>'
+        ext = ' rel="noopener noreferrer"' if url.lower().startswith('https://') else ''
+        return keep(f'<a href="{html.escape(url, quote=True)}"{ext}>{md_emphasis(m.group(1))}</a>')
 
-    text = re.sub(r'\[([^\]]+)\]\(([^)\s]+)\)', link, text)
-    text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-    text = re.sub(r'(?<![*\w])\*(?!\s)(.+?)(?<!\s)\*(?![*\w])', r'<em>\1</em>', text)
-    return re.sub(r'\x00(\d+)\x00', lambda m: codes[int(m.group(1))], text)
+    text = LINK.sub(link, text)
+    text = md_emphasis(text)
+    while '\x00' in text:                       # geneste plaatshouders (link met code erin)
+        text = re.sub(r'\x00(\d+)\x00', lambda m: stash[int(m.group(1))], text)
+    return text
 
 
 def md_to_html(src):
@@ -477,8 +548,40 @@ def md_to_html(src):
 
 
 # ── Lab notes laden en controleren ────────────────────────────
-def load_notes(lang, errors):
-    """Leest notes/<taal>/*.md → lijst van dicts, nieuwste eerst."""
+def yaml_scalar(value):
+    """Eén YAML-waarde op één regel, zoals het CMS ze schrijft: gewoon, 'enkel' of "dubbel".
+    Geeft (tekst, None) of (None, foutmelding)."""
+    v = value.strip()
+    if not v:
+        return '', None
+    if v[0] in '|>':
+        return None, 'waarde over meerdere regels (| of >) wordt niet ondersteund; schrijf ze op één regel'
+    if v[0] == "'":
+        if len(v) < 2 or v[-1] != "'" or "'" in v[1:-1].replace("''", ''):
+            return None, "ongeldige tekst tussen enkele aanhalingstekens"
+        return v[1:-1].replace("''", "'"), None
+    if v[0] == '"':
+        try:
+            parsed = json.loads(v)
+        except json.JSONDecodeError:
+            return None, 'ongeldige tekst tussen dubbele aanhalingstekens'
+        if not isinstance(parsed, str):
+            return None, 'ongeldige tekst tussen dubbele aanhalingstekens'
+        return parsed, None
+    if v[0] in '[]{}&*!%@`,?' or v.startswith(('- ', ': ')):
+        return None, f'waarde begint met "{v[0]}": zet ze tussen aanhalingstekens'
+    v = re.sub(r'\s+#.*$', '', v)               # YAML-commentaar
+    if ': ' in v:
+        return None, 'een ": " in de waarde moet tussen aanhalingstekens staan'
+    return v, None
+
+
+
+def load_notes(lang, errors, drafts):
+    """Leest notes/<taal>/*.md → lijst van gepubliceerde notities (dicts), nieuwste eerst.
+    Concepten (draft: true) worden overgeslagen en in drafts[lang] genoteerd (slug → bestand);
+    hun overige fouten blokkeren de build niet. Ontbreekt draft of is de waarde ongeldig,
+    dan is dat wél een fout: liever geen deploy dan per ongeluk publiceren."""
     notes = []
     folder = ROOT / 'notes' / lang
     if not folder.is_dir():
@@ -502,54 +605,87 @@ def load_notes(lang, errors):
         if not m:
             errors.add(f'{name}: kopblok ontbreekt of is niet afgesloten (--- … --- bovenaan)')
             continue
-        meta, bad = {}, False
+
+        ferr = []                                   # fouten van dit bestand (genegeerd bij een concept)
+        meta = {}
         for n, line in enumerate(m.group(1).split('\n'), start=2):
-            if not line.strip():
+            if not line.strip() or line.lstrip().startswith('#'):
+                continue
+            if line[0] in ' \t':
+                ferr.append(f'{name}, regel {n}: waarde over meerdere regels wordt niet ondersteund; '
+                            f'schrijf ze op één regel')
                 continue
             if ':' not in line:
-                errors.add(f'{name}, regel {n}: verwacht "sleutel: waarde", gevonden: {line.strip()!r}')
-                bad = True
+                ferr.append(f'{name}, regel {n}: verwacht "sleutel: waarde", gevonden: {line.strip()!r}')
                 continue
-            key, value = (s.strip() for s in line.split(':', 1))
+            key, value = line.split(':', 1)
+            key = key.strip()
             if key not in NOTE_KEYS:
-                errors.add(f'{name}, regel {n}: onbekende sleutel "{key}" (toegestaan: {", ".join(NOTE_KEYS)})')
-                bad = True
+                ferr.append(f'{name}, regel {n}: onbekende sleutel "{key}" (toegestaan: {", ".join(NOTE_KEYS)})')
             elif key in meta:
-                errors.add(f'{name}, regel {n}: sleutel "{key}" staat er twee keer')
-                bad = True
+                ferr.append(f'{name}, regel {n}: sleutel "{key}" staat er twee keer')
             else:
-                meta[key] = value.strip('"\'') if len(value) > 1 and value[0] == value[-1] in '"\'' else value
+                parsed, problem = yaml_scalar(value)
+                if problem:
+                    ferr.append(f'{name}, regel {n} ({key}): {problem}')
+                    meta[key] = None                    # al gemeld: niet nog eens als "ontbreekt"
+                else:
+                    meta[key] = parsed
+
+        # 1. Concept of niet? (fail closed: ontbreekt/ongeldig → fout, niet publiceren)
+        draft = meta.get('draft')
+        if draft not in ('true', 'false'):
+            errors.add(f'{name}: "draft:" ontbreekt of is ongeldig (moet true of false zijn)')
+            for e in ferr:
+                errors.add(e)
+            continue
+        if draft == 'true':
+            drafts[lang][path.stem] = name
+            continue
+
+        # 2. Gepubliceerd: alle controles
         for key in NOTE_KEYS:
+            if key in meta and meta[key] is None:
+                continue
             if not meta.get(key):
-                errors.add(f'{name}: "{key}:" ontbreekt of is leeg in het kopblok')
-                bad = True
+                ferr.append(f'{name}: "{key}:" ontbreekt of is leeg in het kopblok')
         if meta.get('date'):
             try:
                 datetime.date.fromisoformat(meta['date'])
                 if not re.match(r'^\d{4}-\d{2}-\d{2}$', meta['date']):
                     raise ValueError
             except ValueError:
-                errors.add(f'{name}: date "{meta["date"]}" is geen geldige datum (JJJJ-MM-DD)')
-                bad = True
-        body = (m.group(2) or '').strip()
+                ferr.append(f'{name}: date "{meta["date"]}" is geen geldige datum (JJJJ-MM-DD)')
+        raw_body = m.group(2) or ''
+        link_errors = Errors()
+        check_links(raw_body, len(m.group(1).split('\n')) + 3, name, link_errors)
+        ferr.extend(link_errors)
+        body = raw_body.strip()
         if not body:
-            errors.add(f'{name}: de tekst onder het kopblok is leeg')
-            bad = True
-        if bad:
+            ferr.append(f'{name}: de tekst onder het kopblok is leeg')
+        if ferr:
+            for e in ferr:
+                errors.add(e)
             continue
         slug = path.stem
+        meta = {k: v for k, v in meta.items() if k != 'draft'}
         notes.append({**meta, 'slug': slug, 'file': f'{slug}.html', 'body': md_to_html(body)})
     return sorted(notes, key=lambda n: (n['date'], n['slug']), reverse=True)
 
 
-def check_notes_parity(notes, errors):
+def check_notes_parity(notes, drafts, errors):
+    """Elke gepubliceerde notitie moet in alle talen gepubliceerd zijn."""
     slugs = {lang: {n['slug'] for n in notes[lang]} for lang in LANGS}
     for lang in LANGS:
         for other in LANGS:
             if other == lang:
                 continue
             for slug in sorted(slugs[lang] - slugs[other]):
-                errors.add(f'notes/{lang}/{slug}.md heeft geen vertaling: notes/{other}/{slug}.md ontbreekt')
+                if slug in drafts[other]:
+                    errors.add(f'notes/{lang}/{slug}.md is gepubliceerd (draft: false), maar '
+                               f'notes/{other}/{slug}.md is nog een concept (draft: true)')
+                else:
+                    errors.add(f'notes/{lang}/{slug}.md heeft geen vertaling: notes/{other}/{slug}.md ontbreekt')
 
 
 # ── Uploads en statische bestanden ────────────────────────────
@@ -563,6 +699,65 @@ def sniff(data):
     if data[4:8] == b'ftyp' and data[8:12] in (b'avif', b'avis'):
         return 'avif'
     return None
+
+
+def find_metadata(data, kind):
+    """Zoekt EXIF/XMP/IPTC-blokken (o.a. GPS, camera). Geeft een lijst namen terug; leeg = schoon.
+    Alleen de standaardbibliotheek: de containerstructuur van elk formaat wordt doorlopen."""
+    found = []
+    if kind == 'jpeg':
+        i = 2
+        while i + 4 <= len(data) and data[i] == 0xFF:
+            marker = data[i + 1]
+            if marker == 0xFF:                       # opvulbyte
+                i += 1
+                continue
+            if marker in (0xD8, 0x01) or 0xD0 <= marker <= 0xD7:
+                i += 2
+                continue
+            if marker in (0xDA, 0xD9):               # begin beelddata / einde: geen metadata meer
+                break
+            length = int.from_bytes(data[i + 2:i + 4], 'big')
+            body = data[i + 4:i + 2 + length]
+            if marker == 0xE1 and body.startswith(b'Exif\x00'):
+                found.append('EXIF')
+            elif marker == 0xE1 and body.startswith((b'http://ns.adobe.com/xap/1.0/', b'http://ns.adobe.com/xmp/')):
+                found.append('XMP')
+            elif marker == 0xED:
+                found.append('IPTC/Photoshop')
+            i += 2 + length
+    elif kind == 'png':
+        i = 8
+        while i + 8 <= len(data):
+            length = int.from_bytes(data[i:i + 4], 'big')
+            ctype = data[i + 4:i + 8]
+            body = data[i + 8:i + 8 + length]
+            if ctype == b'eXIf':
+                found.append('EXIF')
+            elif ctype in (b'iTXt', b'tEXt', b'zTXt') and body.startswith((b'XML:com.adobe.xmp', b'Raw profile type exif')):
+                found.append('XMP' if body.startswith(b'XML') else 'EXIF')
+            if ctype == b'IEND':
+                break
+            i += 12 + length
+    elif kind == 'webp':
+        i = 12
+        while i + 8 <= len(data):
+            ctype = data[i:i + 4]
+            length = int.from_bytes(data[i + 4:i + 8], 'little')
+            if ctype == b'EXIF':
+                found.append('EXIF')
+            elif ctype == b'XMP ':
+                found.append('XMP')
+            i += 8 + length + (length & 1)
+    elif kind == 'avif':
+        # Metadata staat als item in de 'meta'-box: item_type 'Exif' of 'mime' (XMP) in een 'infe'-box
+        for m in re.finditer(rb'infe', data[:65536]):
+            window = data[m.end():m.end() + 24]
+            if b'Exif' in window:
+                found.append('EXIF')
+            elif b'mime' in window and b'rdf+xml' in data[m.end():m.end() + 64]:
+                found.append('XMP')
+    return sorted(set(found))
 
 
 def check_uploads(errors):
@@ -584,10 +779,15 @@ def check_uploads(errors):
         if size > UPLOAD_MAX_BYTES:
             errors.add(f'{name}: {size / 1048576:.1f} MB, maximum is {UPLOAD_MAX_BYTES // 1048576} MB')
             continue
-        with path.open('rb') as f:
-            kind = sniff(f.read(16))
+        data = path.read_bytes()
+        kind = sniff(data[:16])
         if kind != UPLOAD_TYPES[ext]:
             errors.add(f'{name}: inhoud is geen echte {ext[1:].upper()}-afbeelding')
+            continue
+        meta = find_metadata(data, kind)
+        if meta:
+            errors.add(f'{name}: bevat metadata ({", ".join(meta)}), mogelijk met GPS-locatie of '
+                       f'cameragegevens. Verwijder die eerst (bv. opnieuw opslaan als webp via het CMS).')
 
 
 def static_files(errors):
@@ -752,19 +952,24 @@ def build(list_output=False):
     if texts_ok:
         check_texts(texts, errors)
         check_runtime_json(texts, errors)
-    notes = {lang: load_notes(lang, errors) for lang in LANGS}
-    check_notes_parity(notes, errors)
+    drafts = {lang: {} for lang in LANGS}
+    notes = {lang: load_notes(lang, errors, drafts) for lang in LANGS}
+    check_notes_parity(notes, drafts, errors)
     check_uploads(errors)
     files = static_files(errors)
 
     # 2. Renderen (alleen als de teksten bruikbaar zijn; template-fouten worden ook verzameld)
     pages = render_site(texts, notes, errors) if texts_ok and not errors else {}
 
+    concept_lines = [f'  concept (niet gepubliceerd): {f}' for lang in LANGS for f in drafts[lang].values()]
+
     if errors:
         print(f'BUILD MISLUKT — {len(errors)} fout(en):', file=sys.stderr)
         for e in errors:
             print(f'  FOUT: {e}', file=sys.stderr)
         print('dist/ is niet aangepast.', file=sys.stderr)
+        for line in concept_lines:
+            print(line, file=sys.stderr)
         sys.exit(1)
 
     # 3. Schrijven
@@ -781,6 +986,8 @@ def build(list_output=False):
     size = sum(p.stat().st_size for p in out_files)
     print(f'OK: {len(pages)} pagina\'s ({", ".join(LANGS)}) + {len(files)} statische bestanden '
           f'→ dist/ ({len(out_files)} bestanden, {size / 1024:.0f} KB)')
+    for line in concept_lines:
+        print(line)
     if list_output:
         for p in out_files:
             print(f'  {p.relative_to(DIST).as_posix():60} {p.stat().st_size:>9}')

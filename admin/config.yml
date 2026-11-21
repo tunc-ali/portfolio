@@ -1,0 +1,88 @@
+# Sveltia CMS — alitunc.net
+# Inloggen: "Sign In with Token" met een fine-grained PAT (alleen deze repo,
+# Contents: read/write). Geen OAuth-app. Uitleg en vervaldatum: README.md.
+
+backend:
+  name: github
+  repo: tunc-ali/portfolio
+  branch: main                # productie: elke Save in het CMS gaat live na de build
+  commit_messages:
+    create: "cms: add {{collection}} {{slug}}"
+    update: "cms: update {{collection}} {{slug}}"
+    delete: "cms: delete {{collection}} {{slug}}"
+    uploadMedia: "cms: upload {{path}}"
+    deleteMedia: "cms: delete {{path}}"
+
+site_url: https://alitunc.net
+
+# Uploads: alleen naar images/uploads/, omgezet naar WebP (geen EXIF meer),
+# max. 2400 px en 5 MB (zelfde grens als build.py)
+media_folder: images/uploads
+public_folder: /images/uploads
+media_libraries:
+  default:
+    config:
+      max_file_size: 5242880
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2400
+          height: 2400
+
+# Slugs: alleen a-z, 0-9 en koppeltekens (zoals build.py eist)
+slug:
+  encoding: ascii
+  clean_accents: true
+
+i18n:
+  structure: multiple_folders   # notes/nl/<slug>.md + notes/en/<slug>.md
+  locales: [nl, en]
+  default_locale: nl
+  initial_locales: all          # nieuwe entry: NL én EN aan. Eén taal → build.py stopt de deploy
+
+collections:
+  - name: notes
+    label: Lab notes
+    label_singular: Lab note
+    description: Artikels over het lab. Elk artikel bestaat in het Nederlands én het Engels.
+    folder: notes
+    extension: md
+    format: frontmatter
+    i18n: true
+    create: true
+    delete: true
+    identifier_field: title
+    slug:
+      template: "{{title}}"
+      editable: [create]
+      pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Alleen kleine letters, cijfers en koppeltekens, bv. vlan-hopping']
+    summary: "{{date}} — {{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: Titel, widget: string, i18n: true }
+      - name: date
+        label: Datum
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        default: "{{now}}"
+        i18n: duplicate
+      - { name: description, label: Korte beschrijving, widget: string, i18n: true,
+          hint: "Eén zin voor de lijst en voor zoekmachines." }
+      - name: draft
+        label: Concept (niet publiceren)
+        widget: boolean
+        default: true
+        i18n: duplicate
+        hint: "Aan = concept: niet online, geen controles. Uitzetten om te publiceren (NL en EN samen)."
+      - name: body
+        label: Tekst
+        widget: markdown
+        i18n: true
+        buttons: [bold, italic, code, link, heading-two, heading-three, quote, bulleted-list, numbered-list]
+        editor_components: [code-block]
+        linked_images: false
+        captioned_images: false
+        use_emoji_autocomplete: false

@@ -53,6 +53,7 @@ CONTROLES (elke fout stopt de build)
     images/uploads/
       - alleen .jpg .jpeg .png .webp .avif, max. 5 MB, en de inhoud moet
         echt dat formaat zijn (geen hernoemde SVG/HTML)
+      - geen EXIF/XMP/IPTC-metadata (GPS-locatie, camera, …)
     algemeen
       - geen symbolische links in wat naar dist/ gaat
       - elke template-sleutel moet bestaan
@@ -121,6 +122,7 @@ STATIC = {
     'vendor/three.bundle.min.js': True,
     'vendor/LICENSE-three.txt':  True,
     'vendor/fonts':              True,
+    'vendor/sveltia-cms':        True,    # CMS-script voor /admin (zie vendor/README.md)
     'json/topology.json':        True,
     'json/globe.json':           True,
     'json/news.json':            True,
@@ -565,6 +567,65 @@ def sniff(data):
     return None
 
 
+def find_metadata(data, kind):
+    """Zoekt EXIF/XMP/IPTC-blokken (o.a. GPS, camera). Geeft een lijst namen terug; leeg = schoon.
+    Alleen de standaardbibliotheek: de containerstructuur van elk formaat wordt doorlopen."""
+    found = []
+    if kind == 'jpeg':
+        i = 2
+        while i + 4 <= len(data) and data[i] == 0xFF:
+            marker = data[i + 1]
+            if marker == 0xFF:                       # opvulbyte
+                i += 1
+                continue
+            if marker in (0xD8, 0x01) or 0xD0 <= marker <= 0xD7:
+                i += 2
+                continue
+            if marker in (0xDA, 0xD9):               # begin beelddata / einde: geen metadata meer
+                break
+            length = int.from_bytes(data[i + 2:i + 4], 'big')
+            body = data[i + 4:i + 2 + length]
+            if marker == 0xE1 and body.startswith(b'Exif\x00'):
+                found.append('EXIF')
+            elif marker == 0xE1 and body.startswith((b'http://ns.adobe.com/xap/1.0/', b'http://ns.adobe.com/xmp/')):
+                found.append('XMP')
+            elif marker == 0xED:
+                found.append('IPTC/Photoshop')
+            i += 2 + length
+    elif kind == 'png':
+        i = 8
+        while i + 8 <= len(data):
+            length = int.from_bytes(data[i:i + 4], 'big')
+            ctype = data[i + 4:i + 8]
+            body = data[i + 8:i + 8 + length]
+            if ctype == b'eXIf':
+                found.append('EXIF')
+            elif ctype in (b'iTXt', b'tEXt', b'zTXt') and body.startswith((b'XML:com.adobe.xmp', b'Raw profile type exif')):
+                found.append('XMP' if body.startswith(b'XML') else 'EXIF')
+            if ctype == b'IEND':
+                break
+            i += 12 + length
+    elif kind == 'webp':
+        i = 12
+        while i + 8 <= len(data):
+            ctype = data[i:i + 4]
+            length = int.from_bytes(data[i + 4:i + 8], 'little')
+            if ctype == b'EXIF':
+                found.append('EXIF')
+            elif ctype == b'XMP ':
+                found.append('XMP')
+            i += 8 + length + (length & 1)
+    elif kind == 'avif':
+        # Metadata staat als item in de 'meta'-box: item_type 'Exif' of 'mime' (XMP) in een 'infe'-box
+        for m in re.finditer(rb'infe', data[:65536]):
+            window = data[m.end():m.end() + 24]
+            if b'Exif' in window:
+                found.append('EXIF')
+            elif b'mime' in window and b'rdf+xml' in data[m.end():m.end() + 64]:
+                found.append('XMP')
+    return sorted(set(found))
+
+
 def check_uploads(errors):
     folder = ROOT / UPLOADS
     if not folder.exists():
@@ -584,10 +645,15 @@ def check_uploads(errors):
         if size > UPLOAD_MAX_BYTES:
             errors.add(f'{name}: {size / 1048576:.1f} MB, maximum is {UPLOAD_MAX_BYTES // 1048576} MB')
             continue
-        with path.open('rb') as f:
-            kind = sniff(f.read(16))
+        data = path.read_bytes()
+        kind = sniff(data[:16])
         if kind != UPLOAD_TYPES[ext]:
             errors.add(f'{name}: inhoud is geen echte {ext[1:].upper()}-afbeelding')
+            continue
+        meta = find_metadata(data, kind)
+        if meta:
+            errors.add(f'{name}: bevat metadata ({", ".join(meta)}), mogelijk met GPS-locatie of '
+                       f'cameragegevens. Verwijder die eerst (bv. opnieuw opslaan als webp via het CMS).')
 
 
 def static_files(errors):

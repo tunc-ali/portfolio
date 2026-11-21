@@ -1,6 +1,11 @@
 # Netlify-configuratie voor alitunc.net
-# De HTML wordt lokaal gegenereerd met `python build.py` en staat in de repo,
-# dus Netlify publiceert de root zonder build-stap.
+# Netlify voert build.py uit: eerst controle van alle bronnen, daarna de site in dist/.
+# Mislukt de controle, dan mislukt de deploy en blijft de vorige versie online.
+# Python-versie: houd gelijk met .github/workflows/validate.yml.
 
 [build]
-  publish = "."
+  command = "python3 build.py"
+  publish = "dist"
+
+[build.environment]
+  PYTHON_VERSION = "3.12"

@@ -1,6 +1,14 @@
 # vendor/
 
 Externe bibliotheken staan hier lokaal (geen CDN), met vaste versie.
+Alles onder `vendor/` wordt door git byte voor byte bewaard (`-text` in `.gitattributes`),
+zodat de SHA-256 hieronder ook na een checkout op Windows klopt.
+
+Alles in één keer controleren (PowerShell, in `D:\mijnwebsite`):
+
+```powershell
+Get-ChildItem vendor -Recurse -File | Get-FileHash -Algorithm SHA256 | Format-Table Hash, Path -AutoSize
+```
 
 ## three.bundle.min.js
 
@@ -14,8 +22,13 @@ Zo is het bestand gemaakt (opnieuw doen bij een versie-update):
 
 ```
 npm install three@0.187.0 esbuild
-npx esbuild vendor-entry.js --bundle --format=esm --minify --target=es2020 --outfile=vendor/three.bundle.min.js
+npx esbuild vendor-entry.js --bundle --format=esm --minify --target=es2020 --legal-comments=none \
+  "--banner:js=/*! three.js r187 (0.187.0) + OrbitControls — MIT License — Copyright 2010-2026 three.js authors — https://threejs.org — zie vendor/LICENSE-three.txt en vendor/README.md */" \
+  --outfile=vendor/three.bundle.min.js
 ```
+
+**SHA-256** `three.bundle.min.js` = `1e53aa61299d1af1b415d2285e8a5c4d0105b3dabbf9d35b85289e6a3cb23df4`
+(nagebouwd op 2026-11-21 met esbuild 0.28.2: byte-identiek; esbuild ≥ 0.25.9 geeft hetzelfde resultaat)
 
 `vendor-entry.js`:
 
@@ -39,6 +52,12 @@ Gebruikt door `js/scene-core.js` (en daarmee `js/topology.js` en `js/globe.js`).
 - **JetBrains Mono** (400, 500) en **Barlow Condensed** (600, 700, 800), woff2, subset *latin*
 - **Licentie:** SIL Open Font License 1.1 — zie `fonts/LICENSE-jetbrains-mono.txt` en `fonts/LICENSE-barlow-condensed.txt`
 - **Bron:** npm `@fontsource/jetbrains-mono@5.3.0` en `@fontsource/barlow-condensed@5.3.0` (map `files/`), ongewijzigd
+- **SHA-256** (op 2026-11-21 vergeleken met de npm-pakketten: byte-identiek):
+  - `jetbrains-mono-latin-400-normal.woff2` = `14425ba9c695763c1547f48a206b7aa60350a33ae23de09f0407877f3fcd89eb`
+  - `jetbrains-mono-latin-500-normal.woff2` = `cb182feeed4d798ff6961d3c79f7026279448fca0676438aaecb21f3fc39553a`
+  - `barlow-condensed-latin-600-normal.woff2` = `215a93c696f442034a46fbb382958f753fda60e30490683aeea6b235fcbb2b66`
+  - `barlow-condensed-latin-700-normal.woff2` = `3787a5a419171630e6890cfa47c4da067474d005cd0ff8dc11ec090fdc3ee2b8`
+  - `barlow-condensed-latin-800-normal.woff2` = `2515494e8cc2ca07c86ea78766cfa104b796aa6ed5d66821c01d51dbb0b52bce`
 - Ingeladen via `@font-face` bovenaan `css/base.css` met `font-display: swap`.
   Een extra gewicht nodig? Bestand hier toevoegen en een `@font-face`-regel bijschrijven.
 

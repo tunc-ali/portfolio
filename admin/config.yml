@@ -40,8 +40,7 @@ i18n:
   structure: multiple_folders   # notes/nl/<slug>.md + notes/en/<slug>.md
   locales: [nl, en]
   default_locale: nl
-  initial_locales: all
-  save_all_locales: true
+  initial_locales: all          # nieuwe entry: NL én EN aan. Eén taal → build.py stopt de deploy
 
 collections:
   - name: notes

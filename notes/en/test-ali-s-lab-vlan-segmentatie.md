@@ -2,6 +2,7 @@
 title: "TEST: Ali's lab – VLAN segmentation"
 date: 2026-11-21
 description: Test note for the CMS, removed before the merge
+draft: false
 ---
 
 ## Goal

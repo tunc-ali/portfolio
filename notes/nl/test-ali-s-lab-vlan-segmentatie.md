@@ -2,7 +2,7 @@
 title: "TEST: Ali's lab – VLAN-segmentatie"
 date: 2026-11-21
 description: Testnotitie voor het CMS, wordt vóór de merge verwijderd.
-draft: false
+draft: true
 ---
 
 ## Doel

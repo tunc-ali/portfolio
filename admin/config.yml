@@ -5,7 +5,7 @@
 backend:
   name: github
   repo: tunc-ali/portfolio
-  branch: main                # productie: elke Save in het CMS gaat live na de build
+  branch: feat/cms-pages      # TIJDELIJK tijdens PR-test (cms-pages); vóór merge → main
   commit_messages:
     create: "cms: add {{collection}} {{slug}}"
     update: "cms: update {{collection}} {{slug}}"

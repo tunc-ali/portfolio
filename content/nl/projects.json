@@ -90,16 +90,6 @@
             "Migratie",
             "Testen"
           ]
-        },
-        {
-          "tag": "TEST",
-          "title": "Testproject",
-          "problem": "Testprobleem voor de CMS-test.",
-          "approach": "Testaanpak voor de CMS-test.",
-          "result": "",
-          "tags": [
-            "TestTag"
-          ]
         }
       ]
     },

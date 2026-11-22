@@ -90,16 +90,6 @@
             "Migration",
             "Testing"
           ]
-        },
-        {
-          "tag": "TEST",
-          "title": "Test project",
-          "problem": "\tTest problem for the CMS test.",
-          "approach": "Test approach for the CMS test.",
-          "result": "",
-          "tags": [
-            "TestTag"
-          ]
         }
       ]
     },

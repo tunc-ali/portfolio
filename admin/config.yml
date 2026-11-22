@@ -285,10 +285,10 @@ collections:
         label: Cijfers
         label_singular: cijfer
         widget: list
-        i18n: true
+        i18n: sync
         min: 1
         max: 4
-        hint: Kleine cijfers onder de knoppen. Liefst 3 (max. 4). Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+        hint: Kleine cijfers onder de knoppen. Liefst 3 (max. 4). Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
         summary: '{{fields.n}} {{fields.label}}'
         fields:
         - name: n
@@ -316,9 +316,9 @@ collections:
           label: Antwoord op 'skills'
           label_singular: regel
           widget: list
-          i18n: true
+          i18n: sync
           min: 1
-          hint: 'Regels in de terminal: sleutel → waarde. Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.'
+          hint: 'Regels in de terminal: sleutel → waarde. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.'
           summary: '{{fields.key}}'
           fields:
           - name: key
@@ -350,7 +350,7 @@ collections:
           label: Snelknoppen
           label_singular: knop
           widget: list
-          i18n: true
+          i18n: sync
           allow_add: false
           allow_remove: false
           allow_reorder: false
@@ -374,7 +374,7 @@ collections:
             label: Lijst bij 'help'
             label_singular: commando
             widget: list
-            i18n: true
+            i18n: sync
             allow_add: false
             allow_remove: false
             allow_reorder: false
@@ -433,9 +433,9 @@ collections:
             label: Uitvoer van 'nmap'
             label_singular: regel
             widget: list
-            i18n: true
+            i18n: sync
             min: 1
-            hint: Gesimuleerde uitvoer, één regel per item. Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+            hint: Gesimuleerde uitvoer, één regel per item. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
             field:
               name: line
               label: Regel
@@ -511,7 +511,7 @@ collections:
           label: Nodes
           label_singular: node
           widget: list
-          i18n: true
+          i18n: sync
           allow_add: false
           allow_remove: false
           allow_reorder: false
@@ -649,9 +649,9 @@ collections:
         label: Domeinen
         label_singular: domein
         widget: list
-        i18n: true
+        i18n: sync
         min: 1
-        hint: Elk domein verschijnt ook op Over mij (technologie per domein) en op het CV. Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+        hint: Elk domein verschijnt ook op Over mij (technologie per domein) en op het CV. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
         summary: '{{fields.id}}'
         fields:
         - name: id
@@ -677,9 +677,9 @@ collections:
           label: Technologieën
           label_singular: technologie
           widget: list
-          i18n: true
+          i18n: sync
           min: 1
-          hint: Eén product of techniek per item. Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+          hint: Eén product of techniek per item. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
           field:
             name: tag
             label: Technologie
@@ -707,9 +707,9 @@ collections:
           label: Kaarten
           label_singular: kaart
           widget: list
-          i18n: true
+          i18n: sync
           min: 1
-          hint: Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+          hint: Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
           summary: '{{fields.title}}'
           fields:
           - name: title
@@ -762,9 +762,9 @@ collections:
         label: Alinea's
         label_singular: alinea
         widget: list
-        i18n: true
+        i18n: sync
         min: 1
-        hint: 'Tekst over jezelf. Vet: <strong>…</strong>, cursief: <em>…</em>; andere HTML is niet toegestaan. Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.'
+        hint: 'Tekst over jezelf. Vet: <strong>…</strong>, cursief: <em>…</em>; andere HTML is niet toegestaan. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.'
         field:
           name: paragraph
           label: Alinea
@@ -822,9 +822,9 @@ collections:
         label: Groepen
         label_singular: groep
         widget: list
-        i18n: true
+        i18n: sync
         min: 1
-        hint: Bv. recent werk en eerdere projecten. Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+        hint: Bv. recent werk en eerdere projecten. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
         summary: '{{fields.label}}'
         fields:
         - name: label
@@ -835,10 +835,10 @@ collections:
           label: Projecten
           label_singular: project
           widget: list
-          i18n: true
+          i18n: sync
           min: 1
           collapsed: true
-          hint: De titels verschijnen ook op het CV (recente projecten). Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+          hint: De titels verschijnen ook op het CV (recente projecten). Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
           summary: '{{fields.title}}'
           fields:
           - name: tag
@@ -868,9 +868,9 @@ collections:
             label: Technologieën
             label_singular: technologie
             widget: list
-            i18n: true
+            i18n: sync
             min: 1
-            hint: Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+            hint: Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
             field:
               name: tag
               label: Technologie
@@ -914,9 +914,9 @@ collections:
         label: Profiel (alinea's)
         label_singular: alinea
         widget: list
-        i18n: true
+        i18n: sync
         min: 1
-        hint: Korte alinea's over wie je bent. Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+        hint: Korte alinea's over wie je bent. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
         summary: '{{fields.paragraph}}'
         field:
           name: paragraph
@@ -946,10 +946,10 @@ collections:
         label: Opleiding
         label_singular: opleiding
         widget: list
-        i18n: true
+        i18n: sync
         min: 1
         collapsed: true
-        hint: Eén item per diploma. Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+        hint: Eén item per diploma. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
         summary: '{{fields.title}}'
         fields:
         - name: title

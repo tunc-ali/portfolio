@@ -46,6 +46,9 @@ CONTROLES (elke fout stopt de build)
       - pages.<id>.title en .description voor elke pagina in PAGES
       - HTML in tekst: alleen <strong>, <em>, <br>, <code> zonder attributen
       - home.topology.nodes: elke id moet bestaan in json/topology.json
+      - lopende tekst (PROSE_KEYS, ≥ 40 tekens) die in NL en EN identiek is → "niet vertaald"
+      - volgorde gelijk in beide talen voor lijsten met een vast anker (ORDER_ANCHORS):
+        domeinen (icoon + nummer), cijfers (getal), topologie-nodes (id)
       - terminal: snelknoppen en help-commando's moeten bestaande commando's zijn;
         {placeholders} gelijk in NL en EN, verplichte ({cmd}, {lang}, {target}) blijven staan
     json/topology.json, json/globe.json, json/news.json
@@ -395,7 +398,7 @@ def load_texts(lang, errors):
     return texts if ok else None
 
 
-def check_texts(texts, errors):
+def check_texts(texts, errors, skip=frozenset()):
     flat = {lang: dict(leaves(texts[lang])) for lang in LANGS}
     base = flat[DEFAULT_LANG]
 
@@ -414,13 +417,14 @@ def check_texts(texts, errors):
         if lang == DEFAULT_LANG:
             continue
         other_lists = dict(list_lengths(texts[lang]))
-        diff_lists = sorted(k for k in base_lists.keys() & other_lists.keys() if base_lists[k] != other_lists[k])
+        diff_lists = sorted(k for k in base_lists.keys() & other_lists.keys() if base_lists[k] != other_lists[k]
+                            and not any(k.startswith(m + '.') for m in skip))
         for key in diff_lists:
             errors.add(f'{where(lang, key)}: lijst heeft {other_lists[key]} item(s) in {lang}, '
                        f'maar {base_lists[key]} in {DEFAULT_LANG} (voeg toe/verwijder in beide talen)')
 
-        def covered(key):                       # al gemeld via een lijst met een andere lengte
-            return any(key.startswith(d + '.') for d in diff_lists)
+        def covered(key):                       # al gemeld (lijst met andere lengte of volgorde)
+            return any(key.startswith(d + '.') for d in list(diff_lists) + list(skip))
 
         for key in sorted(base.keys() - flat[lang].keys()):
             if not covered(key):
@@ -430,6 +434,8 @@ def check_texts(texts, errors):
                 continue
             errors.add(f'{where(lang, key)}: bestaat niet in {DEFAULT_LANG} (NL en EN moeten dezelfde velden en lijstlengtes hebben)')
         for key in sorted(base.keys() & flat[lang].keys()):
+            if covered(key):
+                continue
             a, b = base[key], flat[lang][key]
             if type(a) is not type(b):
                 errors.add(f'{where(lang, key)}: type verschilt met {DEFAULT_LANG} ({type(a).__name__} ↔ {type(b).__name__})')
@@ -512,6 +518,56 @@ def check_code_bound(texts, errors):
             elif lang != DEFAULT_LANG and found != base:
                 errors.add(f'{where(lang, key)}: placeholders verschillen met {DEFAULT_LANG} '
                            f'({", ".join(sorted(base)) or "geen"} ↔ {", ".join(sorted(found)) or "geen"})')
+
+
+# Lopende tekst die vertaald moet zijn: identiek in NL en EN (en lang genoeg) = vergeten te vertalen.
+# Niet voor technologieopsommingen (tech, value, tags) of namen (rights): die zijn vaak gelijk.
+PROSE_KEYS = {'sub', 'intro', 'desc', 'text', 'problem', 'approach', 'result', 'note', 'caption',
+              'fallback', 'disclaimer', 'sample', 'privacy', 'description', 'paragraphs', 'profile',
+              'role', 'sudo', 'contact_text'}
+UNTRANSLATED_MIN = 40
+# Lijsten met een veld dat in elke taal gelijk is: daarmee wordt ook de volgorde gecontroleerd.
+ORDER_ANCHORS = {                       # pad naar de lijst → functie die het anker van een item geeft
+    'services.cards': lambda item: (item.get('icon'), str(item.get('id', ''))[:3]),
+    'home.stats': lambda item: item.get('n'),
+    'home.topology.nodes': lambda item: item.get('id'),
+}
+
+
+def check_untranslated(texts, errors):
+    flat = {lang: dict(leaves(texts[lang])) for lang in LANGS}
+    for key, value in flat[DEFAULT_LANG].items():
+        if not isinstance(value, str) or len(value) < UNTRANSLATED_MIN:
+            continue
+        if not set(key.split('.')) & PROSE_KEYS:
+            continue
+        for lang in LANGS:
+            if lang != DEFAULT_LANG and flat[lang].get(key) == value:
+                errors.add(f'{where(lang, key)}: lijkt niet vertaald (identiek aan {DEFAULT_LANG})')
+
+
+def check_order(texts, errors):
+    """Geeft de paden terug van items die in een andere volgorde staan (om vervolgfouten te onderdrukken)."""
+    moved = set()
+    for path, anchor_of in ORDER_ANCHORS.items():
+        lists = {}
+        for lang in LANGS:
+            cur = texts[lang]
+            for part in path.split('.'):
+                cur = cur.get(part) if isinstance(cur, dict) else None
+            lists[lang] = cur if isinstance(cur, list) else None
+        base = lists[DEFAULT_LANG]
+        for lang in LANGS:
+            other = lists[lang]
+            if lang == DEFAULT_LANG or base is None or other is None or len(base) != len(other):
+                continue                                   # lengteverschil wordt elders gemeld
+            for n, (a, b) in enumerate(zip(base, other)):
+                if isinstance(a, dict) and isinstance(b, dict) and anchor_of(a) != anchor_of(b):
+                    errors.add(f'{where(lang, f"{path}.{n}")}: volgorde verschilt met {DEFAULT_LANG} '
+                               f'(item {n + 1}: {anchor_of(a)} in {DEFAULT_LANG}, {anchor_of(b)} in {lang})')
+                    moved.add(path)
+                    break
+    return moved
 
 
 def check_runtime_json(texts, errors):
@@ -1182,8 +1238,10 @@ def build(list_output=False):
     texts = {lang: load_texts(lang, errors) for lang in LANGS}
     texts_ok = all(isinstance(t, dict) for t in texts.values())
     if texts_ok:
-        check_texts(texts, errors)
+        moved = check_order(texts, errors)
+        check_texts(texts, errors, skip=moved)
         check_code_bound(texts, errors)
+        check_untranslated(texts, errors)
         check_runtime_json(texts, errors)
     drafts = {lang: {} for lang in LANGS}
     notes = {lang: load_notes(lang, errors, drafts) for lang in LANGS}

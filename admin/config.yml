@@ -970,9 +970,9 @@ collections:
         label: Talen
         label_singular: taal
         widget: list
-        i18n: true
+        i18n: sync
         min: 1
-        hint: Toevoegen of verwijderen altijd in beide talen; anders stopt de build en blijft de site ongewijzigd.
+        hint: 'Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.'
         summary: '{{fields.name}}'
         fields:
         - name: name

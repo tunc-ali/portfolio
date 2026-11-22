@@ -86,3 +86,20 @@ collections:
         linked_images: false
         captioned_images: false
         use_emoji_autocomplete: false
+
+  # ── TIJDELIJK: beslissingstest (bewaart Sveltia onbekende sleutels in JSON?) ──
+  # Alleen op feat/cms-pages; wordt vóór de volgende stap verwijderd.
+  - name: test_json
+    label: "TEST json (tijdelijk)"
+    i18n: false
+    files:
+      - name: nl_json
+        label: "TEST json/nl.json (alleen footer.tagline)"
+        file: json/nl.json
+        format: json
+        fields:
+          - name: footer
+            label: Footer
+            widget: object
+            fields:
+              - { name: tagline, label: Tagline, widget: string }

@@ -435,7 +435,7 @@ collections:
             widget: list
             i18n: sync
             min: 1
-            hint: Gesimuleerde uitvoer, één regel per item. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+            hint: 'Gesimuleerde uitvoer, één regel per item. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad. Nieuw item: vul het eerst in beide talen in en sla dan pas op.'
             field:
               name: line
               label: Regel
@@ -677,14 +677,14 @@ collections:
           label: Technologieën
           label_singular: technologie
           widget: list
-          i18n: sync
+          i18n: duplicate
           min: 1
-          hint: Eén product of techniek per item. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+          hint: Eén product of techniek per item. Alleen op het Nederlandse tabblad invullen; het Engels wordt automatisch gekopieerd.
           field:
             name: tag
             label: Technologie
             widget: string
-            i18n: true
+            i18n: duplicate
       - name: lab
         label: Lab
         widget: object
@@ -764,7 +764,7 @@ collections:
         widget: list
         i18n: sync
         min: 1
-        hint: 'Tekst over jezelf. Vet: <strong>…</strong>, cursief: <em>…</em>; andere HTML is niet toegestaan. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.'
+        hint: 'Tekst over jezelf. Vet: <strong>…</strong>, cursief: <em>…</em>; andere HTML is niet toegestaan. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad. Nieuw item: vul het eerst in beide talen in en sla dan pas op.'
         field:
           name: paragraph
           label: Alinea
@@ -868,14 +868,14 @@ collections:
             label: Technologieën
             label_singular: technologie
             widget: list
-            i18n: sync
+            i18n: duplicate
             min: 1
-            hint: Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+            hint: Alleen op het Nederlandse tabblad invullen; het Engels wordt automatisch gekopieerd.
             field:
               name: tag
               label: Technologie
               widget: string
-              i18n: true
+              i18n: duplicate
       - name: seo
         label: SEO (zoekmachines en tabblad)
         widget: object
@@ -916,7 +916,7 @@ collections:
         widget: list
         i18n: sync
         min: 1
-        hint: Korte alinea's over wie je bent. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+        hint: 'Korte alinea''s over wie je bent. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad. Nieuw item: vul het eerst in beide talen in en sla dan pas op.'
         summary: '{{fields.paragraph}}'
         field:
           name: paragraph

@@ -23,10 +23,6 @@
   "languages_label": "talen",
   "languages": [
     {
-      "name": "Testtaal",
-      "level": "A3"
-    },
-    {
       "name": "Turks",
       "level": "moedertaal"
     },

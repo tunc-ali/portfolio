@@ -23,10 +23,6 @@
   "languages_label": "languages",
   "languages": [
     {
-      "name": "Testlanguage",
-      "level": "A2"
-    },
-    {
       "name": "Turkish",
       "level": "native"
     },

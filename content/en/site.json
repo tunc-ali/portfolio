@@ -1,10 +1,5 @@
 {
   "nav": {
-    "skip": "Skip to content",
-    "home_label": "Ali Tunç — home",
-    "menu": "Menu",
-    "main": "Main navigation",
-    "lang_label": "Language",
     "services": "Expertise",
     "about": "About",
     "projects": "Projects",
@@ -13,7 +8,12 @@
     "contact": "Contact",
     "status": "EMPLOYED · AFTER-HOURS ADVICE",
     "loc_loading": "FETCHING LOCATION...",
-    "loc_fallback": "UNKNOWN"
+    "loc_fallback": "UNKNOWN",
+    "skip": "Skip to content",
+    "home_label": "Ali Tunç — home",
+    "menu": "Menu",
+    "main": "Main navigation",
+    "lang_label": "Language"
   },
   "footer": {
     "rights": "Ali Tunç - All Rights Reserved.",

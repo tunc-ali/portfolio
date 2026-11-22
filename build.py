@@ -46,6 +46,8 @@ CONTROLES (elke fout stopt de build)
       - pages.<id>.title en .description voor elke pagina in PAGES
       - HTML in tekst: alleen <strong>, <em>, <br>, <code> zonder attributen
       - home.topology.nodes: elke id moet bestaan in json/topology.json
+      - terminal: snelknoppen en help-commando's moeten bestaande commando's zijn;
+        {placeholders} gelijk in NL en EN, verplichte ({cmd}, {lang}, {target}) blijven staan
     json/topology.json, json/globe.json, json/news.json
       - geldige JSON en de velden die de scripts op de site verwachten
     notes/<taal>/*.md (lab notes)
@@ -464,6 +466,52 @@ def check_texts(texts, errors):
             for field in ('title', 'description'):
                 if f'pages.{pid}.{field}' not in flat[lang]:
                     errors.add(f'{where(lang, f"pages.{pid}.{field}")}: ontbreekt')
+
+
+# Terminal op de homepage: commando's bestaan in js/terminal.js; placeholders worden daar ingevuld.
+TERMINAL_COMMANDS = {'help', 'whoami', 'skills', 'projects', 'contact', 'lang', 'clear', 'sudo', 'nmap'}
+REQUIRED_PLACEHOLDERS = {
+    'home.terminal.cmd.not_found': {'cmd'},
+    'home.terminal.cmd.lang_current': {'lang'},
+    'home.terminal.cmd.lang_switch': {'lang'},
+    'home.terminal.cmd.nmap_scope': {'target'},
+}
+PLACEHOLDER = re.compile(r'\{(\w+)\}')
+
+
+def check_code_bound(texts, errors):
+    """Teksten die aan code gebonden zijn: terminalcommando's en {placeholders}."""
+    for lang in LANGS:
+        try:
+            term = texts[lang]['home']['terminal']
+            chips, help_rows = term['chips'], term['cmd']['help']
+        except (KeyError, TypeError):
+            continue                                    # al gemeld door check_texts
+        for i, chip in enumerate(chips):
+            if not isinstance(chip, str) or chip.split()[:1] and chip.split()[0] not in TERMINAL_COMMANDS:
+                errors.add(f'{where(lang, f"home.terminal.chips.{i}")}: "{chip}" is geen terminalcommando '
+                           f'({", ".join(sorted(TERMINAL_COMMANDS))})')
+        for i, row in enumerate(help_rows):
+            c = row.get('c', '') if isinstance(row, dict) else ''
+            if not isinstance(c, str) or not c.split() or c.split()[0] not in TERMINAL_COMMANDS:
+                errors.add(f'{where(lang, f"home.terminal.cmd.help.{i}.c")}: "{c}" is geen terminalcommando')
+    flat = {lang: dict(leaves(texts[lang])) for lang in LANGS}
+    for key, value in flat[DEFAULT_LANG].items():
+        if not isinstance(value, str):
+            continue
+        base = set(PLACEHOLDER.findall(value))
+        for lang in LANGS:
+            other = flat[lang].get(key)
+            if not isinstance(other, str):
+                continue
+            found = set(PLACEHOLDER.findall(other))
+            need = REQUIRED_PLACEHOLDERS.get(key, set())
+            if need - found:
+                errors.add(f'{where(lang, key)}: ' + ', '.join('{' + n + '}' for n in sorted(need - found))
+                           + ' moet in de tekst blijven (wordt door de site ingevuld)')
+            elif lang != DEFAULT_LANG and found != base:
+                errors.add(f'{where(lang, key)}: placeholders verschillen met {DEFAULT_LANG} '
+                           f'({", ".join(sorted(base)) or "geen"} ↔ {", ".join(sorted(found)) or "geen"})')
 
 
 def check_runtime_json(texts, errors):
@@ -1135,6 +1183,7 @@ def build(list_output=False):
     texts_ok = all(isinstance(t, dict) for t in texts.values())
     if texts_ok:
         check_texts(texts, errors)
+        check_code_bound(texts, errors)
         check_runtime_json(texts, errors)
     drafts = {lang: {} for lang in LANGS}
     notes = {lang: load_notes(lang, errors, drafts) for lang in LANGS}

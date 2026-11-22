@@ -1,0 +1,16 @@
+{
+  "label": "over mij",
+  "title_1": "wie ik ben,",
+  "title_2": "hoe ik werk",
+  "paragraphs": [
+    "Ik ben <strong>Ali Tunç</strong>, systeem- en netwerkbeheerder. Ik werk voltijds bij een internationaal productiebedrijf. Ik beheer, onderhoud en verbeter er de infrastructuur en werk mee aan IT-projecten. De IT van één site is mijn verantwoordelijkheid. Af en toe doen we configuratie en onderhoud ter plaatse op sites in het buitenland.",
+    "Recente projecten: laptops overgezet naar een nieuw domein met Hybrid Entra ID join, een EDR-agent uitgerold op de servers, restore-tests gedraaid en gedocumenteerd, ISP-routers en een core switch achter de firewall ingepast, en verbindingsproblemen bij cloudtelefonie voor meer dan honderd gebruikers geanalyseerd aan de firewallkant.",
+    "Ik werk met een paar vaste gewoontes. Ik schrijf op wat ik doe, in runbooks die een collega kan volgen. Ik test voor ik iets uitrol. En een backup telt pas als de restore gelukt is.",
+    "Security zit in het gewone werk: hardening, segmentatie, firewallbeleid, EDR. In een geïsoleerd lab test ik aanvallen en verdediging. Wat ik daar zie, pas ik toe in het beheer."
+  ],
+  "skills_label": "technologie per domein",
+  "seo": {
+    "title": "Over mij — Ali Tunç",
+    "description": "Wie ik ben, wat ik dagelijks doe als systeem- en netwerkbeheerder en hoe ik werk."
+  }
+}

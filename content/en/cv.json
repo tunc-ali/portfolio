@@ -1,0 +1,46 @@
+{
+  "label": "cv",
+  "title": "curriculum vitae",
+  "profile_label": "profile",
+  "profile": [
+    "System and network administrator with 7+ years of experience. I work full-time for an international manufacturer: managing, maintaining and improving the infrastructure, taking part in IT projects, and now and then configuration and maintenance on location at sites abroad.",
+    "Security is a fixed part of that work: hardening, segmentation, firewall policy, EDR and backups that have been tested."
+  ],
+  "expertise_label": "expertise by area",
+  "projects_label": "recent projects",
+  "projects_link": "All projects with problem and approach →",
+  "education_label": "education",
+  "education": [
+    {
+      "title": "Associate degree in System and Network Administration",
+      "where": "AP University of Applied Sciences and Arts Antwerp, with distinction"
+    },
+    {
+      "title": "Bachelor in Business Administration",
+      "where": "Anadolu University"
+    }
+  ],
+  "languages_label": "languages",
+  "languages": [
+    {
+      "name": "Turkish",
+      "level": "native"
+    },
+    {
+      "name": "Dutch",
+      "level": "C1"
+    },
+    {
+      "name": "English",
+      "level": "C1"
+    },
+    {
+      "name": "Azerbaijani",
+      "level": "C1"
+    }
+  ],
+  "seo": {
+    "title": "CV — Ali Tunç, system and network administrator",
+    "description": "CV of Ali Tunç, system and network administrator: expertise by area, recent projects, education and languages."
+  }
+}

@@ -11,7 +11,8 @@ built by `build.py` and hosted on Netlify.
 ## 1. Overview
 
 ```
-json/nl.json, json/en.json   ┐
+content/nl/*.json            ┐
+content/en/*.json            │
 templates/*.html             │
 notes/nl/*.md, notes/en/*.md ├─►  build.py  ─►  dist/  ─►  Netlify  ─►  alitunc.net
 css/ js/ images/ vendor/ …   ┘   (checks + build)
@@ -22,7 +23,12 @@ css/ js/ images/ vendor/ …   ┘   (checks + build)
   Netlify deploy fails and **the previous version stays online**. GitHub Actions (`validate`)
   runs the same build on every push and pull request to `main`.
 - `dist/` is generated and not in git. Only what is listed in `STATIC` in `build.py` is
-  published; sources such as `build.py`, `templates/`, `json/nl.json`, `notes/` are not.
+  published; sources such as `build.py`, `templates/`, `content/`, `notes/` and
+  `content-denylist.txt` are not.
+- Site texts live in `content/<language>/`: `site.json` (navigation, footer, contact block,
+  lab-notes texts) and one file per page (`home`, `expertise`, `about`, `projects`, `cv`,
+  `contact`), each with its own `seo` block. Dutch and English always have the same files,
+  fields and list lengths.
 - Code changes: create a branch from `main`, open a pull request, test the deploy preview,
   then merge (squash).
 
@@ -57,8 +63,10 @@ All rules that `build.py` enforces are described at the top of `build.py`.
 2. Fields: **Titel** (title), **Datum** (date, same for both languages), **Korte beschrijving**
    (one sentence for the list and for search engines), **Concept (niet publiceren)**, **Tekst**.
 3. **Tekst** supports: `##` and `###` headings, bold, italic, `inline code`, links, bulleted
-   and numbered lists, quotes and code blocks. Links must start with `https://`, `mailto:`
-   or `/` (a page on this site). Anything else stops the build.
+   and numbered lists, quotes and code blocks. Links must start with `https://` or `/`
+   (a page on this site). Anything else stops the build. `mailto:` links are technically
+   accepted by the link check, but every e-mail address is blocked by the content denylist
+   (section 3, "Forbidden content"), so in practice they stop the build too.
 4. **Save.** The CMS commits to `main`; the site is updated in 1–2 minutes.
 
 ### Concept (draft) and publishing
@@ -83,6 +91,37 @@ All rules that `build.py` enforces are described at the top of `build.py`.
 - Only `a-z`, `0-9` and hyphens are allowed.
 - **Turkish dotless `ı`:** the CMS drops it from the slug (for example `ışık` becomes `s-k`).
   For titles with `ı`, correct the slug by hand when creating the note.
+
+### Forbidden content (denylist)
+
+`content-denylist.txt` (repository root, never published) lists what must never appear on the
+site: the current employer, former employers, the home address, phone numbers and e-mail
+addresses. `build.py` checks all texts in `content/`, all published lab notes and every
+text file that goes online (HTML, JSON, YAML, TXT, XML; not `vendor/` and not the data files
+`json/news.json`, `json/globe.json`, `json/topology.json`). A match stops the build and names
+the file and field or line; the matched text is only shown partially in the log.
+
+- One term per line: case-insensitive, whole words only.
+- Lines starting with `re:` are regular expressions (phone and e-mail patterns are included).
+- Lines starting with `#` are comments.
+
+**Editing the list (on your own computer):**
+
+1. Open `D:\mijnwebsite\content-denylist.txt` in Notepad++.
+2. Add your terms under "Zelf invullen", one per line, without the leading `#`.
+   Add common variants too (with and without legal form, abbreviations, domain name).
+3. Save (keep the encoding UTF-8).
+4. In PowerShell, in `D:\mijnwebsite`:
+   ```powershell
+   python build.py                 # must still say OK; otherwise the site contains a match
+   git add content-denylist.txt
+   git commit -m "content: denylist bijgewerkt"
+   git push
+   ```
+   Commit on a branch and open a pull request if other work is in progress.
+
+The file is in the (private) repository. Do not list secrets in it, only words that must not
+appear on the site.
 
 ### Images
 
@@ -184,6 +223,8 @@ briefly for testing.
   `Referrer-Policy: no-referrer`. Also excluded in `robots.txt`.
 - `/images/uploads/*`: `nosniff` and a sandbox CSP.
 - Notes: HTML in a note is always shown as text, never executed; only safe link types.
+- Content denylist (`content-denylist.txt`): employer, address, phone numbers and e-mail
+  addresses can never be published by accident.
 - Uploads: type checked by content (not by extension), no metadata, size limit.
 - Third-party code in `vendor/` is pinned and checksummed.
 - GitHub Pages must stay disabled (Settings → Pages → Source: None); it published the
@@ -195,8 +236,9 @@ briefly for testing.
 
 - Fix "Work with Local Repository" (see section 6).
 - Images inside lab notes (Markdown images in `build.py`).
-- Second round of CMS fields: selected texts from `json/nl.json` and `json/en.json`
-  (after testing that the CMS keeps unknown keys and the file format).
+- Second round of CMS fields: all pages from `content/<language>/*.json` (in progress).
 - Site-style 404 page (NL/EN).
 - Hardening phase: CSP and security headers for the whole site, HSTS, secret scan of the
-  full git history, checks on old hosting addresses.
+  full git history, checks on old hosting addresses, and a periodic check for other deploy
+  targets connected to the repository (GitHub → Settings → Integrations / Applications,
+  webhooks).

@@ -1,0 +1,19 @@
+{
+  "label": "contact",
+  "title": "a question about your network?",
+  "intro": "I have a full-time job. Outside office hours I help with advice and remote support. Tell me briefly what's going on and I'll let you know if and when I can help.",
+  "form": {
+    "name": "Name",
+    "email": "E-mail",
+    "message": "Message",
+    "submit": "Send",
+    "honeypot": "Leave this empty",
+    "privacy": "I only use your details to reply to your message."
+  },
+  "alt": "Rather just e-mail?",
+  "email": "Open your mail app",
+  "seo": {
+    "title": "Contact — Ali Tunç, system and network administrator",
+    "description": "Send a message. Outside office hours I help with advice and remote support."
+  }
+}

@@ -1,0 +1,251 @@
+{
+  "tag_role": "systeem- & netwerkbeheer",
+  "tag_place": "security",
+  "h1_dim": "ik beheer netwerken.",
+  "h1_bright": "en ik weet",
+  "h1_green": "hoe ze breken.",
+  "sub": "Ik ben Ali, systeem- en netwerkbeheerder. Ik hou servers, switches en firewalls draaiend, segmenteer netwerken en test of een backup ook echt terug te zetten is. Security hoort daarbij: hardening, firewallbeleid, EDR.",
+  "btn_services": "Bekijk expertise",
+  "btn_contact": "Stuur een bericht →",
+  "stats": [
+    {
+      "n": "7+",
+      "label": "jaar ervaring"
+    },
+    {
+      "n": "9",
+      "label": "netwerkvendors"
+    },
+    {
+      "n": "4",
+      "label": "talen"
+    }
+  ],
+  "terminal": {
+    "whoami": "Ali Tunç — systeem- en netwerkbeheerder",
+    "skills": [
+      {
+        "key": "netwerk",
+        "value": "VLAN, OSPF, segmentatie, VPN (IPsec, WireGuard)"
+      },
+      {
+        "key": "firewall",
+        "value": "FortiGate, WatchGuard, Zyxel, UniFi EFG, Barracuda, pfSense"
+      },
+      {
+        "key": "switching",
+        "value": "UniFi, Cisco, Dell, Netgear"
+      },
+      {
+        "key": "systemen",
+        "value": "Windows Server, AD, Linux, Nutanix, vSphere, Hyper-V"
+      },
+      {
+        "key": "cloud",
+        "value": "Microsoft 365, Entra ID, Intune, SharePoint"
+      },
+      {
+        "key": "backup",
+        "value": "Veeam, restore-tests"
+      },
+      {
+        "key": "monitoring",
+        "value": "Zabbix, Wazuh (XDR/SIEM)"
+      },
+      {
+        "key": "security",
+        "value": "hardening, EDR, NAC (PacketFence, EAP-TLS)"
+      },
+      {
+        "key": "talen",
+        "value": "Nederlands, Engels, Turks, Azerbeidzjaans"
+      }
+    ],
+    "label": "terminal",
+    "input_label": "Terminal-invoer: typ een commando en druk op Enter",
+    "hint": "typ 'help' of kies:",
+    "chips": [
+      "help",
+      "whoami",
+      "skills",
+      "projects",
+      "contact"
+    ],
+    "cmd": {
+      "help_title": "Beschikbare commando's:",
+      "help": [
+        {
+          "c": "help",
+          "d": "toon deze lijst"
+        },
+        {
+          "c": "whoami",
+          "d": "wie ben ik"
+        },
+        {
+          "c": "skills",
+          "d": "technische skills"
+        },
+        {
+          "c": "projects",
+          "d": "overzicht van projecten"
+        },
+        {
+          "c": "contact",
+          "d": "hoe je me bereikt"
+        },
+        {
+          "c": "lang [nl|en]",
+          "d": "taal tonen of wisselen"
+        },
+        {
+          "c": "clear",
+          "d": "scherm leegmaken"
+        }
+      ],
+      "not_found": "commando niet gevonden: {cmd} — typ 'help'",
+      "projects_link": "→ alle projecten bekijken",
+      "contact_text": "Het snelst bereik je me via de contactpagina.",
+      "contact_link": "→ contactpagina openen",
+      "lang_current": "huidige taal: {lang}",
+      "lang_usage": "gebruik: lang nl | lang en",
+      "lang_switch": "taal wisselen naar {lang}…",
+      "lang_same": "dat is al de huidige taal.",
+      "sudo": "permission denied: bezoeker staat niet in het sudoers-bestand. Dit incident wordt gerapporteerd. ;)",
+      "nmap": [
+        "Starting Nmap ( simulatie ) — target: alitunc.net",
+        "Host is up.",
+        "PORT     STATE  SERVICE",
+        "80/tcp   open   http",
+        "443/tcp  open   https",
+        "Nmap done: 1 host gescand (nagespeeld, er is niets verstuurd)."
+      ],
+      "nmap_scope": "buiten scope: {target}. Alleen alitunc.net mag hier (nagespeeld) gescand worden. Scan nooit zonder toestemming."
+    }
+  },
+  "topology": {
+    "label": "netwerk",
+    "title": "een netwerk zoals ik het bouw",
+    "hint": "Sleep om te draaien · klik op een node voor details · klik eerst in het beeld om met het scrollwiel te zoomen",
+    "canvas_label": "Interactieve 3D-netwerktopologie. Pijltjestoetsen draaien het beeld; alle nodes staan ook als lijst onder het beeld.",
+    "loading": "3D-weergave laden…",
+    "zoom_in": "Inzoomen",
+    "zoom_out": "Uitzoomen",
+    "reset": "Beeld herstellen",
+    "close": "Sluiten",
+    "list_label": "Nodes in de topologie",
+    "role_label": "rol",
+    "tech_label": "technologie",
+    "disclaimer": "Voorbeeldtopologie met technologie waarmee ik werk — geen weergave van een echte klant- of werkgeversomgeving.",
+    "nodes": [
+      {
+        "id": "internet",
+        "label": "Internet",
+        "zone": "internet / cloud",
+        "role": "WAN-uplink en veilige toegang van buitenaf.",
+        "tech": "ZTNA (OpenZiti), VPN, DNS",
+        "note": ""
+      },
+      {
+        "id": "m365",
+        "label": "Cloud / identity",
+        "zone": "internet / cloud",
+        "role": "Identiteit, mail en apparaatbeheer in de cloud.",
+        "tech": "Microsoft 365, Entra ID, Exchange Online, Intune (MDM / identity)",
+        "note": ""
+      },
+      {
+        "id": "fw",
+        "label": "Firewall",
+        "zone": "bedrijfsnetwerk",
+        "role": "Perimeter, segmentatie tussen VLANs en VPN.",
+        "tech": "FortiGate, WatchGuard, Zyxel USG FLEX, UniFi EFG, pfSense — NGFW-policies",
+        "note": ""
+      },
+      {
+        "id": "core",
+        "label": "Core switch",
+        "zone": "bedrijfsnetwerk",
+        "role": "Hart van het netwerk: inter-VLAN-verkeer en uplinks.",
+        "tech": "Cisco, UniFi, Dell — VLAN-design, STP",
+        "note": ""
+      },
+      {
+        "id": "sw-a",
+        "label": "Access switch A",
+        "zone": "bedrijfsnetwerk",
+        "role": "Werkplekken en randapparatuur per VLAN.",
+        "tech": "UniFi, Cisco 2960S — access-VLANs",
+        "note": ""
+      },
+      {
+        "id": "sw-b",
+        "label": "Access switch B",
+        "zone": "bedrijfsnetwerk",
+        "role": "Serverruimte: trunks naar hypervisor en backup.",
+        "tech": "Cisco 2960S, UniFi — trunks, STP",
+        "note": ""
+      },
+      {
+        "id": "ap",
+        "label": "Wi-Fi AP",
+        "zone": "bedrijfsnetwerk",
+        "role": "Draadloze toegang met certificaat-authenticatie.",
+        "tech": "UniFi — PacketFence NAC, EAP-TLS, Intune/SCEP",
+        "note": ""
+      },
+      {
+        "id": "mon",
+        "label": "Monitoring",
+        "zone": "bedrijfsnetwerk",
+        "role": "Bewaakt alle nodes en waarschuwt bij storingen.",
+        "tech": "Zabbix 7.0 — SNMP, auto-discovery, alerting",
+        "note": ""
+      },
+      {
+        "id": "esxi",
+        "label": "Hypervisor",
+        "zone": "bedrijfsnetwerk",
+        "role": "Draait de virtuele servers.",
+        "tech": "Nutanix AHV, VMware vSphere, Hyper-V",
+        "note": ""
+      },
+      {
+        "id": "backup",
+        "label": "Backup",
+        "zone": "bedrijfsnetwerk",
+        "role": "Back-ups en herstel voor bedrijfscontinuïteit.",
+        "tech": "Veeam Backup & Replication",
+        "note": ""
+      },
+      {
+        "id": "lab",
+        "label": "Pentest lab",
+        "zone": "lab / leeromgeving — geïsoleerd",
+        "role": "Oefenomgeving voor ethical hacking, los van elk bedrijfsnetwerk.",
+        "tech": "Kali Linux, Hack The Box, PortSwigger Web Security Academy",
+        "note": "Lab / leeromgeving — geen productie-infrastructuur. Alleen verbonden met het internet."
+      }
+    ]
+  },
+  "globe": {
+    "label": "verkeer",
+    "badge": "simulatie",
+    "loading": "3D-weergave laden…",
+    "you": "JIJ",
+    "canvas_label": "Draaiende wereldbol met gesimuleerde verkeersbogen tussen steden.",
+    "caption": "Voorbeelddata — geen echte aanvallen of live verkeer. De heldere boog vertrekt vanaf jouw locatie (LOC).",
+    "fallback": "De 3D-wereldbol is niet beschikbaar in deze browser. Het gaat om een decoratieve simulatie van netwerkverkeer tussen steden."
+  },
+  "news": {
+    "label": "nieuws",
+    "title": "security-nieuws",
+    "loading": "Nieuws laden…",
+    "sample": "Voorbeeldweergave. De live feed van onderstaande bronnen wordt later aangesloten.",
+    "sources_label": "bronnen"
+  },
+  "seo": {
+    "title": "Ali Tunç — systeem- en netwerkbeheerder",
+    "description": "Systeem- en netwerkbeheerder. Servers, netwerken, firewalls, Microsoft 365, backups en security."
+  }
+}

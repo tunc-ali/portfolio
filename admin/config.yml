@@ -92,6 +92,8 @@ collections:
   # volgorde in de bestanden (Sveltia schrijft in deze volgorde): velden niet verplaatsen
   # zonder de bestanden mee te ordenen. Code-gebonden teksten (terminalcommando's,
   # topologie-id's, {placeholders}) worden door build.py gecontroleerd.
+  # LET OP: widget: text-veld toevoegen of verwijderen? Werk dan ook MULTILINE_KEYS in build.py bij
+  # (alleen die velden mogen regeleinden bevatten).
   - name: pages
     label: Pagina's
     label_singular: Pagina
@@ -207,7 +209,7 @@ collections:
           i18n: true
         - name: text
           label: Tekst
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Eén of twee zinnen.
         - name: button
@@ -232,7 +234,7 @@ collections:
           i18n: true
         - name: intro
           label: Intro lijstpagina
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Eén zin onder de titel.
         - name: back
@@ -270,7 +272,7 @@ collections:
         i18n: true
       - name: sub
         label: Tekst onder de titel
-        widget: text
+        widget: text              # ↔ MULTILINE_KEYS in build.py
         i18n: true
         hint: 'Twee of drie zinnen: wie je bent en wat je doet. ± 300 tekens.'
       - name: btn_services
@@ -505,7 +507,7 @@ collections:
           i18n: true
         - name: disclaimer
           label: Voetnoot onder de topologie
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
         - name: nodes
           label: Nodes
@@ -534,7 +536,7 @@ collections:
             hint: Bv. DMZ, LAN, LAB.
           - name: role
             label: Rol
-            widget: text
+            widget: text              # ↔ MULTILINE_KEYS in build.py
             i18n: true
           - name: tech
             label: Technologie
@@ -542,7 +544,7 @@ collections:
             i18n: true
           - name: note
             label: Notitie
-            widget: text
+            widget: text              # ↔ MULTILINE_KEYS in build.py
             i18n: true
             hint: Optioneel. Leeg laten = niet tonen (dan in beide talen leeg).
             required: false
@@ -577,11 +579,11 @@ collections:
           i18n: true
         - name: caption
           label: Voetnoot
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
         - name: fallback
           label: Tekst als 3D niet werkt
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
       - name: news
         label: Security-nieuws
@@ -604,7 +606,7 @@ collections:
           i18n: true
         - name: sample
           label: Melding bij voorbeelddata
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
         - name: sources_label
           label: Woord 'bronnen'
@@ -623,7 +625,7 @@ collections:
           hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
         - name: description
           label: Beschrijving
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
     - name: expertise
@@ -642,7 +644,7 @@ collections:
         i18n: true
       - name: intro
         label: Intro
-        widget: text
+        widget: text              # ↔ MULTILINE_KEYS in build.py
         i18n: true
         hint: Eén of twee zinnen onder de titel.
       - name: cards
@@ -670,7 +672,7 @@ collections:
           i18n: true
         - name: desc
           label: Beschrijving
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Twee of drie zinnen.
         - name: tags
@@ -701,7 +703,7 @@ collections:
           i18n: true
         - name: intro
           label: Intro
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
         - name: cards
           label: Kaarten
@@ -718,11 +720,11 @@ collections:
             i18n: true
           - name: desc
             label: Beschrijving
-            widget: text
+            widget: text              # ↔ MULTILINE_KEYS in build.py
             i18n: true
         - name: note
           label: Noot onder de kaarten
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
       - name: seo
         label: SEO (zoekmachines en tabblad)
@@ -737,7 +739,7 @@ collections:
           hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
         - name: description
           label: Beschrijving
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
     - name: about
@@ -768,7 +770,7 @@ collections:
         field:
           name: paragraph
           label: Alinea
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
       - name: skills_label
         label: Kop boven 'technologie per domein'
@@ -788,7 +790,7 @@ collections:
           hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
         - name: description
           label: Beschrijving
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
     - name: projects
@@ -852,15 +854,15 @@ collections:
             i18n: true
           - name: problem
             label: Probleem
-            widget: text
+            widget: text              # ↔ MULTILINE_KEYS in build.py
             i18n: true
           - name: approach
             label: Aanpak
-            widget: text
+            widget: text              # ↔ MULTILINE_KEYS in build.py
             i18n: true
           - name: result
             label: Resultaat
-            widget: text
+            widget: text              # ↔ MULTILINE_KEYS in build.py
             i18n: true
             hint: 'Optioneel: alleen invullen als het resultaat bekend is (dan in beide talen).'
             required: false
@@ -889,7 +891,7 @@ collections:
           hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
         - name: description
           label: Beschrijving
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
     - name: cv
@@ -921,7 +923,7 @@ collections:
         field:
           name: paragraph
           label: Alinea
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
       - name: expertise_label
         label: 'Kop: expertise per domein'
@@ -998,7 +1000,7 @@ collections:
           hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
         - name: description
           label: Beschrijving
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
     - name: contact
@@ -1017,7 +1019,7 @@ collections:
         i18n: true
       - name: intro
         label: Intro
-        widget: text
+        widget: text              # ↔ MULTILINE_KEYS in build.py
         i18n: true
       - name: form
         label: Formulier
@@ -1047,7 +1049,7 @@ collections:
           hint: Alleen zichtbaar voor spambots; bv. Niet invullen.
         - name: privacy
           label: Privacyzin onder het formulier
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
       - name: alt
         label: Tekst 'liever mailen?'
@@ -1071,6 +1073,6 @@ collections:
           hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
         - name: description
           label: Beschrijving
-          widget: text
+          widget: text              # ↔ MULTILINE_KEYS in build.py
           i18n: true
           hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.

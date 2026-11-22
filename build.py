@@ -111,6 +111,7 @@ import json
 import re
 import shutil
 import sys
+import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -398,6 +399,54 @@ def load_texts(lang, errors):
     return texts if ok else None
 
 
+# Onzichtbare en verborgen tekens: nooit toegestaan in eigen inhoud (content/*.json, lab notes):
+# stuurtekens (Unicode-categorie Cc, plus U+2028/U+2029) en opmaaktekens (categorie Cf: breedte nul,
+# leesrichting, zachte afbreking, tag-tekens …). U+00A0 (vaste spatie) mag wel; een regeleinde (\n)
+# alleen in velden die over meerdere regels gaan.
+# LET OP: widget: text-veld toegevoegd of verwijderd in admin/config.yml? Werk dan ook MULTILINE_KEYS bij.
+MULTILINE_KEYS = {'sub', 'intro', 'desc', 'text', 'problem', 'approach', 'result', 'note', 'caption',
+                  'fallback', 'disclaimer', 'sample', 'privacy', 'description', 'paragraphs', 'profile',
+                  'role'}                    # = de velden met widget: text in admin/config.yml
+CONTROL_NAMES = {0x09: 'TAB', 0x0A: 'LF, regeleinde', 0x0D: 'CR, regeleinde', 0x00: 'NUL'}
+
+
+def char_label(ch):
+    cp = ord(ch)
+    name = CONTROL_NAMES.get(cp) or unicodedata.name(ch, 'unnamed')
+    return f'U+{cp:04X} {name}'
+
+
+def bad_chars(value, multiline=False, edges=True):
+    """Meldingen voor verborgen tekens (één per soort) en, met edges=True, witruimte aan begin/einde."""
+    found = []
+    seen = set()
+    if edges and value != value.strip():
+        edge, side = (value[0], 'begint') if value[0].isspace() else (value[-1], 'eindigt')
+        found.append(f'{side} met witruimte ({char_label(edge)}); verwijder die')
+        seen.add(ord(edge))                          # hetzelfde teken niet twee keer melden
+    for ch in value:
+        cp = ord(ch)
+        if ch == '\n' and multiline:
+            continue
+        cat = unicodedata.category(ch)
+        if cat == 'Cc' or cp in (0x2028, 0x2029):
+            kind = 'stuurteken'
+        elif cat == 'Cf':
+            kind = 'onzichtbaar opmaakteken'
+        else:
+            continue
+        if cp in seen:
+            continue
+        seen.add(cp)
+        found.append(f'bevat een {kind} ({char_label(ch)}); verwijder dat (vaak meegekomen bij plakken)')
+    return found
+
+
+def is_multiline(key):
+    names = [p for p in key.split('.') if not p.isdigit()]
+    return bool(names) and names[-1] in MULTILINE_KEYS
+
+
 def check_texts(texts, errors, skip=frozenset()):
     flat = {lang: dict(leaves(texts[lang])) for lang in LANGS}
     base = flat[DEFAULT_LANG]
@@ -457,8 +506,11 @@ def check_texts(texts, errors, skip=frozenset()):
                         errors.add(f'{src}: bevat niet-toegestane HTML: {m.group(0)} (toegestaan: <strong>, <em>, <br>, <code> zonder attributen)')
                 if re.search(r'<!--|<!\[|javascript:', value, re.I):
                     errors.add(f'{src}: bevat niet-toegestane inhoud')
+                # 4. witruimte aan begin/einde en verborgen tekens
+                for problem in bad_chars(value, multiline=is_multiline(key)):
+                    errors.add(f'{src}: {problem}')
 
-    # 4. optionele velden: leeg in beide talen of ingevuld in beide
+    # 5. optionele velden: leeg in beide talen of ingevuld in beide
     for key in sorted(base):
         if key.rsplit('.', 1)[-1] in OPTIONAL_EMPTY:
             filled = {lang: bool(flat[lang].get(key)) for lang in LANGS if key in flat[lang]}
@@ -466,7 +518,7 @@ def check_texts(texts, errors, skip=frozenset()):
                 detail = ', '.join(f'{l}: {"ingevuld" if f else "leeg"}' for l, f in filled.items())
                 errors.add(f'{where(DEFAULT_LANG, key)}: in de ene taal ingevuld, in de andere leeg ({detail})')
 
-    # 5. pagina-metadata (leeg wordt hierboven al gemeld; hier alleen: ontbreekt)
+    # 6. pagina-metadata (leeg wordt hierboven al gemeld; hier alleen: ontbreekt)
     for lang in LANGS:
         for pid in PAGES:
             for field in ('title', 'description'):
@@ -818,16 +870,22 @@ def load_notes(lang, errors, drafts):
             errors.add(f'{name}: bestandsnaam moet een slug zijn (a-z, 0-9, koppeltekens), bv. vlan-hopping.md')
             continue
         try:
-            raw = path.read_text(encoding='utf-8').replace('\r\n', '\n').lstrip('﻿')
+            # read_bytes: read_text zou CRLF en losse CR stilzwijgend in LF omzetten
+            original = path.read_bytes().decode('utf-8').lstrip('﻿')
         except UnicodeDecodeError:
             errors.add(f'{name}: geen geldige UTF-8')
             continue
+        raw = original.replace('\r\n', '\n')
         m = re.match(r'^---\n(.*?)\n---[ \t]*(?:\n(.*))?$', raw, re.S)
         if not m:
             errors.add(f'{name}: kopblok ontbreekt of is niet afgesloten (--- … --- bovenaan)')
             continue
 
         ferr = []                                   # fouten van dit bestand (genegeerd bij een concept)
+        if '\r\n' in original:
+            line_no = original[:original.index('\r\n')].count('\n') + 1
+            ferr.append(f'{name}, regel {line_no}: Windows-regeleinden (CRLF, U+000D U+000A); '
+                        f'sla het bestand op met LF-regeleinden')
         meta = {}
         for n, line in enumerate(m.group(1).split('\n'), start=2):
             if not line.strip() or line.lstrip().startswith('#'):
@@ -852,6 +910,8 @@ def load_notes(lang, errors, drafts):
                     meta[key] = None                    # al gemeld: niet nog eens als "ontbreekt"
                 else:
                     meta[key] = parsed
+                    for problem in (bad_chars(parsed) if isinstance(parsed, str) else []):
+                        ferr.append(f'{name}, regel {n} ({key}): {problem}')
 
         # 1. Concept of niet? (fail closed: ontbreekt/ongeldig → fout, niet publiceren)
         draft = meta.get('draft')
@@ -878,6 +938,10 @@ def load_notes(lang, errors, drafts):
             except ValueError:
                 ferr.append(f'{name}: date "{meta["date"]}" is geen geldige datum (JJJJ-MM-DD)')
         raw_body = m.group(2) or ''
+        body_start = len(m.group(1).split('\n')) + 3
+        for n, line in enumerate(raw_body.split('\n'), start=body_start):
+            for problem in bad_chars(line.rstrip(' '), edges=False):   # spaties aan regeleinden mogen
+                ferr.append(f'{name}, regel {n}: {problem}')
         link_errors = Errors()
         check_links(raw_body, len(m.group(1).split('\n')) + 3, name, link_errors)
         ferr.extend(link_errors)

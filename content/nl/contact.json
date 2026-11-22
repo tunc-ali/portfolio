@@ -1,0 +1,19 @@
+{
+  "label": "contact",
+  "title": "een vraag over je netwerk?",
+  "intro": "Ik werk voltijds in vaste dienst. Buiten de kantooruren help ik met advies en ondersteuning op afstand. Schrijf kort wat er speelt, dan laat ik weten of en wanneer ik kan helpen.",
+  "form": {
+    "name": "Naam",
+    "email": "E-mail",
+    "message": "Bericht",
+    "submit": "Verstuur",
+    "honeypot": "Niet invullen",
+    "privacy": "Ik gebruik je gegevens alleen om je bericht te beantwoorden."
+  },
+  "alt": "Liever gewoon mailen?",
+  "email": "Open je mailprogramma",
+  "seo": {
+    "title": "Contact — Ali Tunç, systeem- en netwerkbeheerder",
+    "description": "Stuur een bericht. Buiten de kantooruren help ik met advies en ondersteuning op afstand."
+  }
+}

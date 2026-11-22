@@ -1,0 +1,122 @@
+{
+  "label": "expertise",
+  "title": "wat ik doe",
+  "intro": "Zes domeinen waar ik dagelijks in werk. Bij elk domein staat waar ik ervaring mee heb.",
+  "cards": [
+    {
+      "id": "#01 — NETWERK",
+      "icon": "[NW]",
+      "title": "Netwerk & firewall",
+      "desc": "Ik ontwerp VLAN-schema's, segmenteer netwerken en beheer routing, firewallbeleid en VPN. Ik heb gewerkt met Fortinet (FortiGate), Ubiquiti (UniFi, EFG), Cisco, WatchGuard, Dell, Barracuda, Netgear, Zyxel en pfSense.",
+      "tags": [
+        "VLAN",
+        "OSPF",
+        "ACL / NAT",
+        "RSTP",
+        "EtherChannel",
+        "IPsec",
+        "WireGuard"
+      ]
+    },
+    {
+      "id": "#02 — SYSTEMEN",
+      "icon": "[SYS]",
+      "title": "Systemen & virtualisatie",
+      "desc": "Windows Server met Active Directory en GPO, Linux-servers, en virtualisatie op Nutanix (AHV, Prism), VMware vSphere (vCenter, ESXi) en Hyper-V. Werk dat terugkomt, script ik in PowerShell, Python of Bash.",
+      "tags": [
+        "Windows Server",
+        "Active Directory",
+        "GPO",
+        "Linux",
+        "Nutanix AHV",
+        "VMware vSphere",
+        "Hyper-V",
+        "PowerShell"
+      ]
+    },
+    {
+      "id": "#03 — IDENTITY",
+      "icon": "[M365]",
+      "title": "Microsoft 365 & identity",
+      "desc": "Beheer van Microsoft 365 en SharePoint, Entra ID met Hybrid join, en toestellen via Intune. Daarnaast ervaring met certificaten via een eigen PKI en SCEP.",
+      "tags": [
+        "Microsoft 365",
+        "Entra ID",
+        "Hybrid join",
+        "Intune",
+        "SharePoint",
+        "AD CS / SCEP"
+      ]
+    },
+    {
+      "id": "#04 — BACKUP",
+      "icon": "[BKP]",
+      "title": "Backup & recovery",
+      "desc": "Met Veeam heb ik veel backups en restores gedaan op Nutanix, VMware vSphere en Hyper-V. Daarnaast werk ik met een cloud-backupplatform. Restores test ik, en ik documenteer wat er terugkwam en wat niet.",
+      "tags": [
+        "Veeam",
+        "Nutanix",
+        "vSphere",
+        "Hyper-V",
+        "Cloud backup",
+        "Restore-tests"
+      ]
+    },
+    {
+      "id": "#05 — MONITORING",
+      "icon": "[MON]",
+      "title": "Monitoring",
+      "desc": "Zabbix met agents en SNMP, dashboards en alerting, en Windows Event Log erbij.",
+      "tags": [
+        "Zabbix",
+        "SNMP",
+        "Dashboards",
+        "Alerting",
+        "Event Log"
+      ]
+    },
+    {
+      "id": "#06 — SECURITY",
+      "icon": "[SEC]",
+      "title": "Security",
+      "desc": "Hardening, segmentatie en firewallbeleid, EDR op servers, en netwerktoegang met 802.1X en certificaten. Voor detectie en veilige toegang van buitenaf werkte ik met Wazuh, NetBird en OpenZiti.",
+      "tags": [
+        "Hardening",
+        "EDR",
+        "NGFW",
+        "PacketFence NAC",
+        "802.1X / EAP-TLS",
+        "Wazuh",
+        "ZTNA"
+      ]
+    }
+  ],
+  "lab": {
+    "label": "lab",
+    "title": "waar ik aanvallen en verdediging test",
+    "intro": "Naast het beheer heb ik een geïsoleerd lab. Daar voer ik aanvallen uit op testmachines en kijk ik wat de verdediging ervan ziet.",
+    "cards": [
+      {
+        "title": "Omgeving",
+        "desc": "Kali Linux en testmachines, gescheiden van elk productienetwerk."
+      },
+      {
+        "title": "Webapplicaties",
+        "desc": "Burp Suite en de labs van de PortSwigger Web Security Academy."
+      },
+      {
+        "title": "Oefenmachines",
+        "desc": "Machines op Hack The Box, van verkenning tot toegang."
+      },
+      {
+        "title": "Terug naar het beheer",
+        "desc": "Wat ik in het lab zie, pas ik toe: hardening, segmentatie, firewallregels en detectie."
+      }
+    ],
+    "note": "Ik test alleen in mijn eigen lab en op platformen die daarvoor bedoeld zijn."
+  },
+  "seo": {
+    "title": "Expertise — Ali Tunç, systeem- en netwerkbeheerder",
+    "description": "Wat ik doe: netwerk en firewall, systemen en virtualisatie, Microsoft 365, backup, monitoring en security."
+  }
+}

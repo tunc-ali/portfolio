@@ -1,0 +1,171 @@
+{
+  "label": "projects",
+  "title": "what I've done",
+  "problem": "problem",
+  "approach": "approach",
+  "result": "result",
+  "groups": [
+    {
+      "label": "recent work",
+      "cards": [
+        {
+          "tag": "IDENTITY",
+          "title": "Laptops to a new domain",
+          "problem": "Laptops were still joined to the old domain and had to move to the new one.",
+          "approach": "Moved them one by one with Hybrid Entra ID join. The steps are in a runbook I wrote myself.",
+          "result": "",
+          "tags": [
+            "Active Directory",
+            "Entra ID",
+            "Hybrid join",
+            "Runbook"
+          ]
+        },
+        {
+          "tag": "SECURITY",
+          "title": "EDR on the servers",
+          "problem": "The servers were still running an older antivirus product.",
+          "approach": "Rolled out an EDR agent to the servers to replace it.",
+          "result": "",
+          "tags": [
+            "EDR",
+            "Servers"
+          ]
+        },
+        {
+          "tag": "BACKUP",
+          "title": "Backup and restore tests",
+          "problem": "Checking that backups can actually be restored.",
+          "approach": "Ran restore tests on Veeam and on a cloud backup platform.",
+          "result": "Every test and its outcome is documented.",
+          "tags": [
+            "Veeam",
+            "Cloud backup",
+            "Restore test"
+          ]
+        },
+        {
+          "tag": "NETWORK",
+          "title": "ISP routers and core switch behind the firewall",
+          "problem": "New ISP routers and a core switch had to be fitted into the existing network.",
+          "approach": "Drew up the IP plan and integrated the devices behind the firewall.",
+          "result": "",
+          "tags": [
+            "NGFW",
+            "Routing",
+            "IP planning",
+            "Core switch"
+          ]
+        },
+        {
+          "tag": "NETWORK",
+          "title": "Connection problems with cloud telephony",
+          "problem": "Cloud telephony for more than 100 users had connection problems.",
+          "approach": "Analysed the traffic on the firewall side to find the cause.",
+          "result": "",
+          "tags": [
+            "NGFW",
+            "VoIP",
+            "Troubleshooting"
+          ]
+        },
+        {
+          "tag": "MDM",
+          "title": "Emergency phones for fire prevention",
+          "problem": "A fire prevention project needed managed emergency phones.",
+          "approach": "Enrolled and managed the devices through MDM.",
+          "result": "",
+          "tags": [
+            "MDM",
+            "Mobile devices"
+          ]
+        },
+        {
+          "tag": "SYSTEMS",
+          "title": "Handheld scanners to a new server",
+          "problem": "Handheld barcode scanners had to move to a new server.",
+          "approach": "Prepared the switch and tested the scanners against the new server.",
+          "result": "",
+          "tags": [
+            "Migration",
+            "Testing"
+          ]
+        }
+      ]
+    },
+    {
+      "label": "earlier projects",
+      "cards": [
+        {
+          "tag": "NETWORK",
+          "title": "Network renewal for a local government",
+          "problem": "A local government's network was due for a redesign.",
+          "approach": "Documented as-is and to-be, designed a VLAN scheme on the Core-Distribution-Access model, and compared switches, firewalls and access points on performance, availability and budget.",
+          "result": "The documentation is the basis for the implementation and for NIS2 compliance.",
+          "tags": [
+            "VLAN",
+            "Zyxel",
+            "UniFi",
+            "NIS2",
+            "Documentation"
+          ]
+        },
+        {
+          "tag": "MONITORING",
+          "title": "Zabbix monitoring and Wazuh SIEM",
+          "problem": "Getting a central view of servers, network devices and security events.",
+          "approach": "Set up Zabbix with SNMP and agents, dashboards, alerting and Windows Event Log. Alongside it Wazuh as XDR/SIEM, with Windows agents, active response and rule-based alerting.",
+          "result": "",
+          "tags": [
+            "Zabbix",
+            "SNMP",
+            "Wazuh",
+            "XDR / SIEM"
+          ]
+        },
+        {
+          "tag": "SECURITY",
+          "title": "Remote access with NetBird (ZTNA)",
+          "problem": "Secure access from outside to the internal infrastructure.",
+          "approach": "Installed and configured a self-hosted NetBird as Zero Trust Network Access.",
+          "result": "",
+          "tags": [
+            "NetBird",
+            "ZTNA",
+            "Self-hosted"
+          ]
+        },
+        {
+          "tag": "SECURITY",
+          "title": "PacketFence NAC with EAP-TLS",
+          "problem": "Certificate-based Wi-Fi access for an environment of 106 schools.",
+          "approach": "Designed and built in a lab environment: PacketFence NAC with 802.1X and EAP-TLS, a private PKI and Intune for the certificates. Certificate rollout automated with PowerShell.",
+          "result": "",
+          "tags": [
+            "PacketFence",
+            "802.1X",
+            "EAP-TLS",
+            "PKI",
+            "Intune"
+          ]
+        },
+        {
+          "tag": "SECURITY",
+          "title": "Zero trust with OpenZiti and Entra ID",
+          "problem": "Access to services based on identity and certificates.",
+          "approach": "Set up a zero-trust architecture with OpenZiti in a lab environment, tied to Microsoft Entra ID.",
+          "result": "",
+          "tags": [
+            "OpenZiti",
+            "Zero trust",
+            "Entra ID"
+          ]
+        }
+      ]
+    }
+  ],
+  "seo": {
+    "title": "Projects — Ali Tunç",
+    "description": "Recent and earlier projects: domain migration, EDR, restore tests, network renewal, monitoring, NAC and ZTNA."
+  }
+}

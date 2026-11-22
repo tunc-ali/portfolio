@@ -1,0 +1,46 @@
+{
+  "label": "cv",
+  "title": "curriculum vitae",
+  "profile_label": "profiel",
+  "profile": [
+    "Systeem- en netwerkbeheerder met 7+ jaar ervaring. Ik werk voltijds bij een internationaal productiebedrijf: infrastructuur beheren, onderhouden en verbeteren, meewerken aan IT-projecten en af en toe configuratie en onderhoud ter plaatse op sites in het buitenland.",
+    "Security is een vast deel van dat werk: hardening, segmentatie, firewallbeleid, EDR en backups die getest zijn."
+  ],
+  "expertise_label": "expertise per domein",
+  "projects_label": "recente projecten",
+  "projects_link": "Alle projecten met probleem en aanpak →",
+  "education_label": "opleiding",
+  "education": [
+    {
+      "title": "Graduaat Systeem- en Netwerkbeheer",
+      "where": "AP Hogeschool Antwerpen, met onderscheiding"
+    },
+    {
+      "title": "Bachelor Bedrijfskunde",
+      "where": "Anadolu University"
+    }
+  ],
+  "languages_label": "talen",
+  "languages": [
+    {
+      "name": "Turks",
+      "level": "moedertaal"
+    },
+    {
+      "name": "Nederlands",
+      "level": "C1"
+    },
+    {
+      "name": "Engels",
+      "level": "C1"
+    },
+    {
+      "name": "Azerbeidzjaans",
+      "level": "C1"
+    }
+  ],
+  "seo": {
+    "title": "CV — Ali Tunç, systeem- en netwerkbeheerder",
+    "description": "CV van Ali Tunç, systeem- en netwerkbeheerder: expertise per domein, recente projecten, opleiding en talen."
+  }
+}

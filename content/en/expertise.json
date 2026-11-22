@@ -1,0 +1,122 @@
+{
+  "label": "expertise",
+  "title": "what I do",
+  "intro": "Six areas I work in every day. Each one lists what I have hands-on experience with.",
+  "cards": [
+    {
+      "id": "#01 — NETWORK",
+      "icon": "[NW]",
+      "title": "Network & firewall",
+      "desc": "I design VLAN schemes, segment networks and manage routing, firewall policy and VPN. I have worked with Fortinet (FortiGate), Ubiquiti (UniFi, EFG), Cisco, WatchGuard, Dell, Barracuda, Netgear, Zyxel and pfSense.",
+      "tags": [
+        "VLAN",
+        "OSPF",
+        "ACL / NAT",
+        "RSTP",
+        "EtherChannel",
+        "IPsec",
+        "WireGuard"
+      ]
+    },
+    {
+      "id": "#02 — SYSTEMS",
+      "icon": "[SYS]",
+      "title": "Systems & virtualisation",
+      "desc": "Windows Server with Active Directory and GPO, Linux servers, and virtualisation on Nutanix (AHV, Prism), VMware vSphere (vCenter, ESXi) and Hyper-V. Work that keeps coming back gets scripted in PowerShell, Python or Bash.",
+      "tags": [
+        "Windows Server",
+        "Active Directory",
+        "GPO",
+        "Linux",
+        "Nutanix AHV",
+        "VMware vSphere",
+        "Hyper-V",
+        "PowerShell"
+      ]
+    },
+    {
+      "id": "#03 — IDENTITY",
+      "icon": "[M365]",
+      "title": "Microsoft 365 & identity",
+      "desc": "Administration of Microsoft 365 and SharePoint, Entra ID with Hybrid join, and devices through Intune. Also experience with certificates from a private PKI with SCEP.",
+      "tags": [
+        "Microsoft 365",
+        "Entra ID",
+        "Hybrid join",
+        "Intune",
+        "SharePoint",
+        "AD CS / SCEP"
+      ]
+    },
+    {
+      "id": "#04 — BACKUP",
+      "icon": "[BKP]",
+      "title": "Backup & recovery",
+      "desc": "With Veeam I have done a lot of backups and restores on Nutanix, VMware vSphere and Hyper-V. I also work with a cloud backup platform. I test restores and document what came back and what did not.",
+      "tags": [
+        "Veeam",
+        "Nutanix",
+        "vSphere",
+        "Hyper-V",
+        "Cloud backup",
+        "Restore tests"
+      ]
+    },
+    {
+      "id": "#05 — MONITORING",
+      "icon": "[MON]",
+      "title": "Monitoring",
+      "desc": "Zabbix with agents and SNMP, dashboards and alerting, plus Windows Event Log.",
+      "tags": [
+        "Zabbix",
+        "SNMP",
+        "Dashboards",
+        "Alerting",
+        "Event Log"
+      ]
+    },
+    {
+      "id": "#06 — SECURITY",
+      "icon": "[SEC]",
+      "title": "Security",
+      "desc": "Hardening, segmentation and firewall policy, EDR on servers, and network access with 802.1X and certificates. For detection and secure remote access I have worked with Wazuh, NetBird and OpenZiti.",
+      "tags": [
+        "Hardening",
+        "EDR",
+        "NGFW",
+        "PacketFence NAC",
+        "802.1X / EAP-TLS",
+        "Wazuh",
+        "ZTNA"
+      ]
+    }
+  ],
+  "lab": {
+    "label": "lab",
+    "title": "where I test attacks and defences",
+    "intro": "Alongside the admin work I keep an isolated lab. There I run attacks against test machines and watch what the defences pick up.",
+    "cards": [
+      {
+        "title": "Environment",
+        "desc": "Kali Linux and test machines, separated from any production network."
+      },
+      {
+        "title": "Web applications",
+        "desc": "Burp Suite and the labs of the PortSwigger Web Security Academy."
+      },
+      {
+        "title": "Practice machines",
+        "desc": "Machines on Hack The Box, from reconnaissance to access."
+      },
+      {
+        "title": "Back into operations",
+        "desc": "What I see in the lab gets applied: hardening, segmentation, firewall rules and detection."
+      }
+    ],
+    "note": "I only test in my own lab and on platforms built for that purpose."
+  },
+  "seo": {
+    "title": "Expertise — Ali Tunç, system and network administrator",
+    "description": "What I do: network and firewall, systems and virtualisation, Microsoft 365, backup, monitoring and security."
+  }
+}

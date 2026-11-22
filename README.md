@@ -11,7 +11,8 @@ built by `build.py` and hosted on Netlify.
 ## 1. Overview
 
 ```
-json/nl.json, json/en.json   ┐
+content/nl/*.json            ┐
+content/en/*.json            │
 templates/*.html             │
 notes/nl/*.md, notes/en/*.md ├─►  build.py  ─►  dist/  ─►  Netlify  ─►  alitunc.net
 css/ js/ images/ vendor/ …   ┘   (checks + build)
@@ -22,7 +23,21 @@ css/ js/ images/ vendor/ …   ┘   (checks + build)
   Netlify deploy fails and **the previous version stays online**. GitHub Actions (`validate`)
   runs the same build on every push and pull request to `main`.
 - `dist/` is generated and not in git. Only what is listed in `STATIC` in `build.py` is
-  published; sources such as `build.py`, `templates/`, `json/nl.json`, `notes/` are not.
+  published; sources such as `build.py`, `templates/`, `content/`, `notes/` and
+  `content-denylist.txt` are not.
+- Site texts live in `content/<language>/` (`content/nl/` and `content/en/`), one file per page,
+  each page file with its own `seo` block (title and description for search engines). Dutch and
+  English always have the same files, fields and list lengths:
+
+  | CMS (Pagina's) | File | Page (NL / EN) |
+  |---|---|---|
+  | Algemeen | `site.json` | navigation, footer, contact block, lab-notes texts (all pages) |
+  | Home | `home.json` | `/` · `/en/` |
+  | Expertise | `expertise.json` | `/expertise.html` · `/en/expertise.html` |
+  | Over mij | `about.json` | `/over-mij.html` · `/en/about.html` |
+  | Projecten | `projects.json` | `/projecten.html` · `/en/projects.html` |
+  | CV | `cv.json` | `/cv.html` · `/en/cv.html` |
+  | Contact | `contact.json` | `/contact.html` · `/en/contact.html` |
 - Code changes: create a branch from `main`, open a pull request, test the deploy preview,
   then merge (squash).
 
@@ -36,10 +51,32 @@ python build.py --list                   # same, and list the contents of dist/
 python -m http.server 8000 -d dist       # view at http://localhost:8000
 ```
 
-If the build fails, every problem is listed as a `FOUT:` line with the file and, where
-possible, the line number. Fix them all and run it again.
+If the build fails, every problem is listed as a `FOUT:` line with the file and the field
+(for `content/`) or the line number (for notes). Fix them all and run it again.
 
-All rules that `build.py` enforces are described at the top of `build.py`.
+### What the build checks
+
+All rules are described at the top of `build.py`. In short, the build stops when:
+
+- **Structure:** Dutch and English files differ in fields, types or list lengths; a required
+  field is empty; an optional field (`note`, `result`, `level`) is filled in one language only;
+  the `seo` block is missing.
+- **Order:** a list whose order matters to the site (expertise domains, home figures, topology
+  nodes) was reordered in one language only.
+- **Untranslated:** a longer text (40+ characters) is identical in both languages.
+- **Code-bound texts:** terminal commands, topology ids and `{placeholders}` do not match what
+  the JavaScript expects.
+- **HTML and links:** HTML other than `<strong>`, `<em>`, `<br>`, `<code>` (without attributes);
+  links other than `https://`, `mailto:` or `/path`.
+- **Hidden characters and whitespace:** text that starts or ends with a space, tab or line
+  break; control characters (tab, CR, …); invisible formatting characters (zero-width,
+  reading-direction marks, soft hyphen, …). A line break is only allowed in multi-line fields.
+  A non-breaking space inside a text is fine. Usually caused by pasting: retype the text.
+  Notes must use LF line endings.
+- **Forbidden content:** see "Forbidden content (denylist)" in section 3.
+- **Notes:** missing or invalid frontmatter, missing `draft:`, missing translation, invalid
+  date or slug (drafts are not checked).
+- **Uploads:** wrong file type, metadata (EXIF/XMP/IPTC) or larger than 5 MB.
 
 ## 3. Using the CMS
 
@@ -57,9 +94,32 @@ All rules that `build.py` enforces are described at the top of `build.py`.
 2. Fields: **Titel** (title), **Datum** (date, same for both languages), **Korte beschrijving**
    (one sentence for the list and for search engines), **Concept (niet publiceren)**, **Tekst**.
 3. **Tekst** supports: `##` and `###` headings, bold, italic, `inline code`, links, bulleted
-   and numbered lists, quotes and code blocks. Links must start with `https://`, `mailto:`
-   or `/` (a page on this site). Anything else stops the build.
+   and numbered lists, quotes and code blocks. Links must start with `https://` or `/`
+   (a page on this site). Anything else stops the build. `mailto:` links are technically
+   accepted by the link check, but every e-mail address is blocked by the content denylist
+   (section 3, "Forbidden content"), so in practice they stop the build too.
 4. **Save.** The CMS commits to `main`; the site is updated in 1–2 minutes.
+
+### Edit page texts (Pagina's)
+
+1. **Pagina's** → choose a page (see the table in section 1). The Dutch tab is on the left,
+   the English tab on the right; fill in both.
+2. Change a text, or add, remove or reorder items in a list. Every field has a short hint.
+3. **Save.** The CMS commits both language files at once; the site is updated in 1–2 minutes.
+
+How lists behave in the two languages:
+
+- **Most lists (sync):** adding, removing and reordering an item in one language does the same
+  in the other language. The text of each item stays per language: a new item appears **empty**
+  on the other tab and must be translated.
+- **Technologies (tags) of projects and expertise domains (duplicate):** fill in on the Dutch
+  tab only. The English list is locked and copied automatically.
+- **Fixed lists** (terminal command chips, help lines, topology nodes): items cannot be added,
+  removed or moved, only their texts can be edited.
+- **Lists with one text per item** (Over mij paragraphs, CV profile, nmap output): fill in the
+  new item in **both** languages **before** saving. If the English item is still empty when
+  saving, the CMS leaves it out, the two lists get different lengths and the build fails.
+  Fix: remove the new item on the Dutch tab and save, then add it again.
 
 ### Concept (draft) and publishing
 
@@ -83,6 +143,37 @@ All rules that `build.py` enforces are described at the top of `build.py`.
 - Only `a-z`, `0-9` and hyphens are allowed.
 - **Turkish dotless `ı`:** the CMS drops it from the slug (for example `ışık` becomes `s-k`).
   For titles with `ı`, correct the slug by hand when creating the note.
+
+### Forbidden content (denylist)
+
+`content-denylist.txt` (repository root, never published) lists what must never appear on the
+site: the current employer, former employers, the home address, phone numbers and e-mail
+addresses. `build.py` checks all texts in `content/`, all published lab notes and every
+text file that goes online (HTML, JSON, YAML, TXT, XML; not `vendor/` and not the data files
+`json/news.json`, `json/globe.json`, `json/topology.json`). A match stops the build and names
+the file and field or line; the matched text is only shown partially in the log.
+
+- One term per line: case-insensitive, whole words only.
+- Lines starting with `re:` are regular expressions (phone and e-mail patterns are included).
+- Lines starting with `#` are comments.
+
+**Editing the list (on your own computer):**
+
+1. Open `D:\mijnwebsite\content-denylist.txt` in Notepad++.
+2. Add your terms under "Zelf invullen", one per line, without the leading `#`.
+   Add common variants too (with and without legal form, abbreviations, domain name).
+3. Save (keep the encoding UTF-8).
+4. In PowerShell, in `D:\mijnwebsite`:
+   ```powershell
+   python build.py                 # must still say OK; otherwise the site contains a match
+   git add content-denylist.txt
+   git commit -m "content: denylist bijgewerkt"
+   git push
+   ```
+   Commit on a branch and open a pull request if other work is in progress.
+
+The file is in the (private) repository. Do not list secrets in it, only words that must not
+appear on the site.
 
 ### Images
 
@@ -149,9 +240,15 @@ after a checkout on Windows.
 ## 6. Troubleshooting
 
 **"validate failed" e-mail or a failed Netlify deploy**
-The site still shows the previous version. Open the failed run
-(GitHub → Actions, or Netlify → Deploys → the failed deploy → log) and read the `FOUT:` lines.
-Fix the content in the CMS or in git and save again. A half-finished note: switch Concept on.
+The site still shows the previous version. Read the `FOUT:` lines:
+
+- GitHub → repository → **Actions** → the failed **validate** run → job **build** → step
+  **Controle + build**, or
+- Netlify → **Deploys** → the failed deploy → **Deploy log**.
+
+Each line names the file and the field or line. Fix the content in the CMS or in git and save
+again. A half-finished note: switch Concept on. A forbidden match is only shown partially
+(first two characters and the length).
 
 **Go back to an earlier version of the site**
 - Fast: Netlify → **Deploys** → choose an earlier successful deploy → **Publish deploy**.
@@ -184,6 +281,8 @@ briefly for testing.
   `Referrer-Policy: no-referrer`. Also excluded in `robots.txt`.
 - `/images/uploads/*`: `nosniff` and a sandbox CSP.
 - Notes: HTML in a note is always shown as text, never executed; only safe link types.
+- Content denylist (`content-denylist.txt`): employer, address, phone numbers and e-mail
+  addresses can never be published by accident.
 - Uploads: type checked by content (not by extension), no metadata, size limit.
 - Third-party code in `vendor/` is pinned and checksummed.
 - GitHub Pages must stay disabled (Settings → Pages → Source: None); it published the
@@ -195,8 +294,12 @@ briefly for testing.
 
 - Fix "Work with Local Repository" (see section 6).
 - Images inside lab notes (Markdown images in `build.py`).
-- Second round of CMS fields: selected texts from `json/nl.json` and `json/en.json`
-  (after testing that the CMS keeps unknown keys and the file format).
+- Markdown in notes: two spaces at the end of a line → line break (`<br>`).
 - Site-style 404 page (NL/EN).
+- News section: RSS-based update of the security news.
+- Signed commits: SSH signing key for local commits ("Verified" on GitHub; vigilant mode
+  optional).
 - Hardening phase: CSP and security headers for the whole site, HSTS, secret scan of the
-  full git history, checks on old hosting addresses.
+  full git history (gitleaks), checks on old hosting addresses, and a periodic check for other
+  deploy targets connected to the repository (GitHub → Settings → Integrations / Applications,
+  webhooks).

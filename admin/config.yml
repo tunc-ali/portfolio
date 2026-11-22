@@ -5,7 +5,7 @@
 backend:
   name: github
   repo: tunc-ali/portfolio
-  branch: main                # productie: elke Save in het CMS gaat live na de build
+  branch: main
   commit_messages:
     create: "cms: add {{collection}} {{slug}}"
     update: "cms: update {{collection}} {{slug}}"
@@ -86,3 +86,993 @@ collections:
         linked_images: false
         captioned_images: false
         use_emoji_autocomplete: false
+
+  # ── Pagina's: alle teksten van de site (NL + EN) ────────────────────
+  # Bestanden: content/<taal>/<pagina>.json. De volgorde van de velden hieronder is de
+  # volgorde in de bestanden (Sveltia schrijft in deze volgorde): velden niet verplaatsen
+  # zonder de bestanden mee te ordenen. Code-gebonden teksten (terminalcommando's,
+  # topologie-id's, {placeholders}) worden door build.py gecontroleerd.
+  # LET OP: widget: text-veld toevoegen of verwijderen? Werk dan ook MULTILINE_KEYS in build.py bij
+  # (alleen die velden mogen regeleinden bevatten).
+  - name: pages
+    label: Pagina's
+    label_singular: Pagina
+    description: Alle teksten van de site. Elke pagina heeft een Nederlands en een Engels tabblad; vul altijd beide in. Opslaan = binnen 1–2 minuten live. Verboden inhoud (werkgever, adres, telefoon, e-mail) stopt de build; de site blijft dan ongewijzigd.
+    i18n: true
+    format: json
+    files:
+    - name: site
+      label: Algemeen (menu, footer, contactblok, lab notes)
+      file: content/{{locale}}/site.json
+      i18n: true
+      fields:
+      - name: nav
+        label: Menu en locatiebalk
+        widget: object
+        i18n: true
+        fields:
+        - name: services
+          label: 'Menu: Expertise'
+          widget: string
+          i18n: true
+          hint: Menu-item naar de expertisepagina. Eén of twee woorden.
+        - name: about
+          label: 'Menu: Over mij'
+          widget: string
+          i18n: true
+        - name: projects
+          label: 'Menu: Projecten'
+          widget: string
+          i18n: true
+        - name: notes
+          label: 'Menu: Lab notes'
+          widget: string
+          i18n: true
+          hint: Verschijnt pas in het menu zodra er een gepubliceerde lab note is.
+        - name: cv
+          label: 'Menu: CV'
+          widget: string
+          i18n: true
+        - name: contact
+          label: 'Menu: knop Contact'
+          widget: string
+          i18n: true
+          hint: De gemarkeerde knop rechts in het menu.
+        - name: status
+          label: Statusregel
+          widget: string
+          i18n: true
+          hint: Rechts in de locatiebalk en in het mobiele menu. Hoofdletters, max. ± 30 tekens, bv. IN DIENST · ADVIES NA DE UREN.
+        - name: loc_loading
+          label: 'Locatiebalk: tijdens laden'
+          widget: string
+          i18n: true
+          hint: Korte tekst terwijl de locatie van de bezoeker wordt opgehaald. Hoofdletters.
+        - name: loc_fallback
+          label: 'Locatiebalk: locatie onbekend'
+          widget: string
+          i18n: true
+          hint: Als de locatie niet bepaald kan worden. Hoofdletters, één woord.
+        - name: skip
+          label: 'Toegankelijkheid: link ''naar inhoud'''
+          widget: string
+          i18n: true
+          hint: Alleen zichtbaar bij navigeren met het toetsenbord (Tab).
+        - name: home_label
+          label: 'Toegankelijkheid: logo-link'
+          widget: string
+          i18n: true
+          hint: Voorgelezen door schermlezers voor het logo, bv. Ali Tunç — home.
+        - name: menu
+          label: 'Toegankelijkheid: menuknop (mobiel)'
+          widget: string
+          i18n: true
+          hint: Voorgelezen door schermlezers. Eén woord.
+        - name: main
+          label: 'Toegankelijkheid: naam van het menu'
+          widget: string
+          i18n: true
+          hint: Voorgelezen door schermlezers, bv. Hoofdnavigatie.
+        - name: lang_label
+          label: 'Toegankelijkheid: taalkeuze'
+          widget: string
+          i18n: true
+          hint: Voorgelezen door schermlezers. Eén woord.
+      - name: footer
+        label: Footer (onderaan elke pagina)
+        widget: object
+        i18n: true
+        fields:
+        - name: rights
+          label: Rechten
+          widget: string
+          i18n: true
+          hint: © en het jaartal worden automatisch ervoor gezet.
+        - name: tagline
+          label: Slogan rechts
+          widget: string
+          i18n: true
+          hint: Korte regel, max. ± 45 tekens.
+      - name: cta
+        label: Contactblok (onderaan de homepage)
+        widget: object
+        i18n: true
+        fields:
+        - name: label
+          label: Klein label
+          widget: string
+          i18n: true
+          hint: Groen labeltje boven de titel. Eén woord.
+        - name: title
+          label: Titel
+          widget: string
+          i18n: true
+        - name: text
+          label: Tekst
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Eén of twee zinnen.
+        - name: button
+          label: Knop
+          widget: string
+          i18n: true
+          hint: Tekst op de knop naar de contactpagina.
+      - name: notes
+        label: Lab notes (lijstpagina en artikels)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: label
+          label: Klein label
+          widget: string
+          i18n: true
+          hint: Groen labeltje boven de titel van de lijstpagina.
+        - name: title
+          label: Titel lijstpagina
+          widget: string
+          i18n: true
+        - name: intro
+          label: Intro lijstpagina
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Eén zin onder de titel.
+        - name: back
+          label: Terug-link
+          widget: string
+          i18n: true
+          hint: Boven elk artikel, bv. ← alle lab notes.
+    - name: home
+      label: Home
+      file: content/{{locale}}/home.json
+      i18n: true
+      fields:
+      - name: tag_role
+        label: 'Bovenste regel: rol'
+        widget: string
+        i18n: true
+        hint: Klein, boven de grote titel, bv. systeem- & netwerkbeheer.
+      - name: tag_place
+        label: 'Bovenste regel: tweede deel'
+        widget: string
+        i18n: true
+        hint: Naast de rol, bv. security.
+      - name: h1_dim
+        label: 'Grote titel: regel 1 (grijs)'
+        widget: string
+        i18n: true
+        hint: 'Kort houden: de drie regels samen vormen één zin.'
+      - name: h1_bright
+        label: 'Grote titel: regel 2 (wit)'
+        widget: string
+        i18n: true
+      - name: h1_green
+        label: 'Grote titel: regel 3 (groen)'
+        widget: string
+        i18n: true
+      - name: sub
+        label: Tekst onder de titel
+        widget: text              # ↔ MULTILINE_KEYS in build.py
+        i18n: true
+        hint: 'Twee of drie zinnen: wie je bent en wat je doet. ± 300 tekens.'
+      - name: btn_services
+        label: Knop 1 (naar Expertise)
+        widget: string
+        i18n: true
+      - name: btn_contact
+        label: Knop 2 (naar Contact)
+        widget: string
+        i18n: true
+      - name: stats
+        label: Cijfers
+        label_singular: cijfer
+        widget: list
+        i18n: sync
+        min: 1
+        max: 4
+        hint: Kleine cijfers onder de knoppen. Liefst 3 (max. 4). Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+        summary: '{{fields.n}} {{fields.label}}'
+        fields:
+        - name: n
+          label: Getal
+          widget: string
+          i18n: true
+          hint: Kort, bv. 7+ of 9. Alleen wat klopt met je cv.
+        - name: label
+          label: Omschrijving
+          widget: string
+          i18n: true
+          hint: Bv. jaar ervaring.
+      - name: terminal
+        label: Terminal
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: whoami
+          label: Antwoord op 'whoami'
+          widget: string
+          i18n: true
+          hint: Eén regel.
+        - name: skills
+          label: Antwoord op 'skills'
+          label_singular: regel
+          widget: list
+          i18n: sync
+          min: 1
+          hint: 'Regels in de terminal: sleutel → waarde. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.'
+          summary: '{{fields.key}}'
+          fields:
+          - name: key
+            label: Sleutel
+            widget: string
+            i18n: true
+            hint: Eén woord, kleine letters, bv. netwerk.
+          - name: value
+            label: Waarde
+            widget: string
+            i18n: true
+            hint: Korte opsomming.
+        - name: label
+          label: Klein label
+          widget: string
+          i18n: true
+          hint: Boven de terminal. Eén woord.
+        - name: input_label
+          label: 'Toegankelijkheid: invoerveld'
+          widget: string
+          i18n: true
+          hint: Voorgelezen door schermlezers.
+        - name: hint
+          label: Hint boven de knoppen
+          widget: string
+          i18n: true
+          hint: 'Bv. typ ''help'' of kies:'
+        - name: chips
+          label: Snelknoppen
+          label_singular: knop
+          widget: list
+          i18n: sync
+          allow_add: false
+          allow_remove: false
+          allow_reorder: false
+          hint: 'Vaste lijst: hoort bij code op de site. Alleen de tekst aanpassen; niets toevoegen, verwijderen of verplaatsen. Elke knop moet een bestaand commando zijn (help, whoami, skills, projects, contact, lang, clear, sudo, nmap).'
+          field:
+            name: chip
+            label: Commando
+            widget: string
+            i18n: true
+        - name: cmd
+          label: Antwoorden en meldingen
+          widget: object
+          i18n: true
+          collapsed: true
+          fields:
+          - name: help_title
+            label: Titel bij 'help'
+            widget: string
+            i18n: true
+          - name: help
+            label: Lijst bij 'help'
+            label_singular: commando
+            widget: list
+            i18n: sync
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            hint: 'Vaste lijst: hoort bij code op de site. Alleen de tekst aanpassen; niets toevoegen, verwijderen of verplaatsen. Commando niet wijzigen; alleen de uitleg.'
+            summary: '{{fields.c}}'
+            fields:
+            - name: c
+              label: Commando (niet wijzigen)
+              widget: string
+              i18n: true
+            - name: d
+              label: Uitleg
+              widget: string
+              i18n: true
+          - name: not_found
+            label: Onbekend commando
+            widget: string
+            i18n: true
+            hint: '{cmd} wordt vervangen door wat de bezoeker typte. {cmd} moet erin blijven.'
+          - name: projects_link
+            label: Link na 'projects'
+            widget: string
+            i18n: true
+          - name: contact_text
+            label: Antwoord op 'contact'
+            widget: string
+            i18n: true
+          - name: contact_link
+            label: Link na 'contact'
+            widget: string
+            i18n: true
+          - name: lang_current
+            label: '''lang'' zonder taal'
+            widget: string
+            i18n: true
+            hint: '{lang} wordt vervangen door de huidige taal. {lang} moet erin blijven.'
+          - name: lang_usage
+            label: Gebruik van 'lang'
+            widget: string
+            i18n: true
+            hint: 'Bv. gebruik: lang nl | lang en'
+          - name: lang_switch
+            label: Taal wisselen
+            widget: string
+            i18n: true
+            hint: '{lang} = de nieuwe taal. {lang} moet erin blijven.'
+          - name: lang_same
+            label: Zelfde taal gekozen
+            widget: string
+            i18n: true
+          - name: sudo
+            label: Antwoord op 'sudo'
+            widget: string
+            i18n: true
+          - name: nmap
+            label: Uitvoer van 'nmap'
+            label_singular: regel
+            widget: list
+            i18n: sync
+            min: 1
+            hint: 'Gesimuleerde uitvoer, één regel per item. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad. Nieuw item: vul het eerst in beide talen in en sla dan pas op.'
+            field:
+              name: line
+              label: Regel
+              widget: string
+              i18n: true
+          - name: nmap_scope
+            label: '''nmap'' op een ander doel'
+            widget: string
+            i18n: true
+            hint: '{target} = wat de bezoeker opgaf. {target} moet erin blijven.'
+      - name: topology
+        label: Netwerktopologie (3D)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: label
+          label: Klein label
+          widget: string
+          i18n: true
+          hint: Groen labeltje boven de titel. Eén woord.
+        - name: title
+          label: Titel
+          widget: string
+          i18n: true
+        - name: hint
+          label: Hint onder de titel
+          widget: string
+          i18n: true
+          hint: Uitleg over slepen/klikken. Eén regel.
+        - name: canvas_label
+          label: 'Toegankelijkheid: 3D-weergave'
+          widget: string
+          i18n: true
+          hint: Voorgelezen door schermlezers.
+        - name: loading
+          label: Tekst tijdens laden
+          widget: string
+          i18n: true
+        - name: zoom_in
+          label: 'Knop: inzoomen'
+          widget: string
+          i18n: true
+        - name: zoom_out
+          label: 'Knop: uitzoomen'
+          widget: string
+          i18n: true
+        - name: reset
+          label: 'Knop: beeld herstellen'
+          widget: string
+          i18n: true
+        - name: close
+          label: 'Knop: sluiten'
+          widget: string
+          i18n: true
+        - name: list_label
+          label: 'Toegankelijkheid: lijst met nodes'
+          widget: string
+          i18n: true
+        - name: role_label
+          label: Woord 'rol' in het detailvenster
+          widget: string
+          i18n: true
+        - name: tech_label
+          label: Woord 'technologie' in het detailvenster
+          widget: string
+          i18n: true
+        - name: disclaimer
+          label: Voetnoot onder de topologie
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+        - name: nodes
+          label: Nodes
+          label_singular: node
+          widget: list
+          i18n: sync
+          allow_add: false
+          allow_remove: false
+          allow_reorder: false
+          collapsed: true
+          hint: 'Vaste lijst: hoort bij code op de site. Alleen de tekst aanpassen; niets toevoegen, verwijderen of verplaatsen. Elke node heeft een 3D-positie in json/topology.json; id niet wijzigen.'
+          summary: '{{fields.label}}'
+          fields:
+          - name: id
+            label: Id (niet wijzigen)
+            widget: string
+            i18n: true
+          - name: label
+            label: Naam
+            widget: string
+            i18n: true
+          - name: zone
+            label: Zone
+            widget: string
+            i18n: true
+            hint: Bv. DMZ, LAN, LAB.
+          - name: role
+            label: Rol
+            widget: text              # ↔ MULTILINE_KEYS in build.py
+            i18n: true
+          - name: tech
+            label: Technologie
+            widget: string
+            i18n: true
+          - name: note
+            label: Notitie
+            widget: text              # ↔ MULTILINE_KEYS in build.py
+            i18n: true
+            hint: Optioneel. Leeg laten = niet tonen (dan in beide talen leeg).
+            required: false
+      - name: globe
+        label: Wereldbol (3D)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: label
+          label: Klein label
+          widget: string
+          i18n: true
+          hint: Groen labeltje boven de titel. Eén woord.
+        - name: badge
+          label: Badge
+          widget: string
+          i18n: true
+          hint: Bv. simulatie.
+        - name: loading
+          label: Tekst tijdens laden
+          widget: string
+          i18n: true
+        - name: you
+          label: Label 'jij'
+          widget: string
+          i18n: true
+          hint: Bij de locatie van de bezoeker. Kort, hoofdletters.
+        - name: canvas_label
+          label: 'Toegankelijkheid: 3D-weergave'
+          widget: string
+          i18n: true
+        - name: caption
+          label: Voetnoot
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+        - name: fallback
+          label: Tekst als 3D niet werkt
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+      - name: news
+        label: Security-nieuws
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: label
+          label: Klein label
+          widget: string
+          i18n: true
+          hint: Groen labeltje boven de titel. Eén woord.
+        - name: title
+          label: Titel
+          widget: string
+          i18n: true
+        - name: loading
+          label: Tekst tijdens laden
+          widget: string
+          i18n: true
+        - name: sample
+          label: Melding bij voorbeelddata
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+        - name: sources_label
+          label: Woord 'bronnen'
+          widget: string
+          i18n: true
+      - name: seo
+        label: SEO (zoekmachines en tabblad)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: title
+          label: Paginatitel
+          widget: string
+          i18n: true
+          hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
+        - name: description
+          label: Beschrijving
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
+    - name: expertise
+      label: Expertise
+      file: content/{{locale}}/expertise.json
+      i18n: true
+      fields:
+      - name: label
+        label: Klein label
+        widget: string
+        i18n: true
+        hint: Groen labeltje boven de titel. Eén woord.
+      - name: title
+        label: Titel
+        widget: string
+        i18n: true
+      - name: intro
+        label: Intro
+        widget: text              # ↔ MULTILINE_KEYS in build.py
+        i18n: true
+        hint: Eén of twee zinnen onder de titel.
+      - name: cards
+        label: Domeinen
+        label_singular: domein
+        widget: list
+        i18n: sync
+        min: 1
+        hint: Elk domein verschijnt ook op Over mij (technologie per domein) en op het CV. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+        summary: '{{fields.id}}'
+        fields:
+        - name: id
+          label: Nummer en naam
+          widget: string
+          i18n: true
+          hint: 'Bv. #01 — NETWERK.'
+        - name: icon
+          label: Icoon (tekst)
+          widget: string
+          i18n: true
+          hint: Kort, tussen haken, bv. [NW].
+        - name: title
+          label: Titel
+          widget: string
+          i18n: true
+        - name: desc
+          label: Beschrijving
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Twee of drie zinnen.
+        - name: tags
+          label: Technologieën
+          label_singular: technologie
+          widget: list
+          i18n: duplicate
+          min: 1
+          hint: Eén product of techniek per item. Alleen op het Nederlandse tabblad invullen; het Engels wordt automatisch gekopieerd.
+          field:
+            name: tag
+            label: Technologie
+            widget: string
+            i18n: duplicate
+      - name: lab
+        label: Lab
+        widget: object
+        i18n: true
+        fields:
+        - name: label
+          label: Klein label
+          widget: string
+          i18n: true
+          hint: Groen labeltje boven de titel. Eén woord.
+        - name: title
+          label: Titel
+          widget: string
+          i18n: true
+        - name: intro
+          label: Intro
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+        - name: cards
+          label: Kaarten
+          label_singular: kaart
+          widget: list
+          i18n: sync
+          min: 1
+          hint: Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+          summary: '{{fields.title}}'
+          fields:
+          - name: title
+            label: Titel
+            widget: string
+            i18n: true
+          - name: desc
+            label: Beschrijving
+            widget: text              # ↔ MULTILINE_KEYS in build.py
+            i18n: true
+        - name: note
+          label: Noot onder de kaarten
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+      - name: seo
+        label: SEO (zoekmachines en tabblad)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: title
+          label: Paginatitel
+          widget: string
+          i18n: true
+          hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
+        - name: description
+          label: Beschrijving
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
+    - name: about
+      label: Over mij
+      file: content/{{locale}}/about.json
+      i18n: true
+      fields:
+      - name: label
+        label: Klein label
+        widget: string
+        i18n: true
+        hint: Groen labeltje boven de titel. Eén woord.
+      - name: title_1
+        label: Titel regel 1
+        widget: string
+        i18n: true
+      - name: title_2
+        label: Titel regel 2
+        widget: string
+        i18n: true
+      - name: paragraphs
+        label: Alinea's
+        label_singular: alinea
+        widget: list
+        i18n: sync
+        min: 1
+        hint: 'Tekst over jezelf. Vet: <strong>…</strong>, cursief: <em>…</em>; andere HTML is niet toegestaan. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad. Nieuw item: vul het eerst in beide talen in en sla dan pas op.'
+        field:
+          name: paragraph
+          label: Alinea
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+      - name: skills_label
+        label: Kop boven 'technologie per domein'
+        widget: string
+        i18n: true
+        hint: De domeinen zelf komen automatisch van de pagina Expertise.
+      - name: seo
+        label: SEO (zoekmachines en tabblad)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: title
+          label: Paginatitel
+          widget: string
+          i18n: true
+          hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
+        - name: description
+          label: Beschrijving
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
+    - name: projects
+      label: Projecten
+      file: content/{{locale}}/projects.json
+      i18n: true
+      fields:
+      - name: label
+        label: Klein label
+        widget: string
+        i18n: true
+        hint: Groen labeltje boven de titel. Eén woord.
+      - name: title
+        label: Titel
+        widget: string
+        i18n: true
+      - name: problem
+        label: Kopje 'probleem'
+        widget: string
+        i18n: true
+        hint: Staat in elke projectkaart.
+      - name: approach
+        label: Kopje 'aanpak'
+        widget: string
+        i18n: true
+      - name: result
+        label: Kopje 'resultaat'
+        widget: string
+        i18n: true
+      - name: groups
+        label: Groepen
+        label_singular: groep
+        widget: list
+        i18n: sync
+        min: 1
+        hint: Bv. recent werk en eerdere projecten. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+        summary: '{{fields.label}}'
+        fields:
+        - name: label
+          label: Naam van de groep
+          widget: string
+          i18n: true
+        - name: cards
+          label: Projecten
+          label_singular: project
+          widget: list
+          i18n: sync
+          min: 1
+          collapsed: true
+          hint: De titels verschijnen ook op het CV (recente projecten). Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+          summary: '{{fields.title}}'
+          fields:
+          - name: tag
+            label: Label
+            widget: string
+            i18n: true
+            hint: Klein, hoofdletters, bv. IDENTITY.
+          - name: title
+            label: Titel
+            widget: string
+            i18n: true
+          - name: problem
+            label: Probleem
+            widget: text              # ↔ MULTILINE_KEYS in build.py
+            i18n: true
+          - name: approach
+            label: Aanpak
+            widget: text              # ↔ MULTILINE_KEYS in build.py
+            i18n: true
+          - name: result
+            label: Resultaat
+            widget: text              # ↔ MULTILINE_KEYS in build.py
+            i18n: true
+            hint: 'Optioneel: alleen invullen als het resultaat bekend is (dan in beide talen).'
+            required: false
+          - name: tags
+            label: Technologieën
+            label_singular: technologie
+            widget: list
+            i18n: duplicate
+            min: 1
+            hint: Alleen op het Nederlandse tabblad invullen; het Engels wordt automatisch gekopieerd.
+            field:
+              name: tag
+              label: Technologie
+              widget: string
+              i18n: duplicate
+      - name: seo
+        label: SEO (zoekmachines en tabblad)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: title
+          label: Paginatitel
+          widget: string
+          i18n: true
+          hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
+        - name: description
+          label: Beschrijving
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
+    - name: cv
+      label: CV
+      file: content/{{locale}}/cv.json
+      i18n: true
+      fields:
+      - name: label
+        label: Klein label
+        widget: string
+        i18n: true
+        hint: Groen labeltje boven de titel. Eén woord.
+      - name: title
+        label: Titel
+        widget: string
+        i18n: true
+      - name: profile_label
+        label: 'Kop: profiel'
+        widget: string
+        i18n: true
+      - name: profile
+        label: Profiel (alinea's)
+        label_singular: alinea
+        widget: list
+        i18n: sync
+        min: 1
+        hint: 'Korte alinea''s over wie je bent. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad. Nieuw item: vul het eerst in beide talen in en sla dan pas op.'
+        summary: '{{fields.paragraph}}'
+        field:
+          name: paragraph
+          label: Alinea
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+      - name: expertise_label
+        label: 'Kop: expertise per domein'
+        widget: string
+        i18n: true
+        hint: De domeinen zelf komen automatisch van de pagina Expertise.
+      - name: projects_label
+        label: 'Kop: recente projecten'
+        widget: string
+        i18n: true
+        hint: De lijst eronder wordt automatisch gevuld met de titels van alle projectkaarten (pagina Projecten).
+      - name: projects_link
+        label: Link naar alle projecten
+        widget: string
+        i18n: true
+        hint: Linktekst onder de projectenlijst, bv. Alle projecten met probleem en aanpak →
+      - name: education_label
+        label: 'Kop: opleiding'
+        widget: string
+        i18n: true
+      - name: education
+        label: Opleiding
+        label_singular: opleiding
+        widget: list
+        i18n: sync
+        min: 1
+        collapsed: true
+        hint: Eén item per diploma. Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.
+        summary: '{{fields.title}}'
+        fields:
+        - name: title
+          label: Diploma
+          widget: string
+          i18n: true
+          hint: Bv. Graduaat Systeem- en Netwerkbeheer (met onderscheiding).
+        - name: where
+          label: Waar
+          widget: string
+          i18n: true
+          hint: School of instelling, zonder jaartallen.
+      - name: languages_label
+        label: 'Kop: talen'
+        widget: string
+        i18n: true
+      - name: languages
+        label: Talen
+        label_singular: taal
+        widget: list
+        i18n: sync
+        min: 1
+        hint: 'Toevoegen, verwijderen en verplaatsen gebeurt automatisch in beide talen; vertaal de tekst op het andere tabblad.'
+        summary: '{{fields.name}}'
+        fields:
+        - name: name
+          label: Taal
+          widget: string
+          i18n: true
+        - name: level
+          label: Niveau
+          widget: string
+          i18n: true
+          required: false
+          hint: Optioneel, bv. C1 of moedertaal. Leeg laten = geen niveau tonen (dan in beide talen leeg).
+      - name: seo
+        label: SEO (zoekmachines en tabblad)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: title
+          label: Paginatitel
+          widget: string
+          i18n: true
+          hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
+        - name: description
+          label: Beschrijving
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.
+    - name: contact
+      label: Contact
+      file: content/{{locale}}/contact.json
+      i18n: true
+      fields:
+      - name: label
+        label: Klein label
+        widget: string
+        i18n: true
+        hint: Groen labeltje boven de titel. Eén woord.
+      - name: title
+        label: Titel
+        widget: string
+        i18n: true
+      - name: intro
+        label: Intro
+        widget: text              # ↔ MULTILINE_KEYS in build.py
+        i18n: true
+      - name: form
+        label: Formulier
+        widget: object
+        i18n: true
+        fields:
+        - name: name
+          label: Veld 'naam'
+          widget: string
+          i18n: true
+        - name: email
+          label: Veld 'e-mail'
+          widget: string
+          i18n: true
+        - name: message
+          label: Veld 'bericht'
+          widget: string
+          i18n: true
+        - name: submit
+          label: Knop versturen
+          widget: string
+          i18n: true
+        - name: honeypot
+          label: Verborgen veld (spam)
+          widget: string
+          i18n: true
+          hint: Alleen zichtbaar voor spambots; bv. Niet invullen.
+        - name: privacy
+          label: Privacyzin onder het formulier
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+      - name: alt
+        label: Tekst 'liever mailen?'
+        widget: string
+        i18n: true
+      - name: email
+        label: Linktekst naar het e-mailprogramma
+        widget: string
+        i18n: true
+        hint: Het adres zelf staat niet in de pagina; het wordt met JavaScript samengesteld.
+      - name: seo
+        label: SEO (zoekmachines en tabblad)
+        widget: object
+        i18n: true
+        collapsed: true
+        fields:
+        - name: title
+          label: Paginatitel
+          widget: string
+          i18n: true
+          hint: Titel in het browsertabblad en in Google. ± 50–60 tekens.
+        - name: description
+          label: Beschrijving
+          widget: text              # ↔ MULTILINE_KEYS in build.py
+          i18n: true
+          hint: Tekst onder de titel in Google. ± 140–160 tekens, één of twee zinnen.

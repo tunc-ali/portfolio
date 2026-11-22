@@ -1,0 +1,48 @@
+# Verboden inhoud — elke treffer stopt de build (bestand + veld/regel).
+# Wordt gecontroleerd in: content/, gepubliceerde lab notes en alles wat als
+# HTML/JSON/YAML/TXT/XML in dist/ komt (behalve vendor/ en json/news|globe|topology.json).
+# Dit bestand zelf wordt NIET gepubliceerd.
+#
+# Eén regel per term: hoofdletterongevoelig, op woordgrenzen ("abc" vindt niet "abcd").
+# Regels die met re: beginnen zijn reguliere expressies (Python), ook hoofdletterongevoelig.
+# Lege regels en regels die met # beginnen worden genegeerd.
+# Zo weinig mogelijk persoonlijke gegevens in dit bestand: geen telefoonnummer
+# (de regex hieronder vangt het), geen straat of huisnummer.
+
+# ── Huidige werkgever (op de site: "internationaal productiebedrijf") ──
+# "Natra" vangt ook "Natra NV", "natra.com", "natra.local" (woordgrens bij spatie/punt).
+Natra
+natraeur
+natragroup
+
+# ── Interne systeemnamen (nooit op de site) ──
+Gudrun
+Svanhild
+gudfps
+gudnavapp01
+lpr-navapp01
+lpr-print01
+lpr-veeam01
+
+# ── Vestigingen van de werkgever ──
+Lier
+Malle
+
+# ── Vroegere werkgevers en plaatsen die niet op de site mogen ──
+Huawei
+Khartoum
+Oud-Turnhout
+
+# ── Woonplaats ──
+Oostmalle
+2390
+
+# ── Telefoonnummers ──────────────────────────────────────────
+# Belgisch gsm-nummer: 0470 12 34 56, 0470/12.34.56, +32 470 12 34 56, 0032 470 123456
+re:(?<![\d+])(?:\+32|0032|0)[\s./-]?4\d{2}(?:[\s./-]?\d{2}){3}(?!\d)
+# Elk nummer in internationaal formaat: + en minstens 8 cijfers
+re:(?<![\w+])\+\d{1,3}(?:[\s./-]?\d){7,}(?!\d)
+
+# ── E-mailadressen ───────────────────────────────────────────
+# Op de site wordt het e-mailadres alleen via JavaScript samengesteld.
+re:[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}

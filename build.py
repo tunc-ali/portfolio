@@ -12,8 +12,8 @@ WAT HET DOET
                  toont build.py ze allemaal en stopt het met exit code 1, zonder
                  dist/ aan te raken. Op Netlify mislukt de deploy dan en blijft
                  de vorige versie online.
-    2. BOUWEN    json/nl.json + templates/  →  dist/*.html          (Nederlands)
-                 json/en.json + templates/  →  dist/en/*.html       (Engels)
+    2. BOUWEN    content/nl/*.json + templates/  →  dist/*.html     (Nederlands)
+                 content/en/*.json + templates/  →  dist/en/*.html  (Engels)
                  notes/nl/*.md, notes/en/*.md → dist/lab-notes/, dist/en/lab-notes/
                  + de bestanden uit STATIC (whitelist) worden naar dist/ gekopieerd.
                  Er wordt eerst in .dist-tmp/ gebouwd; pas als alles gelukt is,
@@ -26,15 +26,19 @@ WAT HET DOET
     (zie netlify.toml); de GitHub Action doet hetzelfde als controle.
 
 WERKWIJZE
-    - Tekst aanpassen      → json/nl.json en json/en.json (zelfde sleutels in beide)
+    - Tekst aanpassen      → via het CMS (/admin) of content/<taal>/<bestand>.json
+                             (site.json = nav, footer, contactblok, lab-notes-teksten;
+                             home/expertise/about/projects/cv/contact.json = die pagina + 'seo')
     - Opmaak/structuur     → templates/_layout.html (nav, footer) of templates/<pagina>.html
     - Nieuwe pagina        → rij toevoegen in PAGES hieronder + templates/<id>.html
-                             + "pages.<id>" (title, description) in beide json-bestanden
+                             + content/<taal>/<bestand>.json met 'seo' (title, description)
+                             + een regel in PAGE_FILES
     - Nieuw statisch bestand of nieuwe map voor de site → toevoegen aan STATIC.
       Wat niet in STATIC staat, komt niet online (bv. notes/, templates/, build.py).
 
 CONTROLES (elke fout stopt de build)
-    json/nl.json, json/en.json
+    content/nl/*.json, content/en/*.json
+      - precies de bestanden uit PAGE_FILES + site.json, geen andere; elk met 'seo'
       - geldige JSON (met regel/kolom bij een fout)
       - exact dezelfde sleutels, lijstlengtes en types in beide talen
       - geen lege tekst, behalve in velden met een naam uit OPTIONAL_EMPTY;
@@ -42,6 +46,11 @@ CONTROLES (elke fout stopt de build)
       - pages.<id>.title en .description voor elke pagina in PAGES
       - HTML in tekst: alleen <strong>, <em>, <br>, <code> zonder attributen
       - home.topology.nodes: elke id moet bestaan in json/topology.json
+      - lopende tekst (PROSE_KEYS, ≥ 40 tekens) die in NL en EN identiek is → "niet vertaald"
+      - volgorde gelijk in beide talen voor lijsten met een vast anker (ORDER_ANCHORS):
+        domeinen (icoon + nummer), cijfers (getal), topologie-nodes (id)
+      - terminal: snelknoppen en help-commando's moeten bestaande commando's zijn;
+        {placeholders} gelijk in NL en EN, verplichte ({cmd}, {lang}, {target}) blijven staan
     json/topology.json, json/globe.json, json/news.json
       - geldige JSON en de velden die de scripts op de site verwachten
     notes/<taal>/*.md (lab notes)
@@ -56,6 +65,11 @@ CONTROLES (elke fout stopt de build)
       - alleen .jpg .jpeg .png .webp .avif, max. 5 MB, en de inhoud moet
         echt dat formaat zijn (geen hernoemde SVG/HTML)
       - geen EXIF/XMP/IPTC-metadata (GPS-locatie, camera, …)
+    verboden inhoud (content-denylist.txt, wordt niet gepubliceerd)
+      - termen en reguliere expressies (werkgever, adres, telefoon, e-mail, …)
+      - in content/, gepubliceerde lab notes en alle eigen tekst in dist/ (HTML, JSON,
+        YAML, TXT, XML; niet vendor/ en json/news|globe|topology.json)
+      - treffers worden in de log half getoond; het bestand ontbreekt → fout
     algemeen
       - geen symbolische links in wat naar dist/ gaat
       - elke template-sleutel moet bestaan
@@ -97,6 +111,7 @@ import json
 import re
 import shutil
 import sys
+import unicodedata
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -149,7 +164,30 @@ STATIC = {
 IGNORED_NAMES = {'Thumbs.db', 'desktop.ini', '.DS_Store', '.gitkeep'}
 
 # Tekstvelden die leeg mogen zijn (naam van het laatste deel van het sleutelpad)
-OPTIONAL_EMPTY = {'note', 'result'}
+OPTIONAL_EMPTY = {'note', 'result', 'level'}
+
+# Inhoud per taal: content/<taal>/<bestand>.json (dezelfde bestanden in elke taal).
+# site.json bevat gedeelde blokken; elk paginabestand bevat de sectie + 'seo' (title, description).
+CONTENT_DIR = 'content'
+SITE_FILE = 'site'
+SITE_KEYS = ('nav', 'footer', 'cta', 'notes')
+PAGE_FILES = {          # bestand → (sectie in de teksten, pagina-id in PAGES)
+    'home':      ('home', 'home'),
+    'expertise': ('services', 'services'),
+    'about':     ('about', 'about'),
+    'projects':  ('projects', 'projects'),
+    'cv':        ('cv', 'cv'),
+    'contact':   ('contact', 'contact'),
+}
+SECTION_FILE = {section: fname for fname, (section, _) in PAGE_FILES.items()}
+PID_FILE = {pid: fname for fname, (_, pid) in PAGE_FILES.items()}
+
+# Verboden inhoud (werkgever, adres, telefoon, e-mail, …): zie content-denylist.txt.
+DENYLIST = 'content-denylist.txt'
+# dist/-bestanden die op verboden inhoud gecontroleerd worden (naast de HTML-pagina's)
+SCAN_EXT = {'.html', '.json', '.yml', '.yaml', '.txt', '.xml'}
+# Niet scannen: externe/automatische data en bibliotheken (geen eigen tekst; geen valse alarmen)
+SCAN_SKIP = ('vendor/', 'json/news.json', 'json/globe.json', 'json/topology.json')
 # HTML die in json-tekst mag staan (zonder attributen)
 ALLOWED_TAGS = {'strong', 'em', 'br', 'code'}
 
@@ -298,55 +336,290 @@ def leaves(value, prefix=''):
 TAG = re.compile(r'<\s*(/?)\s*([a-zA-Z][\w-]*)([^>]*)>')
 
 
-def check_texts(texts, errors):
+def where(lang, key):
+    """Sleutelpad in de samengevoegde teksten → 'content/<taal>/<bestand>.json → pad in dat bestand'."""
+    first, _, rest = key.partition('.')
+    if first in SITE_KEYS:
+        return f'{CONTENT_DIR}/{lang}/{SITE_FILE}.json → {key}'
+    if first == 'pages':
+        pid, _, field = rest.partition('.')
+        fname = PID_FILE.get(pid, pid)
+        return f'{CONTENT_DIR}/{lang}/{fname}.json → seo' + (f'.{field}' if field else '')
+    fname = SECTION_FILE.get(first, first)
+    return f'{CONTENT_DIR}/{lang}/{fname}.json → {rest or "(hele bestand)"}'
+
+
+def load_texts(lang, errors):
+    """Leest content/<taal>/*.json en voegt alles samen tot één structuur
+    (zoals de templates die verwachten). Geeft None bij een fout."""
+    folder = ROOT / CONTENT_DIR / lang
+    expected = {f'{SITE_FILE}.json'} | {f'{f}.json' for f in PAGE_FILES}
+    if not folder.is_dir():
+        errors.add(f'{CONTENT_DIR}/{lang}/ ontbreekt')
+        return None
+    present = {p.name for p in folder.iterdir() if p.name not in IGNORED_NAMES}
+    for name in sorted(present - expected):
+        errors.add(f'{CONTENT_DIR}/{lang}/{name}: onbekend bestand (verwacht: {", ".join(sorted(expected))})')
+    ok = True
+    data = {}
+    for name in sorted(expected):
+        path = folder / name
+        if path.is_symlink():
+            errors.add(f'{rel(path)}: symbolische links zijn niet toegestaan')
+            ok = False
+            continue
+        d = load_json(path, errors)
+        if not isinstance(d, dict):
+            if d is not None:
+                errors.add(f'{rel(path)}: moet een JSON-object zijn')
+            ok = False
+            continue
+        data[name[:-5]] = d
+    if not ok:
+        return None
+    texts = {'pages': {}}
+    site = data[SITE_FILE]
+    for key in SITE_KEYS:
+        if key not in site:
+            errors.add(f'{CONTENT_DIR}/{lang}/{SITE_FILE}.json: "{key}" ontbreekt')
+            ok = False
+        else:
+            texts[key] = site[key]
+    for key in sorted(set(site) - set(SITE_KEYS)):
+        errors.add(f'{CONTENT_DIR}/{lang}/{SITE_FILE}.json: onbekende sleutel "{key}"')
+    for fname, (section, pid) in PAGE_FILES.items():
+        d = dict(data[fname])
+        seo = d.pop('seo', None)
+        if not isinstance(seo, dict):
+            errors.add(f'{CONTENT_DIR}/{lang}/{fname}.json: "seo" (title, description) ontbreekt')
+            ok = False
+            seo = {}
+        texts['pages'][pid] = seo
+        texts[section] = d
+    return texts if ok else None
+
+
+# Onzichtbare en verborgen tekens: nooit toegestaan in eigen inhoud (content/*.json, lab notes):
+# stuurtekens (Unicode-categorie Cc, plus U+2028/U+2029) en opmaaktekens (categorie Cf: breedte nul,
+# leesrichting, zachte afbreking, tag-tekens …). U+00A0 (vaste spatie) mag wel; een regeleinde (\n)
+# alleen in velden die over meerdere regels gaan.
+# LET OP: widget: text-veld toegevoegd of verwijderd in admin/config.yml? Werk dan ook MULTILINE_KEYS bij.
+MULTILINE_KEYS = {'sub', 'intro', 'desc', 'text', 'problem', 'approach', 'result', 'note', 'caption',
+                  'fallback', 'disclaimer', 'sample', 'privacy', 'description', 'paragraphs', 'profile',
+                  'role'}                    # = de velden met widget: text in admin/config.yml
+CONTROL_NAMES = {0x09: 'TAB', 0x0A: 'LF, regeleinde', 0x0D: 'CR, regeleinde', 0x00: 'NUL'}
+
+
+def char_label(ch):
+    cp = ord(ch)
+    name = CONTROL_NAMES.get(cp) or unicodedata.name(ch, 'unnamed')
+    return f'U+{cp:04X} {name}'
+
+
+def bad_chars(value, multiline=False, edges=True):
+    """Meldingen voor verborgen tekens (één per soort) en, met edges=True, witruimte aan begin/einde."""
+    found = []
+    seen = set()
+    if edges and value != value.strip():
+        edge, side = (value[0], 'begint') if value[0].isspace() else (value[-1], 'eindigt')
+        found.append(f'{side} met witruimte ({char_label(edge)}); verwijder die')
+        seen.add(ord(edge))                          # hetzelfde teken niet twee keer melden
+    for ch in value:
+        cp = ord(ch)
+        if ch == '\n' and multiline:
+            continue
+        cat = unicodedata.category(ch)
+        if cat == 'Cc' or cp in (0x2028, 0x2029):
+            kind = 'stuurteken'
+        elif cat == 'Cf':
+            kind = 'onzichtbaar opmaakteken'
+        else:
+            continue
+        if cp in seen:
+            continue
+        seen.add(cp)
+        found.append(f'bevat een {kind} ({char_label(ch)}); verwijder dat (vaak meegekomen bij plakken)')
+    return found
+
+
+def is_multiline(key):
+    names = [p for p in key.split('.') if not p.isdigit()]
+    return bool(names) and names[-1] in MULTILINE_KEYS
+
+
+def check_texts(texts, errors, skip=frozenset()):
     flat = {lang: dict(leaves(texts[lang])) for lang in LANGS}
     base = flat[DEFAULT_LANG]
 
-    # 1. zelfde sleutels en types in beide talen
+    # 1. zelfde sleutels, lijstlengtes en types in beide talen
+    def list_lengths(v, prefix=''):
+        if isinstance(v, dict):
+            for k, x in v.items():
+                yield from list_lengths(x, f'{prefix}{k}.')
+        elif isinstance(v, list):
+            yield prefix.rstrip('.'), len(v)
+            for n, x in enumerate(v):
+                yield from list_lengths(x, f'{prefix}{n}.')
+
+    base_lists = dict(list_lengths(texts[DEFAULT_LANG]))
     for lang in LANGS:
         if lang == DEFAULT_LANG:
             continue
+        other_lists = dict(list_lengths(texts[lang]))
+        diff_lists = sorted(k for k in base_lists.keys() & other_lists.keys() if base_lists[k] != other_lists[k]
+                            and not any(k.startswith(m + '.') for m in skip))
+        for key in diff_lists:
+            errors.add(f'{where(lang, key)}: lijst heeft {other_lists[key]} item(s) in {lang}, '
+                       f'maar {base_lists[key]} in {DEFAULT_LANG} (voeg toe/verwijder in beide talen)')
+
+        def covered(key):                       # al gemeld (lijst met andere lengte of volgorde)
+            return any(key.startswith(d + '.') for d in list(diff_lists) + list(skip))
+
         for key in sorted(base.keys() - flat[lang].keys()):
-            errors.add(f'json/{lang}.json mist sleutel: {key}')
+            if not covered(key):
+                errors.add(f'{where(lang, key)}: ontbreekt (bestaat wel in {DEFAULT_LANG})')
         for key in sorted(flat[lang].keys() - base.keys()):
-            errors.add(f'json/{lang}.json heeft extra sleutel: {key}')
+            if covered(key):
+                continue
+            errors.add(f'{where(lang, key)}: bestaat niet in {DEFAULT_LANG} (NL en EN moeten dezelfde velden en lijstlengtes hebben)')
         for key in sorted(base.keys() & flat[lang].keys()):
+            if covered(key):
+                continue
             a, b = base[key], flat[lang][key]
             if type(a) is not type(b):
-                errors.add(f'{key}: type verschilt (nl: {type(a).__name__}, {lang}: {type(b).__name__})')
+                errors.add(f'{where(lang, key)}: type verschilt met {DEFAULT_LANG} ({type(a).__name__} ↔ {type(b).__name__})')
 
     for lang in LANGS:
-        src = f'json/{lang}.json'
         for key, value in flat[lang].items():
+            src = where(lang, key)
             last = key.rsplit('.', 1)[-1]
             # 2. lege waarden
             if value in ('', None, [], {}):
                 if last not in OPTIONAL_EMPTY:
-                    errors.add(f'{src}: {key} is leeg (verplicht veld)')
+                    errors.add(f'{src}: is leeg (verplicht veld)')
             elif not isinstance(value, (str, int, float, bool)):
-                errors.add(f'{src}: {key} heeft een ongeldig type')
+                errors.add(f'{src}: heeft een ongeldig type')
             # 3. toegestane HTML
             if isinstance(value, str):
                 for m in TAG.finditer(value):
                     if m.group(2).lower() not in ALLOWED_TAGS or m.group(3).strip(' /'):
-                        errors.add(f'{src}: {key} bevat niet-toegestane HTML: {m.group(0)}')
+                        errors.add(f'{src}: bevat niet-toegestane HTML: {m.group(0)} (toegestaan: <strong>, <em>, <br>, <code> zonder attributen)')
                 if re.search(r'<!--|<!\[|javascript:', value, re.I):
-                    errors.add(f'{src}: {key} bevat niet-toegestane inhoud')
+                    errors.add(f'{src}: bevat niet-toegestane inhoud')
+                # 4. witruimte aan begin/einde en verborgen tekens
+                for problem in bad_chars(value, multiline=is_multiline(key)):
+                    errors.add(f'{src}: {problem}')
 
-    # 4. optionele velden: leeg in beide talen of ingevuld in beide
+    # 5. optionele velden: leeg in beide talen of ingevuld in beide
     for key in sorted(base):
         if key.rsplit('.', 1)[-1] in OPTIONAL_EMPTY:
             filled = {lang: bool(flat[lang].get(key)) for lang in LANGS if key in flat[lang]}
             if len(set(filled.values())) > 1:
                 detail = ', '.join(f'{l}: {"ingevuld" if f else "leeg"}' for l, f in filled.items())
-                errors.add(f'{key}: in de ene taal ingevuld, in de andere leeg ({detail})')
+                errors.add(f'{where(DEFAULT_LANG, key)}: in de ene taal ingevuld, in de andere leeg ({detail})')
 
-    # 5. pagina-metadata (leeg wordt hierboven al gemeld; hier alleen: ontbreekt)
+    # 6. pagina-metadata (leeg wordt hierboven al gemeld; hier alleen: ontbreekt)
     for lang in LANGS:
         for pid in PAGES:
             for field in ('title', 'description'):
                 if f'pages.{pid}.{field}' not in flat[lang]:
-                    errors.add(f'json/{lang}.json: pages.{pid}.{field} ontbreekt')
+                    errors.add(f'{where(lang, f"pages.{pid}.{field}")}: ontbreekt')
+
+
+# Terminal op de homepage: commando's bestaan in js/terminal.js; placeholders worden daar ingevuld.
+TERMINAL_COMMANDS = {'help', 'whoami', 'skills', 'projects', 'contact', 'lang', 'clear', 'sudo', 'nmap'}
+REQUIRED_PLACEHOLDERS = {
+    'home.terminal.cmd.not_found': {'cmd'},
+    'home.terminal.cmd.lang_current': {'lang'},
+    'home.terminal.cmd.lang_switch': {'lang'},
+    'home.terminal.cmd.nmap_scope': {'target'},
+}
+PLACEHOLDER = re.compile(r'\{(\w+)\}')
+
+
+def check_code_bound(texts, errors):
+    """Teksten die aan code gebonden zijn: terminalcommando's en {placeholders}."""
+    for lang in LANGS:
+        try:
+            term = texts[lang]['home']['terminal']
+            chips, help_rows = term['chips'], term['cmd']['help']
+        except (KeyError, TypeError):
+            continue                                    # al gemeld door check_texts
+        for i, chip in enumerate(chips):
+            if not isinstance(chip, str) or chip.split()[:1] and chip.split()[0] not in TERMINAL_COMMANDS:
+                errors.add(f'{where(lang, f"home.terminal.chips.{i}")}: "{chip}" is geen terminalcommando '
+                           f'({", ".join(sorted(TERMINAL_COMMANDS))})')
+        for i, row in enumerate(help_rows):
+            c = row.get('c', '') if isinstance(row, dict) else ''
+            if not isinstance(c, str) or not c.split() or c.split()[0] not in TERMINAL_COMMANDS:
+                errors.add(f'{where(lang, f"home.terminal.cmd.help.{i}.c")}: "{c}" is geen terminalcommando')
+    flat = {lang: dict(leaves(texts[lang])) for lang in LANGS}
+    for key, value in flat[DEFAULT_LANG].items():
+        if not isinstance(value, str):
+            continue
+        base = set(PLACEHOLDER.findall(value))
+        for lang in LANGS:
+            other = flat[lang].get(key)
+            if not isinstance(other, str):
+                continue
+            found = set(PLACEHOLDER.findall(other))
+            need = REQUIRED_PLACEHOLDERS.get(key, set())
+            if need - found:
+                errors.add(f'{where(lang, key)}: ' + ', '.join('{' + n + '}' for n in sorted(need - found))
+                           + ' moet in de tekst blijven (wordt door de site ingevuld)')
+            elif lang != DEFAULT_LANG and found != base:
+                errors.add(f'{where(lang, key)}: placeholders verschillen met {DEFAULT_LANG} '
+                           f'({", ".join(sorted(base)) or "geen"} ↔ {", ".join(sorted(found)) or "geen"})')
+
+
+# Lopende tekst die vertaald moet zijn: identiek in NL en EN (en lang genoeg) = vergeten te vertalen.
+# Niet voor technologieopsommingen (tech, value, tags) of namen (rights): die zijn vaak gelijk.
+PROSE_KEYS = {'sub', 'intro', 'desc', 'text', 'problem', 'approach', 'result', 'note', 'caption',
+              'fallback', 'disclaimer', 'sample', 'privacy', 'description', 'paragraphs', 'profile',
+              'role', 'sudo', 'contact_text'}
+UNTRANSLATED_MIN = 40
+# Lijsten met een veld dat in elke taal gelijk is: daarmee wordt ook de volgorde gecontroleerd.
+ORDER_ANCHORS = {                       # pad naar de lijst → functie die het anker van een item geeft
+    'services.cards': lambda item: (item.get('icon'), str(item.get('id', ''))[:3]),
+    'home.stats': lambda item: item.get('n'),
+    'home.topology.nodes': lambda item: item.get('id'),
+}
+
+
+def check_untranslated(texts, errors):
+    flat = {lang: dict(leaves(texts[lang])) for lang in LANGS}
+    for key, value in flat[DEFAULT_LANG].items():
+        if not isinstance(value, str) or len(value) < UNTRANSLATED_MIN:
+            continue
+        if not set(key.split('.')) & PROSE_KEYS:
+            continue
+        for lang in LANGS:
+            if lang != DEFAULT_LANG and flat[lang].get(key) == value:
+                errors.add(f'{where(lang, key)}: lijkt niet vertaald (identiek aan {DEFAULT_LANG})')
+
+
+def check_order(texts, errors):
+    """Geeft de paden terug van items die in een andere volgorde staan (om vervolgfouten te onderdrukken)."""
+    moved = set()
+    for path, anchor_of in ORDER_ANCHORS.items():
+        lists = {}
+        for lang in LANGS:
+            cur = texts[lang]
+            for part in path.split('.'):
+                cur = cur.get(part) if isinstance(cur, dict) else None
+            lists[lang] = cur if isinstance(cur, list) else None
+        base = lists[DEFAULT_LANG]
+        for lang in LANGS:
+            other = lists[lang]
+            if lang == DEFAULT_LANG or base is None or other is None or len(base) != len(other):
+                continue                                   # lengteverschil wordt elders gemeld
+            for n, (a, b) in enumerate(zip(base, other)):
+                if isinstance(a, dict) and isinstance(b, dict) and anchor_of(a) != anchor_of(b):
+                    errors.add(f'{where(lang, f"{path}.{n}")}: volgorde verschilt met {DEFAULT_LANG} '
+                               f'(item {n + 1}: {anchor_of(a)} in {DEFAULT_LANG}, {anchor_of(b)} in {lang})')
+                    moved.add(path)
+                    break
+    return moved
 
 
 def check_runtime_json(texts, errors):
@@ -380,8 +653,8 @@ def check_runtime_json(texts, errors):
                 continue
             for i, n in enumerate(text_nodes):
                 if isinstance(n, dict) and n.get('id') not in ids:
-                    errors.add(f'json/{lang}.json: home.topology.nodes.{i}: id "{n.get("id")}" '
-                               f'bestaat niet in json/topology.json')
+                    errors.add(f'{where(lang, f"home.topology.nodes.{i}.id")}: "{n.get("id")}" '
+                               f'bestaat niet in json/topology.json (id niet wijzigen)')
 
     globe = load_json(ROOT / 'json' / 'globe.json', errors)
     if globe is not None:
@@ -597,16 +870,22 @@ def load_notes(lang, errors, drafts):
             errors.add(f'{name}: bestandsnaam moet een slug zijn (a-z, 0-9, koppeltekens), bv. vlan-hopping.md')
             continue
         try:
-            raw = path.read_text(encoding='utf-8').replace('\r\n', '\n').lstrip('﻿')
+            # read_bytes: read_text zou CRLF en losse CR stilzwijgend in LF omzetten
+            original = path.read_bytes().decode('utf-8').lstrip('﻿')
         except UnicodeDecodeError:
             errors.add(f'{name}: geen geldige UTF-8')
             continue
+        raw = original.replace('\r\n', '\n')
         m = re.match(r'^---\n(.*?)\n---[ \t]*(?:\n(.*))?$', raw, re.S)
         if not m:
             errors.add(f'{name}: kopblok ontbreekt of is niet afgesloten (--- … --- bovenaan)')
             continue
 
         ferr = []                                   # fouten van dit bestand (genegeerd bij een concept)
+        if '\r\n' in original:
+            line_no = original[:original.index('\r\n')].count('\n') + 1
+            ferr.append(f'{name}, regel {line_no}: Windows-regeleinden (CRLF, U+000D U+000A); '
+                        f'sla het bestand op met LF-regeleinden')
         meta = {}
         for n, line in enumerate(m.group(1).split('\n'), start=2):
             if not line.strip() or line.lstrip().startswith('#'):
@@ -631,6 +910,8 @@ def load_notes(lang, errors, drafts):
                     meta[key] = None                    # al gemeld: niet nog eens als "ontbreekt"
                 else:
                     meta[key] = parsed
+                    for problem in (bad_chars(parsed) if isinstance(parsed, str) else []):
+                        ferr.append(f'{name}, regel {n} ({key}): {problem}')
 
         # 1. Concept of niet? (fail closed: ontbreekt/ongeldig → fout, niet publiceren)
         draft = meta.get('draft')
@@ -657,6 +938,10 @@ def load_notes(lang, errors, drafts):
             except ValueError:
                 ferr.append(f'{name}: date "{meta["date"]}" is geen geldige datum (JJJJ-MM-DD)')
         raw_body = m.group(2) or ''
+        body_start = len(m.group(1).split('\n')) + 3
+        for n, line in enumerate(raw_body.split('\n'), start=body_start):
+            for problem in bad_chars(line.rstrip(' '), edges=False):   # spaties aan regeleinden mogen
+                ferr.append(f'{name}, regel {n}: {problem}')
         link_errors = Errors()
         check_links(raw_body, len(m.group(1).split('\n')) + 3, name, link_errors)
         ferr.extend(link_errors)
@@ -669,7 +954,8 @@ def load_notes(lang, errors, drafts):
             continue
         slug = path.stem
         meta = {k: v for k, v in meta.items() if k != 'draft'}
-        notes.append({**meta, 'slug': slug, 'file': f'{slug}.html', 'body': md_to_html(body)})
+        notes.append({**meta, 'slug': slug, 'file': f'{slug}.html', 'body': md_to_html(body),
+                      'source': name, 'raw': raw})
     return sorted(notes, key=lambda n: (n['date'], n['slug']), reverse=True)
 
 
@@ -686,6 +972,72 @@ def check_notes_parity(notes, drafts, errors):
                                f'notes/{other}/{slug}.md is nog een concept (draft: true)')
                 else:
                     errors.add(f'notes/{lang}/{slug}.md heeft geen vertaling: notes/{other}/{slug}.md ontbreekt')
+
+
+# ── Verboden inhoud (denylist) ────────────────────────────────
+def load_denylist(errors):
+    """Leest content-denylist.txt: één term per regel (hoofdletterongevoelig, op woordgrenzen)
+    of re:<reguliere expressie>. Ontbreekt het bestand, dan is dat een fout (fail closed)."""
+    path = ROOT / DENYLIST
+    if not path.is_file():
+        errors.add(f'{DENYLIST} ontbreekt (verplicht: lijst met verboden inhoud)')
+        return []
+    rules = []
+    for n, line in enumerate(path.read_text(encoding='utf-8').splitlines(), start=1):
+        t = line.strip()
+        if not t or t.startswith('#'):
+            continue
+        if t.startswith('re:'):
+            try:
+                rx = re.compile(t[3:], re.I)
+            except re.error as e:
+                errors.add(f'{DENYLIST}, regel {n}: ongeldige reguliere expressie ({e})')
+                continue
+            rules.append((rx, f'patroon op regel {n}'))
+        else:
+            rules.append((re.compile(r'(?<!\w)' + re.escape(t) + r'(?!\w)', re.I), f'term op regel {n}'))
+    return rules
+
+
+def masked(text):
+    """Treffer half tonen in de log (geen volledige telefoonnummers of adressen in logs)."""
+    return f'"{text[:2]}…" ({len(text)} tekens)'
+
+
+def deny_hits(rules, text):
+    """Eerste treffer (één melding per veld of regel, ook als meerdere regels passen)."""
+    for rx, label in rules:
+        m = rx.search(text)
+        if m:
+            yield m.group(0), label
+            return
+
+
+def scan_sources(rules, texts, notes, errors):
+    """Eigen inhoud: content/<taal>/*.json (met veldpad) en gepubliceerde lab notes (met regel)."""
+    for lang in LANGS:
+        for key, value in leaves(texts[lang]):
+            if isinstance(value, str):
+                for hit, label in deny_hits(rules, value):
+                    errors.add(f'{where(lang, key)}: verboden inhoud {masked(hit)} ({label} in {DENYLIST})')
+        for note in notes[lang]:
+            for n, line in enumerate(note['raw'].split('\n'), start=1):
+                for hit, label in deny_hits(rules, line):
+                    errors.add(f'{note["source"]}, regel {n}: verboden inhoud {masked(hit)} ({label} in {DENYLIST})')
+
+
+def scan_output(rules, pages, files, errors):
+    """Vangnet op wat online komt: alle HTML-pagina's en eigen tekstbestanden in dist/
+    (ook tekst die rechtstreeks in templates of admin/config.yml staat)."""
+    def scan(name, text):
+        for n, line in enumerate(text.split('\n'), start=1):
+            for hit, label in deny_hits(rules, line):
+                errors.add(f'dist/{name}, regel {n}: verboden inhoud {masked(hit)} ({label} in {DENYLIST})')
+    for path, html_text in pages.items():
+        scan(path, html_text)
+    for src, dest in files:
+        if Path(dest).suffix.lower() in SCAN_EXT and not dest.startswith(SCAN_SKIP):
+            scan(dest, src.read_text(encoding='utf-8', errors='replace'))
 
 
 # ── Uploads en statische bestanden ────────────────────────────
@@ -880,7 +1232,7 @@ def render_page(texts, lang, rel_path, template, alt_paths, extra, page_opts=Non
     try:
         ctx['terminal_json'] = terminal_data(texts[lang], ctx['url'])
     except (KeyError, TypeError) as e:
-        raise BuildError(f'json/{lang}.json: gegevens voor de terminal ontbreken ({e})')
+        raise BuildError(f'{CONTENT_DIR}/{lang}/home.json: gegevens voor de terminal ontbreken ({e})')
     ctx['content'] = render(template, ctx).rstrip('\n')
     return f'{lang_dir(lang)}{rel_path}', render('_layout.html', ctx)
 
@@ -947,19 +1299,27 @@ def build(list_output=False):
     errors = Errors()
 
     # 1. Controle
-    texts = {lang: load_json(ROOT / 'json' / f'{lang}.json', errors) for lang in LANGS}
+    texts = {lang: load_texts(lang, errors) for lang in LANGS}
     texts_ok = all(isinstance(t, dict) for t in texts.values())
     if texts_ok:
-        check_texts(texts, errors)
+        moved = check_order(texts, errors)
+        check_texts(texts, errors, skip=moved)
+        check_code_bound(texts, errors)
+        check_untranslated(texts, errors)
         check_runtime_json(texts, errors)
     drafts = {lang: {} for lang in LANGS}
     notes = {lang: load_notes(lang, errors, drafts) for lang in LANGS}
     check_notes_parity(notes, drafts, errors)
     check_uploads(errors)
     files = static_files(errors)
+    deny = load_denylist(errors)
+    if deny and texts_ok:
+        scan_sources(deny, texts, notes, errors)
 
     # 2. Renderen (alleen als de teksten bruikbaar zijn; template-fouten worden ook verzameld)
     pages = render_site(texts, notes, errors) if texts_ok and not errors else {}
+    if deny and pages and not errors:
+        scan_output(deny, pages, files, errors)        # vangnet: ook tekst in templates en config
 
     concept_lines = [f'  concept (niet gepubliceerd): {f}' for lang in LANGS for f in drafts[lang].values()]
 

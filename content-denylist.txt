@@ -6,17 +6,36 @@
 # Eén regel per term: hoofdletterongevoelig, op woordgrenzen ("abc" vindt niet "abcd").
 # Regels die met re: beginnen zijn reguliere expressies (Python), ook hoofdletterongevoelig.
 # Lege regels en regels die met # beginnen worden genegeerd.
+# Zo weinig mogelijk persoonlijke gegevens in dit bestand: geen telefoonnummer
+# (de regex hieronder vangt het), geen straat of huisnummer.
 
-# ── Zelf invullen ────────────────────────────────────────────
-# Huidige werkgever (naam, varianten, domeinnaam):
-# <naam>
+# ── Huidige werkgever (op de site: "internationaal productiebedrijf") ──
+# "Natra" vangt ook "Natra NV", "natra.com", "natra.local" (woordgrens bij spatie/punt).
+Natra
+natraeur
+natragroup
 
-# Vroegere werkgevers die niet op de site mogen:
+# ── Interne systeemnamen (nooit op de site) ──
+Gudrun
+Svanhild
+gudfps
+gudnavapp01
+lpr-navapp01
+lpr-print01
+lpr-veeam01
+
+# ── Vestigingen van de werkgever ──
+Lier
+Malle
+
+# ── Vroegere werkgevers en plaatsen die niet op de site mogen ──
 Huawei
+Khartoum
+Oud-Turnhout
 
-# Woonadres: straat, huisnummer, postcode, gemeente:
-# <straat>
-# <postcode>
+# ── Woonplaats ──
+Oostmalle
+2390
 
 # ── Telefoonnummers ──────────────────────────────────────────
 # Belgisch gsm-nummer: 0470 12 34 56, 0470/12.34.56, +32 470 12 34 56, 0032 470 123456

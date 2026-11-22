@@ -23,6 +23,10 @@
   "languages_label": "talen",
   "languages": [
     {
+      "name": "Testtaal",
+      "level": "A1"
+    },
+    {
       "name": "Turks",
       "level": "moedertaal"
     },
@@ -37,10 +41,6 @@
     {
       "name": "Azerbeidzjaans",
       "level": "C1"
-    },
-    {
-      "name": "Testtaal",
-      "level": "A1"
     }
   ],
   "seo": {
